@@ -10,7 +10,7 @@ int main()
 	Mat image;
 	imread(image, "D:\\Dev\\vs_projects\\OpenZL\\cache\\test.png", 1);
 
-	bool ret = imwrite("D:\\Dev\\vs_projects\\OpenZL\\cache\\test_out.jpg", image, 0, 70);
+	bool ret = imwrite("D:\\Dev\\vs_projects\\OpenZL\\cache\\test_out.jpg", image, 1, 90);
 	
 
 	zl::hold_screen();

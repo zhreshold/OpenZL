@@ -28,6 +28,10 @@
 #  error core.hpp header must be compiled as C++
 #endif
 
+#if defined(_MSC_VER) && _MSC_VER >= 1400
+#define _CRT_SECURE_NO_WARNINGS // suppress warnings about fopen() and similar "unsafe" functions defined by MS
+#endif
+
 
 #include <cstdint>
 #include <string>
@@ -35,8 +39,8 @@
 #include <ctime>
 
 
-#include "realtime.h"
-#include "waitkey.h"
+//#include "realtime.h"
+//#include "waitkey.h"
 
 //////////////////////////////// Typedef ////////////////////////////////
 /// fixed bits integer, guaranteed!
@@ -80,64 +84,10 @@ namespace zl
 		ZL_GRAY2RGB,
 	};
 
-	/// <summary>
-	/// Wait key for the specified ms.
-	/// </summary>
-	/// <param name="ms">The ms.</param>
-	/// <returns>The key pressed in ASC-II</returns>
-	inline int waitkey(double ms = 0)
-	{
-		int key = -1;
-		double start = get_real_time();
-		double end = start + ms / 1000;
-
-		if (ms <= 0)
-		{
-			// disable timer if ms <= 0
-			end = DBL_MAX;
-		}
-
-		while (key == -1)
-		{
-			key = kb_hit();
-			//printf("%d", (int)get_elapsed_time_ms(start));
-			if (get_real_time() >= end)
-			{
-				break;
-			}
-		}
-		//std::cin.get();
-		return key;
-	}
-
-	/// <summary>
-	/// Hold screen for key press
-	/// </summary>
-	inline void hold_screen()
-	{
-		std::cout << "Press any key to continue..." << std::endl;
-		waitkey();
-	}
-
-	/// <summary>
-	/// Prints the specified error.
-	/// </summary>
-	/// <param name="err">The error.</param>
-	inline void error(String err)
-	{
-		std::cerr << "Fatal error occured: " + err << std::endl;
-		std::cout << "Press any key to exit..." << std::endl;
-		waitkey();
-	}
-
-	/// <summary>
-	/// Prints the specified warning.
-	/// </summary>
-	/// <param name="warn">The warning.</param>
-	inline void warning(String warn)
-	{
-		std::cout << "Warning: " + warn << std::endl;
-	}
+	void error(String err);
+	void warning(String warn);
+	int waitkey(double ms = 0);
+	void hold_screen();
 
 	//////////////////////////////// Point_ ////////////////////////////////
 	/*!
@@ -1043,6 +993,55 @@ namespace zl
 				std::cout << "]" << std::endl;
 			}
 		}
+
+	///////////////////////////// Utility functions ////////////////////////////////////
+	/*
+	* Author:  David Robert Nadeau
+	* Site:    http://NadeauSoftware.com/
+	* License: Creative Commons Attribution 3.0 Unported License
+	*          http://creativecommons.org/licenses/by/3.0/deed.en_US
+	*/
+
+#ifndef _OPENZL_REALTIME_H_
+#define _OPENZL_REALTIME_H_
+
+
+	/**
+	* Returns the real time, in seconds, or -1.0 if an error occurred.
+	*
+	* Time is measured since an arbitrary and OS-dependent start time.
+	* The returned real time is only useful for computing an elapsed time
+	* between two calls to this function.
+	*/
+	double get_real_time();
+
+	/**
+	* Wrapped elapsed time function for convenience
+	* Added by Zhi
+	*/
+	// get elapsed time in second
+	double get_elapsed_time_s(double timeStamp);
+	// get elapsed time in ms
+	double get_elapsed_time_ms(double timeStamp);
+	// get elapsed time in us
+	double get_elapsed_time_us(double timeStamp);
+
+
+
+
+#endif
+
+#ifndef _OPENZL_WAITKEY_H
+#define _OPENZL_WAITKEY_H
+
+
+	// return the first key stroke from keyboard
+	int get_key();
+	int kb_hit();
+
+
+
+#endif
 }
 
 #endif
