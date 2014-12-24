@@ -22,10 +22,12 @@ Mat image;
 bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
  ```
  > and the example code for writing a zl::Mat to disk
+ 
  ```
  bool retval = imwrite("c:/test_out.jpg", image, IMWRITE_COLOR, 90);
  ```
  > where 90 is the quality option only work for JPEG format.
+ 
 
 
 
