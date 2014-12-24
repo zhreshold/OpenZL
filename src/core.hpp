@@ -28,14 +28,15 @@
 #  error core.hpp header must be compiled as C++
 #endif
 
+
 #include <cstdint>
 #include <string>
 #include <iostream>
 #include <ctime>
 
 
-#include "utils/realtime.h"
-#include "utils/waitkey.h"
+#include "realtime.h"
+#include "waitkey.h"
 
 //////////////////////////////// Typedef ////////////////////////////////
 /// fixed bits integer, guaranteed!
@@ -55,8 +56,32 @@ typedef std::string		String;		//!< STL string
 /// *! \namespace zl where all the functionality resides */
 namespace zl
 {
+	enum
+	{
+		ZL_8U = 8,
+		ZL_8UC1,
+		ZL_8UC3,
+		ZL_8UC4,
+		ZL_16U = 16,
+		ZL_16UC1,
+		ZL_16UC3,
+		ZL_16UC4,
+		ZL_32U = 32,
+		ZL_32UC1,
+		ZL_32UC3,
+		ZL_32UC4,
+	};
+
+	// color convertion code
+	enum
+	{
+		ZL_RGB2GRAY = 0,
+		ZL_RGBA2GRAY,
+		ZL_GRAY2RGB,
+	};
+
 	/// <summary>
-	/// Waitkeys the specified ms.
+	/// Wait key for the specified ms.
 	/// </summary>
 	/// <param name="ms">The ms.</param>
 	/// <returns>The key pressed in ASC-II</returns>
@@ -85,6 +110,9 @@ namespace zl
 		return key;
 	}
 
+	/// <summary>
+	/// Hold screen for key press
+	/// </summary>
 	inline void hold_screen()
 	{
 		std::cout << "Press any key to continue..." << std::endl;
@@ -261,12 +289,18 @@ namespace zl
 		// overriden methods for element access
 		_Tp& operator () (int row, int col, int channel = 0);
 
+		// overload = operator
+		Mat_& operator = (const Mat_& r);
+
 		// real construction inside
 		bool create(int nrow, int ncol, int nchannel);
 		// real destruction inside
 		void release();
 		// check if matrix is empty
 		bool empty();
+		// return buffer ptr
+		_Tp* ptr(int i = 0);
+		_Tp* ptr(int row, int col);
 		// get n_rows
 		int rows();
 		// get n_cols
@@ -301,6 +335,8 @@ namespace zl
 	typedef Matu8			Mat;
 
 
+	/////////////////////////////////////////////////////////////////////////
+	bool cvtColor(Mat& src, Mat& dst, int code);
 
 
 	/////////////////////////////////////////////////////////////////////////
@@ -829,6 +865,28 @@ namespace zl
 			release();
 		}
 
+
+	template<typename _Tp> inline
+		Mat_<_Tp>& Mat_<_Tp>::operator = (const Mat_<_Tp>& r)
+	{
+			release();
+			flags = r.flags;
+			m_rows = r.m_rows;
+			m_cols = r.m_cols;
+			m_channels = r.m_channels;
+			m_step = r.m_step;
+			data = new _Tp[m_rows * m_step];
+			memcpy(data, r.data, sizeof(_Tp)* m_rows * m_step);
+			return *this;
+		}
+
+	/// <summary>
+	/// Creates the specified nrow.
+	/// </summary>
+	/// <param name="nrow">The num of rows.</param>
+	/// <param name="ncol">The num of cols.</param>
+	/// <param name="nchannel">The num of channels.</param>
+	/// <returns>True if success, false otherwise</returns>
 	template<typename _Tp> inline
 		bool Mat_<_Tp>::create(int nrow, int ncol, int nchannel)
 	{
@@ -855,6 +913,9 @@ namespace zl
 			return 1;
 		}
 
+	/// <summary>
+	/// Releases this instance.
+	/// </summary>
 	template<typename _Tp> inline
 		void Mat_<_Tp>::release()
 	{
@@ -872,6 +933,13 @@ namespace zl
 			
 		}
 
+	/// <summary>
+	/// Operator()s access the specified element in Mat
+	/// </summary>
+	/// <param name="row">The row.</param>
+	/// <param name="col">The col.</param>
+	/// <param name="channel">The channel.</param>
+	/// <returns>The reference to the specified element</returns>
 	template<typename _Tp> inline
 		_Tp& Mat_<_Tp>::operator () (const int row, const int col, const int channel)
 	{
@@ -883,6 +951,33 @@ namespace zl
 			return data[row * m_step + col * m_channels + channel];
 		}
 
+	/// <summary>
+	/// Return the pointer to the specified element i in 1-D order.
+	/// </summary>
+	/// <param name="i">The index of element.</param>
+	/// <returns>Pointer to this element</returns>
+	template<typename _Tp> inline
+		_Tp* Mat_<_Tp>::ptr(int i)
+	{
+			return data + i;
+		}
+
+	/// <summary>
+	/// Return the pointer to the specified element (row, col) in 2-D order.
+	/// </summary>
+	/// <param name="row">The row.</param>
+	/// <param name="col">The col.</param>
+	/// <returns>Pointer to this element</returns>
+	template<typename _Tp> inline
+		_Tp* Mat_<_Tp>::ptr(int row, int col)
+	{
+			return data + row * m_step + col * m_channels;
+		}
+
+	/// <summary>
+	/// Check if Mat is empty.
+	/// </summary>
+	/// <returns>True if empty, otherwise false</returns>
 	template<typename _Tp> inline
 		bool Mat_<_Tp>::empty()
 	{
@@ -920,6 +1015,9 @@ namespace zl
 			return m_step;
 		}
 
+	/// <summary>
+	/// Dumps all elements to std::cout.
+	/// </summary>
 	template<typename _Tp> inline
 		void Mat_<_Tp>::dump()
 	{
