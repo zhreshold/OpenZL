@@ -563,3 +563,4 @@ bool jo_write_jpg(const char *filename, const void *data, int width, int height,
 }
 
 #endif
+

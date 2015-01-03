@@ -216,6 +216,8 @@ namespace zl
 	There are a few shorter aliases available for user convenience.
 	See zl::Mat, zl::Matf, zl::Matd and zl::Mati.
 	Normally, zl::Mat ~ zl::Mat_<uchar> is used as the common 8-bit image container.
+
+	About stored pixel values, the pixel values are stored interleaved (R1G1B1R2G2B2...)
 	*/
 	template<typename _Tp> class Mat_
 	{
@@ -258,6 +260,8 @@ namespace zl
 		int channels();
 		// get step
 		int step();
+		// export pixel value to de-interleaved buffer, make sure the buffer is large enough!
+		void export_deinterleave(_Tp* outBuf);
 		// dump elements to std::cout
 		void dump();
 
@@ -1044,3 +1048,5 @@ namespace zl
 }
 
 #endif
+
+

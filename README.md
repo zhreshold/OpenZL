@@ -28,6 +28,18 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
  ```
  > where 90 is the quality option only work for JPEG format.
  
+ > An example for display an image in zl::Mat container
+ 
+ ```
+ imshow("debug", image);  // show image in "debug" window
+ destroy_window("debug"); // destroy window named "debug"
+ ```
+ 
+ > or
+ ```
+ destroy_all_windows(); // close all opened windows
+ ```
+ 
 
 
 
@@ -38,15 +50,19 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
 
 + Classes like Point, Rect, Mat are implemented either copied from OPENCV or rewritten to make it simple and clean.
 
-+ Support cross-platform time() function
++ Support cross-platform time() function.
 
-+ Support cross-platform waitkey() function without pressing enter
++ Support cross-platform waitkey() function without pressing enter.
 
-+ Support read image from BMP,JPG,PNG, TGA, PSD, GIF, HDR, PIC (thanks to Sean T. Barrett's stb_image library)
++ Support read image from BMP,JPG,PNG, TGA, PSD, GIF, HDR, PIC (thanks to Sean T. Barrett's stb_image library).
 
-+ Support save image to BMP, JPG, PNG, TGA (thanks to Sean T. Barrett's stb_image_write library and Jon Olick's jpeg writer)
++ Support save image to BMP, JPG, PNG, TGA (thanks to Sean T. Barrett's stb_image_write library and Jon Olick's jpeg writer).
+
++ Support image display (thanks to CImg library).
 
 ## What's under Construction...
 + More color space convertion
+
++ Cross-platform display functionality for images.
 
 + More TBD
