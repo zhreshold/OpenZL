@@ -36,6 +36,7 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
  ```
  
  > or
+ 
  ```
  destroy_all_windows(); // close all opened windows
  ```

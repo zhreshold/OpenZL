@@ -19,6 +19,79 @@
 /***********************************************************************/
 
 #include "core.hpp"
+#include <cfloat>
+
+#if defined(_WIN32)
+#include <Windows.h>
+
+#elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
+#include <unistd.h>	/* POSIX flags */
+#include <time.h>	/* clock_gettime(), time() */
+#include <sys/time.h>	/* gethrtime(), gettimeofday() */
+
+#if defined(__MACH__) && defined(__APPLE__)
+#include <mach/mach.h>
+#include <mach/mach_time.h>
+#endif
+
+#else
+#error "Unable to define get_real_time( ) for an unknown OS."
+#endif
+
+#if defined(_WIN32)
+#include <conio.h>
+
+#elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
+#include <unistd.h>	/* POSIX flags */
+#include <termios.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/select.h>
+
+struct termios orig_termios;
+int termios_status = 0;
+
+void reset_terminal_mode()
+{
+	tcsetattr(0, TCSANOW, &orig_termios);
+}
+
+void set_conio_terminal_mode()
+{
+	struct termios new_termios;
+
+	if (termios_status == 0)
+	{
+		/* take two copies - one for now, one for later */
+		tcgetattr(0, &orig_termios);
+		termios_status = 1;
+	}
+	memcpy(&new_termios, &orig_termios, sizeof(new_termios));
+
+	/* register cleanup handler, and set the new terminal mode */
+	atexit(reset_terminal_mode);
+	cfmakeraw(&new_termios);
+	tcsetattr(0, TCSANOW, &new_termios);
+}
+
+int get_last_key()
+{
+	int r;
+	unsigned char c;
+	if ((r = read(0, &c, sizeof(c))) < 0) {
+		return r;
+	}
+	else {
+		reset_terminal_mode();
+		return c;
+	}
+}
+
+
+
+#else
+#error "Unable to define get_key( ) for an unknown OS."
+#endif
 
 namespace zl
 {
@@ -169,22 +242,7 @@ namespace zl
 
 //#include "realtime.h"
 
-#if defined(_WIN32)
-#include <Windows.h>
 
-#elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
-#include <unistd.h>	/* POSIX flags */
-#include <time.h>	/* clock_gettime(), time() */
-#include <sys/time.h>	/* gethrtime(), gettimeofday() */
-
-#if defined(__MACH__) && defined(__APPLE__)
-#include <mach/mach.h>
-#include <mach/mach_time.h>
-#endif
-
-#else
-#error "Unable to define get_real_time( ) for an unknown OS."
-#endif
 
 	double get_elapsed_time_ms(double timeStamp)
 	{
@@ -304,54 +362,7 @@ namespace zl
 
 //#include "waitkey.h"
 
-#if defined(_WIN32)
-#include <conio.h>
 
-#elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
-#include <unistd.h>	/* POSIX flags */
-#include <termios.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/select.h>
-
-	struct termios orig_termios;
-
-	void reset_terminal_mode()
-	{
-		tcsetattr(0, TCSANOW, &orig_termios);
-	}
-
-	void set_conio_terminal_mode()
-	{
-		struct termios new_termios;
-
-		/* take two copies - one for now, one for later */
-		tcgetattr(0, &orig_termios);
-		memcpy(&new_termios, &orig_termios, sizeof(new_termios));
-
-		/* register cleanup handler, and set the new terminal mode */
-		atexit(reset_terminal_mode);
-		cfmakeraw(&new_termios);
-		tcsetattr(0, TCSANOW, &new_termios);
-	}
-
-	int get_last_key()
-	{
-		int r;
-		unsigned char c;
-		if ((r = read(0, &c, sizeof(c))) < 0) {
-			return r;
-		}
-		else {
-			return c;
-		}
-	}
-
-
-
-#else
-#error "Unable to define get_key( ) for an unknown OS."
-#endif
 
 	/// <summary>
 	/// Get_keys this instance.
@@ -399,6 +410,7 @@ namespace zl
 
 #elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
 
+		
 		set_conio_terminal_mode();
 
 		struct timeval tv = { 0L, 0L };

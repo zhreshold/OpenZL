@@ -31,11 +31,13 @@
 #define _CRT_SECURE_NO_WARNINGS // suppress warnings about fopen() and similar "unsafe" functions defined by MS
 #endif
 
-
+#include <climits>
 #include <cstdint>
 #include <string>
+#include <string.h>
 #include <iostream>
 #include <ctime>
+#include <algorithm>
 
 
 //#include "realtime.h"
@@ -44,13 +46,13 @@
 //////////////////////////////// Typedef ////////////////////////////////
 /// fixed bits integer, guaranteed!
 typedef uint8_t			uchar;		//!< unsigned 8-bit integer
-typedef int8_t			Char;		//!< signed 8-bit integer
+typedef int8_t			schar;		//!< signed 8-bit integer
 typedef uint16_t		ushort;		//!< unsigned 16-bit integer
-typedef int16_t			Short;		//!< signed 16-bit integer
+typedef int16_t			sshort;		//!< signed 16-bit integer
 typedef uint32_t        uint;		//!< unsigned 32-bit integer
-typedef int32_t			Int;		//!< signed 32-bit integer
+typedef int32_t			sint;		//!< signed 32-bit integer
 typedef uint64_t		ulong;		//!< unsigned 64-bit integer
-typedef int64_t			Long;		//!< signed 64-bit integer
+typedef int64_t			slong;		//!< signed 64-bit integer
 typedef std::string		String;		//!< STL string
 
 /// <summary>
@@ -282,7 +284,7 @@ namespace zl
 
 	typedef Mat_<uchar>		Matu8;
 	typedef Mat_<ushort>	Matu16;
-	typedef Mat_<Int>		Mati;
+	typedef Mat_<sint>		Mati;
 	typedef Mat_<float>		Matf;
 	typedef Mat_<double>	Matd;
 	typedef Matu8			Mat;
@@ -295,6 +297,84 @@ namespace zl
 	/////////////////////////////////////////////////////////////////////////
 	///////////////////////////// Implementation ////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
+
+	inline int zlRound(double value)
+	{
+#if ((defined _MSC_VER && defined _M_X64) || (defined __GNUC__ && defined __x86_64__ && defined __SSE2__ && !defined __APPLE__)) && !defined(__CUDACC__)
+		__m128d t = _mm_set_sd(value);
+		return _mm_cvtsd_si32(t);
+#elif defined _MSC_VER && defined _M_IX86
+		int t;
+		__asm
+		{
+			fld value;
+			fistp t;
+		}
+		return t;
+#elif defined _MSC_VER && defined _M_ARM && defined HAVE_TEGRA_OPTIMIZATION
+		TEGRA_ROUND(value);
+#elif defined CV_ICC || defined __GNUC__
+#  ifdef HAVE_TEGRA_OPTIMIZATION
+		TEGRA_ROUND(value);
+#  else
+		return (int)lrint(value);
+#  endif
+#else
+		double intpart, fractpart;
+		fractpart = modf(value, &intpart);
+		if ((fabs(fractpart) != 0.5) || ((((int)intpart) % 2) != 0))
+			return (int)(value + (value >= 0 ? 0.5 : -0.5));
+		else
+			return (int)intpart;
+#endif
+	}
+
+	/////////////// saturate_cast (used in image & signal processing) ///////////////////
+
+	template<typename _Tp> static inline _Tp saturate_cast(uchar v)    { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(schar v)    { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(ushort v)   { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(short v)    { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(unsigned v) { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(int v)      { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(float v)    { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(double v)   { return _Tp(v); }
+
+	template<> inline uchar saturate_cast<uchar>(schar v)        { return (uchar)std::max((int)v, 0); }
+	template<> inline uchar saturate_cast<uchar>(ushort v)       { return (uchar)std::min((unsigned)v, (unsigned)UCHAR_MAX); }
+	template<> inline uchar saturate_cast<uchar>(int v)          { return (uchar)((unsigned)v <= UCHAR_MAX ? v : v > 0 ? UCHAR_MAX : 0); }
+	template<> inline uchar saturate_cast<uchar>(short v)        { return saturate_cast<uchar>((int)v); }
+	template<> inline uchar saturate_cast<uchar>(unsigned v)     { return (uchar)std::min(v, (unsigned)UCHAR_MAX); }
+	template<> inline uchar saturate_cast<uchar>(float v)        { int iv = zlRound(v); return saturate_cast<uchar>(iv); }
+	template<> inline uchar saturate_cast<uchar>(double v)       { int iv = zlRound(v); return saturate_cast<uchar>(iv); }
+
+	template<> inline schar saturate_cast<schar>(uchar v)        { return (schar)std::min((int)v, SCHAR_MAX); }
+	template<> inline schar saturate_cast<schar>(ushort v)       { return (schar)std::min((unsigned)v, (unsigned)SCHAR_MAX); }
+	template<> inline schar saturate_cast<schar>(int v)          { return (schar)((unsigned)(v - SCHAR_MIN) <= (unsigned)UCHAR_MAX ? v : v > 0 ? SCHAR_MAX : SCHAR_MIN); }
+	template<> inline schar saturate_cast<schar>(short v)        { return saturate_cast<schar>((int)v); }
+	template<> inline schar saturate_cast<schar>(unsigned v)     { return (schar)std::min(v, (unsigned)SCHAR_MAX); }
+	template<> inline schar saturate_cast<schar>(float v)        { int iv = zlRound(v); return saturate_cast<schar>(iv); }
+	template<> inline schar saturate_cast<schar>(double v)       { int iv = zlRound(v); return saturate_cast<schar>(iv); }
+
+	template<> inline ushort saturate_cast<ushort>(schar v)      { return (ushort)std::max((int)v, 0); }
+	template<> inline ushort saturate_cast<ushort>(short v)      { return (ushort)std::max((int)v, 0); }
+	template<> inline ushort saturate_cast<ushort>(int v)        { return (ushort)((unsigned)v <= (unsigned)USHRT_MAX ? v : v > 0 ? USHRT_MAX : 0); }
+	template<> inline ushort saturate_cast<ushort>(unsigned v)   { return (ushort)std::min(v, (unsigned)USHRT_MAX); }
+	template<> inline ushort saturate_cast<ushort>(float v)      { int iv = zlRound(v); return saturate_cast<ushort>(iv); }
+	template<> inline ushort saturate_cast<ushort>(double v)     { int iv = zlRound(v); return saturate_cast<ushort>(iv); }
+
+	template<> inline short saturate_cast<short>(ushort v)       { return (short)std::min((int)v, SHRT_MAX); }
+	template<> inline short saturate_cast<short>(int v)          { return (short)((unsigned)(v - SHRT_MIN) <= (unsigned)USHRT_MAX ? v : v > 0 ? SHRT_MAX : SHRT_MIN); }
+	template<> inline short saturate_cast<short>(unsigned v)     { return (short)std::min(v, (unsigned)SHRT_MAX); }
+	template<> inline short saturate_cast<short>(float v)        { int iv = zlRound(v); return saturate_cast<short>(iv); }
+	template<> inline short saturate_cast<short>(double v)       { int iv = zlRound(v); return saturate_cast<short>(iv); }
+
+	template<> inline int saturate_cast<int>(float v)            { return zlRound(v); }
+	template<> inline int saturate_cast<int>(double v)           { return zlRound(v); }
+
+	// we intentionally do not clip negative numbers, to make -1 become 0xffffffff etc.
+	template<> inline unsigned saturate_cast<unsigned>(float v)  { return zlRound(v); }
+	template<> inline unsigned saturate_cast<unsigned>(double v) { return zlRound(v); }
 
 
 	//////////////////////////////// 2D Point ///////////////////////////////
@@ -794,7 +874,7 @@ namespace zl
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_()
-		: flags(0), m_rows(0), m_cols(0), m_step(0), m_channels(0), data(nullptr){}
+		: flags(0), m_rows(0), m_cols(0), m_step(0), m_channels(0), data(NULL){}
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_(int nrow, int ncol, int nchannel)
@@ -872,10 +952,10 @@ namespace zl
 	template<typename _Tp> inline
 		void Mat_<_Tp>::release()
 	{
-			if (data != nullptr)
+			if (data != NULL)
 			{
 				delete [] data;
-				data = nullptr;
+				data = NULL;
 			}
 
 			flags = 0;
@@ -934,7 +1014,7 @@ namespace zl
 	template<typename _Tp> inline
 		bool Mat_<_Tp>::empty()
 	{
-			if ((flags & 0x01) == 0 || m_rows < 1 || m_cols < 1 || m_channels < 1 || data == nullptr)
+			if ((flags & 0x01) == 0 || m_rows < 1 || m_cols < 1 || m_channels < 1 || data == NULL)
 			{
 				return 1;
 			}
