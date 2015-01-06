@@ -1,21 +1,21 @@
 /***********************************************************************/
 /*
-/*   Script File: highgui.cpp
-/*
-/*   Description:
-/*
-/*   Highgui modules, for displaying / ...
-/*
-/*
-/*   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
-/*   Date: Dec-2014
-/*
-/*   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
-/*
-/*   This software is available for non-commercial use only.
-/*	 According to MIT license.
-/*	 No warrenty implied, use at your own risk.
-/*
+/#   Script File: highgui.cpp
+/#
+/#   Description:
+/#
+/#   Highgui modules, for displaying / ...
+/#
+/#
+/#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
+/#   Date: Dec-2014
+/#
+/#   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
+/#
+/#   This software is available for non-commercial use only.
+/#	 According to MIT license.
+/#	 No warrenty implied, use at your own risk.
+*/
 /***********************************************************************/
 
 #include "highgui.h"

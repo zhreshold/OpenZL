@@ -1,21 +1,21 @@
 /***********************************************************************/
 /*
-/*   Script File: core.hpp
-/*
-/*   Description:
-/*
-/*   Definition of core global modules
-/*
-/*
-/*   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
-/*   Date: Dec-2014
-/*
-/*   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
-/*
-/*   This software is available for non-commercial use only.
-/*	 According to MIT license.
-/*	 No warrenty implied, use at your own risk.
-/*
+/#   Script File: core.hpp
+/#
+/#   Description:
+/#
+/#   Definition of core global modules
+/#
+/#
+/#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
+/#   Date: Dec-2014
+/#
+/#   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
+/#
+/#   This software is available for non-commercial use only.
+/#	 According to MIT license.
+/#	 No warrenty implied, use at your own risk.
+*/
 /***********************************************************************/
 
 
@@ -874,7 +874,7 @@ namespace zl
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_()
-		: flags(0), m_rows(0), m_cols(0), m_step(0), m_channels(0), data(NULL){}
+		: flags(0), m_rows(0), m_cols(0), m_channels(0), m_step(0), data(NULL){}
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_(int nrow, int ncol, int nchannel)
