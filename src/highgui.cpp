@@ -21,6 +21,9 @@
 #include "highgui.h"
 #include <vector>
 
+/// \cond 
+/* code that must be skipped by Doxygen */
+
 /*
  #
  #  File            : CImg.h
@@ -2157,7 +2160,7 @@ namespace cimg_library_suffixed {
     #
     --------------------------------------*/
   //! Instances of \c CImgException are thrown when errors are encountered in a \CImg function call.
-  /**
+  /*
      \par Overview
 
       CImgException is the base class of all exceptions thrown by \CImg.
@@ -2217,7 +2220,7 @@ namespace cimg_library_suffixed {
           }
         }
       \endcode
-  **/
+  */
   struct CImgException : public std::exception {
 #define _cimg_exception_err(etype,disp_flag) \
   std::va_list ap; va_start(ap,format); cimg_vsnprintf(_message,sizeof(_message),format,ap); va_end(ap); \
@@ -6287,14 +6290,14 @@ namespace cimg_library_suffixed {
 #endif
 
     //! Return a reference to an empty display.
-    /**
+    /*
        \note Can be useful for writing function prototypes where one of the argument (of type CImgDisplay&)
        must have a default value.
        \par Example
        \code
        void foo(CImgDisplay& disp=CImgDisplay::empty());
        \endcode
-    **/
+    */
     static CImgDisplay& empty() {
       static CImgDisplay _empty;
       return _empty.assign();
@@ -6347,9 +6350,9 @@ namespace cimg_library_suffixed {
     }
 
     //! Construct a display as a copy of another one \inplace.
-    /**
+    /*
        \note Equivalent to assign(const CImgDisplay&).
-     **/
+     */
     CImgDisplay& operator=(const CImgDisplay& disp) {
       return assign(disp);
     }
@@ -6746,7 +6749,7 @@ namespace cimg_library_suffixed {
     }
 
     //! Return current state of the mouse buttons.
-    /**
+    /*
        \note Three mouse buttons can be managed. If one button is pressed, its corresponding bit in the returned
        value is set:
        - bit \c 0 (value \c 0x1): State of the left mouse button.
@@ -6770,7 +6773,7 @@ namespace cimg_library_suffixed {
          disp.wait();
        }
        \endcode
-    **/
+    */
     unsigned int button() const {
       return _button;
     }
@@ -49753,6 +49756,10 @@ int select_window(const char* windowname)
 	return g_dispPos;
 
 }
+
+/* code that must be skipped by Doxygen */
+
+/// \endcond
 
 namespace zl
 {

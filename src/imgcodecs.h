@@ -27,7 +27,7 @@
 //////////////////////////////// image codec ////////////////////////////////
 namespace zl
 {
-	// enums
+	//! \enum imread parameters
 	enum {
 		IMREAD_UNCHANGED = -1, // 8bit, color or not
 		IMREAD_GRAYSCALE = 0,  // 8bit, gray
@@ -36,6 +36,7 @@ namespace zl
 		IMREAD_ANYCOLOR = 4,  // ?, any color
 	};
 
+	//! \enum imwrite parameters
 	enum {
 		IMWRITE_UNCHANGED = -1, // 8bit, color or not
 		IMWRITE_GRAYSCALE = 0,  // 8bit, gray
@@ -44,13 +45,14 @@ namespace zl
 		IMWRITE_ANYCOLOR = 4,  // ?, any color
 	};
 
-	//! load image into Mat, currently support various formats
+	// load image into Mat, currently support various formats
 	bool imread(Mat& image, const String& filename, int flags = IMREAD_COLOR);
-	//! write Mat image to file, currently support bmp, jpg, png and tga
+	// write Mat image to file, currently support bmp, jpg, png and tga
 	// quality option only work for JPEG format, from (0-100)
 	bool imwrite(const String& filename, Mat& img, int flags = IMWRITE_COLOR, int quality = 90);
 }
 
+//! \cond
 	//////////////////////////////// 3rdparty libraries ////////////////////////////////
 
 	/* stb_image - v1.48 - public domain JPEG/PNG reader - http://nothings.org/stb_image.c
@@ -5511,7 +5513,7 @@ extern bool jo_write_jpg(const char *filename, const void *data, int width, int 
 
 #endif // JO_INCLUDE_JPEG_H
 
-
+//! \endcond
 
 
 #endif

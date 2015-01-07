@@ -29,6 +29,7 @@
 
 namespace zl
 {
+	//! \cond
 	enum
 	{
 		IMREAD_UNSUPPORTED = -1,
@@ -170,12 +171,13 @@ namespace zl
 
 		if (flags == IMREAD_GRAYSCALE && image.channels() == 3)
 		{
-			cvtColor(image, image, ZL_RGB2GRAY);
+			cvt_color(image, image, ZL_RGB2GRAY);
 		}
 
 		return 1;
 	}
 
+	//! \endcond
 
 	/// <summary>
 	/// Read image from file
@@ -215,9 +217,9 @@ namespace zl
 		if (flags == IMWRITE_GRAYSCALE)
 		{
 			if (img.channels() == 3)
-				cvtColor(img, img, ZL_RGB2GRAY);
+				cvt_color(img, img, ZL_RGB2GRAY);
 			else if (img.channels() == 4)
-				cvtColor(img, img, ZL_RGBA2GRAY);
+				cvt_color(img, img, ZL_RGBA2GRAY);
 		}
 
 		int retval = 0;
@@ -228,7 +230,7 @@ namespace zl
 				if (img.channels() == 1)
 				{
 					// fake 3 channel gray image
-					cvtColor(img, img, ZL_GRAY2RGB);
+					cvt_color(img, img, ZL_GRAY2RGB);
 				}
 				retval = stbi_write_bmp(filename.c_str(), img.cols(), img.rows(), img.channels(), img.ptr());
 				break;
@@ -263,6 +265,7 @@ namespace zl
 	}
 }
 
+//! \cond
 #ifndef JO_JPEG_HEADER_FILE_ONLY
 
 #include <stdio.h>
@@ -561,6 +564,8 @@ bool jo_write_jpg(const char *filename, const void *data, int width, int height,
 	fclose(fp);
 	return true;
 }
+
+//! \endcond
 
 #endif
 

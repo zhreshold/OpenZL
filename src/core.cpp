@@ -96,30 +96,31 @@ int get_last_key()
 namespace zl
 {
 	/// <summary>
-	/// Prints the specified error.
+	/// Prints the specified error and exit.
 	/// </summary>
-	/// <param name="err">The error.</param>
+	/// <param name="err">The error to output.</param>
 	void error(String err)
 	{
 		std::cerr << "Fatal error occured: " + err << std::endl;
 		std::cout << "Press any key to exit..." << std::endl;
 		waitkey();
+		exit(-1);
 	}
 
 	/// <summary>
 	/// Prints the specified warning.
 	/// </summary>
-	/// <param name="warn">The warning.</param>
+	/// <param name="warn">The warning string to output.</param>
 	void warning(String warn)
 	{
 		std::cout << "Warning: " + warn << std::endl;
 	}
 
 	/// <summary>
-	/// Wait key for the specified ms.
+	/// wait for the specficed ms until keypressed
 	/// </summary>
-	/// <param name="ms">The ms.</param>
-	/// <returns>The key pressed in ASC-II</returns>
+	/// <param name="ms">The ms to wait.</param>
+	/// <returns>The key pressed(ASC-II not guaranteed).</returns>
 	int waitkey(double ms)
 	{
 		int key = -1;
@@ -154,7 +155,14 @@ namespace zl
 		waitkey();
 	}
 
-	bool cvtColor(Mat& src, Mat& dst, int code)
+	/// <summary>
+	/// Convert the color space of given image.
+	/// </summary>
+	/// <param name="src">The src image.</param>
+	/// <param name="dst">The dst image.</param>
+	/// <param name="code">The convertion code.</param>
+	/// <returns>True if success, false otherwise</returns>
+	bool cvt_color(Mat& src, Mat& dst, int code)
 	{
 		if (src.empty())
 		{
@@ -177,11 +185,11 @@ namespace zl
 				{
 					for (int col = 0; col < src.cols(); col++)
 					{
-						uchar r = src(row, col, 0);
-						uchar g = src(row, col, 1);
-						uchar b = src(row, col, 2);
+						Mat::value_type r = src(row, col, 0);
+						Mat::value_type g = src(row, col, 1);
+						Mat::value_type b = src(row, col, 2);
 
-						uchar v = static_cast<uchar>(0.299 * r + 0.587 * g + 0.114 * b);
+						Mat::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
 						buffer(row, col) = v;
 					}
 				}
@@ -197,11 +205,11 @@ namespace zl
 				{
 					for (int col = 0; col < src.cols(); col++)
 					{
-						uchar r = src(row, col, 0);
-						uchar g = src(row, col, 1);
-						uchar b = src(row, col, 2);
+						Mat::value_type r = src(row, col, 0);
+						Mat::value_type g = src(row, col, 1);
+						Mat::value_type b = src(row, col, 2);
 
-						uchar v = static_cast<uchar>(0.299 * r + 0.587 * g + 0.114 * b);
+						Mat::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
 						buffer(row, col) = v;
 					}
 				}
@@ -217,7 +225,7 @@ namespace zl
 				{
 					for (int col = 0; col < src.cols(); col++)
 					{
-						uchar v = src(row, col);
+						Mat::value_type v = src(row, col);
 						buffer(row, col, 0) = v;
 						buffer(row, col, 1) = v;
 						buffer(row, col, 2) = v;
@@ -240,32 +248,46 @@ namespace zl
 	*          http://creativecommons.org/licenses/by/3.0/deed.en_US
 	*/
 
-//#include "realtime.h"
 
 
 
+	/// <summary>
+	/// Get the time elapsed in ms since the given specified timestamp.
+	/// </summary>
+	/// <param name="timeStamp">The last timestamp.</param>
+	/// <returns>The time elapsed in ms</returns>
 	double get_elapsed_time_ms(double timeStamp)
 	{
 		return (get_real_time() - timeStamp) * 1000.0;
 	}
 
+	/// <summary>
+	/// Get the time elapsed in second since the given specified timestamp.
+	/// </summary>
+	/// <param name="timeStamp">The last timestamp.</param>
+	/// <returns>The time elapsed in second</returns>
 	double get_elapsed_time_s(double timeStamp)
 	{
 		return get_real_time() - timeStamp;
 	}
 
+	/// <summary>
+	/// Get the time elapsed in us since the given specified time stamp.
+	/// </summary>
+	/// <param name="timeStamp">The last timestamp.</param>
+	/// <returns>The time elapsed in us</returns>
 	double get_elapsed_time_us(double timeStamp)
 	{
 		return (get_real_time() - timeStamp) * 1000000.0;
 	}
 
-	/**
-	* Returns the real time, in seconds, or -1.0 if an error occurred.
-	*
-	* Time is measured since an arbitrary and OS-dependent start time.
-	* The returned real time is only useful for computing an elapsed time
-	* between two calls to this function.
-	*/
+	
+	/// <summary>
+	/// Time is measured since an arbitrary and OS-dependent start time.
+	/// The returned real time is only useful for computing an elapsed time
+	/// between two calls to this function.
+	/// </summary>
+	/// <returns>Returns the real time, in seconds, or -1.0 if an error occurred.</returns>
 	double get_real_time()
 	{
 #if defined(_WIN32)
@@ -360,15 +382,12 @@ namespace zl
 	/***********************************************************************/
 
 
-//#include "waitkey.h"
-
-
 
 	/// <summary>
-	/// Get_keys this instance.
+	/// Get asynchronized keyboard press.
 	/// </summary>
 	/// <returns>
-	/// pressed key value
+	/// The pressed key value.
 	/// </returns>
 	int get_key()
 	{
@@ -400,6 +419,10 @@ namespace zl
 	}
 
 
+	/// <summary>
+	/// Detect keyboard hit, no wait
+	/// </summary>
+	/// <returns>The key pressed or -1 if not(ASC-II not guaranteed, platform specific).</returns>
 	int kb_hit()
 	{
 #if defined(_WIN32)

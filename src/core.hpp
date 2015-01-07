@@ -6,17 +6,26 @@
 /#
 /#   Definition of core global modules
 /#
-/#
-/#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
-/#   Date: Dec-2014
-/#
-/#   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
-/#
-/#   This software is available for non-commercial use only.
-/#	 According to MIT license.
-/#	 No warrenty implied, use at your own risk.
+*/
+/*!	 \mainpage OpenZL Main Page
+#	 OpenZL - Open EZ Library
+
+### OpenZL is a light weighted portable library packed with fundamental functions for Computer Vision projects.
+
+### Wrapped in C++ as itself lacks image IO libraries, meanwhile provide more convenience over C.
+
+
+     Author: Joshua Zhang (zzbhf@mail.missouri.edu)
+     Date: Dec-2014
+  
+     Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
+  
+     This software is available for non-commercial use only.
+  	 According to MIT license.
+  	 No warrenty implied, use at your own risk.
 */
 /***********************************************************************/
+
 
 
 
@@ -58,9 +67,10 @@ typedef std::string		String;		//!< STL string
 /// <summary>
 /// namespace zl
 /// </summary>
-/// *! \namespace zl where all the functionality resides */
+/// \namespace zl where all the functionality resides 
 namespace zl
 {
+	//! \enum channel depth (currently not implemented)
 	enum
 	{
 		ZL_8U = 8,
@@ -77,7 +87,7 @@ namespace zl
 		ZL_32UC4,
 	};
 
-	// color convertion code
+	//! \enum color convertion code
 	enum
 	{
 		ZL_RGB2GRAY = 0,
@@ -85,13 +95,15 @@ namespace zl
 		ZL_GRAY2RGB,
 	};
 
+	//////////////////////////////// Utility functions ////////////////////////////////
 	void error(String err);
 	void warning(String warn);
 	int waitkey(double ms = 0);
 	void hold_screen();
+	double get_real_time();
 
 	//////////////////////////////// Point_ ////////////////////////////////
-	/*!
+	/*! \class
 	template 2D point class.
 
 	The class defines a point in 2D space. Data type of the point coordinates is specified
@@ -132,7 +144,7 @@ namespace zl
 
 	//////////////////////////////// Size_ ////////////////////////////////
 
-	/*!
+	/*! \class
 	The 2D size class
 
 	The class represents the size of a 2D rectangle, image size, matrix size etc.
@@ -165,7 +177,7 @@ namespace zl
 
 	//////////////////////////////// Rect_ ////////////////////////////////
 
-	/*!
+	/*! \class
 	The 2D up-right rectangle class
 
 	The class represents a 2D rectangle with coordinates of the specified data type.
@@ -211,7 +223,7 @@ namespace zl
 
 	//////////////////////////////// Mat_ ////////////////////////////////
 
-	/*!
+	/*! \class
 	template 2D Matrix class.
 
 	The class defines a matrix in 2D space. Data type is specified as a template parameter. 
@@ -291,14 +303,19 @@ namespace zl
 
 
 	/////////////////////////////////////////////////////////////////////////
-	bool cvtColor(Mat& src, Mat& dst, int code);
+	bool cvt_color(Mat& src, Mat& dst, int code);
 
 
 	/////////////////////////////////////////////////////////////////////////
 	///////////////////////////// Implementation ////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
 
-	inline int zlRound(double value)
+	/// <summary>
+	/// inline fast round function
+	/// </summary>
+	/// <param name="value">The floating value.</param>
+	/// <returns>The nearest interger value.</returns>
+	inline int fast_round(double value)
 	{
 #if ((defined _MSC_VER && defined _M_X64) || (defined __GNUC__ && defined __x86_64__ && defined __SSE2__ && !defined __APPLE__)) && !defined(__CUDACC__)
 		__m128d t = _mm_set_sd(value);
@@ -329,6 +346,7 @@ namespace zl
 #endif
 	}
 
+	//! \cond
 	/////////////// saturate_cast (used in image & signal processing) ///////////////////
 
 	template<typename _Tp> static inline _Tp saturate_cast(uchar v)    { return _Tp(v); }
@@ -345,36 +363,36 @@ namespace zl
 	template<> inline uchar saturate_cast<uchar>(int v)          { return (uchar)((unsigned)v <= UCHAR_MAX ? v : v > 0 ? UCHAR_MAX : 0); }
 	template<> inline uchar saturate_cast<uchar>(short v)        { return saturate_cast<uchar>((int)v); }
 	template<> inline uchar saturate_cast<uchar>(unsigned v)     { return (uchar)std::min(v, (unsigned)UCHAR_MAX); }
-	template<> inline uchar saturate_cast<uchar>(float v)        { int iv = zlRound(v); return saturate_cast<uchar>(iv); }
-	template<> inline uchar saturate_cast<uchar>(double v)       { int iv = zlRound(v); return saturate_cast<uchar>(iv); }
+	template<> inline uchar saturate_cast<uchar>(float v)        { int iv = fast_round(v); return saturate_cast<uchar>(iv); }
+	template<> inline uchar saturate_cast<uchar>(double v)       { int iv = fast_round(v); return saturate_cast<uchar>(iv); }
 
 	template<> inline schar saturate_cast<schar>(uchar v)        { return (schar)std::min((int)v, SCHAR_MAX); }
 	template<> inline schar saturate_cast<schar>(ushort v)       { return (schar)std::min((unsigned)v, (unsigned)SCHAR_MAX); }
 	template<> inline schar saturate_cast<schar>(int v)          { return (schar)((unsigned)(v - SCHAR_MIN) <= (unsigned)UCHAR_MAX ? v : v > 0 ? SCHAR_MAX : SCHAR_MIN); }
 	template<> inline schar saturate_cast<schar>(short v)        { return saturate_cast<schar>((int)v); }
 	template<> inline schar saturate_cast<schar>(unsigned v)     { return (schar)std::min(v, (unsigned)SCHAR_MAX); }
-	template<> inline schar saturate_cast<schar>(float v)        { int iv = zlRound(v); return saturate_cast<schar>(iv); }
-	template<> inline schar saturate_cast<schar>(double v)       { int iv = zlRound(v); return saturate_cast<schar>(iv); }
+	template<> inline schar saturate_cast<schar>(float v)        { int iv = fast_round(v); return saturate_cast<schar>(iv); }
+	template<> inline schar saturate_cast<schar>(double v)       { int iv = fast_round(v); return saturate_cast<schar>(iv); }
 
 	template<> inline ushort saturate_cast<ushort>(schar v)      { return (ushort)std::max((int)v, 0); }
 	template<> inline ushort saturate_cast<ushort>(short v)      { return (ushort)std::max((int)v, 0); }
 	template<> inline ushort saturate_cast<ushort>(int v)        { return (ushort)((unsigned)v <= (unsigned)USHRT_MAX ? v : v > 0 ? USHRT_MAX : 0); }
 	template<> inline ushort saturate_cast<ushort>(unsigned v)   { return (ushort)std::min(v, (unsigned)USHRT_MAX); }
-	template<> inline ushort saturate_cast<ushort>(float v)      { int iv = zlRound(v); return saturate_cast<ushort>(iv); }
-	template<> inline ushort saturate_cast<ushort>(double v)     { int iv = zlRound(v); return saturate_cast<ushort>(iv); }
+	template<> inline ushort saturate_cast<ushort>(float v)      { int iv = fast_round(v); return saturate_cast<ushort>(iv); }
+	template<> inline ushort saturate_cast<ushort>(double v)     { int iv = fast_round(v); return saturate_cast<ushort>(iv); }
 
 	template<> inline short saturate_cast<short>(ushort v)       { return (short)std::min((int)v, SHRT_MAX); }
 	template<> inline short saturate_cast<short>(int v)          { return (short)((unsigned)(v - SHRT_MIN) <= (unsigned)USHRT_MAX ? v : v > 0 ? SHRT_MAX : SHRT_MIN); }
 	template<> inline short saturate_cast<short>(unsigned v)     { return (short)std::min(v, (unsigned)SHRT_MAX); }
-	template<> inline short saturate_cast<short>(float v)        { int iv = zlRound(v); return saturate_cast<short>(iv); }
-	template<> inline short saturate_cast<short>(double v)       { int iv = zlRound(v); return saturate_cast<short>(iv); }
+	template<> inline short saturate_cast<short>(float v)        { int iv = fast_round(v); return saturate_cast<short>(iv); }
+	template<> inline short saturate_cast<short>(double v)       { int iv = fast_round(v); return saturate_cast<short>(iv); }
 
-	template<> inline int saturate_cast<int>(float v)            { return zlRound(v); }
-	template<> inline int saturate_cast<int>(double v)           { return zlRound(v); }
+	template<> inline int saturate_cast<int>(float v)            { return fast_round(v); }
+	template<> inline int saturate_cast<int>(double v)           { return fast_round(v); }
 
 	// we intentionally do not clip negative numbers, to make -1 become 0xffffffff etc.
-	template<> inline unsigned saturate_cast<unsigned>(float v)  { return zlRound(v); }
-	template<> inline unsigned saturate_cast<unsigned>(double v) { return zlRound(v); }
+	template<> inline unsigned saturate_cast<unsigned>(float v)  { return fast_round(v); }
+	template<> inline unsigned saturate_cast<unsigned>(double v) { return fast_round(v); }
 
 
 	//////////////////////////////// 2D Point ///////////////////////////////
@@ -913,8 +931,10 @@ namespace zl
 			return *this;
 		}
 
+	//@ \endcond
+
 	/// <summary>
-	/// Creates the specified nrow.
+	/// Create an instance given specific size
 	/// </summary>
 	/// <param name="nrow">The num of rows.</param>
 	/// <param name="ncol">The num of cols.</param>
@@ -947,7 +967,7 @@ namespace zl
 		}
 
 	/// <summary>
-	/// Releases this instance.
+	/// Release this instance.
 	/// </summary>
 	template<typename _Tp> inline
 		void Mat_<_Tp>::release()
@@ -967,7 +987,7 @@ namespace zl
 		}
 
 	/// <summary>
-	/// Operator()s access the specified element in Mat
+	/// Operator() to access the specified element in Mat
 	/// </summary>
 	/// <param name="row">The row.</param>
 	/// <param name="col">The col.</param>
@@ -1089,7 +1109,7 @@ namespace zl
 #define _OPENZL_REALTIME_H_
 
 
-	/**
+	/*
 	* Returns the real time, in seconds, or -1.0 if an error occurred.
 	*
 	* Time is measured since an arbitrary and OS-dependent start time.
@@ -1098,9 +1118,8 @@ namespace zl
 	*/
 	double get_real_time();
 
-	/**
+	/*
 	* Wrapped elapsed time function for convenience
-	* Added by Zhi
 	*/
 	// get elapsed time in second
 	double get_elapsed_time_s(double timeStamp);
