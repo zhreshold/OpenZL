@@ -5,6 +5,8 @@ OpenZL is a light weighted portable library packed with fundamental functions fo
 
 Wrapped in C++ as itself lacks image IO libraries, meanwhile provide more convenience over C.
 
+Full documentation in doc/html/
+
 ## Usage
 * include "core.hpp" for basic class
 
@@ -64,6 +66,10 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
 ## What's under Construction...
 + More color space convertion
 
-+ Cross-platform display functionality for images.
++ Convenient 2-D vector class
+
++ Image resize functions
+
++ Various drawing functions: line, rectangle, circle...
 
 + More TBD

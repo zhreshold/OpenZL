@@ -256,23 +256,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keyword">typedef</span> _Tp value_type;</div>
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="comment">// various constructors</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="comment">// ! default constructor, create an empty matrix</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="classzl_1_1_mat__.html">Mat_</a>();</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="comment">// ! create a matrix according to the input size</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <a class="code" href="classzl_1_1_mat__.html">Mat_</a>(<span class="keywordtype">int</span> nrows, <span class="keywordtype">int</span> ncols, <span class="keywordtype">int</span> nchannels);</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="comment">// ! create a matrix from user allocated memory</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment"></span>        <a class="code" href="classzl_1_1_mat__.html#a1b3bbdab3a01b515248e33cd17b7f996">Mat_</a>();</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <a class="code" href="classzl_1_1_mat__.html#a1b3bbdab3a01b515248e33cd17b7f996">Mat_</a>(<span class="keywordtype">int</span> nrows, <span class="keywordtype">int</span> ncols, <span class="keywordtype">int</span> nchannels);</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="comment">// this function need to be called using caucious</span></div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="comment">// make sure dataBuf contains at least (nrows * ncols * nchannels) elements</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <a class="code" href="classzl_1_1_mat__.html">Mat_</a>(<span class="keywordtype">int</span> nrows, <span class="keywordtype">int</span> ncols, <span class="keywordtype">int</span> nchannels, _Tp* dataBuf);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <a class="code" href="classzl_1_1_mat__.html#a1b3bbdab3a01b515248e33cd17b7f996">Mat_</a>(<span class="keywordtype">int</span> nrows, <span class="keywordtype">int</span> ncols, <span class="keywordtype">int</span> nchannels, _Tp* dataBuf);</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="comment">// destructor</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        ~<a class="code" href="classzl_1_1_mat__.html">Mat_</a>();</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="classzl_1_1_mat__.html#a3c00772616d28545e553116ab545ceb0">~Mat_</a>();</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="comment">// overriden methods for element access</span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        _Tp&amp; <a class="code" href="classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3">operator () </a>(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col, <span class="keywordtype">int</span> channel = 0);</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="comment">// overload = operator</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <a class="code" href="classzl_1_1_mat__.html">Mat_</a>&amp; operator = (<span class="keyword">const</span> <a class="code" href="classzl_1_1_mat__.html">Mat_</a>&amp; r);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <a class="code" href="classzl_1_1_mat__.html">Mat_</a>&amp; <a class="code" href="classzl_1_1_mat__.html#a5ccce07fe09a3af0f30d1bba98efdc01">operator = </a>(<span class="keyword">const</span> <a class="code" href="classzl_1_1_mat__.html">Mat_</a>&amp; r);</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="comment">// real construction inside</span></div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classzl_1_1_mat__.html#a7ebd84c69ca508ecc33baf1814b06b41">create</a>(<span class="keywordtype">int</span> nrow, <span class="keywordtype">int</span> ncol, <span class="keywordtype">int</span> nchannel);</div>
@@ -284,15 +278,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        _Tp* <a class="code" href="classzl_1_1_mat__.html#a8ebccddecc75256224dfdffac7f940cd">ptr</a>(<span class="keywordtype">int</span> i = 0);</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        _Tp* <a class="code" href="classzl_1_1_mat__.html#a8ebccddecc75256224dfdffac7f940cd">ptr</a>(<span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col);</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="comment">// get n_rows</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordtype">int</span> rows();</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html#a9dcca0d8d239868076ec74b5a099e85b">rows</a>();</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;        <span class="comment">// get n_cols</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordtype">int</span> cols();</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html#a427d6f87fb80bccd312656e50d9d31a0">cols</a>();</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="comment">// get n_channels</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordtype">int</span> channels();</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html#ac607980d78e50f6fa0f50a93d13d38d1">channels</a>();</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="comment">// get step</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="keywordtype">int</span> step();</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html#a5f24bc3468129173081f66db777436eb">step</a>();</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="comment">// export pixel value to de-interleaved buffer, make sure the buffer is large enough!</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keywordtype">void</span> export_deinterleave(_Tp* outBuf);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="comment">// void export_deinterleave(_Tp* outBuf);</span></div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="comment">// dump elements to std::cout</span></div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795">dump</a>();</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
@@ -1013,111 +1007,113 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l01044"></a><span class="lineno"> 1044</span>&#160;            }</div>
 <div class="line"><a name="l01045"></a><span class="lineno"> 1045</span>&#160;        }</div>
 <div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;</div>
-<div class="line"><a name="l01047"></a><span class="lineno"> 1047</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
-<div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::rows</a>()</div>
-<div class="line"><a name="l01049"></a><span class="lineno"> 1049</span>&#160;    {</div>
-<div class="line"><a name="l01050"></a><span class="lineno"> 1050</span>&#160;            <span class="keywordflow">return</span> m_rows;</div>
-<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;        }</div>
-<div class="line"><a name="l01052"></a><span class="lineno"> 1052</span>&#160;</div>
-<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
-<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;        <span class="keywordtype">int</span> Mat_&lt;_Tp&gt;::cols()</div>
-<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;    {</div>
-<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;            <span class="keywordflow">return</span> m_cols;</div>
-<div class="line"><a name="l01057"></a><span class="lineno"> 1057</span>&#160;        }</div>
-<div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160;</div>
-<div class="line"><a name="l01059"></a><span class="lineno"> 1059</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
-<div class="line"><a name="l01060"></a><span class="lineno"> 1060</span>&#160;        <span class="keywordtype">int</span> Mat_&lt;_Tp&gt;::channels()</div>
-<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;    {</div>
-<div class="line"><a name="l01062"></a><span class="lineno"> 1062</span>&#160;            <span class="keywordflow">return</span> m_channels;</div>
-<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;        }</div>
-<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;</div>
-<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
-<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;        <span class="keywordtype">int</span> Mat_&lt;_Tp&gt;::step()</div>
-<div class="line"><a name="l01067"></a><span class="lineno"> 1067</span>&#160;    {</div>
-<div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;            <span class="keywordflow">return</span> m_step;</div>
-<div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;        }</div>
-<div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;</div>
-<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
-<div class="line"><a name="l01075"></a><span class="lineno"><a class="line" href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795"> 1075</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::dump</a>()</div>
-<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;    {</div>
-<div class="line"><a name="l01077"></a><span class="lineno"> 1077</span>&#160;            <span class="keywordflow">if</span> (empty())</div>
-<div class="line"><a name="l01078"></a><span class="lineno"> 1078</span>&#160;            {</div>
-<div class="line"><a name="l01079"></a><span class="lineno"> 1079</span>&#160;                <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l01080"></a><span class="lineno"> 1080</span>&#160;            }</div>
-<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l01082"></a><span class="lineno"> 1082</span>&#160;            {</div>
-<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;[ &quot;</span>;</div>
-<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m_rows; i++)</div>
-<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;                {</div>
-<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; m_cols; j++)</div>
-<div class="line"><a name="l01087"></a><span class="lineno"> 1087</span>&#160;                    {</div>
-<div class="line"><a name="l01088"></a><span class="lineno"> 1088</span>&#160;                        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; m_channels; k++)</div>
-<div class="line"><a name="l01089"></a><span class="lineno"> 1089</span>&#160;                        {</div>
-<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;                            std::cout &lt;&lt; data[i * m_step + j * m_channels + k] &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><a name="l01091"></a><span class="lineno"> 1091</span>&#160;                        }</div>
-<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot;; &quot;</span>;</div>
-<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;                    }</div>
-<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;                    std::cout &lt;&lt; std::endl;</div>
-<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;                }</div>
-<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;            }</div>
-<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;        }</div>
-<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;</div>
-<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;<span class="comment">    * Author:  David Robert Nadeau</span></div>
-<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;<span class="comment">    * Site:    http://NadeauSoftware.com/</span></div>
-<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;<span class="comment">    * License: Creative Commons Attribution 3.0 Unported License</span></div>
-<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;<span class="comment">    *          http://creativecommons.org/licenses/by/3.0/deed.en_US</span></div>
-<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;</div>
-<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;<span class="preprocessor">#ifndef _OPENZL_REALTIME_H_</span></div>
-<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;<span class="preprocessor">#define _OPENZL_REALTIME_H_</span></div>
-<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;</div>
-<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;</div>
-<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;<span class="comment">    * Returns the real time, in seconds, or -1.0 if an error occurred.</span></div>
-<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;<span class="comment">    *</span></div>
-<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;<span class="comment">    * Time is measured since an arbitrary and OS-dependent start time.</span></div>
-<div class="line"><a name="l01116"></a><span class="lineno"> 1116</span>&#160;<span class="comment">    * The returned real time is only useful for computing an elapsed time</span></div>
-<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;<span class="comment">    * between two calls to this function.</span></div>
-<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#a60d6b66b828e18a55d6cdca7e8eaa455">get_real_time</a>();</div>
-<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;</div>
-<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;<span class="comment">    * Wrapped elapsed time function for convenience</span></div>
-<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;<span class="comment">    */</span></div>
-<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;    <span class="comment">// get elapsed time in second</span></div>
-<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#a760483b4ab66d79a156d1f00b8f8faea">get_elapsed_time_s</a>(<span class="keywordtype">double</span> timeStamp);</div>
-<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;    <span class="comment">// get elapsed time in ms</span></div>
-<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#a1bf66134d5ff9218e785d2ebb5a09259">get_elapsed_time_ms</a>(<span class="keywordtype">double</span> timeStamp);</div>
-<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;    <span class="comment">// get elapsed time in us</span></div>
-<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#abc23747659effa9be5d0cfc18c150f0c">get_elapsed_time_us</a>(<span class="keywordtype">double</span> timeStamp);</div>
-<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;</div>
-<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;</div>
-<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;</div>
-<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;</div>
-<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;</div>
-<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;<span class="preprocessor">#ifndef _OPENZL_WAITKEY_H</span></div>
-<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;<span class="preprocessor">#define _OPENZL_WAITKEY_H</span></div>
-<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;</div>
-<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;</div>
-<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;    <span class="comment">// return the first key stroke from keyboard</span></div>
-<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespacezl.html#ab315963a4e376ede573dfaa4dd457ee7">get_key</a>();</div>
-<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespacezl.html#adc8aa08934c9fbc1658832c4edfb6bce">kb_hit</a>();</div>
-<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;</div>
-<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;</div>
-<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;</div>
-<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;}</div>
+<div class="line"><a name="l01051"></a><span class="lineno"> 1051</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
+<div class="line"><a name="l01052"></a><span class="lineno"><a class="line" href="classzl_1_1_mat__.html#a9dcca0d8d239868076ec74b5a099e85b"> 1052</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::rows</a>()</div>
+<div class="line"><a name="l01053"></a><span class="lineno"> 1053</span>&#160;    {</div>
+<div class="line"><a name="l01054"></a><span class="lineno"> 1054</span>&#160;            <span class="keywordflow">return</span> m_rows;</div>
+<div class="line"><a name="l01055"></a><span class="lineno"> 1055</span>&#160;        }</div>
+<div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;</div>
+<div class="line"><a name="l01061"></a><span class="lineno"> 1061</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
+<div class="line"><a name="l01062"></a><span class="lineno"><a class="line" href="classzl_1_1_mat__.html#a427d6f87fb80bccd312656e50d9d31a0"> 1062</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::cols</a>()</div>
+<div class="line"><a name="l01063"></a><span class="lineno"> 1063</span>&#160;    {</div>
+<div class="line"><a name="l01064"></a><span class="lineno"> 1064</span>&#160;            <span class="keywordflow">return</span> m_cols;</div>
+<div class="line"><a name="l01065"></a><span class="lineno"> 1065</span>&#160;        }</div>
+<div class="line"><a name="l01066"></a><span class="lineno"> 1066</span>&#160;</div>
+<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
+<div class="line"><a name="l01072"></a><span class="lineno"><a class="line" href="classzl_1_1_mat__.html#ac607980d78e50f6fa0f50a93d13d38d1"> 1072</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::channels</a>()</div>
+<div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;    {</div>
+<div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;            <span class="keywordflow">return</span> m_channels;</div>
+<div class="line"><a name="l01075"></a><span class="lineno"> 1075</span>&#160;        }</div>
+<div class="line"><a name="l01076"></a><span class="lineno"> 1076</span>&#160;</div>
+<div class="line"><a name="l01081"></a><span class="lineno"> 1081</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
+<div class="line"><a name="l01082"></a><span class="lineno"><a class="line" href="classzl_1_1_mat__.html#a5f24bc3468129173081f66db777436eb"> 1082</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::step</a>()</div>
+<div class="line"><a name="l01083"></a><span class="lineno"> 1083</span>&#160;    {</div>
+<div class="line"><a name="l01084"></a><span class="lineno"> 1084</span>&#160;            <span class="keywordflow">return</span> m_step;</div>
+<div class="line"><a name="l01085"></a><span class="lineno"> 1085</span>&#160;        }</div>
+<div class="line"><a name="l01086"></a><span class="lineno"> 1086</span>&#160;</div>
+<div class="line"><a name="l01090"></a><span class="lineno"> 1090</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt; <span class="keyword">inline</span></div>
+<div class="line"><a name="l01091"></a><span class="lineno"><a class="line" href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795"> 1091</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classzl_1_1_mat__.html">Mat_&lt;_Tp&gt;::dump</a>()</div>
+<div class="line"><a name="l01092"></a><span class="lineno"> 1092</span>&#160;    {</div>
+<div class="line"><a name="l01093"></a><span class="lineno"> 1093</span>&#160;            <span class="keywordflow">if</span> (empty())</div>
+<div class="line"><a name="l01094"></a><span class="lineno"> 1094</span>&#160;            {</div>
+<div class="line"><a name="l01095"></a><span class="lineno"> 1095</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l01096"></a><span class="lineno"> 1096</span>&#160;            }</div>
+<div class="line"><a name="l01097"></a><span class="lineno"> 1097</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l01098"></a><span class="lineno"> 1098</span>&#160;            {</div>
+<div class="line"><a name="l01099"></a><span class="lineno"> 1099</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;[ &quot;</span>;</div>
+<div class="line"><a name="l01100"></a><span class="lineno"> 1100</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; m_rows; i++)</div>
+<div class="line"><a name="l01101"></a><span class="lineno"> 1101</span>&#160;                {</div>
+<div class="line"><a name="l01102"></a><span class="lineno"> 1102</span>&#160;                    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; m_cols; j++)</div>
+<div class="line"><a name="l01103"></a><span class="lineno"> 1103</span>&#160;                    {</div>
+<div class="line"><a name="l01104"></a><span class="lineno"> 1104</span>&#160;                        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; m_channels; k++)</div>
+<div class="line"><a name="l01105"></a><span class="lineno"> 1105</span>&#160;                        {</div>
+<div class="line"><a name="l01106"></a><span class="lineno"> 1106</span>&#160;                            std::cout &lt;&lt; data[i * m_step + j * m_channels + k] &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l01107"></a><span class="lineno"> 1107</span>&#160;                        }</div>
+<div class="line"><a name="l01108"></a><span class="lineno"> 1108</span>&#160;                        std::cout &lt;&lt; <span class="stringliteral">&quot;; &quot;</span>;</div>
+<div class="line"><a name="l01109"></a><span class="lineno"> 1109</span>&#160;                    }</div>
+<div class="line"><a name="l01110"></a><span class="lineno"> 1110</span>&#160;                    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a name="l01111"></a><span class="lineno"> 1111</span>&#160;                }</div>
+<div class="line"><a name="l01112"></a><span class="lineno"> 1112</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l01113"></a><span class="lineno"> 1113</span>&#160;            }</div>
+<div class="line"><a name="l01114"></a><span class="lineno"> 1114</span>&#160;        }</div>
+<div class="line"><a name="l01115"></a><span class="lineno"> 1115</span>&#160;</div>
+<div class="line"><a name="l01117"></a><span class="lineno"> 1117</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l01118"></a><span class="lineno"> 1118</span>&#160;<span class="comment">    * Author:  David Robert Nadeau</span></div>
+<div class="line"><a name="l01119"></a><span class="lineno"> 1119</span>&#160;<span class="comment">    * Site:    http://NadeauSoftware.com/</span></div>
+<div class="line"><a name="l01120"></a><span class="lineno"> 1120</span>&#160;<span class="comment">    * License: Creative Commons Attribution 3.0 Unported License</span></div>
+<div class="line"><a name="l01121"></a><span class="lineno"> 1121</span>&#160;<span class="comment">    *          http://creativecommons.org/licenses/by/3.0/deed.en_US</span></div>
+<div class="line"><a name="l01122"></a><span class="lineno"> 1122</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l01123"></a><span class="lineno"> 1123</span>&#160;</div>
+<div class="line"><a name="l01124"></a><span class="lineno"> 1124</span>&#160;<span class="preprocessor">#ifndef _OPENZL_REALTIME_H_</span></div>
+<div class="line"><a name="l01125"></a><span class="lineno"> 1125</span>&#160;<span class="preprocessor">#define _OPENZL_REALTIME_H_</span></div>
+<div class="line"><a name="l01126"></a><span class="lineno"> 1126</span>&#160;</div>
+<div class="line"><a name="l01127"></a><span class="lineno"> 1127</span>&#160;</div>
+<div class="line"><a name="l01128"></a><span class="lineno"> 1128</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l01129"></a><span class="lineno"> 1129</span>&#160;<span class="comment">    * Returns the real time, in seconds, or -1.0 if an error occurred.</span></div>
+<div class="line"><a name="l01130"></a><span class="lineno"> 1130</span>&#160;<span class="comment">    *</span></div>
+<div class="line"><a name="l01131"></a><span class="lineno"> 1131</span>&#160;<span class="comment">    * Time is measured since an arbitrary and OS-dependent start time.</span></div>
+<div class="line"><a name="l01132"></a><span class="lineno"> 1132</span>&#160;<span class="comment">    * The returned real time is only useful for computing an elapsed time</span></div>
+<div class="line"><a name="l01133"></a><span class="lineno"> 1133</span>&#160;<span class="comment">    * between two calls to this function.</span></div>
+<div class="line"><a name="l01134"></a><span class="lineno"> 1134</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l01135"></a><span class="lineno"> 1135</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#a60d6b66b828e18a55d6cdca7e8eaa455">get_real_time</a>();</div>
+<div class="line"><a name="l01136"></a><span class="lineno"> 1136</span>&#160;</div>
+<div class="line"><a name="l01137"></a><span class="lineno"> 1137</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l01138"></a><span class="lineno"> 1138</span>&#160;<span class="comment">    * Wrapped elapsed time function for convenience</span></div>
+<div class="line"><a name="l01139"></a><span class="lineno"> 1139</span>&#160;<span class="comment">    */</span></div>
+<div class="line"><a name="l01140"></a><span class="lineno"> 1140</span>&#160;    <span class="comment">// get elapsed time in second</span></div>
+<div class="line"><a name="l01141"></a><span class="lineno"> 1141</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#a760483b4ab66d79a156d1f00b8f8faea">get_elapsed_time_s</a>(<span class="keywordtype">double</span> timeStamp);</div>
+<div class="line"><a name="l01142"></a><span class="lineno"> 1142</span>&#160;    <span class="comment">// get elapsed time in ms</span></div>
+<div class="line"><a name="l01143"></a><span class="lineno"> 1143</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#a1bf66134d5ff9218e785d2ebb5a09259">get_elapsed_time_ms</a>(<span class="keywordtype">double</span> timeStamp);</div>
+<div class="line"><a name="l01144"></a><span class="lineno"> 1144</span>&#160;    <span class="comment">// get elapsed time in us</span></div>
+<div class="line"><a name="l01145"></a><span class="lineno"> 1145</span>&#160;    <span class="keywordtype">double</span> <a class="code" href="namespacezl.html#abc23747659effa9be5d0cfc18c150f0c">get_elapsed_time_us</a>(<span class="keywordtype">double</span> timeStamp);</div>
+<div class="line"><a name="l01146"></a><span class="lineno"> 1146</span>&#160;</div>
+<div class="line"><a name="l01147"></a><span class="lineno"> 1147</span>&#160;</div>
 <div class="line"><a name="l01148"></a><span class="lineno"> 1148</span>&#160;</div>
-<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;</div>
+<div class="line"><a name="l01149"></a><span class="lineno"> 1149</span>&#160;</div>
+<div class="line"><a name="l01150"></a><span class="lineno"> 1150</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l01151"></a><span class="lineno"> 1151</span>&#160;</div>
+<div class="line"><a name="l01152"></a><span class="lineno"> 1152</span>&#160;<span class="preprocessor">#ifndef _OPENZL_WAITKEY_H</span></div>
+<div class="line"><a name="l01153"></a><span class="lineno"> 1153</span>&#160;<span class="preprocessor">#define _OPENZL_WAITKEY_H</span></div>
+<div class="line"><a name="l01154"></a><span class="lineno"> 1154</span>&#160;</div>
+<div class="line"><a name="l01155"></a><span class="lineno"> 1155</span>&#160;</div>
+<div class="line"><a name="l01156"></a><span class="lineno"> 1156</span>&#160;    <span class="comment">// return the first key stroke from keyboard</span></div>
+<div class="line"><a name="l01157"></a><span class="lineno"> 1157</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespacezl.html#ab315963a4e376ede573dfaa4dd457ee7">get_key</a>();</div>
+<div class="line"><a name="l01158"></a><span class="lineno"> 1158</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespacezl.html#adc8aa08934c9fbc1658832c4edfb6bce">kb_hit</a>();</div>
+<div class="line"><a name="l01159"></a><span class="lineno"> 1159</span>&#160;</div>
+<div class="line"><a name="l01160"></a><span class="lineno"> 1160</span>&#160;</div>
+<div class="line"><a name="l01161"></a><span class="lineno"> 1161</span>&#160;</div>
+<div class="line"><a name="l01162"></a><span class="lineno"> 1162</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01163"></a><span class="lineno"> 1163</span>&#160;}</div>
+<div class="line"><a name="l01164"></a><span class="lineno"> 1164</span>&#160;</div>
+<div class="line"><a name="l01165"></a><span class="lineno"> 1165</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01166"></a><span class="lineno"> 1166</span>&#160;</div>
+<div class="line"><a name="l01167"></a><span class="lineno"> 1167</span>&#160;</div>
 <div class="ttc" id="classzl_1_1_rect___html_adc187f74a9c48908172e400771d49f58"><div class="ttname"><a href="classzl_1_1_rect__.html#adc187f74a9c48908172e400771d49f58">zl::Rect_::tl</a></div><div class="ttdeci">Point_&lt; _Tp &gt; tl() const </div><div class="ttdoc">the top-left corner </div></div>
 <div class="ttc" id="classzl_1_1_mat___html_a7ebd84c69ca508ecc33baf1814b06b41"><div class="ttname"><a href="classzl_1_1_mat__.html#a7ebd84c69ca508ecc33baf1814b06b41">zl::Mat_::create</a></div><div class="ttdeci">bool create(int nrow, int ncol, int nchannel)</div><div class="ttdoc">Create an instance given specific size </div><div class="ttdef"><b>Definition:</b> core.hpp:944</div></div>
 <div class="ttc" id="classzl_1_1_mat___html"><div class="ttname"><a href="classzl_1_1_mat__.html">zl::Mat_</a></div><div class="ttdef"><b>Definition:</b> core.hpp:236</div></div>
 <div class="ttc" id="classzl_1_1_point___html_a6426182b3721132b3f8f4ccc5f44996c"><div class="ttname"><a href="classzl_1_1_point__.html#a6426182b3721132b3f8f4ccc5f44996c">zl::Point_::dot</a></div><div class="ttdeci">_Tp dot(const Point_ &amp;pt) const </div><div class="ttdoc">dot product </div></div>
+<div class="ttc" id="classzl_1_1_mat___html_ac607980d78e50f6fa0f50a93d13d38d1"><div class="ttname"><a href="classzl_1_1_mat__.html#ac607980d78e50f6fa0f50a93d13d38d1">zl::Mat_::channels</a></div><div class="ttdeci">int channels()</div><div class="ttdoc">Return number of channels </div><div class="ttdef"><b>Definition:</b> core.hpp:1072</div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a9dcca0d8d239868076ec74b5a099e85b"><div class="ttname"><a href="classzl_1_1_mat__.html#a9dcca0d8d239868076ec74b5a099e85b">zl::Mat_::rows</a></div><div class="ttdeci">int rows()</div><div class="ttdoc">Return number of rows </div><div class="ttdef"><b>Definition:</b> core.hpp:1052</div></div>
 <div class="ttc" id="namespacezl_html_a4603604ddaa7e800455b5b174ef63a5d"><div class="ttname"><a href="namespacezl.html#a4603604ddaa7e800455b5b174ef63a5d">zl::fast_round</a></div><div class="ttdeci">int fast_round(double value)</div><div class="ttdoc">inline fast round function </div><div class="ttdef"><b>Definition:</b> core.hpp:318</div></div>
 <div class="ttc" id="classzl_1_1_point___html_a1e46be3d05de96c934e0d748c18ff490"><div class="ttname"><a href="classzl_1_1_point__.html#a1e46be3d05de96c934e0d748c18ff490">zl::Point_::ddot</a></div><div class="ttdeci">double ddot(const Point_ &amp;pt) const </div><div class="ttdoc">dot product computed in double-precision arithmetics </div></div>
 <div class="ttc" id="classzl_1_1_size___html"><div class="ttname"><a href="classzl_1_1_size__.html">zl::Size_</a></div><div class="ttdef"><b>Definition:</b> core.hpp:153</div></div>
@@ -1126,21 +1122,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="namespacezl_html_ab315963a4e376ede573dfaa4dd457ee7"><div class="ttname"><a href="namespacezl.html#ab315963a4e376ede573dfaa4dd457ee7">zl::get_key</a></div><div class="ttdeci">int get_key()</div><div class="ttdoc">Get asynchronized keyboard press. </div><div class="ttdef"><b>Definition:</b> core.cpp:392</div></div>
 <div class="ttc" id="namespacezl_html_a84278c2234d3a4e477e98e1cf435fdbe"><div class="ttname"><a href="namespacezl.html#a84278c2234d3a4e477e98e1cf435fdbe">zl::hold_screen</a></div><div class="ttdeci">void hold_screen()</div><div class="ttdoc">Hold screen for key press </div><div class="ttdef"><b>Definition:</b> core.cpp:152</div></div>
 <div class="ttc" id="classzl_1_1_rect___html_a0839bb08660ecd898a84faa15d16bc4e"><div class="ttname"><a href="classzl_1_1_rect__.html#a0839bb08660ecd898a84faa15d16bc4e">zl::Rect_::br</a></div><div class="ttdeci">Point_&lt; _Tp &gt; br() const </div><div class="ttdoc">the bottom-right corner </div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a5f24bc3468129173081f66db777436eb"><div class="ttname"><a href="classzl_1_1_mat__.html#a5f24bc3468129173081f66db777436eb">zl::Mat_::step</a></div><div class="ttdeci">int step()</div><div class="ttdoc">Return step size </div><div class="ttdef"><b>Definition:</b> core.hpp:1082</div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a1b3bbdab3a01b515248e33cd17b7f996"><div class="ttname"><a href="classzl_1_1_mat__.html#a1b3bbdab3a01b515248e33cd17b7f996">zl::Mat_::Mat_</a></div><div class="ttdeci">Mat_()</div><div class="ttdoc">default constructor, create an empty matrix </div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a3c00772616d28545e553116ab545ceb0"><div class="ttname"><a href="classzl_1_1_mat__.html#a3c00772616d28545e553116ab545ceb0">zl::Mat_::~Mat_</a></div><div class="ttdeci">~Mat_()</div><div class="ttdoc">destructor </div></div>
 <div class="ttc" id="namespacezl_html_a31fbc4c4b8d0c85d569753169c22c1a2"><div class="ttname"><a href="namespacezl.html#a31fbc4c4b8d0c85d569753169c22c1a2">zl::warning</a></div><div class="ttdeci">void warning(String warn)</div><div class="ttdoc">Prints the specified warning. </div><div class="ttdef"><b>Definition:</b> core.cpp:114</div></div>
 <div class="ttc" id="namespacezl_html_abc23747659effa9be5d0cfc18c150f0c"><div class="ttname"><a href="namespacezl.html#abc23747659effa9be5d0cfc18c150f0c">zl::get_elapsed_time_us</a></div><div class="ttdeci">double get_elapsed_time_us(double timeStamp)</div><div class="ttdoc">Get the time elapsed in us since the given specified time stamp. </div><div class="ttdef"><b>Definition:</b> core.cpp:279</div></div>
 <div class="ttc" id="classzl_1_1_mat___html_a1b85fc2c4e135e71b36d209625e6efd1"><div class="ttname"><a href="classzl_1_1_mat__.html#a1b85fc2c4e135e71b36d209625e6efd1">zl::Mat_::release</a></div><div class="ttdeci">void release()</div><div class="ttdoc">Release this instance. </div><div class="ttdef"><b>Definition:</b> core.hpp:973</div></div>
 <div class="ttc" id="classzl_1_1_rect___html_a587f92207a0188298000d9e7086d93e2"><div class="ttname"><a href="classzl_1_1_rect__.html#a587f92207a0188298000d9e7086d93e2">zl::Rect_::size</a></div><div class="ttdeci">Size_&lt; _Tp &gt; size() const </div><div class="ttdoc">size (width, height) of the rectangle </div></div>
 <div class="ttc" id="classzl_1_1_mat___html_a19a8188521899cf7306aa875cd9bc5f7"><div class="ttname"><a href="classzl_1_1_mat__.html#a19a8188521899cf7306aa875cd9bc5f7">zl::Mat_::empty</a></div><div class="ttdeci">bool empty()</div><div class="ttdoc">Check if Mat is empty. </div><div class="ttdef"><b>Definition:</b> core.hpp:1035</div></div>
 <div class="ttc" id="namespacezl_html_a760483b4ab66d79a156d1f00b8f8faea"><div class="ttname"><a href="namespacezl.html#a760483b4ab66d79a156d1f00b8f8faea">zl::get_elapsed_time_s</a></div><div class="ttdeci">double get_elapsed_time_s(double timeStamp)</div><div class="ttdoc">Get the time elapsed in second since the given specified timestamp. </div><div class="ttdef"><b>Definition:</b> core.cpp:269</div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a427d6f87fb80bccd312656e50d9d31a0"><div class="ttname"><a href="classzl_1_1_mat__.html#a427d6f87fb80bccd312656e50d9d31a0">zl::Mat_::cols</a></div><div class="ttdeci">int cols()</div><div class="ttdoc">Return number of columns </div><div class="ttdef"><b>Definition:</b> core.hpp:1062</div></div>
 <div class="ttc" id="classzl_1_1_rect___html_ae003d7349694927a5899cf1c17df7037"><div class="ttname"><a href="classzl_1_1_rect__.html#ae003d7349694927a5899cf1c17df7037">zl::Rect_::Rect_</a></div><div class="ttdeci">Rect_()</div><div class="ttdoc">various constructors </div></div>
-<div class="ttc" id="classzl_1_1_mat___html_ab53e825ce41e586d99d825f23a94e795"><div class="ttname"><a href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795">zl::Mat_::dump</a></div><div class="ttdeci">void dump()</div><div class="ttdoc">Dumps all elements to std::cout. </div><div class="ttdef"><b>Definition:</b> core.hpp:1075</div></div>
+<div class="ttc" id="classzl_1_1_mat___html_ab53e825ce41e586d99d825f23a94e795"><div class="ttname"><a href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795">zl::Mat_::dump</a></div><div class="ttdeci">void dump()</div><div class="ttdoc">Dumps all elements to std::cout. </div><div class="ttdef"><b>Definition:</b> core.hpp:1091</div></div>
 <div class="ttc" id="classzl_1_1_size___html_af877a22b8d899c4355966c6689f62194"><div class="ttname"><a href="classzl_1_1_size__.html#af877a22b8d899c4355966c6689f62194">zl::Size_::Size_</a></div><div class="ttdeci">Size_()</div><div class="ttdoc">various constructors </div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a5ccce07fe09a3af0f30d1bba98efdc01"><div class="ttname"><a href="classzl_1_1_mat__.html#a5ccce07fe09a3af0f30d1bba98efdc01">zl::Mat_::operator=</a></div><div class="ttdeci">Mat_ &amp; operator=(const Mat_ &amp;r)</div><div class="ttdoc">overload = operator </div></div>
 <div class="ttc" id="classzl_1_1_rect___html_a2f48de1f82a140848818695984bb7114"><div class="ttname"><a href="classzl_1_1_rect__.html#a2f48de1f82a140848818695984bb7114">zl::Rect_::contains</a></div><div class="ttdeci">bool contains(const Point_&lt; _Tp &gt; &amp;pt) const </div><div class="ttdoc">checks whether the rectangle contains the point </div></div>
 <div class="ttc" id="classzl_1_1_point___html"><div class="ttname"><a href="classzl_1_1_point__.html">zl::Point_</a></div><div class="ttdef"><b>Definition:</b> core.hpp:113</div></div>
 <div class="ttc" id="namespacezl_html_a7231521c06f41d11f52900ef6e2b61de"><div class="ttname"><a href="namespacezl.html#a7231521c06f41d11f52900ef6e2b61de">zl::cvt_color</a></div><div class="ttdeci">bool cvt_color(Mat &amp;src, Mat &amp;dst, int code)</div><div class="ttdoc">Convert the color space of given image. </div><div class="ttdef"><b>Definition:</b> core.cpp:165</div></div>
 <div class="ttc" id="classzl_1_1_mat___html_a8ebccddecc75256224dfdffac7f940cd"><div class="ttname"><a href="classzl_1_1_mat__.html#a8ebccddecc75256224dfdffac7f940cd">zl::Mat_::ptr</a></div><div class="ttdeci">_Tp * ptr(int i=0)</div><div class="ttdoc">Return the pointer to the specified element i in 1-D order. </div><div class="ttdef"><b>Definition:</b> core.hpp:1013</div></div>
 <div class="ttc" id="namespacezl_html_adc8aa08934c9fbc1658832c4edfb6bce"><div class="ttname"><a href="namespacezl.html#adc8aa08934c9fbc1658832c4edfb6bce">zl::kb_hit</a></div><div class="ttdeci">int kb_hit()</div><div class="ttdoc">Detect keyboard hit, no wait </div><div class="ttdef"><b>Definition:</b> core.cpp:426</div></div>
-<div class="ttc" id="classzl_1_1_mat___html_a6667006f66d470b32273fc807f6332c3"><div class="ttname"><a href="classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3">zl::Mat_::operator()</a></div><div class="ttdeci">_Tp &amp; operator()(int row, int col, int channel=0)</div><div class="ttdoc">Operator() to access the specified element in Mat </div><div class="ttdef"><b>Definition:</b> core.hpp:997</div></div>
+<div class="ttc" id="classzl_1_1_mat___html_a6667006f66d470b32273fc807f6332c3"><div class="ttname"><a href="classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3">zl::Mat_::operator()</a></div><div class="ttdeci">_Tp &amp; operator()(int row, int col, int channel=0)</div><div class="ttdoc">overriden methods for element access </div><div class="ttdef"><b>Definition:</b> core.hpp:997</div></div>
 <div class="ttc" id="namespacezl_html_a1bf66134d5ff9218e785d2ebb5a09259"><div class="ttname"><a href="namespacezl.html#a1bf66134d5ff9218e785d2ebb5a09259">zl::get_elapsed_time_ms</a></div><div class="ttdeci">double get_elapsed_time_ms(double timeStamp)</div><div class="ttdoc">Get the time elapsed in ms since the given specified timestamp. </div><div class="ttdef"><b>Definition:</b> core.cpp:259</div></div>
 <div class="ttc" id="classzl_1_1_point___html_ab69c5815548cd3aad4f0234b26279703"><div class="ttname"><a href="classzl_1_1_point__.html#ab69c5815548cd3aad4f0234b26279703">zl::Point_::cross</a></div><div class="ttdeci">double cross(const Point_ &amp;pt) const </div><div class="ttdoc">cross-product </div></div>
 <div class="ttc" id="namespacezl_html"><div class="ttname"><a href="namespacezl.html">zl</a></div><div class="ttdoc">namespace zl </div><div class="ttdef"><b>Definition:</b> core.cpp:96</div></div>
@@ -1151,7 +1152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 6 2015 18:44:37 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 14:26:07 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

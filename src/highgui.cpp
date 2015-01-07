@@ -49763,6 +49763,7 @@ int select_window(const char* windowname)
 
 namespace zl
 {
+	//! \cond
 	/// <summary>
 	/// Convertion from zl::Mat to CImg
 	/// </summary>
@@ -49794,7 +49795,7 @@ namespace zl
 
 		return true;
 	}
-
+	//! \endcond
 
 	/// <summary>
 	/// Display image in window given title

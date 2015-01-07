@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mat_5fto_5fcimg',['mat_to_cimg',['../namespacezl.html#a20b19e97ae8c399a5a2235ad029a84af',1,'zl']]]
+  ['mat_5f',['Mat_',['../classzl_1_1_mat__.html#a1b3bbdab3a01b515248e33cd17b7f996',1,'zl::Mat_::Mat_()'],['../classzl_1_1_mat__.html#aa27a366176ee16cf76ad670464f91ad7',1,'zl::Mat_::Mat_(int nrows, int ncols, int nchannels)'],['../classzl_1_1_mat__.html#a8f51afcf5dddeca18abab67d0537736c',1,'zl::Mat_::Mat_(int nrows, int ncols, int nchannels, _Tp *dataBuf)']]]
 ];

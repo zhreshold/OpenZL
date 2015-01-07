@@ -21,7 +21,7 @@
      Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
   
      This software is available for non-commercial use only.
-  	 According to MIT license.
+  	 Under MIT license.
   	 No warrenty implied, use at your own risk.
 */
 /***********************************************************************/
@@ -239,22 +239,22 @@ namespace zl
 		typedef _Tp value_type;
 
 		// various constructors
-		// ! default constructor, create an empty matrix
+		//! default constructor, create an empty matrix
 		Mat_();
-		// ! create a matrix according to the input size
+		//! create a matrix according to the input size
 		Mat_(int nrows, int ncols, int nchannels);
-		// ! create a matrix from user allocated memory
+		//! create a matrix from user allocated memory
 		// this function need to be called using caucious
 		// make sure dataBuf contains at least (nrows * ncols * nchannels) elements
 		Mat_(int nrows, int ncols, int nchannels, _Tp* dataBuf);
 
-		// destructor
+		//! destructor
 		~Mat_();
 
-		// overriden methods for element access
+		//! overriden methods for element access
 		_Tp& operator () (int row, int col, int channel = 0);
 
-		// overload = operator
+		//! overload = operator
 		Mat_& operator = (const Mat_& r);
 
 		// real construction inside
@@ -275,7 +275,7 @@ namespace zl
 		// get step
 		int step();
 		// export pixel value to de-interleaved buffer, make sure the buffer is large enough!
-		void export_deinterleave(_Tp* outBuf);
+		// void export_deinterleave(_Tp* outBuf);
 		// dump elements to std::cout
 		void dump();
 
@@ -1044,24 +1044,40 @@ namespace zl
 			}
 		}
 
+	/// <summary>
+	/// Return number of rows
+	/// </summary>
+	/// <returns>Number of rows</returns>
 	template<typename _Tp> inline
 		int Mat_<_Tp>::rows()
 	{
 			return m_rows;
 		}
 
+	/// <summary>
+	/// Return number of columns
+	/// </summary>
+	/// <returns>Number of columns</returns>
 	template<typename _Tp> inline
 		int Mat_<_Tp>::cols()
 	{
 			return m_cols;
 		}
 
+	/// <summary>
+	/// Return number of channels
+	/// </summary>
+	/// <returns>Number of channels</returns>
 	template<typename _Tp> inline
 		int Mat_<_Tp>::channels()
 	{
 			return m_channels;
 		}
 
+	/// <summary>
+	/// Return step size
+	/// </summary>
+	/// <returns>Step size which is m_cols * m_channels</returns>
 	template<typename _Tp> inline
 		int Mat_<_Tp>::step()
 	{
