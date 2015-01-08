@@ -129,6 +129,10 @@ namespace zl
 		double start = get_real_time();
 		double end = start + ms / 1000;
 
+#if defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
+		set_conio_terminal_mode();
+#endif
+
 		if (ms <= 0)
 		{
 			// disable timer if ms <= 0
@@ -145,6 +149,9 @@ namespace zl
 			}
 		}
 		//std::cin.get();
+#if defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
+		reset_terminal_mode();
+#endif
 		return key;
 	}
 
@@ -456,7 +463,7 @@ namespace zl
 #elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
 
 		
-		set_conio_terminal_mode();
+		//set_conio_terminal_mode();
 
 		struct timeval tv = { 0L, 0L };
 		fd_set fds;
