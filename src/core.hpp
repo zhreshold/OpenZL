@@ -43,6 +43,7 @@
 #include <climits>
 #include <cstdint>
 #include <string>
+#include <sstream>
 #include <string.h>
 #include <iostream>
 #include <ctime>
@@ -100,7 +101,58 @@ namespace zl
 	void warning(String warn);
 	int waitkey(double ms = 0);
 	void hold_screen();
-	double get_real_time();
+
+	/// <summary>
+	/// Print the message, start a new line
+	/// </summary>
+	/// <param name="logMsg">The log message to print.</param>
+	template<typename T> inline
+		void println(T t)
+	{
+			std::ostringstream oss; // create a stream
+			oss << t; // insert value to stream
+			std::cout << oss.str() << std::endl;
+		}
+
+	/// <summary>
+	/// Print the message with various arguments, start a new line
+	/// </summary>
+	/// <param name="logMsg">The log message to print.</param>
+	template <typename T, typename ...U>
+	void println(T t, U ...u)
+	{
+		std::cout << t;
+		println(u...);
+	}
+
+
+	//////////////////////////////// Timer ////////////////////////////////
+	/*! \class
+	Cross-platform Timer class
+
+	The class is used to capture the elapsed time between two timestamps.
+	Mainly for complexity evaluation purposes.
+
+	*/
+	class Timer
+	{
+	public:
+		// default constructor, will call update() to record current timestamp.
+		Timer();
+		~Timer();
+
+		// update current timestamp
+		void update();
+
+		// get elapsed time
+		double get_elapsed_time_s();
+		double get_elapsed_time_ms();
+		double get_elapsed_time_us();
+
+	private:
+
+		double timestamp;
+	};
 
 	//////////////////////////////// Point_ ////////////////////////////////
 	/*! \class
@@ -259,23 +311,35 @@ namespace zl
 
 		// real construction inside
 		bool create(int nrow, int ncol, int nchannel);
+
 		// real destruction inside
 		void release();
+
 		// check if matrix is empty
 		bool empty();
+
 		// return buffer ptr
 		_Tp* ptr(int i = 0);
 		_Tp* ptr(int row, int col);
+
 		// get n_rows
 		int rows();
+
 		// get n_cols
 		int cols();
+
 		// get n_channels
 		int channels();
+
 		// get step
 		int step();
+
+		// set all elements to value 
+		void set_to(_Tp value);
+
 		// export pixel value to de-interleaved buffer, make sure the buffer is large enough!
 		// void export_deinterleave(_Tp* outBuf);
+
 		// dump elements to std::cout
 		void dump();
 
@@ -1082,6 +1146,23 @@ namespace zl
 		int Mat_<_Tp>::step()
 	{
 			return m_step;
+		}
+
+	/// <summary>
+	/// Set all elements to the specific value
+	/// </summary>
+	template<typename _Tp> inline
+		void Mat_<_Tp>::set_to(_Tp value)
+	{
+			if (empty())
+			{
+				return;
+			}
+
+			for (int i = 0; i < m_rows * m_step; i++)
+			{
+				data[i] = value;
+			}
 		}
 
 	/// <summary>

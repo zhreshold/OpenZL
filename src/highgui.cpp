@@ -49733,7 +49733,7 @@ int select_window(const char* windowname)
 	{
 		if (g_dispTitles[i] == inStr)
 		{
-			return i;
+			return (int)i;
 		}
 	}
 
@@ -49743,7 +49743,7 @@ int select_window(const char* windowname)
 		if (g_dispTitles[i].empty())
 		{
 			g_dispTitles[i] = inStr;
-			return i;
+			return (int)i;
 		}
 	}
 

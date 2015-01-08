@@ -116,6 +116,8 @@ namespace zl
 		std::cout << "Warning: " + warn << std::endl;
 	}
 
+	
+
 	/// <summary>
 	/// wait for the specficed ms until keypressed
 	/// </summary>
@@ -249,38 +251,6 @@ namespace zl
 	*/
 
 
-
-
-	/// <summary>
-	/// Get the time elapsed in ms since the given specified timestamp.
-	/// </summary>
-	/// <param name="timeStamp">The last timestamp.</param>
-	/// <returns>The time elapsed in ms</returns>
-	double get_elapsed_time_ms(double timeStamp)
-	{
-		return (get_real_time() - timeStamp) * 1000.0;
-	}
-
-	/// <summary>
-	/// Get the time elapsed in second since the given specified timestamp.
-	/// </summary>
-	/// <param name="timeStamp">The last timestamp.</param>
-	/// <returns>The time elapsed in second</returns>
-	double get_elapsed_time_s(double timeStamp)
-	{
-		return get_real_time() - timeStamp;
-	}
-
-	/// <summary>
-	/// Get the time elapsed in us since the given specified time stamp.
-	/// </summary>
-	/// <param name="timeStamp">The last timestamp.</param>
-	/// <returns>The time elapsed in us</returns>
-	double get_elapsed_time_us(double timeStamp)
-	{
-		return (get_real_time() - timeStamp) * 1000000.0;
-	}
-
 	
 	/// <summary>
 	/// Time is measured since an arbitrary and OS-dependent start time.
@@ -359,6 +329,58 @@ namespace zl
 #endif
 	}
 
+
+	//////////////////////////////// Timer class ////////////////////////////////////
+	/// <summary>
+	/// Updates the current timestamp.
+	/// </summary>
+	void Timer::update()
+	{
+		timestamp = get_real_time();
+	}
+
+	/// <summary>
+	/// Default constructor, will call update() to record current timestamp.
+	/// </summary>
+	Timer::Timer()
+	{
+		update();
+	}
+
+	Timer::~Timer()
+	{
+
+	}
+
+
+
+	/// <summary>
+	/// Get the time elapsed in ms since last update.
+	/// </summary>
+	/// <param name="timeStamp">The last timestamp.</param>
+	/// <returns>The time elapsed in ms</returns>
+	double Timer::get_elapsed_time_ms()
+	{
+		return (get_real_time() - timestamp) * 1000.0;
+	}
+
+	/// <summary>
+	/// Get the time elapsed in second since last update.
+	/// </summary>
+	/// <returns>The time elapsed in second</returns>
+	double Timer::get_elapsed_time_s()
+	{
+		return get_real_time() - timestamp;
+	}
+
+	/// <summary>
+	/// Get the time elapsed in us since last update.
+	/// </summary>
+	/// <returns>The time elapsed in us</returns>
+	double Timer::get_elapsed_time_us()
+	{
+		return (get_real_time() - timestamp) * 1000000.0;
+	}
 
 	/***********************************************************************/
 	/*
