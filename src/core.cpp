@@ -93,8 +93,11 @@ int get_last_key()
 #error "Unable to define get_key( ) for an unknown OS."
 #endif
 
+
+
 namespace zl
 {
+
 	/// <summary>
 	/// Prints the specified error and exit.
 	/// </summary>
@@ -116,7 +119,9 @@ namespace zl
 		std::cout << "Warning: " + warn << std::endl;
 	}
 
-	
+	//! \cond
+	double get_real_time();
+	//! \endcond
 
 	/// <summary>
 	/// wait for the specficed ms until keypressed
@@ -164,91 +169,6 @@ namespace zl
 		waitkey();
 	}
 
-	/// <summary>
-	/// Convert the color space of given image.
-	/// </summary>
-	/// <param name="src">The src image.</param>
-	/// <param name="dst">The dst image.</param>
-	/// <param name="code">The convertion code.</param>
-	/// <returns>True if success, false otherwise</returns>
-	bool cvt_color(Mat& src, Mat& dst, int code)
-	{
-		if (src.empty())
-		{
-			warning("src image is empty!");
-			return 0;
-		}
-
-		Mat buffer;
-
-		switch (code)
-		{
-			case ZL_RGB2GRAY:
-				if (src.channels() != 3)
-				{
-					warning("invalid src image channels corrspond to code: RGB2GRAY!");
-					return 0;
-				}
-				buffer.create(src.rows(), src.cols(), 1);
-				for (int row = 0; row < src.rows(); row++)
-				{
-					for (int col = 0; col < src.cols(); col++)
-					{
-						Mat::value_type r = src(row, col, 0);
-						Mat::value_type g = src(row, col, 1);
-						Mat::value_type b = src(row, col, 2);
-
-						Mat::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
-						buffer(row, col) = v;
-					}
-				}
-				break;
-			case ZL_RGBA2GRAY:
-				if (src.channels() != 4)
-				{
-					warning("invalid src image channels corrspond to code: RGBA2GRAY!");
-					return 0;
-				}
-				buffer.create(src.rows(), src.cols(), 1);
-				for (int row = 0; row < src.rows(); row++)
-				{
-					for (int col = 0; col < src.cols(); col++)
-					{
-						Mat::value_type r = src(row, col, 0);
-						Mat::value_type g = src(row, col, 1);
-						Mat::value_type b = src(row, col, 2);
-
-						Mat::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
-						buffer(row, col) = v;
-					}
-				}
-				break;
-			case ZL_GRAY2RGB:
-				if (src.channels() != 1)
-				{
-					warning("invalid src image channels corrspond to code: RGB2GRAY!");
-					return 0;
-				}
-				buffer.create(src.rows(), src.cols(), 3);
-				for (int row = 0; row < src.rows(); row++)
-				{
-					for (int col = 0; col < src.cols(); col++)
-					{
-						Mat::value_type v = src(row, col);
-						buffer(row, col, 0) = v;
-						buffer(row, col, 1) = v;
-						buffer(row, col, 2) = v;
-					}
-				}
-				break;
-			default:
-				warning("Unrecognized code!");
-				return 0;
-		}
-
-		dst = buffer;
-		return 1;
-	}
 
 	/*
 	* Author:  David Robert Nadeau
@@ -258,7 +178,7 @@ namespace zl
 	*/
 
 
-	
+	//! \cond
 	/// <summary>
 	/// Time is measured since an arbitrary and OS-dependent start time.
 	/// The returned real time is only useful for computing an elapsed time
@@ -336,6 +256,7 @@ namespace zl
 #endif
 	}
 
+	//! \endcond
 
 	//////////////////////////////// Timer class ////////////////////////////////////
 	/// <summary>
@@ -388,6 +309,7 @@ namespace zl
 	{
 		return (get_real_time() - timestamp) * 1000000.0;
 	}
+
 
 	/***********************************************************************/
 	/*

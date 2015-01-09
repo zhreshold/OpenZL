@@ -9,11 +9,12 @@ int main()
 {
 	Timer t;
 	Mat image;
-	imread(image, "D:\\Dev\\vs_projects\\OpenZL\\cache\\test.jpg", 1);
+	imread(image, "D:\\Dev\\vs_projects\\OpenZL\\cache\\test.png", 1);
 	imshow("Test", image);
 
 	Mat gray;
-	cvt_color(image, gray, ZL_RGB2GRAY);
+	cvt_color(image, gray, ZL_RGBA2GRAY);
+
 	imshow("Gray", gray);
 	//bool ret = imwrite("D:\\Dev\\vs_projects\\OpenZL\\cache\\test_out.jpg", image, 1, 90);
 	//for (int i = 1; i < 10; i++)
@@ -27,7 +28,18 @@ int main()
 
 	//waitkey();
 
-	destroy_all_windows();
+	//destroy_all_windows();
+
+	Mat gray2;
+
+	Vec2u8 v, v2;
+
+	v = gray;
+	v2 = image;
+
+	gray2 = gray;
+
+	imshow("Vec2 image", v);
 	
 	println("Elasped time: ", t.get_elapsed_time_ms(), " ms");
 

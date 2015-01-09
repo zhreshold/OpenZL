@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['waitkey',['waitkey',['../namespacezl.html#a655bd4b5170f525bade851af9fc9f92d',1,'zl']]],
-  ['warning',['warning',['../namespacezl.html#a31fbc4c4b8d0c85d569753169c22c1a2',1,'zl']]]
+  ['update',['update',['../classzl_1_1_timer.html#aaec7f69ea0b946653654af1c08a743dd',1,'zl::Timer']]]
 ];

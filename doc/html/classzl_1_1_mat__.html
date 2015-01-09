@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -89,11 +90,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classzl_1_1_mat__-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">zl::Mat_&lt; _Tp &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for zl::Mat_&lt; _Tp &gt;:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classzl_1_1_mat__.png" usemap="#zl::Mat_&lt; _Tp &gt;_map" alt=""/>
+  <map id="zl::Mat_&lt; _Tp &gt;_map" name="zl::Mat_&lt; _Tp &gt;_map">
+<area href="classzl_1_1_vec2__.html" alt="zl::Vec2_&lt; _Tp &gt;" shape="rect" coords="0,56,109,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -115,20 +126,20 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a8f51afcf5dddeca18abab67d0537736c">Mat_</a> (int nrows, int ncols, int nchannels, _Tp *dataBuf)</td></tr>
 <tr class="memdesc:a8f51afcf5dddeca18abab67d0537736c"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a matrix from user allocated memory <br /></td></tr>
 <tr class="separator:a8f51afcf5dddeca18abab67d0537736c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c00772616d28545e553116ab545ceb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c00772616d28545e553116ab545ceb0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a3c00772616d28545e553116ab545ceb0">~Mat_</a> ()</td></tr>
-<tr class="memdesc:a3c00772616d28545e553116ab545ceb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor <br /></td></tr>
-<tr class="separator:a3c00772616d28545e553116ab545ceb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6667006f66d470b32273fc807f6332c3"><td class="memItemLeft" align="right" valign="top">_Tp &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3">operator()</a> (int row, int col, int channel=0)</td></tr>
+<tr class="memitem:a09b68951aa0e7d84b244657ca3fcec7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09b68951aa0e7d84b244657ca3fcec7b"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a09b68951aa0e7d84b244657ca3fcec7b">~Mat_</a> ()</td></tr>
+<tr class="memdesc:a09b68951aa0e7d84b244657ca3fcec7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor <br /></td></tr>
+<tr class="separator:a09b68951aa0e7d84b244657ca3fcec7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6667006f66d470b32273fc807f6332c3"><td class="memItemLeft" align="right" valign="top">virtual _Tp &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3">operator()</a> (int row, int col, int channel=0)</td></tr>
 <tr class="memdesc:a6667006f66d470b32273fc807f6332c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">overriden methods for element access  <a href="#a6667006f66d470b32273fc807f6332c3">More...</a><br /></td></tr>
 <tr class="separator:a6667006f66d470b32273fc807f6332c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ccce07fe09a3af0f30d1bba98efdc01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ccce07fe09a3af0f30d1bba98efdc01"></a>
-<a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a5ccce07fe09a3af0f30d1bba98efdc01">operator=</a> (const <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;r)</td></tr>
-<tr class="memdesc:a5ccce07fe09a3af0f30d1bba98efdc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">overload = operator <br /></td></tr>
-<tr class="separator:a5ccce07fe09a3af0f30d1bba98efdc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ebd84c69ca508ecc33baf1814b06b41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a7ebd84c69ca508ecc33baf1814b06b41">create</a> (int nrow, int ncol, int nchannel)</td></tr>
-<tr class="memdesc:a7ebd84c69ca508ecc33baf1814b06b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance given specific size  <a href="#a7ebd84c69ca508ecc33baf1814b06b41">More...</a><br /></td></tr>
-<tr class="separator:a7ebd84c69ca508ecc33baf1814b06b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a756babbb68f6c7397e8777155b7ec070"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a756babbb68f6c7397e8777155b7ec070"></a>
+virtual <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a756babbb68f6c7397e8777155b7ec070">operator=</a> (const <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;r)</td></tr>
+<tr class="memdesc:a756babbb68f6c7397e8777155b7ec070"><td class="mdescLeft">&#160;</td><td class="mdescRight">overload = operator to be deep copy, reasonable since reference couting was not implemented <br /></td></tr>
+<tr class="separator:a756babbb68f6c7397e8777155b7ec070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af86ef01d6ae36fa927ba652ef3ab150a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#af86ef01d6ae36fa927ba652ef3ab150a">create</a> (int nrow, int ncol, int nchannel=1)</td></tr>
+<tr class="memdesc:af86ef01d6ae36fa927ba652ef3ab150a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance given specific size  <a href="#af86ef01d6ae36fa927ba652ef3ab150a">More...</a><br /></td></tr>
+<tr class="separator:af86ef01d6ae36fa927ba652ef3ab150a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b85fc2c4e135e71b36d209625e6efd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a1b85fc2c4e135e71b36d209625e6efd1">release</a> ()</td></tr>
 <tr class="memdesc:a1b85fc2c4e135e71b36d209625e6efd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release this instance.  <a href="#a1b85fc2c4e135e71b36d209625e6efd1">More...</a><br /></td></tr>
 <tr class="separator:a1b85fc2c4e135e71b36d209625e6efd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +152,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ce9a7ec1de390618546acdf670f26ca"><td class="memItemLeft" align="right" valign="top">_Tp *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6ce9a7ec1de390618546acdf670f26ca">ptr</a> (int row, int col)</td></tr>
 <tr class="memdesc:a6ce9a7ec1de390618546acdf670f26ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the pointer to the specified element (row, col) in 2-D order.  <a href="#a6ce9a7ec1de390618546acdf670f26ca">More...</a><br /></td></tr>
 <tr class="separator:a6ce9a7ec1de390618546acdf670f26ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f6800121db304481089d441167bcc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#ae9f6800121db304481089d441167bcc8">flags</a> ()</td></tr>
+<tr class="memdesc:ae9f6800121db304481089d441167bcc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return flags  <a href="#ae9f6800121db304481089d441167bcc8">More...</a><br /></td></tr>
+<tr class="separator:ae9f6800121db304481089d441167bcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dcca0d8d239868076ec74b5a099e85b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a9dcca0d8d239868076ec74b5a099e85b">rows</a> ()</td></tr>
 <tr class="memdesc:a9dcca0d8d239868076ec74b5a099e85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of rows  <a href="#a9dcca0d8d239868076ec74b5a099e85b">More...</a><br /></td></tr>
 <tr class="separator:a9dcca0d8d239868076ec74b5a099e85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,9 +167,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f24bc3468129173081f66db777436eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a5f24bc3468129173081f66db777436eb">step</a> ()</td></tr>
 <tr class="memdesc:a5f24bc3468129173081f66db777436eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return step size  <a href="#a5f24bc3468129173081f66db777436eb">More...</a><br /></td></tr>
 <tr class="separator:a5f24bc3468129173081f66db777436eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762ea6041de86223bf2a66a2ce6b51d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a762ea6041de86223bf2a66a2ce6b51d6">set_to</a> (_Tp value)</td></tr>
+<tr class="memdesc:a762ea6041de86223bf2a66a2ce6b51d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all elements to the specific value  <a href="#a762ea6041de86223bf2a66a2ce6b51d6">More...</a><br /></td></tr>
+<tr class="separator:a762ea6041de86223bf2a66a2ce6b51d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab53e825ce41e586d99d825f23a94e795"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795">dump</a> ()</td></tr>
 <tr class="memdesc:ab53e825ce41e586d99d825f23a94e795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumps all elements to std::cout.  <a href="#ab53e825ce41e586d99d825f23a94e795">More...</a><br /></td></tr>
 <tr class="separator:ab53e825ce41e586d99d825f23a94e795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a8df85bb47785a26d6978e6c0946bcd3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8df85bb47785a26d6978e6c0946bcd3a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_flags</b></td></tr>
+<tr class="separator:a8df85bb47785a26d6978e6c0946bcd3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3f4a5c2aecef17425c63c489817eca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e3f4a5c2aecef17425c63c489817eca"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_rows</b></td></tr>
+<tr class="separator:a0e3f4a5c2aecef17425c63c489817eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe9a260b740f501a07dca11ef4e2e193"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe9a260b740f501a07dca11ef4e2e193"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_cols</b></td></tr>
+<tr class="separator:afe9a260b740f501a07dca11ef4e2e193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5f94335452e99dba26c7cc475bfa290"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5f94335452e99dba26c7cc475bfa290"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_channels</b></td></tr>
+<tr class="separator:ac5f94335452e99dba26c7cc475bfa290"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba3e3b17e30927ae2711d5e47e128336"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba3e3b17e30927ae2711d5e47e128336"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>m_step</b></td></tr>
+<tr class="separator:aba3e3b17e30927ae2711d5e47e128336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5bc0ff3446a263ec1809cb5f120468"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e5bc0ff3446a263ec1809cb5f120468"></a>
+_Tp *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="separator:a7e5bc0ff3446a263ec1809cb5f120468"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ac607980d78e50f6fa0f50a93d13d38d1"></a>
@@ -214,7 +252,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a7ebd84c69ca508ecc33baf1814b06b41"></a>
+<a class="anchor" id="af86ef01d6ae36fa927ba652ef3ab150a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -239,7 +277,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nchannel</em>&#160;</td>
+          <td class="paramname"><em>nchannel</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -249,7 +287,7 @@ template&lt;typename _Tp &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -322,6 +360,34 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ae9f6800121db304481089d441167bcc8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Tp &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::flags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return flags </p>
+<dl class="section return"><dt>Returns</dt><dd>Flags</dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a6667006f66d470b32273fc807f6332c3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -357,7 +423,7 @@ template&lt;typename _Tp &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -512,6 +578,34 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a762ea6041de86223bf2a66a2ce6b51d6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Tp &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::set_to </td>
+          <td>(</td>
+          <td class="paramtype">_Tp&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set all elements to the specific value </p>
+
+</div>
+</div>
 <a class="anchor" id="a5f24bc3468129173081f66db777436eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -546,7 +640,7 @@ template&lt;typename _Tp &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 7 2015 14:26:07 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 8 2015 16:57:39 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

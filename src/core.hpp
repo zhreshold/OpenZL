@@ -301,16 +301,16 @@ namespace zl
 		Mat_(int nrows, int ncols, int nchannels, _Tp* dataBuf);
 
 		//! destructor
-		~Mat_();
+		virtual ~Mat_();
 
 		//! overriden methods for element access
-		_Tp& operator () (int row, int col, int channel = 0);
+		virtual _Tp& operator () (int row, int col, int channel = 0);
 
-		//! overload = operator
-		Mat_& operator = (const Mat_& r);
+		//! overload = operator to be deep copy, reasonable since reference couting was not implemented
+		virtual Mat_& operator = (const Mat_& r);
 
 		// real construction inside
-		bool create(int nrow, int ncol, int nchannel);
+		virtual bool create(int nrow, int ncol, int nchannel = 1);
 
 		// real destruction inside
 		void release();
@@ -321,6 +321,9 @@ namespace zl
 		// return buffer ptr
 		_Tp* ptr(int i = 0);
 		_Tp* ptr(int row, int col);
+
+		// get flags
+		int flags();
 
 		// get n_rows
 		int rows();
@@ -343,9 +346,9 @@ namespace zl
 		// dump elements to std::cout
 		void dump();
 
-	private:
+	protected:
 		// flags
-		int flags;
+		int m_flags;
 		// rows, cols
 		int m_rows;
 		int m_cols;
@@ -366,9 +369,52 @@ namespace zl
 	typedef Matu8			Mat;
 
 
-	/////////////////////////////////////////////////////////////////////////
-	bool cvt_color(Mat& src, Mat& dst, int code);
+	//////////////////////////////// Vec2_ ////////////////////////////////
+	/*! \class
+	template 2D Vector class.
 
+	The class defines a 2-d vector derived from Mat_. Data type is specified as a template parameter.
+	More specifically, Vec2_<_Tp> is the special case of Mat_<_Tp> that m_channels = 1;
+	There are a few shorter aliases available for user convenience.
+	See zl::Vec2, zl::Vec2f, zl::Vec2d and zl::Vec2i.
+	Normally, zl::Vec2 ~ zl::Vec2_<double> is used as the general floating point vector container.
+
+	*/
+	template<typename _Tp> class Vec2_: public Mat_<_Tp>
+	{
+	public:
+		//! default constructor, create an empty Vec2_
+		Vec2_();
+		//! create a Vec2_ according to the input size
+		Vec2_(int nrows, int ncols);
+		//! create a Vec2_ from user allocated memory
+		// this function need to be called using caucious
+		// make sure dataBuf contains at least (nrows * ncols) elements
+		Vec2_(int nrows, int ncols, _Tp* dataBuf);
+
+		//! destructor
+		~Vec2_();
+
+		//! overriden methods for element access
+		_Tp& operator () (int row, int col);
+
+		//! overload = operator to be deep copy, reasonable since reference couting was not implemented
+		Vec2_<_Tp>& operator = (Mat_<_Tp>& r);
+
+		// real construction inside
+		bool create(int nrow, int ncol);
+
+	private:
+
+
+	};
+
+	typedef Vec2_<uchar>	Vec2u8;
+	typedef Vec2_<ushort>	Vec2u16;
+	typedef Vec2_<sint>		Vec2i;
+	typedef Vec2_<float>	Vec2f;
+	typedef Vec2_<double>	Vec2d;
+	typedef Vec2d			Vec2;
 
 	/////////////////////////////////////////////////////////////////////////
 	///////////////////////////// Implementation ////////////////////////////
@@ -956,7 +1002,7 @@ namespace zl
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_()
-		: flags(0), m_rows(0), m_cols(0), m_channels(0), m_step(0), data(NULL){}
+		: m_flags(0), m_rows(0), m_cols(0), m_channels(0), m_step(0), data(NULL){}
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_(int nrow, int ncol, int nchannel)
@@ -985,7 +1031,7 @@ namespace zl
 		Mat_<_Tp>& Mat_<_Tp>::operator = (const Mat_<_Tp>& r)
 	{
 			release();
-			flags = r.flags;
+			m_flags = r.m_flags;
 			m_rows = r.m_rows;
 			m_cols = r.m_cols;
 			m_channels = r.m_channels;
@@ -1015,12 +1061,12 @@ namespace zl
 			}
 
 			// if already existed, release first
-			if ((flags & 0x01) == 1)
+			if ((m_flags & 0x01) == 1)
 			{
 				release();
 			}
 
-			flags = 1;
+			m_flags = 1;
 			m_rows = nrow;
 			m_cols = ncol;
 			m_channels = nchannel;
@@ -1042,7 +1088,7 @@ namespace zl
 				data = NULL;
 			}
 
-			flags = 0;
+			m_flags = 0;
 			m_rows = 0;
 			m_cols = 0;
 			m_channels = 0;
@@ -1098,7 +1144,7 @@ namespace zl
 	template<typename _Tp> inline
 		bool Mat_<_Tp>::empty()
 	{
-			if ((flags & 0x01) == 0 || m_rows < 1 || m_cols < 1 || m_channels < 1 || data == NULL)
+			if ((m_flags & 0x01) == 0 || m_rows < 1 || m_cols < 1 || m_channels < 1 || data == NULL)
 			{
 				return 1;
 			}
@@ -1106,6 +1152,16 @@ namespace zl
 			{
 				return 0;
 			}
+		}
+
+	/// <summary>
+	/// Return flags
+	/// </summary>
+	/// <returns>Flags</returns>
+	template<typename _Tp> inline
+		int Mat_<_Tp>::flags()
+	{
+			return m_flags;
 		}
 
 	/// <summary>
@@ -1194,7 +1250,170 @@ namespace zl
 			}
 		}
 
+
+	////////////////////////////////// Vec2 /////////////////////////////////
+
+	template<typename _Tp> inline
+		Vec2_<_Tp>::Vec2_(){}
+
+	template<typename _Tp> inline
+		Vec2_<_Tp>::Vec2_(int nrow, int ncol)
+	{
+			create(nrow, ncol);
+		}
+
+	template<typename _Tp> inline
+		Vec2_<_Tp>::Vec2_(int nrow, int ncol, _Tp* dataBuf)
+	{
+			if (create(nrow, ncol))
+			{
+				// doing deep copy rather than copy pointer
+				memcpy(data, dataBuf, m_rows * m_step * sizeof(_Tp));
+			}
+		}
+
+	template<typename _Tp> inline
+		Vec2_<_Tp>::~Vec2_()
+	{
+			release();
+		}
+
+	/// <summary>
+	/// Create an instance given specific size
+	/// </summary>
+	/// <param name="nrow">The num of rows.</param>
+	/// <param name="ncol">The num of cols.</param>
+	/// <returns>True if success, false otherwise</returns>
+	template<typename _Tp> inline
+		bool Vec2_<_Tp>::create(int nrow, int ncol)
+	{
+			return Mat_<_Tp>::create(nrow, ncol, 1);
+		}
+
+	/// <summary>
+	/// Operator() to access the specified element in Mat
+	/// </summary>
+	/// <param name="row">The row.</param>
+	/// <param name="col">The col.</param>
+	/// <returns>The reference to the specified element</returns>
+	template<typename _Tp> inline
+		_Tp& Vec2_<_Tp>::operator () (const int row, const int col)
+	{
+			return Mat_<_Tp>(row, col, 0);
+		}
+
+	template<typename _Tp> inline
+		Vec2_<_Tp>& Vec2_<_Tp>::operator = (Mat_<_Tp>& r)
+	{
+			if (r.channels() != 1)
+			{
+				warning("Invalid channels for converting from Mat to Vec2, only 1 channel allowed!");
+				return *this;
+			}
+			release();
+			m_flags = r.flags();
+			m_rows = r.rows();
+			m_cols = r.cols();
+			m_channels = r.channels();
+			m_step = r.step();
+			data = new _Tp[m_rows * m_step];
+			memcpy(data, r.ptr(), sizeof(_Tp)* m_rows * m_step);
+			return *this;
+		}
+
 	///////////////////////////// Utility functions ////////////////////////////////////
+	/// <summary>
+	/// Convert the color space of given image.
+	/// </summary>
+	/// <param name="src">The src image.</param>
+	/// <param name="dst">The dst image.</param>
+	/// <param name="code">The convertion code.</param>
+	/// <returns>True if success, false otherwise</returns>
+	template<typename _Tp> inline
+		bool cvt_color(Mat_<_Tp>& src, Mat_<_Tp>& dst, int code)
+	{
+		if (src.empty())
+		{
+			warning("src image is empty!");
+			return 0;
+		}
+
+		Mat_<_Tp> buffer;
+
+		switch (code)
+		{
+		case ZL_RGB2GRAY:
+			if (src.channels() != 3)
+			{
+				warning("invalid src image channels corrspond to code: RGB2GRAY!");
+				return 0;
+			}
+			buffer.create(src.rows(), src.cols(), 1);
+			for (int row = 0; row < src.rows(); row++)
+			{
+				for (int col = 0; col < src.cols(); col++)
+				{
+					Mat_<_Tp>::value_type r = src(row, col, 0);
+					Mat_<_Tp>::value_type g = src(row, col, 1);
+					Mat_<_Tp>::value_type b = src(row, col, 2);
+
+					Mat_<_Tp>::value_type v = static_cast<Mat_<_Tp>::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
+					buffer(row, col) = v;
+				}
+			}
+			break;
+		case ZL_RGBA2GRAY:
+			if (src.channels() != 4)
+			{
+				warning("invalid src image channels corrspond to code: RGBA2GRAY!");
+				return 0;
+			}
+			buffer.create(src.rows(), src.cols(), 1);
+			for (int row = 0; row < src.rows(); row++)
+			{
+				for (int col = 0; col < src.cols(); col++)
+				{
+					Mat_<_Tp>::value_type r = src(row, col, 0);
+					Mat_<_Tp>::value_type g = src(row, col, 1);
+					Mat_<_Tp>::value_type b = src(row, col, 2);
+
+					Mat_<_Tp>::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
+					buffer(row, col) = v;
+				}
+			}
+			break;
+		case ZL_GRAY2RGB:
+			if (src.channels() != 1)
+			{
+				warning("invalid src image channels corrspond to code: RGB2GRAY!");
+				return 0;
+			}
+			buffer.create(src.rows(), src.cols(), 3);
+			for (int row = 0; row < src.rows(); row++)
+			{
+				for (int col = 0; col < src.cols(); col++)
+				{
+					Mat_<_Tp>::value_type v = src(row, col);
+					buffer(row, col, 0) = v;
+					buffer(row, col, 1) = v;
+					buffer(row, col, 2) = v;
+				}
+			}
+			break;
+		default:
+			warning("Unrecognized code!");
+			return 0;
+		}
+
+		dst = buffer;
+		return 1;
+	}
+
+
+
+
+
+
 	/*
 	* Author:  David Robert Nadeau
 	* Site:    http://NadeauSoftware.com/
@@ -1205,7 +1424,6 @@ namespace zl
 #ifndef _OPENZL_REALTIME_H_
 #define _OPENZL_REALTIME_H_
 
-
 	/*
 	* Returns the real time, in seconds, or -1.0 if an error occurred.
 	*
@@ -1213,17 +1431,17 @@ namespace zl
 	* The returned real time is only useful for computing an elapsed time
 	* between two calls to this function.
 	*/
-	double get_real_time();
+	//double get_real_time();
 
 	/*
 	* Wrapped elapsed time function for convenience
 	*/
 	// get elapsed time in second
-	double get_elapsed_time_s(double timeStamp);
+	//double get_elapsed_time_s(double timeStamp);
 	// get elapsed time in ms
-	double get_elapsed_time_ms(double timeStamp);
+	//double get_elapsed_time_ms(double timeStamp);
 	// get elapsed time in us
-	double get_elapsed_time_us(double timeStamp);
+	//double get_elapsed_time_us(double timeStamp);
 
 
 
