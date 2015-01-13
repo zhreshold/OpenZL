@@ -31,6 +31,8 @@ namespace zl
 	void imshow(const char* windowname, Mat& image);
 	void destroy_window(const char* windowname);
 	void destroy_all_windows();
+	void draw_line(Mat& image, int x1, int y1, int x2, int y2, Scalar color, int lineWidth = 1);
+	void draw_line(Mat& image, Point pt1, Point pt2, Scalar color, int lineWidth = 1); 
 }
 
 

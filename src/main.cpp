@@ -35,11 +35,17 @@ int main()
 	Vec2u8 v, v2;
 
 	v = gray;
-	v2 = image;
 
 	gray2 = gray;
 
-	imshow("Vec2 image", v);
+	Scalar c = Scalar(255, 0, 0);
+	
+	draw_line(image, Point(20, 500), Point(500,20), c, 5);
+
+	Point pt1 = Point(200, 100) + Point(300, 100);
+
+	//imshow("Vec2 image", v);
+	imshow("drawn", image);
 	
 	println("Elasped time: ", t.get_elapsed_time_ms(), " ms");
 

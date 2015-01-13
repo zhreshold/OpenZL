@@ -103,6 +103,43 @@ namespace zl
 	void hold_screen();
 
 	/// <summary>
+	/// Return the abosolute value
+	/// </summary>
+	/// <param name="v">The input value.</param>
+	/// <returns>Abosolute value</returns>
+	template<class T> inline const T abs(const T& v) { return (v < 0) ? -v : v; }
+
+	/// <summary>
+	/// Return the smaller value
+	/// </summary>
+	/// <param name="a">a.</param>
+	/// <param name="b">b.</param>
+	/// <returns>Smaller value</returns>
+	template<class T> inline const T min(const T& a, const T& b) { return (b < a) ? b : a; }
+
+	/// <summary>
+	/// Return the larger value
+	/// </summary>
+	/// <param name="a">a.</param>
+	/// <param name="b">b.</param>
+	/// <returns>Larger value</returns>
+	template<class T> inline const T max(const T& a, const T& b) { return (b > a) ? b : a; }
+
+	/// <summary>
+	/// Lock the specified value inside range [low, high]
+	/// </summary>
+	/// <param name="value">The value.</param>
+	/// <param name="low">The low threshold.</param>
+	/// <param name="high">The high threshold.</param>
+	/// <returns>Original or low threshold or high threshold</returns>
+	template<class T> inline const T lock_in(const T& value, const T& low, const T& high)
+	{ 
+		T h = max(low, high);
+		T l = min(low, high);
+		return max(min(value, h), l);
+	}
+
+	/// <summary>
 	/// Print the message, start a new line
 	/// </summary>
 	/// <param name="logMsg">The log message to print.</param>
@@ -153,6 +190,37 @@ namespace zl
 
 		double timestamp;
 	};
+
+	//////////////////////////////// Scalar_ ////////////////////////////////
+	/*! \class
+	\brief Simple template Scalar_ class
+
+	Mainly used for convenient pixel access
+	*/
+	template<typename _Tp> class Scalar_
+	{
+	public:
+		//! default constructor that will set all channels to 0
+		Scalar_(){ v[0] = 0; v[1] = 0; v[2] = 0; v[3] = 0; };
+		//! frequently used constructor that set first 3 channels seperately
+		Scalar_(_Tp r, _Tp g = 0, _Tp b = 0)
+		{
+			v[0] = r; v[1] = g; v[2] = b; v[3] = 0;
+		};
+		//! one additional channel for transparency.
+		Scalar_(_Tp r, _Tp g, _Tp b, _Tp alpha)
+		{
+			v[0] = r; v[1] = g; v[2] = b; v[3] = alpha;
+		};
+
+		//! operator (n) retrieve the nth element in Scalar_
+		_Tp& operator () (int n) { return v[n]; };
+
+	private:
+		_Tp v[4];
+	};
+
+	typedef Scalar_<double> Scalar;		///< default use double precision
 
 	//////////////////////////////// Point_ ////////////////////////////////
 	/*! \class
@@ -322,6 +390,8 @@ namespace zl
 		_Tp* ptr(int i = 0);
 		_Tp* ptr(int row, int col);
 
+		
+
 		// get flags
 		int flags();
 
@@ -338,7 +408,10 @@ namespace zl
 		int step();
 
 		// set all elements to value 
-		void set_to(_Tp value);
+		void set_all(_Tp value);
+
+		// put pixel from Scalar
+		void set(int row, int col, Scalar value);
 
 		// export pixel value to de-interleaved buffer, make sure the buffer is large enough!
 		// void export_deinterleave(_Tp* outBuf);
@@ -392,8 +465,7 @@ namespace zl
 		// make sure dataBuf contains at least (nrows * ncols) elements
 		Vec2_(int nrows, int ncols, _Tp* dataBuf);
 
-		//! destructor
-		~Vec2_();
+		
 
 		//! overriden methods for element access
 		_Tp& operator () (int row, int col);
@@ -1208,7 +1280,7 @@ namespace zl
 	/// Set all elements to the specific value
 	/// </summary>
 	template<typename _Tp> inline
-		void Mat_<_Tp>::set_to(_Tp value)
+		void Mat_<_Tp>::set_all(_Tp value)
 	{
 			if (empty())
 			{
@@ -1219,6 +1291,23 @@ namespace zl
 			{
 				data[i] = value;
 			}
+		}
+
+	template<typename _Tp> inline
+		void Mat_<_Tp>::set(int row, int col, Scalar value)
+	{
+			if (empty())
+			{
+				return;
+			}
+
+			_Tp* p = this->ptr(row, col);
+			
+			for (int i = 0; (i < m_channels) && (i < 4); i++)
+			{
+				p[i] = saturate_cast<_Tp>(value(i));
+			}
+			
 		}
 
 	/// <summary>
@@ -1272,11 +1361,6 @@ namespace zl
 			}
 		}
 
-	template<typename _Tp> inline
-		Vec2_<_Tp>::~Vec2_()
-	{
-			release();
-		}
 
 	/// <summary>
 	/// Create an instance given specific size

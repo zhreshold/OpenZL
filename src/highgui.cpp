@@ -49856,4 +49856,68 @@ namespace zl
 			g_disps[i].close();
 		}
 	}
+
+	///////////////////////////// Drawing functions ////////////////////////////////////
+
+	/// <summary>
+	/// Draw line on the specified image.
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="x0">The x0.</param>
+	/// <param name="y0">The y0.</param>
+	/// <param name="x1">The x1.</param>
+	/// <param name="y1">The y1.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="lineWidth">Thickness of the line.</param>
+	void draw_line(Mat& image, int x0, int y0, int x1, int y1, Scalar color, int lineWidth)
+	{
+		x0 = lock_in(x0, 0, image.cols()-1);
+		y0 = lock_in(y0, 0, image.rows()-1);
+		x1 = lock_in(x1, 0, image.cols()-1);
+		y1 = lock_in(y1, 0, image.rows()-1);
+		lineWidth = max(1, lineWidth);
+
+		//int incre = 1;
+		//if (type == 2)
+		//{
+		//	incre = lineWidth;
+		//}
+
+		int wd = lineWidth;
+		int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+		int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+		int err = dx - dy, e2, x2, y2;                          /* error value e_xy */
+		float ed = dx + dy == 0 ? 1 : sqrt((float)dx*dx + (float)dy*dy);
+
+		for (wd = (wd + 1) / 2;;) {                                   /* pixel loop */
+			image.set(y0, x0, color);
+			e2 = err; x2 = x0;
+			if (2 * e2 >= -dx) {                                           /* x step */
+				for (e2 += dy, y2 = y0; e2 < ed*wd && (y1 != y2 || dx > dy); e2 += dx)
+					image.set(y2 += sy, x0, color);
+				if (x0 == x1) break;
+				e2 = err; err -= dy; x0 += sx;
+			}
+			if (2 * e2 <= dy) {                                            /* y step */
+				for (e2 = dx - e2; e2 < ed*wd && (x1 != x2 || dx < dy); e2 += dy)
+					image.set(y0, x2 += sx, color);
+				if (y0 == y1) break;
+				err += dx; y0 += sy;
+			}
+		}
+	}
+
+
+	/// <summary>
+	/// Draw line on the specified image, overloaded with points.
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="pt1">The Point1.</param>
+	/// <param name="pt2">The Point2.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="lineWidth">Thickness of the line.</param>
+	void draw_line(Mat& image, Point pt1, Point pt2, Scalar color, int lineWidth)
+	{ 
+		draw_line(image, pt1.x, pt1.y, pt2.x, pt2.y, color, lineWidth); 
+	}
 }
