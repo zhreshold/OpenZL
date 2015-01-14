@@ -367,6 +367,8 @@ namespace zl
 		// this function need to be called using caucious
 		// make sure dataBuf contains at least (nrows * ncols * nchannels) elements
 		Mat_(int nrows, int ncols, int nchannels, _Tp* dataBuf);
+		//! copy constructor, deep copy inside
+		Mat_(const Mat_& other);
 
 		//! destructor
 		virtual ~Mat_();
@@ -375,7 +377,7 @@ namespace zl
 		virtual _Tp& operator () (int row, int col, int channel = 0);
 
 		//! overload = operator to be deep copy, reasonable since reference couting was not implemented
-		virtual Mat_& operator = (const Mat_& r);
+		virtual Mat_& operator = (Mat_& r);
 
 		// real construction inside
 		virtual bool create(int nrow, int ncol, int nchannel = 1);
@@ -384,40 +386,44 @@ namespace zl
 		void release();
 
 		// check if matrix is empty
-		bool empty();
+		bool empty() const;
 
 		// return buffer ptr
-		_Tp* ptr(int i = 0);
-		_Tp* ptr(int row, int col);
+		_Tp* ptr(int i = 0) const;
+		_Tp* ptr(int row, int col) const;
 
-		
+		// deep copy function
+		//void copy_from(const Mat_& other) ;
+
+		// swap
+		void swap(Mat_& other);
 
 		// get flags
-		int flags();
+		int flags() const;
 
 		// get n_rows
-		int rows();
+		int rows() const;
 
 		// get n_cols
-		int cols();
+		int cols() const;
 
 		// get n_channels
-		int channels();
+		int channels() const;
 
 		// get step
-		int step();
+		int step() const;
 
 		// set all elements to value 
 		void set_all(_Tp value);
 
 		// put pixel from Scalar
-		void set(int row, int col, Scalar value);
+		void set(int row, int col, Scalar value, bool ignore = false);
 
 		// export pixel value to de-interleaved buffer, make sure the buffer is large enough!
 		// void export_deinterleave(_Tp* outBuf);
 
 		// dump elements to std::cout
-		void dump();
+		void dump() const;
 
 	protected:
 		// flags
@@ -1093,6 +1099,27 @@ namespace zl
 		}
 
 	template<typename _Tp> inline
+		Mat_<_Tp>::Mat_(const Mat_& other)
+	{
+			if (!other.empty())
+			{
+				create(other.rows(), other.cols(), other.channels());
+				memcpy(data, other.data, sizeof(_Tp)* m_rows * m_step);
+				m_flags = other.flags();
+			}
+			else
+			{
+				warning("Copy constructor from an empty Mat!");
+				m_flags = 0;
+				m_rows = 0;
+				m_cols = 0;
+				m_channels = 0;
+				m_step = 0;
+				data = NULL;
+			}
+		}
+
+	template<typename _Tp> inline
 		Mat_<_Tp>::~Mat_()
 	{
 			release();
@@ -1100,16 +1127,9 @@ namespace zl
 
 
 	template<typename _Tp> inline
-		Mat_<_Tp>& Mat_<_Tp>::operator = (const Mat_<_Tp>& r)
+		Mat_<_Tp>& Mat_<_Tp>::operator = (Mat_<_Tp>& r)
 	{
-			release();
-			m_flags = r.m_flags;
-			m_rows = r.m_rows;
-			m_cols = r.m_cols;
-			m_channels = r.m_channels;
-			m_step = r.m_step;
-			data = new _Tp[m_rows * m_step];
-			memcpy(data, r.data, sizeof(_Tp)* m_rows * m_step);
+			Mat_<_Tp>(r).swap(*this);
 			return *this;
 		}
 
@@ -1129,6 +1149,12 @@ namespace zl
 			if (nrow < 1 || ncol < 1 || nchannel < 1)
 			{
 				warning("Mat dimension not valid! Empty Mat created.");
+				m_flags = 0;
+				m_rows = 0;
+				m_cols = 0;
+				m_channels = 0;
+				m_step = 0;
+				data = NULL;
 				return 0;
 			}
 
@@ -1144,6 +1170,11 @@ namespace zl
 			m_channels = nchannel;
 			m_step = m_cols * m_channels;
 			data = new _Tp[m_rows * m_step];
+
+			if (data == NULL)
+			{
+				error("Bad allocation when creating Mat!");
+			}
 
 			return 1;
 		}
@@ -1167,6 +1198,35 @@ namespace zl
 			m_step = 0;
 			
 		}
+
+	//! \cond
+	/*
+	/// <summary>
+	/// Deep copy from the specified Mat_.
+	/// </summary>
+	/// <param name="r">The Mat_ to copy from.</param>
+	template<typename _Tp> inline
+		void Mat_<_Tp>::copy_from(const Mat_<_Tp>& other)
+	{
+			release();
+			create(other.rows(), other.cols(), other.channels());
+			memcpy(data, other.data, sizeof(_Tp)* m_rows * m_step);
+			m_flags = other.flags();
+		}
+		*/
+
+	template<typename _Tp> inline
+		void Mat_<_Tp>::swap(Mat_<_Tp>& other)
+	{
+			std::swap(other.m_flags, m_flags);
+			std::swap(other.m_rows, m_rows);
+			std::swap(other.m_cols, m_cols);
+			std::swap(other.m_channels, m_channels);
+			std::swap(other.m_step, m_step);
+			std::swap(other.data, data);
+		}
+
+	//! \endcond
 
 	/// <summary>
 	/// Operator() to access the specified element in Mat
@@ -1192,8 +1252,12 @@ namespace zl
 	/// <param name="i">The index of element.</param>
 	/// <returns>Pointer to this element</returns>
 	template<typename _Tp> inline
-		_Tp* Mat_<_Tp>::ptr(int i)
+		_Tp* Mat_<_Tp>::ptr(int i) const
 	{
+			if (i < 0 || i > m_rows * m_step)
+			{
+				error("Indices out of range!");
+			}
 			return data + i;
 		}
 
@@ -1204,8 +1268,12 @@ namespace zl
 	/// <param name="col">The col.</param>
 	/// <returns>Pointer to this element</returns>
 	template<typename _Tp> inline
-		_Tp* Mat_<_Tp>::ptr(int row, int col)
+		_Tp* Mat_<_Tp>::ptr(int row, int col) const
 	{
+			if (row < 0 || row > m_rows || col < 0 || col > m_cols)
+			{
+				error("Indices out of range!");
+			}
 			return data + row * m_step + col * m_channels;
 		}
 
@@ -1214,7 +1282,7 @@ namespace zl
 	/// </summary>
 	/// <returns>True if empty, otherwise false</returns>
 	template<typename _Tp> inline
-		bool Mat_<_Tp>::empty()
+		bool Mat_<_Tp>::empty() const
 	{
 			if ((m_flags & 0x01) == 0 || m_rows < 1 || m_cols < 1 || m_channels < 1 || data == NULL)
 			{
@@ -1231,7 +1299,7 @@ namespace zl
 	/// </summary>
 	/// <returns>Flags</returns>
 	template<typename _Tp> inline
-		int Mat_<_Tp>::flags()
+		int Mat_<_Tp>::flags() const
 	{
 			return m_flags;
 		}
@@ -1241,7 +1309,7 @@ namespace zl
 	/// </summary>
 	/// <returns>Number of rows</returns>
 	template<typename _Tp> inline
-		int Mat_<_Tp>::rows()
+		int Mat_<_Tp>::rows() const
 	{
 			return m_rows;
 		}
@@ -1251,7 +1319,7 @@ namespace zl
 	/// </summary>
 	/// <returns>Number of columns</returns>
 	template<typename _Tp> inline
-		int Mat_<_Tp>::cols()
+		int Mat_<_Tp>::cols() const
 	{
 			return m_cols;
 		}
@@ -1261,7 +1329,7 @@ namespace zl
 	/// </summary>
 	/// <returns>Number of channels</returns>
 	template<typename _Tp> inline
-		int Mat_<_Tp>::channels()
+		int Mat_<_Tp>::channels() const
 	{
 			return m_channels;
 		}
@@ -1271,7 +1339,7 @@ namespace zl
 	/// </summary>
 	/// <returns>Step size which is m_cols * m_channels</returns>
 	template<typename _Tp> inline
-		int Mat_<_Tp>::step()
+		int Mat_<_Tp>::step() const
 	{
 			return m_step;
 		}
@@ -1293,12 +1361,32 @@ namespace zl
 			}
 		}
 
+	/// <summary>
+	/// Set specified element by value
+	/// </summary>
+	/// <param name="row">The row.</param>
+	/// <param name="col">The column.</param>
+	/// <param name="value">The value.</param>
+	/// <param name="ignore">if set to <c>true</c> ignore any error, be careful with this option!.</param>
 	template<typename _Tp> inline
-		void Mat_<_Tp>::set(int row, int col, Scalar value)
+		void Mat_<_Tp>::set(int row, int col, Scalar value, bool ignore)
 	{
 			if (empty())
 			{
-				return;
+				if (ignore)
+				{
+					return;
+				}
+				error("Mat is empty!");
+			}
+
+			if (row < 0 || row > m_rows || col < 0 || col > m_cols)
+			{
+				if (ignore)
+				{
+					return;
+				}
+				error("Indices out of range!");
 			}
 
 			_Tp* p = this->ptr(row, col);
@@ -1314,7 +1402,7 @@ namespace zl
 	/// Dumps all elements to std::cout.
 	/// </summary>
 	template<typename _Tp> inline
-		void Mat_<_Tp>::dump()
+		void Mat_<_Tp>::dump() const
 	{
 			if (empty())
 			{
@@ -1394,14 +1482,8 @@ namespace zl
 				warning("Invalid channels for converting from Mat to Vec2, only 1 channel allowed!");
 				return *this;
 			}
-			release();
-			m_flags = r.flags();
-			m_rows = r.rows();
-			m_cols = r.cols();
-			m_channels = r.channels();
-			m_step = r.step();
-			data = new _Tp[m_rows * m_step];
-			memcpy(data, r.ptr(), sizeof(_Tp)* m_rows * m_step);
+			
+			Mat_<_Tp>(r).swap(*this);
 			return *this;
 		}
 

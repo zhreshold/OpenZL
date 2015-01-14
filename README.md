@@ -43,6 +43,13 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
  destroy_all_windows(); // close all opened windows
  ```
  
+ > Draw a red line with thickness 3
+ 
+ ```
+ draw_line(image, Point(100, 100), Point(200, 200), Scalar(255, 0, 0), 3);
+ imshow("Drawn", image);
+ ```
+ 
 
 
 
@@ -65,8 +72,6 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
 
 ## What's under Construction...
 + More color space convertion
-
-+ Convenient 2-D vector class
 
 + Image resize functions
 
