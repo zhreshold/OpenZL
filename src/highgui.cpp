@@ -49869,13 +49869,13 @@ namespace zl
 	/// <param name="y1">The y1.</param>
 	/// <param name="color">The color.</param>
 	/// <param name="lineWidth">Thickness of the line.</param>
-	void draw_line(Mat& image, int x0, int y0, int x1, int y1, Scalar color, int lineWidth)
+	void draw_line(Mat& image, int x0, int y0, int x1, int y1, Scalar color, int thickness)
 	{
 		x0 = lock_in(x0, 0, image.cols()-1);
 		y0 = lock_in(y0, 0, image.rows()-1);
 		x1 = lock_in(x1, 0, image.cols()-1);
 		y1 = lock_in(y1, 0, image.rows()-1);
-		lineWidth = max(1, lineWidth);
+		thickness = max(1, thickness);
 
 		//int incre = 1;
 		//if (type == 2)
@@ -49883,7 +49883,7 @@ namespace zl
 		//	incre = lineWidth;
 		//}
 
-		int wd = lineWidth;
+		int wd = thickness;
 		int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
 		int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
 		int err = dx - dy, e2, x2, y2;                          /* error value e_xy */
@@ -49916,8 +49916,31 @@ namespace zl
 	/// <param name="pt2">The Point2.</param>
 	/// <param name="color">The color.</param>
 	/// <param name="lineWidth">Thickness of the line.</param>
-	void draw_line(Mat& image, Point pt1, Point pt2, Scalar color, int lineWidth)
+	void draw_line(Mat& image, Point pt1, Point pt2, Scalar color, int thickness)
 	{ 
-		draw_line(image, pt1.x, pt1.y, pt2.x, pt2.y, color, lineWidth); 
+		draw_line(image, pt1.x, pt1.y, pt2.x, pt2.y, color, thickness);
 	}
-}
+
+	void draw_circle(Mat& image, int xm, int ym, int radius, Scalar color, int thickness)
+	{
+		xm = lock_in(xm, 0, image.cols());
+		ym = lock_in(ym, 0, image.rows());
+		radius = max(1, radius);
+		thickness = max(1, thickness);
+		int wd = (thickness + 1) / 2;
+
+		
+		int r = radius;
+		int x = -r, y = 0, err = 2 - 2 * r; /* II. Quadrant */
+		do {
+			image.set(ym + y, xm - x, color, true); /*   I. Quadrant */
+			image.set(ym - x, xm - y, color, true); /*  II. Quadrant */
+			image.set(ym - y, xm + x, color, true); /* III. Quadrant */
+			image.set(ym + x, xm + y, color, true); /*  IV. Quadrant */
+			r = err;
+			if (r <= y) err += ++y * 2 + 1;           /* e_xy+e_y < 0 */
+			if (r > x || err > y) err += ++x * 2 + 1; /* e_xy+e_x > 0 or no 2nd y-step */
+		} while (x < 0);
+
+	}
+} 
