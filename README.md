@@ -7,6 +7,8 @@ Wrapped in C++ as itself lacks image IO libraries, meanwhile provide more conven
 
 Full documentation in doc/html/
 
+MIT License.
+
 ## Usage
 * include "core.hpp" for basic class
 
@@ -47,6 +49,7 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
  
  ```
  draw_line(image, Point(100, 100), Point(200, 200), Scalar(255, 0, 0), 3);
+ draw_circle(image, Point(300, 300), 50, Scalar(255, 255, 0), 3);
  imshow("Drawn", image);
  ```
  
@@ -75,6 +78,6 @@ bool retval = imread(image, "c:/test.png", IMREAD_COLOR);
 
 + Image resize functions
 
-+ Various drawing functions: line, rectangle, circle...
++ Various drawing functions: line, rectangle, circle...Almost done.
 
 + More TBD

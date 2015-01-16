@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['rect_5f',['Rect_',['../classzl_1_1_rect__.html',1,'zl']]],
-  ['rect_5f',['Rect_',['../classzl_1_1_rect__.html#ae003d7349694927a5899cf1c17df7037',1,'zl::Rect_']]],
-  ['release',['release',['../classzl_1_1_mat__.html#a1b85fc2c4e135e71b36d209625e6efd1',1,'zl::Mat_']]],
-  ['rows',['rows',['../classzl_1_1_mat__.html#a9dcca0d8d239868076ec74b5a099e85b',1,'zl::Mat_']]]
+  ['point_5f',['Point_',['../classzl_1_1_point__.html',1,'zl']]],
+  ['println',['println',['../namespacezl.html#ac046c19c4775b6524c0106c6ad6a0260',1,'zl::println(T t)'],['../namespacezl.html#a55f2a7e075adffff4f15beea7d52c655',1,'zl::println(T t, U...u)']]],
+  ['ptr',['ptr',['../classzl_1_1_mat__.html#a2a065d109cf65cc46a70c05e0662cb26',1,'zl::Mat_::ptr(int i=0) const '],['../classzl_1_1_mat__.html#afae147d09d3cd0beda366776b459c8ea',1,'zl::Mat_::ptr(int row, int col) const ']]]
 ];

@@ -7,6 +7,17 @@ using namespace zl;
 
 int main()
 {
+	//println("q is:", (int)('q'));
+	//int key = -1;
+	//while (key != 'q')
+	//{
+	//	key = waitkey(1);
+	//	if (key != -1)
+	//	{
+	//		println(key);
+	//	}
+	//}
+
 	Timer t;
 	Mat image;
 	imread(image, "D:\\Dev\\vs_projects\\OpenZL\\cache\\test.png", 1);
@@ -46,15 +57,42 @@ int main()
 
 	Mat image2 = image;
 
-	draw_line(image, Point(20, 500), Point(500,20), c, 5);
+	draw_line(image, Point(100, 100), Point(500, 100), Scalar(255, 255, 0), 20);
+	draw_line(image, Point(700, 100), Point(700, 500), Scalar(255, 255, 0), 20);
+	Timer te;
+	draw_line(image, Point(700, 100), Point(700, 500), c, 1);
+	println("Line1: ", te.get_elapsed_time_us(), "us");
+	te.update();
+	draw_line(image, Point(300, 500), Point(20,20), c, 3);
+	println("Line2: ", te.get_elapsed_time_us(), "us");
+	te.update();
 	draw_circle(image, 600, 600, 100, c, 10);
-	draw_circle(image2, 600, 600, 500, c, 1);
+	println("circle: ", te.get_elapsed_time_us(), "us");
+	te.update();
+	draw_rectangle(image, 500, 400, 300, 300, c, 20, 0);
+	println("Rect: ", te.get_elapsed_time_us(), "us");
+	te.update();
+	draw_rectangle(image, 500, 400, 300, 300, Scalar(255, 255, 0), 2, 0);
+	println("Rect2: ", te.get_elapsed_time_us(), "us");
+
+	Vecpt pts;
+	pts.push_back(Point(30, 40));
+	pts.push_back(Point(50, 5));
+	pts.push_back(Point(100, 60));
+	pts.push_back(Point(200, 400));
+	pts.push_back(Point(50, 70));
+
+	draw_polygon(image, pts, c);
+
+
+
+	draw_circle(image2, 600, 600, 500, Scalar(255, 255, 0), 1, true);
 
 	Point pt1 = Point(200, 100) + Point(300, 100);
 
 	//imshow("Vec2 image", v);
 	imshow("drawn", image);
-	imshow("drawn2", image2);
+	//imshow("drawn2", image2);
 	
 	println("Elasped time: ", t.get_elapsed_time_ms(), " ms");
 

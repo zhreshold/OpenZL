@@ -98,45 +98,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">/#</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">/#</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">/#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/#   Date: Dec-2014</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/#   Date since: Dec-2014</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/#</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/#   Copyright(C) &lt;2014&gt;  Joshua Zhang   - All Rights Reserved.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">/#   Copyright (c) &lt;2014&gt; &lt;JOSHUA Z. ZHANG&gt;  - All Rights Reserved.</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">/#</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/#   This software is available for non-commercial use only.</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/#   According to MIT license.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/#   No warrenty implied, use at your own risk.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">/***********************************************************************/</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef _OPENZL_HIGHGUI_H_</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define _OPENZL_HIGHGUI_H_</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;core.hpp&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ZL_MAX_NUM_WINDOWS  50          // maximum number of windows allowed in each run, overwrite from the start if overflow</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacezl.html">zl</a></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#aefe491ebe30bf8fa701bd824d94b38c2">imshow</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* windowname, Mat&amp; image);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#ab626a5a4980cb72f6da41e84eab3c0a1">destroy_window</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* windowname);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#a90a4c838507325bc3b8548118a45a41e">destroy_all_windows</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif  //end of _OPENZL_HIGHGUI_H_</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">/#   Open source according to MIT License.</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">/#   No warrenty implied, use at your own risk.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/***********************************************************************/</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef _OPENZL_HIGHGUI_H_</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define _OPENZL_HIGHGUI_H_</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;core.hpp&quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define ZL_MAX_NUM_WINDOWS  50          // maximum number of windows allowed in each run, overwrite from the start if overflow</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacezl.html">zl</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#aefe491ebe30bf8fa701bd824d94b38c2">imshow</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* windowname, Mat&amp; image);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#ab626a5a4980cb72f6da41e84eab3c0a1">destroy_window</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* windowname);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#a90a4c838507325bc3b8548118a45a41e">destroy_all_windows</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#af135b6d6d35e9dc2a894377fb2b738f9">draw_line</a>(Mat&amp; image, <span class="keywordtype">int</span> x1, <span class="keywordtype">int</span> y1, <span class="keywordtype">int</span> x2, <span class="keywordtype">int</span> y2, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> lineWidth = 1);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#af135b6d6d35e9dc2a894377fb2b738f9">draw_line</a>(Mat&amp; image, Point pt1, Point pt2, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> thickness = 1); </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#a3a843f1251ae86bb6a7af9e38e4f83b2">draw_circle</a>(Mat&amp; image, <span class="keywordtype">int</span> xm, <span class="keywordtype">int</span> ym, <span class="keywordtype">int</span> r, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> thickness = 1, <span class="keywordtype">bool</span> fill = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#a3a843f1251ae86bb6a7af9e38e4f83b2">draw_circle</a>(Mat&amp; image, Point center, <span class="keywordtype">int</span> radius, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> thickness, <span class="keywordtype">bool</span> fill);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#aae0b0d37469cc2c811d3a3c5c9bbc3d8">draw_rectangle</a>(Mat&amp; image, <span class="keywordtype">int</span> x0, <span class="keywordtype">int</span> y0, <span class="keywordtype">int</span> x1, <span class="keywordtype">int</span> y1, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> thickness, <span class="keywordtype">bool</span> fill = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#aae0b0d37469cc2c811d3a3c5c9bbc3d8">draw_rectangle</a>(Mat&amp; image, Point pt0, Point pt1, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> thickness, <span class="keywordtype">bool</span> fill);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#aae0b0d37469cc2c811d3a3c5c9bbc3d8">draw_rectangle</a>(Mat&amp; image, Rect rect, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">int</span> thickness, <span class="keywordtype">bool</span> fill);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespacezl.html#a3611632349e142e09ccd72571c7eae2c">draw_polygon</a>(Mat&amp; image, <a class="code" href="namespacezl.html#abe7c7eb33d08c880346085a3df107b83">Vecpt</a>&amp; vertices, <a class="code" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> color, <span class="keywordtype">bool</span> fill = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="ttc" id="namespacezl_html_aefe491ebe30bf8fa701bd824d94b38c2"><div class="ttname"><a href="namespacezl.html#aefe491ebe30bf8fa701bd824d94b38c2">zl::imshow</a></div><div class="ttdeci">void imshow(const char *windowname, Mat &amp;image)</div><div class="ttdoc">Display image in window given title </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49805</div></div>
-<div class="ttc" id="namespacezl_html"><div class="ttname"><a href="namespacezl.html">zl</a></div><div class="ttdoc">namespace zl </div><div class="ttdef"><b>Definition:</b> core.cpp:98</div></div>
-<div class="ttc" id="namespacezl_html_a90a4c838507325bc3b8548118a45a41e"><div class="ttname"><a href="namespacezl.html#a90a4c838507325bc3b8548118a45a41e">zl::destroy_all_windows</a></div><div class="ttdeci">void destroy_all_windows()</div><div class="ttdoc">Destroy all windows. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49852</div></div>
-<div class="ttc" id="namespacezl_html_ab626a5a4980cb72f6da41e84eab3c0a1"><div class="ttname"><a href="namespacezl.html#ab626a5a4980cb72f6da41e84eab3c0a1">zl::destroy_window</a></div><div class="ttdeci">void destroy_window(const char *windowname)</div><div class="ttdoc">Destroy window with the specified windowname. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49833</div></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif  //end of _OPENZL_HIGHGUI_H_</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="ttc" id="namespacezl_html_a3611632349e142e09ccd72571c7eae2c"><div class="ttname"><a href="namespacezl.html#a3611632349e142e09ccd72571c7eae2c">zl::draw_polygon</a></div><div class="ttdeci">void draw_polygon(Mat &amp;image, Vecpt &amp;vertices, Scalar color, bool fill)</div><div class="ttdoc">Draw a polygon on the specified image. The drawing contour follow the vertices order! ...</div><div class="ttdef"><b>Definition:</b> highgui.cpp:50148</div></div>
+<div class="ttc" id="namespacezl_html_af135b6d6d35e9dc2a894377fb2b738f9"><div class="ttname"><a href="namespacezl.html#af135b6d6d35e9dc2a894377fb2b738f9">zl::draw_line</a></div><div class="ttdeci">void draw_line(Mat &amp;image, int x0, int y0, int x1, int y1, Scalar color, int thickness)</div><div class="ttdoc">Draw line on the specified image. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49871</div></div>
+<div class="ttc" id="namespacezl_html_aae0b0d37469cc2c811d3a3c5c9bbc3d8"><div class="ttname"><a href="namespacezl.html#aae0b0d37469cc2c811d3a3c5c9bbc3d8">zl::draw_rectangle</a></div><div class="ttdeci">void draw_rectangle(Mat &amp;image, int x0, int y0, int x1, int y1, Scalar color, int thickness, bool fill)</div><div class="ttdoc">Draw a rectangle on the specified image. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:50060</div></div>
+<div class="ttc" id="namespacezl_html_aefe491ebe30bf8fa701bd824d94b38c2"><div class="ttname"><a href="namespacezl.html#aefe491ebe30bf8fa701bd824d94b38c2">zl::imshow</a></div><div class="ttdeci">void imshow(const char *windowname, Mat &amp;image)</div><div class="ttdoc">Display image in window given title </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49804</div></div>
+<div class="ttc" id="namespacezl_html_a3a843f1251ae86bb6a7af9e38e4f83b2"><div class="ttname"><a href="namespacezl.html#a3a843f1251ae86bb6a7af9e38e4f83b2">zl::draw_circle</a></div><div class="ttdeci">void draw_circle(Mat &amp;image, int xc, int yc, int radius, Scalar color, int thickness, bool fill)</div><div class="ttdoc">Draw a circle on the specified image. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49959</div></div>
+<div class="ttc" id="namespacezl_html_ab9e8410596ed9ab8e9b94d13a67a5a18"><div class="ttname"><a href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">zl::Scalar</a></div><div class="ttdeci">Scalar_&lt; double &gt; Scalar</div><div class="ttdoc">default use double precision </div><div class="ttdef"><b>Definition:</b> core.hpp:236</div></div>
+<div class="ttc" id="namespacezl_html"><div class="ttname"><a href="namespacezl.html">zl</a></div><div class="ttdoc">namespace zl </div><div class="ttdef"><b>Definition:</b> core.cpp:97</div></div>
+<div class="ttc" id="namespacezl_html_abe7c7eb33d08c880346085a3df107b83"><div class="ttname"><a href="namespacezl.html#abe7c7eb33d08c880346085a3df107b83">zl::Vecpt</a></div><div class="ttdeci">std::vector&lt; Point &gt; Vecpt</div><div class="ttdoc">1-D vector of Points </div><div class="ttdef"><b>Definition:</b> core.hpp:276</div></div>
+<div class="ttc" id="namespacezl_html_a90a4c838507325bc3b8548118a45a41e"><div class="ttname"><a href="namespacezl.html#a90a4c838507325bc3b8548118a45a41e">zl::destroy_all_windows</a></div><div class="ttdeci">void destroy_all_windows()</div><div class="ttdoc">Destroy all windows. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49851</div></div>
+<div class="ttc" id="namespacezl_html_ab626a5a4980cb72f6da41e84eab3c0a1"><div class="ttname"><a href="namespacezl.html#ab626a5a4980cb72f6da41e84eab3c0a1">zl::destroy_window</a></div><div class="ttdeci">void destroy_window(const char *windowname)</div><div class="ttdoc">Destroy window with the specified windowname. </div><div class="ttdef"><b>Definition:</b> highgui.cpp:49832</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2015 16:57:39 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 16 2015 15:46:46 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

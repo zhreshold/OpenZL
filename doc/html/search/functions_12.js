@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['waitkey',['waitkey',['../namespacezl.html#a655bd4b5170f525bade851af9fc9f92d',1,'zl']]],
-  ['warning',['warning',['../namespacezl.html#a31fbc4c4b8d0c85d569753169c22c1a2',1,'zl']]]
+  ['vec2_5f',['Vec2_',['../classzl_1_1_vec2__.html#a97305cfa7877f9ae4711b79fd9bd0d45',1,'zl::Vec2_::Vec2_()'],['../classzl_1_1_vec2__.html#a02526cff3f20ffb518a7fd901af44af2',1,'zl::Vec2_::Vec2_(int nrows, int ncols)'],['../classzl_1_1_vec2__.html#a19e2facc73efb728a59838b1e33a1380',1,'zl::Vec2_::Vec2_(int nrows, int ncols, _Tp *dataBuf)']]]
 ];

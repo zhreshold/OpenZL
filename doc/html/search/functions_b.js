@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['operator_20point_5f_3c_20_5ftp2_20_3e',['operator Point_&lt; _Tp2 &gt;',['../classzl_1_1_point__.html#a4017a41c4782905cb87e09547de6d701',1,'zl::Point_']]],
-  ['operator_20rect_5f_3c_20_5ftp2_20_3e',['operator Rect_&lt; _Tp2 &gt;',['../classzl_1_1_rect__.html#a92edb01cf0dd2613e874445756e0a4cd',1,'zl::Rect_']]],
-  ['operator_20size_5f_3c_20_5ftp2_20_3e',['operator Size_&lt; _Tp2 &gt;',['../classzl_1_1_size__.html#a1a1653901020eedd47f283ac2e3bd8f4',1,'zl::Size_']]],
-  ['operator_28_29',['operator()',['../classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3',1,'zl::Mat_::operator()()'],['../classzl_1_1_vec2__.html#aafa292e446e12a8d72d42da4afff0496',1,'zl::Vec2_::operator()()']]],
-  ['operator_3d',['operator=',['../classzl_1_1_mat__.html#a756babbb68f6c7397e8777155b7ec070',1,'zl::Mat_::operator=()'],['../classzl_1_1_vec2__.html#a8d8bd4ba9030dd61cdad1f8f8850901d',1,'zl::Vec2_::operator=()']]]
+  ['mat_5f',['Mat_',['../classzl_1_1_mat__.html#a1b3bbdab3a01b515248e33cd17b7f996',1,'zl::Mat_::Mat_()'],['../classzl_1_1_mat__.html#aa27a366176ee16cf76ad670464f91ad7',1,'zl::Mat_::Mat_(int nrows, int ncols, int nchannels)'],['../classzl_1_1_mat__.html#a8f51afcf5dddeca18abab67d0537736c',1,'zl::Mat_::Mat_(int nrows, int ncols, int nchannels, _Tp *dataBuf)'],['../classzl_1_1_mat__.html#a9e7b37fbf1b9501a38d396fb1c385ea3',1,'zl::Mat_::Mat_(const Mat_ &amp;other)']]],
+  ['max',['max',['../namespacezl.html#a6669134f837435c956bb3271cb6d21ad',1,'zl']]],
+  ['min',['min',['../namespacezl.html#a0bee7f3daaf5f9dab217f0bf66cba0fc',1,'zl']]]
 ];

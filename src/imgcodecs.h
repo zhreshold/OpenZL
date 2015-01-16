@@ -8,12 +8,11 @@
 /#
 /#
 /#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
-/#   Date: Dec-2014
+/#   Date since: Dec-2014
 /#
-/#   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
+/#   Copyright (c) <2014> <JOSHUA Z. ZHANG>	 - All Rights Reserved.
 /#
-/#   This software is available for non-commercial use only.
-/#	 According to MIT license.
+/#	 Open source according to MIT License.
 /#	 No warrenty implied, use at your own risk.
 */
 /***********************************************************************/

@@ -96,13 +96,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">zl::Mat_&lt; _Tp &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>template 2D Matrix class.  
+ <a href="classzl_1_1_mat__.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="core_8hpp_source.html">core.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for zl::Mat_&lt; _Tp &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classzl_1_1_mat__.png" usemap="#zl::Mat_&lt; _Tp &gt;_map" alt=""/>
   <map id="zl::Mat_&lt; _Tp &gt;_map" name="zl::Mat_&lt; _Tp &gt;_map">
-<area href="classzl_1_1_vec2__.html" alt="zl::Vec2_&lt; _Tp &gt;" shape="rect" coords="0,56,109,80"/>
+<area href="classzl_1_1_vec2__.html" title="template 2D Vector class. " alt="zl::Vec2_&lt; _Tp &gt;" shape="rect" coords="0,56,109,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -126,6 +131,10 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a8f51afcf5dddeca18abab67d0537736c">Mat_</a> (int nrows, int ncols, int nchannels, _Tp *dataBuf)</td></tr>
 <tr class="memdesc:a8f51afcf5dddeca18abab67d0537736c"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a matrix from user allocated memory <br /></td></tr>
 <tr class="separator:a8f51afcf5dddeca18abab67d0537736c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7b37fbf1b9501a38d396fb1c385ea3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e7b37fbf1b9501a38d396fb1c385ea3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a9e7b37fbf1b9501a38d396fb1c385ea3">Mat_</a> (const <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;other)</td></tr>
+<tr class="memdesc:a9e7b37fbf1b9501a38d396fb1c385ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy constructor, deep copy inside <br /></td></tr>
+<tr class="separator:a9e7b37fbf1b9501a38d396fb1c385ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09b68951aa0e7d84b244657ca3fcec7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09b68951aa0e7d84b244657ca3fcec7b"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a09b68951aa0e7d84b244657ca3fcec7b">~Mat_</a> ()</td></tr>
 <tr class="memdesc:a09b68951aa0e7d84b244657ca3fcec7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor <br /></td></tr>
@@ -133,46 +142,52 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a6667006f66d470b32273fc807f6332c3"><td class="memItemLeft" align="right" valign="top">virtual _Tp &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6667006f66d470b32273fc807f6332c3">operator()</a> (int row, int col, int channel=0)</td></tr>
 <tr class="memdesc:a6667006f66d470b32273fc807f6332c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">overriden methods for element access  <a href="#a6667006f66d470b32273fc807f6332c3">More...</a><br /></td></tr>
 <tr class="separator:a6667006f66d470b32273fc807f6332c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a756babbb68f6c7397e8777155b7ec070"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a756babbb68f6c7397e8777155b7ec070"></a>
-virtual <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a756babbb68f6c7397e8777155b7ec070">operator=</a> (const <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;r)</td></tr>
-<tr class="memdesc:a756babbb68f6c7397e8777155b7ec070"><td class="mdescLeft">&#160;</td><td class="mdescRight">overload = operator to be deep copy, reasonable since reference couting was not implemented <br /></td></tr>
-<tr class="separator:a756babbb68f6c7397e8777155b7ec070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b0aa1fdb61eeb9581057d7d2f5e23c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8b0aa1fdb61eeb9581057d7d2f5e23c"></a>
+virtual <a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#af8b0aa1fdb61eeb9581057d7d2f5e23c">operator=</a> (<a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;r)</td></tr>
+<tr class="memdesc:af8b0aa1fdb61eeb9581057d7d2f5e23c"><td class="mdescLeft">&#160;</td><td class="mdescRight">overload = operator to be deep copy, reasonable since reference couting was not implemented <br /></td></tr>
+<tr class="separator:af8b0aa1fdb61eeb9581057d7d2f5e23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af86ef01d6ae36fa927ba652ef3ab150a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#af86ef01d6ae36fa927ba652ef3ab150a">create</a> (int nrow, int ncol, int nchannel=1)</td></tr>
 <tr class="memdesc:af86ef01d6ae36fa927ba652ef3ab150a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance given specific size  <a href="#af86ef01d6ae36fa927ba652ef3ab150a">More...</a><br /></td></tr>
 <tr class="separator:af86ef01d6ae36fa927ba652ef3ab150a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b85fc2c4e135e71b36d209625e6efd1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a1b85fc2c4e135e71b36d209625e6efd1">release</a> ()</td></tr>
 <tr class="memdesc:a1b85fc2c4e135e71b36d209625e6efd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release this instance.  <a href="#a1b85fc2c4e135e71b36d209625e6efd1">More...</a><br /></td></tr>
 <tr class="separator:a1b85fc2c4e135e71b36d209625e6efd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19a8188521899cf7306aa875cd9bc5f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a19a8188521899cf7306aa875cd9bc5f7">empty</a> ()</td></tr>
-<tr class="memdesc:a19a8188521899cf7306aa875cd9bc5f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if Mat is empty.  <a href="#a19a8188521899cf7306aa875cd9bc5f7">More...</a><br /></td></tr>
-<tr class="separator:a19a8188521899cf7306aa875cd9bc5f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ebccddecc75256224dfdffac7f940cd"><td class="memItemLeft" align="right" valign="top">_Tp *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a8ebccddecc75256224dfdffac7f940cd">ptr</a> (int i=0)</td></tr>
-<tr class="memdesc:a8ebccddecc75256224dfdffac7f940cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the pointer to the specified element i in 1-D order.  <a href="#a8ebccddecc75256224dfdffac7f940cd">More...</a><br /></td></tr>
-<tr class="separator:a8ebccddecc75256224dfdffac7f940cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ce9a7ec1de390618546acdf670f26ca"><td class="memItemLeft" align="right" valign="top">_Tp *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6ce9a7ec1de390618546acdf670f26ca">ptr</a> (int row, int col)</td></tr>
-<tr class="memdesc:a6ce9a7ec1de390618546acdf670f26ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the pointer to the specified element (row, col) in 2-D order.  <a href="#a6ce9a7ec1de390618546acdf670f26ca">More...</a><br /></td></tr>
-<tr class="separator:a6ce9a7ec1de390618546acdf670f26ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9f6800121db304481089d441167bcc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#ae9f6800121db304481089d441167bcc8">flags</a> ()</td></tr>
-<tr class="memdesc:ae9f6800121db304481089d441167bcc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return flags  <a href="#ae9f6800121db304481089d441167bcc8">More...</a><br /></td></tr>
-<tr class="separator:ae9f6800121db304481089d441167bcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dcca0d8d239868076ec74b5a099e85b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a9dcca0d8d239868076ec74b5a099e85b">rows</a> ()</td></tr>
-<tr class="memdesc:a9dcca0d8d239868076ec74b5a099e85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of rows  <a href="#a9dcca0d8d239868076ec74b5a099e85b">More...</a><br /></td></tr>
-<tr class="separator:a9dcca0d8d239868076ec74b5a099e85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a427d6f87fb80bccd312656e50d9d31a0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a427d6f87fb80bccd312656e50d9d31a0">cols</a> ()</td></tr>
-<tr class="memdesc:a427d6f87fb80bccd312656e50d9d31a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of columns  <a href="#a427d6f87fb80bccd312656e50d9d31a0">More...</a><br /></td></tr>
-<tr class="separator:a427d6f87fb80bccd312656e50d9d31a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac607980d78e50f6fa0f50a93d13d38d1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#ac607980d78e50f6fa0f50a93d13d38d1">channels</a> ()</td></tr>
-<tr class="memdesc:ac607980d78e50f6fa0f50a93d13d38d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of channels  <a href="#ac607980d78e50f6fa0f50a93d13d38d1">More...</a><br /></td></tr>
-<tr class="separator:ac607980d78e50f6fa0f50a93d13d38d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f24bc3468129173081f66db777436eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a5f24bc3468129173081f66db777436eb">step</a> ()</td></tr>
-<tr class="memdesc:a5f24bc3468129173081f66db777436eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return step size  <a href="#a5f24bc3468129173081f66db777436eb">More...</a><br /></td></tr>
-<tr class="separator:a5f24bc3468129173081f66db777436eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a762ea6041de86223bf2a66a2ce6b51d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a762ea6041de86223bf2a66a2ce6b51d6">set_to</a> (_Tp value)</td></tr>
-<tr class="memdesc:a762ea6041de86223bf2a66a2ce6b51d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all elements to the specific value  <a href="#a762ea6041de86223bf2a66a2ce6b51d6">More...</a><br /></td></tr>
-<tr class="separator:a762ea6041de86223bf2a66a2ce6b51d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab53e825ce41e586d99d825f23a94e795"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#ab53e825ce41e586d99d825f23a94e795">dump</a> ()</td></tr>
-<tr class="memdesc:ab53e825ce41e586d99d825f23a94e795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumps all elements to std::cout.  <a href="#ab53e825ce41e586d99d825f23a94e795">More...</a><br /></td></tr>
-<tr class="separator:ab53e825ce41e586d99d825f23a94e795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb26cb07dd9a680feffd97f294578c51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#abb26cb07dd9a680feffd97f294578c51">empty</a> () const </td></tr>
+<tr class="memdesc:abb26cb07dd9a680feffd97f294578c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if Mat is empty.  <a href="#abb26cb07dd9a680feffd97f294578c51">More...</a><br /></td></tr>
+<tr class="separator:abb26cb07dd9a680feffd97f294578c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a065d109cf65cc46a70c05e0662cb26"><td class="memItemLeft" align="right" valign="top">_Tp *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a2a065d109cf65cc46a70c05e0662cb26">ptr</a> (int i=0) const </td></tr>
+<tr class="memdesc:a2a065d109cf65cc46a70c05e0662cb26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the pointer to the specified element i in 1-D order.  <a href="#a2a065d109cf65cc46a70c05e0662cb26">More...</a><br /></td></tr>
+<tr class="separator:a2a065d109cf65cc46a70c05e0662cb26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae147d09d3cd0beda366776b459c8ea"><td class="memItemLeft" align="right" valign="top">_Tp *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#afae147d09d3cd0beda366776b459c8ea">ptr</a> (int row, int col) const </td></tr>
+<tr class="memdesc:afae147d09d3cd0beda366776b459c8ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the pointer to the specified element (row, col) in 2-D order.  <a href="#afae147d09d3cd0beda366776b459c8ea">More...</a><br /></td></tr>
+<tr class="separator:afae147d09d3cd0beda366776b459c8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c0e01c90f3fcddde74c4d0582ae5c90"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c0e01c90f3fcddde74c4d0582ae5c90"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>swap</b> (<a class="el" href="classzl_1_1_mat__.html">Mat_</a> &amp;other)</td></tr>
+<tr class="separator:a8c0e01c90f3fcddde74c4d0582ae5c90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6942fd078fb8d1d7bf9041b663255926"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6942fd078fb8d1d7bf9041b663255926">flags</a> () const </td></tr>
+<tr class="memdesc:a6942fd078fb8d1d7bf9041b663255926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return flags  <a href="#a6942fd078fb8d1d7bf9041b663255926">More...</a><br /></td></tr>
+<tr class="separator:a6942fd078fb8d1d7bf9041b663255926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b1c0a2a9f785f2f2f1dfd2b5d12ba3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#ab5b1c0a2a9f785f2f2f1dfd2b5d12ba3">rows</a> () const </td></tr>
+<tr class="memdesc:ab5b1c0a2a9f785f2f2f1dfd2b5d12ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of rows  <a href="#ab5b1c0a2a9f785f2f2f1dfd2b5d12ba3">More...</a><br /></td></tr>
+<tr class="separator:ab5b1c0a2a9f785f2f2f1dfd2b5d12ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea6e90980c2fbef705e47c38c4a9503"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a1ea6e90980c2fbef705e47c38c4a9503">cols</a> () const </td></tr>
+<tr class="memdesc:a1ea6e90980c2fbef705e47c38c4a9503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of columns  <a href="#a1ea6e90980c2fbef705e47c38c4a9503">More...</a><br /></td></tr>
+<tr class="separator:a1ea6e90980c2fbef705e47c38c4a9503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae50fcbaf258a541eeaed788d4837341"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#aae50fcbaf258a541eeaed788d4837341">channels</a> () const </td></tr>
+<tr class="memdesc:aae50fcbaf258a541eeaed788d4837341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of channels  <a href="#aae50fcbaf258a541eeaed788d4837341">More...</a><br /></td></tr>
+<tr class="separator:aae50fcbaf258a541eeaed788d4837341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4913f1f11df7a689486864098c648af8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a4913f1f11df7a689486864098c648af8">step</a> () const </td></tr>
+<tr class="memdesc:a4913f1f11df7a689486864098c648af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return step size  <a href="#a4913f1f11df7a689486864098c648af8">More...</a><br /></td></tr>
+<tr class="separator:a4913f1f11df7a689486864098c648af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02e65ac44f5c90968cc077934d6743ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a02e65ac44f5c90968cc077934d6743ff">set_all</a> (_Tp value)</td></tr>
+<tr class="memdesc:a02e65ac44f5c90968cc077934d6743ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all elements to the specific value  <a href="#a02e65ac44f5c90968cc077934d6743ff">More...</a><br /></td></tr>
+<tr class="separator:a02e65ac44f5c90968cc077934d6743ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbfa3d692a7f1b70d5ed1f2550339bb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#adbfa3d692a7f1b70d5ed1f2550339bb1">set</a> (int row, int col, <a class="el" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a> value, bool ignore=false)</td></tr>
+<tr class="memdesc:adbfa3d692a7f1b70d5ed1f2550339bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set specified element by value  <a href="#adbfa3d692a7f1b70d5ed1f2550339bb1">More...</a><br /></td></tr>
+<tr class="separator:adbfa3d692a7f1b70d5ed1f2550339bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6560320bb2ae5963ee784c0437f51bc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classzl_1_1_mat__.html#a6560320bb2ae5963ee784c0437f51bc7">dump</a> () const </td></tr>
+<tr class="memdesc:a6560320bb2ae5963ee784c0437f51bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumps all elements to std::cout.  <a href="#a6560320bb2ae5963ee784c0437f51bc7">More...</a><br /></td></tr>
+<tr class="separator:a6560320bb2ae5963ee784c0437f51bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -195,8 +210,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>m_step</b></td></tr>
 _Tp *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
 <tr class="separator:a7e5bc0ff3446a263ec1809cb5f120468"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac607980d78e50f6fa0f50a93d13d38d1"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename _Tp&gt;<br />
+class zl::Mat_&lt; _Tp &gt;</h3>
+
+<p>template 2D Matrix class. </p>
+<p>The class defines a matrix in 2D space. Data type is specified as a template parameter. There are a few shorter aliases available for user convenience. See zl::Mat, zl::Matf, zl::Matd and zl::Mati. Normally, zl::Mat ~ zl::Mat_&lt;uchar&gt; is used as the common 8-bit image container.</p>
+<p>About stored pixel values, the pixel values are stored interleaved (R1G1B1R2G2B2...) </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aae50fcbaf258a541eeaed788d4837341"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -209,7 +231,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">int <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::channels </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -224,7 +246,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a427d6f87fb80bccd312656e50d9d31a0"></a>
+<a class="anchor" id="a1ea6e90980c2fbef705e47c38c4a9503"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -237,7 +259,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">int <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::cols </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -305,7 +327,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ab53e825ce41e586d99d825f23a94e795"></a>
+<a class="anchor" id="a6560320bb2ae5963ee784c0437f51bc7"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -318,7 +340,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">void <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::dump </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -332,7 +354,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a19a8188521899cf7306aa875cd9bc5f7"></a>
+<a class="anchor" id="abb26cb07dd9a680feffd97f294578c51"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -345,7 +367,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">bool <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::empty </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -360,7 +382,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ae9f6800121db304481089d441167bcc8"></a>
+<a class="anchor" id="a6942fd078fb8d1d7bf9041b663255926"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -373,7 +395,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">int <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::flags </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -442,7 +464,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a8ebccddecc75256224dfdffac7f940cd"></a>
+<a class="anchor" id="a2a065d109cf65cc46a70c05e0662cb26"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -456,7 +478,7 @@ template&lt;typename _Tp &gt; </div>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>i</em> = <code>0</code></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -477,7 +499,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a6ce9a7ec1de390618546acdf670f26ca"></a>
+<a class="anchor" id="afae147d09d3cd0beda366776b459c8ea"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -501,7 +523,7 @@ template&lt;typename _Tp &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
   </td>
@@ -550,7 +572,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a9dcca0d8d239868076ec74b5a099e85b"></a>
+<a class="anchor" id="ab5b1c0a2a9f785f2f2f1dfd2b5d12ba3"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -563,7 +585,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">int <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::rows </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -578,7 +600,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a762ea6041de86223bf2a66a2ce6b51d6"></a>
+<a class="anchor" id="adbfa3d692a7f1b70d5ed1f2550339bb1"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -588,7 +610,66 @@ template&lt;typename _Tp &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::set_to </td>
+          <td class="memname">void <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::set </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacezl.html#ab9e8410596ed9ab8e9b94d13a67a5a18">Scalar</a>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ignore</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set specified element by value </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>The row.</td></tr>
+    <tr><td class="paramname">col</td><td>The column.</td></tr>
+    <tr><td class="paramname">value</td><td>The value.</td></tr>
+    <tr><td class="paramname">ignore</td><td>if set to <code>true</code> ignore any error, be careful with this option!.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a02e65ac44f5c90968cc077934d6743ff"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Tp &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::set_all </td>
           <td>(</td>
           <td class="paramtype">_Tp&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -606,7 +687,7 @@ template&lt;typename _Tp &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a5f24bc3468129173081f66db777436eb"></a>
+<a class="anchor" id="a4913f1f11df7a689486864098c648af8"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -619,7 +700,7 @@ template&lt;typename _Tp &gt; </div>
           <td class="memname">int <a class="el" href="classzl_1_1_mat__.html">zl::Mat_</a>&lt; _Tp &gt;::step </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -640,7 +721,7 @@ template&lt;typename _Tp &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 8 2015 16:57:39 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 16 2015 15:46:46 for OpenZL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

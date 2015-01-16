@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['_7emat_5f',['~Mat_',['../classzl_1_1_mat__.html#a09b68951aa0e7d84b244657ca3fcec7b',1,'zl::Mat_']]],
-  ['_7evec2_5f',['~Vec2_',['../classzl_1_1_vec2__.html#a6e29b07f1c852de39fd2579897f97166',1,'zl::Vec2_']]]
+  ['waitkey',['waitkey',['../namespacezl.html#a655bd4b5170f525bade851af9fc9f92d',1,'zl']]],
+  ['warning',['warning',['../namespacezl.html#a31fbc4c4b8d0c85d569753169c22c1a2',1,'zl']]]
 ];

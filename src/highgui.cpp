@@ -8,12 +8,11 @@
 /#
 /#
 /#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
-/#   Date: Dec-2014
+/#   Date since: Dec-2014
 /#
-/#   Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
+/#   Copyright (c) <2014> <JOSHUA Z. ZHANG>	 - All Rights Reserved.
 /#
-/#   This software is available for non-commercial use only.
-/#	 According to MIT license.
+/#	 Open source according to MIT License.
 /#	 No warrenty implied, use at your own risk.
 */
 /***********************************************************************/
@@ -49882,28 +49881,42 @@ namespace zl
 		//{
 		//	incre = lineWidth;
 		//}
-
-		int wd = thickness;
 		int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
 		int dy = abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
-		int err = dx - dy, e2, x2, y2;                          /* error value e_xy */
 		float ed = dx + dy == 0 ? 1 : sqrt((float)dx*dx + (float)dy*dy);
-
-		for (wd = (wd + 1) / 2;;) {                                   /* pixel loop */
-			image.set(y0, x0, color);
-			e2 = err; x2 = x0;
-			if (2 * e2 >= -dx) {                                           /* x step */
-				for (e2 += dy, y2 = y0; e2 < ed*wd && (y1 != y2 || dx > dy); e2 += dx)
-					image.set(y2 += sy, x0, color);
-				if (x0 == x1) break;
-				e2 = err; err -= dy; x0 += sx;
+		if (thickness == 1)
+		{
+			int err = dx - dy, e2, x2, y2;                          /* error value e_xy */
+			
+			for (;;) {                                   /* pixel loop */
+				image.set(y0, x0, color, true);
+				e2 = err; x2 = x0;
+				if (2 * e2 >= -dx) {                                           /* x step */
+					for (e2 += dy, y2 = y0; e2 < ed && (y1 != y2 || dx > dy); e2 += dx)
+						image.set(y2 += sy, x0, color, true);
+					if (x0 == x1) break;
+					e2 = err; err -= dy; x0 += sx;
+				}
+				if (2 * e2 <= dy) {                                            /* y step */
+					for (e2 = dx - e2; e2 < ed && (x1 != x2 || dx < dy); e2 += dy)
+						image.set(y0, x2 += sx, color, true);
+					if (y0 == y1) break;
+					err += dx; y0 += sy;
+				}
 			}
-			if (2 * e2 <= dy) {                                            /* y step */
-				for (e2 = dx - e2; e2 < ed*wd && (x1 != x2 || dx < dy); e2 += dy)
-					image.set(y0, x2 += sx, color);
-				if (y0 == y1) break;
-				err += dx; y0 += sy;
-			}
+		}
+		else
+		{
+			int wd = (thickness + 1) / 2;
+			int offx = fast_round(dy / ed * wd);
+			int offy = fast_round(dx / ed * wd);
+			Vecpt verts;
+			verts.push_back(Point(x0 - offx * sx, y0 + offy * sy));
+			verts.push_back(Point(x0 + offx * sx, y0 - offy * sy));
+			verts.push_back(Point(x1 + offx * sx, y1 - offy * sy));
+			verts.push_back(Point(x1 - offx * sx, y1 + offy * sy));
+			
+			draw_polygon(image, verts, color, true);
 		}
 	}
 
@@ -49921,26 +49934,327 @@ namespace zl
 		draw_line(image, pt1.x, pt1.y, pt2.x, pt2.y, color, thickness);
 	}
 
-	void draw_circle(Mat& image, int xm, int ym, int radius, Scalar color, int thickness)
+	//! \cond
+	void xLine(Mat& image, int x1, int x2, int y, Scalar colour)
 	{
-		xm = lock_in(xm, 0, image.cols());
-		ym = lock_in(ym, 0, image.rows());
-		radius = max(1, radius);
-		thickness = max(1, thickness);
+		while (x1 <= x2) image.set(y, x1++, colour, true);
+	}
+
+	void yLine(Mat& image, int x, int y1, int y2, Scalar colour)
+	{
+		while (y1 <= y2) image.set(y1++, x, colour, true);
+	}
+	//! \endcond
+
+	/// <summary>
+	/// Draw a circle on the specified image.
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="xc">The center x.</param>
+	/// <param name="yc">The center y.</param>
+	/// <param name="radius">The radius.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="thickness">The thickness.</param>
+	/// <param name="fill">if set to <c>true</c> fill the circle.</param>
+	void draw_circle(Mat& image, int xc, int yc, int radius, Scalar color, int thickness, bool fill)
+	{
+		if (radius < 1)
+		{
+			warning("Radius smaller than 1, return without drawing!");
+			return;
+		}
+		thickness = max(0, thickness - 1);
 		int wd = (thickness + 1) / 2;
 
 		
-		int r = radius;
-		int x = -r, y = 0, err = 2 - 2 * r; /* II. Quadrant */
-		do {
-			image.set(ym + y, xm - x, color, true); /*   I. Quadrant */
-			image.set(ym - x, xm - y, color, true); /*  II. Quadrant */
-			image.set(ym - y, xm + x, color, true); /* III. Quadrant */
-			image.set(ym + x, xm + y, color, true); /*  IV. Quadrant */
-			r = err;
-			if (r <= y) err += ++y * 2 + 1;           /* e_xy+e_y < 0 */
-			if (r > x || err > y) err += ++x * 2 + 1; /* e_xy+e_x > 0 or no 2nd y-step */
-		} while (x < 0);
+		//int r = radius;
+		//int x = -r, y = 0, err = 2 - 2 * r; /* II. Quadrant */
+		//do {
+		//	image.set(ym + y, xm - x, color, true); /*   I. Quadrant */
+		//	image.set(ym - x, xm - y, color, true); /*  II. Quadrant */
+		//	image.set(ym - y, xm + x, color, true); /* III. Quadrant */
+		//	image.set(ym + x, xm + y, color, true); /*  IV. Quadrant */
+		//	r = err;
+		//	if (r <= y) err += ++y * 2 + 1;           /* e_xy+e_y < 0 */
+		//	if (r > x || err > y) err += ++x * 2 + 1; /* e_xy+e_x > 0 or no 2nd y-step */
+		//} while (x < 0);
+
+		//circle2(image, xm, ym, radius - wd, radius + wd, color);
+
+		int outer = radius + wd;
+		int inner = radius - wd;
+
+		if (fill)
+		{
+			inner = 0;
+		}
+
+		int xo = outer;
+		int xi = inner;
+		int y = 0;
+		int erro = 1 - xo;
+		int erri = 1 - xi;
+
+		while (xo >= y) {
+			xLine(image, xc + xi, xc + xo, yc + y, color);
+			yLine(image, xc + y, yc + xi, yc + xo, color);
+			xLine(image, xc - xo, xc - xi, yc + y, color);
+			yLine(image, xc - y, yc + xi, yc + xo, color);
+			xLine(image, xc - xo, xc - xi, yc - y, color);
+			yLine(image, xc - y, yc - xo, yc - xi, color);
+			xLine(image, xc + xi, xc + xo, yc - y, color);
+			yLine(image, xc + y, yc - xo, yc - xi, color);
+
+			y++;
+
+			if (erro < 0) {
+				erro += 2 * y + 1;
+			}
+			else {
+				xo--;
+				erro += 2 * (y - xo + 1);
+			}
+
+			if (y > inner) {
+				xi = y;
+			}
+			else {
+				if (erri < 0) {
+					erri += 2 * y + 1;
+				}
+				else {
+					xi--;
+					erri += 2 * (y - xi + 1);
+				}
+			}
+		}
+
+	}
+
+	/// <summary>
+	/// Draw a circle on the specified image. Overloaded with center point.
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="center">The center point.</param>
+	/// <param name="radius">The radius.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="thickness">The thickness.</param>
+	/// <param name="fill">if set to <c>true</c> [fill] the circle.</param>
+	void draw_circle(Mat& image, Point center, int radius, Scalar color, int thickness, bool fill)
+	{
+		draw_circle(image, center.x, center.y, radius, color, thickness, fill);
+	}
+
+
+	/// <summary>
+	/// Draw a rectangle on the specified image.
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="x0">The x0.</param>
+	/// <param name="y0">The y0.</param>
+	/// <param name="x1">The x1.</param>
+	/// <param name="y1">The y1.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="thickness">The thickness.</param>
+	/// <param name="fill">if set to <c>true</c> [fill] the rectangle.</param>
+	void draw_rectangle(Mat& image, int x0, int y0, int x1, int y1, Scalar color, int thickness, bool fill)
+	{
+		if (x0 == x1 && y0 == y1)
+		{
+			// draw point actually
+			image.set(y0, x0, color, true);
+		}
+		else if ((x0 == x1) || (y0 == y1))
+		{
+			// draw line
+			draw_line(image, x0, y0, x1, y1, color, thickness);
+		}
+		else
+		{
+			int th = max(0, thickness - 1);
+			int t = (th + 1) / 2;
+			if (fill)
+			{
+				int dx = x0 > x1 ? -1 : 1;
+				int dy = y0 > y1 ? -1 : 1;
+				for (int i = y0 - t * dy; i != y1 + t * dy; i += dy)
+				{
+					for (int j = x0 - t * dx; j != x1 + t * dx; j += dx)
+					{
+						image.set(i, j, color, true);
+					}
+				}
+			}
+			else
+			{
+				// draw in the bezel between outer and inner rectangle
+				int dx = x0 > x1 ? -1 : 1;
+				int dy = y0 > y1 ? -1 : 1;
+				int xi0 = x0 + t * dx;
+				int yi0 = y0 + t * dy;
+				int xi1 = x1 - t * dx;
+				int yi1 = y1 - t * dy;
+				if (xi0 > xi1) std::swap(xi0, xi1);
+				if (yi0 > yi1) std::swap(yi0, yi1);
+
+				for (int i = y0 - t * dy; i != y1 + t * dy; i += dy)
+				{
+					for (int j = x0 - t * dx; j != x1 + t * dx; j += dx)
+					{
+						if (i > yi0 && i < yi1 && j > xi0 && j < xi1)
+							continue;
+						
+						image.set(i, j, color, true);
+					}
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Draw a rectangle on the specified image. Overload with Points
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="pt0">The Point 0.</param>
+	/// <param name="pt1">The Point 1.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="thickness">The thickness.</param>
+	/// <param name="fill">if set to <c>true</c> [fill].</param>
+	void draw_rectangle(Mat& image, Point pt0, Point pt1, Scalar color, int thickness, bool fill)
+	{
+		draw_rectangle(image, pt0.x, pt0.y, pt1.x, pt1.y, color, thickness, fill);
+	}
+
+	/// <summary>
+	/// Draw a rectangle on the specified image. Overloaded with Rect
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="rect">The rect.</param>
+	/// <param name="color">The color.</param>
+	/// <param name="thickness">The thickness.</param>
+	/// <param name="fill">if set to <c>true</c> [fill].</param>
+	void draw_rectangle(Mat& image, Rect rect, Scalar color, int thickness, bool fill)
+	{
+		draw_rectangle(image, rect.tl().x, rect.tl().y, rect.br().x, rect.br().y, color, thickness, fill);
+	}
+
+	/// <summary>
+	/// Draw a polygon on the specified image. The drawing contour follow the vertices order!
+	/// </summary>
+	/// <param name="image">The image.</param>
+	/// <param name="vertices">The vertices in ORDER!</param>
+	/// <param name="color">The color.</param>
+	/// <param name="fill">if set to <c>true</c> [fill] the polygon.</param>
+	void draw_polygon(Mat& image, Vecpt& vertices, Scalar color, bool fill)
+	{
+		size_t sz = vertices.size();
+		if (sz < 1)
+		{
+			// nothing to draw
+			return;
+		}
+		else if (sz == 1)
+		{
+			// draw point
+			image.set(vertices[0].y, vertices[0].x, color, true);
+			return;
+		}
+		else if (sz == 2)
+		{
+			draw_line(image, vertices[0], vertices[1], color, 1);
+		}
+		else
+		{
+			// estimate the boundaries of the polygon
+			int top = image.rows() - 1;
+			int bottom = 0;
+			int left = image.cols() - 1;
+			int right = 0;
+			for (size_t ii = 0; ii < vertices.size(); ii++)
+			{
+				int y = vertices[ii].y;
+				int x = vertices[ii].x;
+				if (y < top)
+				{
+					top = y;
+				}
+				if (y > bottom)
+				{
+					bottom = y;
+				}
+				if (x < left)
+				{
+					left = x;
+				}
+				if (x > right)
+				{
+					right = x;
+				}
+			}
+
+			Veci nodeX;
+			int pixelY;
+			size_t i = 0;
+			size_t j = 0;
+			int swap;
+
+			for (pixelY = top; pixelY < bottom; pixelY++)
+			{
+				// build a list of nodes
+				j = sz - 1;
+				nodeX.clear();
+				for (i = 0; i < sz; i++)
+				{
+					if ((vertices[i].y < (double)pixelY && vertices[j].y >= (double)pixelY)
+						|| (vertices[j].y < (double)pixelY && vertices[i].y >= (double)pixelY))
+					{
+						int tmp = fast_round((vertices[i].x + ((double)pixelY - vertices[i].y) / (vertices[j].y - vertices[i].y) * (vertices[j].x - vertices[i].x)));
+						nodeX.push_back(tmp);
+					}
+					j = i;
+				}
+
+				// sort the nodes, via bubble sort
+				i = 0;
+				while ((i + 1) < nodeX.size())
+				{
+					if (nodeX[i] > nodeX[i + 1])
+					{
+						swap = nodeX[i];
+						nodeX[i] = nodeX[i + 1];
+						nodeX[i + 1] = swap;
+						if (i)	i--;
+					}
+					else
+					{
+						i++;
+					}
+				}
+
+				// fill the pixels between node pairs
+				for (i = 0; i < nodeX.size(); i += 2)
+				{
+					if (nodeX[i    ] >= right)	break;
+					if (nodeX[i + 1] > left)
+					{
+						if (nodeX[i	   ] < left)	nodeX[i] = left;
+						if (nodeX[i + 1] > right)	nodeX[i + 1] = right;
+						if (fill)
+						{
+							for (int k = nodeX[i]; k < nodeX[i + 1]; k++)
+							{
+								image.set(pixelY, k, color, true);
+							}
+						}
+						else
+						{
+							image.set(pixelY, nodeX[i], color, true);
+							image.set(pixelY, nodeX[i + 1], color, true);
+						}
+					}
+				}
+			}
+		}
 
 	}
 } 

@@ -1,12 +1,23 @@
 /***********************************************************************/
 /*
-/#   Script File: core.hpp
+/#   Script File: core.cpp
 /#
 /#   Description:
 /#
 /#   Definition of core global modules
 /#
+/#
+/#   Author: Joshua Zhang (zzbhf@mail.missouri.edu)
+/#   Date since: Dec-2014
+/#
+/#   Copyright (c) <2014> <JOSHUA Z. ZHANG>	 - All Rights Reserved.
+/#
+/#	 Open source according to MIT License.
+/#	 No warrenty implied, use at your own risk.
 */
+/***********************************************************************/
+
+// doxygen main page
 /*!	 \mainpage OpenZL Main Page
 #	 OpenZL - Open EZ Library
 
@@ -16,12 +27,11 @@
 
 
      Author: Joshua Zhang (zzbhf@mail.missouri.edu)
-     Date: Dec-2014
+     Date since: Dec-2014
   
-     Copyright(C) <2014>  Joshua Zhang	 - All Rights Reserved.
+     Copyright (c) <2014> <JOSHUA Z. ZHANG>	 - All Rights Reserved.
   
-     This software is available for non-commercial use only.
-  	 Under MIT license.
+  	 Open source according to MIT License.
   	 No warrenty implied, use at your own risk.
 */
 /***********************************************************************/
@@ -48,13 +58,14 @@
 #include <iostream>
 #include <ctime>
 #include <algorithm>
+#include <vector>
 
 
 //#include "realtime.h"
 //#include "waitkey.h"
 
 //////////////////////////////// Typedef ////////////////////////////////
-/// fixed bits integer, guaranteed!
+/// fixed bits integer, guaranteed, however, this require c++11
 typedef uint8_t			uchar;		//!< unsigned 8-bit integer
 typedef int8_t			schar;		//!< signed 8-bit integer
 typedef uint16_t		ushort;		//!< unsigned 16-bit integer
@@ -64,6 +75,9 @@ typedef int32_t			sint;		//!< signed 32-bit integer
 typedef uint64_t		ulong;		//!< unsigned 64-bit integer
 typedef int64_t			slong;		//!< signed 64-bit integer
 typedef std::string		String;		//!< STL string
+template<typename... Ts> using Vec = std::vector<Ts...>;	//!< STL vector
+typedef std::vector<sint> Veci;		//!< signed 32-bit integer vector
+
 
 /// <summary>
 /// namespace zl
@@ -154,8 +168,9 @@ namespace zl
 	/// <summary>
 	/// Print the message with various arguments, start a new line
 	/// </summary>
-	/// <param name="logMsg">The log message to print.</param>
-	template <typename T, typename ...U>
+	/// <param name="t">The first message.</param>
+	/// <param name="...u">The additional message.</param>
+	template <typename T, typename ...U> inline
 	void println(T t, U ...u)
 	{
 		std::cout << t;
@@ -164,8 +179,7 @@ namespace zl
 
 
 	//////////////////////////////// Timer ////////////////////////////////
-	/*! \class
-	Cross-platform Timer class
+	/*! \brief Cross-platform Timer class
 
 	The class is used to capture the elapsed time between two timestamps.
 	Mainly for complexity evaluation purposes.
@@ -192,8 +206,7 @@ namespace zl
 	};
 
 	//////////////////////////////// Scalar_ ////////////////////////////////
-	/*! \class
-	\brief Simple template Scalar_ class
+	/*! \brief Simple template Scalar_ class
 
 	Mainly used for convenient pixel access
 	*/
@@ -223,8 +236,7 @@ namespace zl
 	typedef Scalar_<double> Scalar;		///< default use double precision
 
 	//////////////////////////////// Point_ ////////////////////////////////
-	/*! \class
-	template 2D point class.
+	/*! \brief template 2D point class.
 
 	The class defines a point in 2D space. Data type of the point coordinates is specified
 	as a template parameter. There are a few shorter aliases available for user convenience.
@@ -261,11 +273,11 @@ namespace zl
 	typedef Point_<float> Point2f;
 	typedef Point_<double> Point2d;
 	typedef Point2i Point;
+	typedef std::vector<Point> Vecpt;	//!< 1-D vector of Points
 
 	//////////////////////////////// Size_ ////////////////////////////////
 
-	/*! \class
-	The 2D size class
+	/*! \brief The 2D size class
 
 	The class represents the size of a 2D rectangle, image size, matrix size etc.
 	Normally, zl::Size ~ zl::Size_<int> is used.
@@ -297,8 +309,7 @@ namespace zl
 
 	//////////////////////////////// Rect_ ////////////////////////////////
 
-	/*! \class
-	The 2D up-right rectangle class
+	/*! \brief The 2D up-right rectangle class
 
 	The class represents a 2D rectangle with coordinates of the specified data type.
 	Normally, zl::Rect ~ zl::Rect_<int> is used.
@@ -343,8 +354,7 @@ namespace zl
 
 	//////////////////////////////// Mat_ ////////////////////////////////
 
-	/*! \class
-	template 2D Matrix class.
+	/*! \brief template 2D Matrix class.
 
 	The class defines a matrix in 2D space. Data type is specified as a template parameter. 
 	There are a few shorter aliases available for user convenience.
@@ -449,8 +459,7 @@ namespace zl
 
 
 	//////////////////////////////// Vec2_ ////////////////////////////////
-	/*! \class
-	template 2D Vector class.
+	/*! \brief template 2D Vector class.
 
 	The class defines a 2-d vector derived from Mat_. Data type is specified as a template parameter.
 	More specifically, Vec2_<_Tp> is the special case of Mat_<_Tp> that m_channels = 1;
@@ -1199,7 +1208,7 @@ namespace zl
 			
 		}
 
-	//! \cond
+	
 	/*
 	/// <summary>
 	/// Deep copy from the specified Mat_.
@@ -1215,6 +1224,7 @@ namespace zl
 		}
 		*/
 
+	//! \cond
 	template<typename _Tp> inline
 		void Mat_<_Tp>::swap(Mat_<_Tp>& other)
 	{
@@ -1254,7 +1264,7 @@ namespace zl
 	template<typename _Tp> inline
 		_Tp* Mat_<_Tp>::ptr(int i) const
 	{
-			if (i < 0 || i > m_rows * m_step)
+			if (i < 0 || i >= m_rows * m_step)
 			{
 				error("Indices out of range!");
 			}
@@ -1270,7 +1280,7 @@ namespace zl
 	template<typename _Tp> inline
 		_Tp* Mat_<_Tp>::ptr(int row, int col) const
 	{
-			if (row < 0 || row > m_rows || col < 0 || col > m_cols)
+			if (row < 0 || row >= m_rows || col < 0 || col >= m_cols)
 			{
 				error("Indices out of range!");
 			}
@@ -1380,7 +1390,7 @@ namespace zl
 				error("Mat is empty!");
 			}
 
-			if (row < 0 || row > m_rows || col < 0 || col > m_cols)
+			if (row < 0 || row >= m_rows || col < 0 || col >= m_cols)
 			{
 				if (ignore)
 				{
@@ -1487,7 +1497,7 @@ namespace zl
 			return *this;
 		}
 
-	///////////////////////////// Utility functions ////////////////////////////////////
+	
 	/// <summary>
 	/// Convert the color space of given image.
 	/// </summary>
