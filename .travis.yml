@@ -1,0 +1,8 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+# Change this to your needs
+before_script:
+ - chmod -R +rx ./
+script: ./build/nix/Makefile && make
