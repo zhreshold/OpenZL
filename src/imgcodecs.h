@@ -144,7 +144,7 @@ namespace zl
 	//
 	// Basic usage (see HDR discussion below):
 	//    int x,y,n;
-	//    unsigned char *data = stbi_load(filename, &x, &y, &n, 0);
+	//    uchar *data = stbi_load(filename, &x, &y, &n, 0);
 	//    // ... process data if not NULL ... 
 	//    // ... x = width, y = height, n = # 8-bit components per pixel ...
 	//    // ... replace '0' with '1'..'4' to force that many components per pixel
@@ -157,7 +157,7 @@ namespace zl
 	//    int *comp    -- outputs # of image components in image file
 	//    int req_comp -- if non-zero, # of image components requested in result
 	//
-	// The return value from an image loader is an 'unsigned char *' which points
+	// The return value from an image loader is an 'uchar *' which points
 	// to the pixel data. The pixel data consists of *y scanlines of *x pixels,
 	// with each pixel consisting of N interleaved 8-bit components; the first
 	// pixel pointed to is top-left-most in the image. There is no padding between
@@ -265,7 +265,7 @@ namespace zl
 		STBI_rgb_alpha = 4
 	};
 
-	typedef unsigned char stbi_uc;
+	typedef uchar stbi_uc;
 
 #ifdef __cplusplus
 	extern "C" {
@@ -428,21 +428,25 @@ namespace zl
 #endif
 
 
-#ifdef _MSC_VER
-	typedef unsigned short stbi__uint16;
-	typedef   signed short stbi__int16;
-	typedef unsigned int   stbi__uint32;
-	typedef   signed int   stbi__int32;
-#else
-#include <stdint.h>
-	typedef uint16_t stbi__uint16;
-	typedef int16_t  stbi__int16;
-	typedef uint32_t stbi__uint32;
-	typedef int32_t  stbi__int32;
-#endif
+//#ifdef _MSC_VER
+//	typedef unsigned short stbi__uint16;
+//	typedef   signed short stbi__int16;
+//	typedef unsigned int   stbi__uint32;
+//	typedef   signed int   stbi__int32;
+//#else
+//#include <stdint.h>
+//	typedef uint16_t stbi__uint16;
+//	typedef int16_t  stbi__int16;
+//	typedef uint32_t stbi__uint32;
+//	typedef int32_t  stbi__int32;
+//#endif
+		typedef ushort stbi__uint16;
+		typedef sshort stbi__int16;
+		typedef uint   stbi__uint32;
+		typedef sint   stbi__int32;
 
 	// should produce compiler error if size is wrong
-	typedef unsigned char validate_uint32[sizeof(stbi__uint32) == 4 ? 1 : -1];
+	typedef uchar validate_uint32[sizeof(stbi__uint32) == 4 ? 1 : -1];
 
 #ifdef _MSC_VER
 #define STBI_NOTUSED(v)  (void)(v)
@@ -591,7 +595,7 @@ namespace zl
 
 	// stbi__err - error
 	// stbi__errpf - error returning pointer to float
-	// stbi__errpuc - error returning pointer to unsigned char
+	// stbi__errpuc - error returning pointer to uchar
 
 #ifdef STBI_NO_FAILURE_STRINGS
 #define stbi__err(x,y)  0
@@ -602,7 +606,7 @@ namespace zl
 #endif
 
 #define stbi__errpf(x,y)   ((float *) (stbi__err(x,y)?NULL:NULL))
-#define stbi__errpuc(x,y)  ((unsigned char *) (stbi__err(x,y)?NULL:NULL))
+#define stbi__errpuc(x,y)  ((uchar *) (stbi__err(x,y)?NULL:NULL))
 
 	STBIDEF void stbi_image_free(void *retval_from_stbi_load)
 	{
@@ -614,7 +618,7 @@ namespace zl
 	static stbi_uc *stbi__hdr_to_ldr(float   *data, int x, int y, int comp);
 #endif
 
-	static unsigned char *stbi_load_main(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+	static uchar *stbi_load_main(stbi__context *s, int *x, int *y, int *comp, int req_comp)
 	{
 		if (stbi__jpeg_test(s)) return stbi__jpeg_load(s, x, y, comp, req_comp);
 		if (stbi__png_test(s))  return stbi__png_load(s, x, y, comp, req_comp);
@@ -651,19 +655,19 @@ namespace zl
 	}
 
 
-	STBIDEF unsigned char *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp)
+	STBIDEF uchar *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp)
 	{
 		FILE *f = stbi__fopen(filename, "rb");
-		unsigned char *result;
+		uchar *result;
 		if (!f) return stbi__errpuc("can't fopen", "Unable to open file");
 		result = stbi_load_from_file(f, x, y, comp, req_comp);
 		fclose(f);
 		return result;
 	}
 
-	STBIDEF unsigned char *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)
+	STBIDEF uchar *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)
 	{
-		unsigned char *result;
+		uchar *result;
 		stbi__context s;
 		stbi__start_file(&s, f);
 		result = stbi_load_main(&s, x, y, comp, req_comp);
@@ -675,14 +679,14 @@ namespace zl
 	}
 #endif //!STBI_NO_STDIO
 
-	STBIDEF unsigned char *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+	STBIDEF uchar *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
 	{
 		stbi__context s;
 		stbi__start_mem(&s, buffer, len);
 		return stbi_load_main(&s, x, y, comp, req_comp);
 	}
 
-	STBIDEF unsigned char *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+	STBIDEF uchar *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
 	{
 		stbi__context s;
 		stbi__start_callbacks(&s, (stbi_io_callbacks *)clbk, user);
@@ -693,7 +697,7 @@ namespace zl
 
 	static float *stbi_loadf_main(stbi__context *s, int *x, int *y, int *comp, int req_comp)
 	{
-		unsigned char *data;
+		uchar *data;
 #ifndef STBI_NO_HDR
 		if (stbi__hdr_test(s))
 			return stbi__hdr_load(s, x, y, comp, req_comp);
@@ -933,23 +937,23 @@ namespace zl
 		return (stbi_uc)(((r * 77) + (g * 150) + (29 * b)) >> 8);
 	}
 
-	static unsigned char *stbi__convert_format(unsigned char *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+	static uchar *stbi__convert_format(uchar *data, int img_n, int req_comp, unsigned int x, unsigned int y)
 	{
 		int i, j;
-		unsigned char *good;
+		uchar *good;
 
 		if (req_comp == img_n) return data;
 		STBI_ASSERT(req_comp >= 1 && req_comp <= 4);
 
-		good = (unsigned char *)stbi__malloc(req_comp * x * y);
+		good = (uchar *)stbi__malloc(req_comp * x * y);
 		if (good == NULL) {
 			free(data);
 			return stbi__errpuc("outofmem", "Out of memory");
 		}
 
 		for (j = 0; j < (int)y; ++j) {
-			unsigned char *src = data + j * x * img_n;
-			unsigned char *dest = good + j * x * req_comp;
+			uchar *src = data + j * x * img_n;
+			uchar *dest = good + j * x * req_comp;
 
 #define COMBO(a,b)  ((a)*8+(b))
 #define CASE(a,b)   case COMBO(a,b): for(i=x-1; i >= 0; --i, src += a, dest += b)
@@ -1095,7 +1099,7 @@ namespace zl
 
 		stbi__uint32         code_buffer; // jpeg entropy-coded buffer
 		int            code_bits;   // number of valid bits
-		unsigned char  marker;      // marker seen while filling entropy buffer
+		uchar  marker;      // marker seen while filling entropy buffer
 		int            nomore;      // flag if we saw a marker so must stop
 
 		int scan_n, order[4];
@@ -1150,7 +1154,7 @@ namespace zl
 			if (b == 0xff) {
 				int c = stbi__get8(j->s);
 				if (c != 0) {
-					j->marker = (unsigned char)c;
+					j->marker = (uchar)c;
 					j->nomore = 1;
 					return;
 				}
@@ -2017,7 +2021,7 @@ namespace zl
 		}
 	}
 
-	static unsigned char *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+	static uchar *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
 	{
 		stbi__jpeg j;
 		j.s = s;
@@ -3099,9 +3103,9 @@ namespace zl
 		}
 	}
 
-	static unsigned char *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp)
+	static uchar *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp)
 	{
-		unsigned char *result = NULL;
+		uchar *result = NULL;
 		if (req_comp < 0 || req_comp > 4) return stbi__errpuc("bad req_comp", "Internal error");
 		if (stbi__parse_png_file(p, SCAN_load, req_comp)) {
 			result = p->out;
@@ -3122,7 +3126,7 @@ namespace zl
 		return result;
 	}
 
-	static unsigned char *stbi__png_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+	static uchar *stbi__png_load(stbi__context *s, int *x, int *y, int *comp, int req_comp)
 	{
 		stbi__png p;
 		p.s = s;
@@ -3386,7 +3390,7 @@ namespace zl
 			for (j = 0; j < (int)s->img_y; ++j) {
 				if (easy) {
 					for (i = 0; i < (int)s->img_x; ++i) {
-						unsigned char a;
+						uchar a;
 						out[z + 2] = stbi__get8(s);
 						out[z + 1] = stbi__get8(s);
 						out[z + 0] = stbi__get8(s);
@@ -3514,10 +3518,10 @@ namespace zl
 		int tga_comp = tga_bits_per_pixel / 8;
 		int tga_inverted = stbi__get8(s);
 		//   image data
-		unsigned char *tga_data;
-		unsigned char *tga_palette = NULL;
+		uchar *tga_data;
+		uchar *tga_palette = NULL;
 		int i, j;
-		unsigned char raw_data[4];
+		uchar raw_data[4];
 		int RLE_count = 0;
 		int RLE_repeating = 0;
 		int read_next_pixel = 1;
@@ -3553,7 +3557,7 @@ namespace zl
 		*y = tga_height;
 		if (comp) *comp = tga_comp;
 
-		tga_data = (unsigned char*)stbi__malloc(tga_width * tga_height * tga_comp);
+		tga_data = (uchar*)stbi__malloc(tga_width * tga_height * tga_comp);
 		if (!tga_data) return stbi__errpuc("outofmem", "Out of memory");
 
 		// skip to the data's starting position (offset usually = 0)
@@ -3573,7 +3577,7 @@ namespace zl
 				//   any data to skip? (offset usually = 0)
 				stbi__skip(s, tga_palette_start);
 				//   load the palette
-				tga_palette = (unsigned char*)stbi__malloc(tga_palette_len * tga_palette_bits / 8);
+				tga_palette = (uchar*)stbi__malloc(tga_palette_len * tga_palette_bits / 8);
 				if (!tga_palette) {
 					free(tga_data);
 					return stbi__errpuc("outofmem", "Out of memory");
@@ -3654,7 +3658,7 @@ namespace zl
 					int index2 = (tga_height - 1 - j) * tga_width * tga_comp;
 					for (i = tga_width * tga_comp; i > 0; --i)
 					{
-						unsigned char temp = tga_data[index1];
+						uchar temp = tga_data[index1];
 						tga_data[index1] = tga_data[index2];
 						tga_data[index2] = temp;
 						++index1;
@@ -3672,10 +3676,10 @@ namespace zl
 		// swap RGB
 		if (tga_comp >= 3)
 		{
-			unsigned char* tga_pixel = tga_data;
+			uchar* tga_pixel = tga_data;
 			for (i = 0; i < tga_width * tga_height; ++i)
 			{
-				unsigned char temp = tga_pixel[0];
+				uchar temp = tga_pixel[0];
 				tga_pixel[0] = tga_pixel[2];
 				tga_pixel[2] = temp;
 				tga_pixel += tga_comp;
@@ -4515,7 +4519,7 @@ namespace zl
 		stbi_uc *scanline;
 		float *hdr_data;
 		int len;
-		unsigned char count, value;
+		uchar count, value;
 		int i, j, k, c1, c2, z;
 
 
@@ -5036,7 +5040,7 @@ extern "C" {
 #include <string.h>
 #include <assert.h>
 
-typedef unsigned int stbiw_uint32;
+typedef uint stbiw_uint32;
 typedef int stb_image_write_test[sizeof(stbiw_uint32) == 4 ? 1 : -1];
 
 static void writefv(FILE *f, const char *fmt, va_list v)
@@ -5044,13 +5048,13 @@ static void writefv(FILE *f, const char *fmt, va_list v)
 	while (*fmt) {
 		switch (*fmt++) {
 		case ' ': break;
-		case '1': { unsigned char x = (unsigned char)va_arg(v, int); fputc(x, f); break; }
-		case '2': { int x = va_arg(v, int); unsigned char b[2];
-			b[0] = (unsigned char)x; b[1] = (unsigned char)(x >> 8);
+		case '1': { uchar x = (uchar)va_arg(v, int); fputc(x, f); break; }
+		case '2': { int x = va_arg(v, int); uchar b[2];
+			b[0] = (uchar)x; b[1] = (uchar)(x >> 8);
 			fwrite(b, 2, 1, f); break; }
-		case '4': { stbiw_uint32 x = va_arg(v, int); unsigned char b[4];
-			b[0] = (unsigned char)x; b[1] = (unsigned char)(x >> 8);
-			b[2] = (unsigned char)(x >> 16); b[3] = (unsigned char)(x >> 24);
+		case '4': { stbiw_uint32 x = va_arg(v, int); uchar b[4];
+			b[0] = (uchar)x; b[1] = (uchar)(x >> 8);
+			b[2] = (uchar)(x >> 16); b[3] = (uchar)(x >> 24);
 			fwrite(b, 4, 1, f); break; }
 		default:
 			assert(0);
@@ -5059,16 +5063,16 @@ static void writefv(FILE *f, const char *fmt, va_list v)
 	}
 }
 
-static void write3(FILE *f, unsigned char a, unsigned char b, unsigned char c)
+static void write3(FILE *f, uchar a, uchar b, uchar c)
 {
-	unsigned char arr[3];
+	uchar arr[3];
 	arr[0] = a, arr[1] = b, arr[2] = c;
 	fwrite(arr, 3, 1, f);
 }
 
 static void write_pixels(FILE *f, int rgb_dir, int vdir, int x, int y, int comp, void *data, int write_alpha, int scanline_pad)
 {
-	unsigned char bg[3] = { 255, 0, 255 }, px[3];
+	uchar bg[3] = { 255, 0, 255 }, px[3];
 	stbiw_uint32 zero = 0;
 	int i, j, k, j_end;
 
@@ -5082,7 +5086,7 @@ static void write_pixels(FILE *f, int rgb_dir, int vdir, int x, int y, int comp,
 
 	for (; j != j_end; j += vdir) {
 		for (i = 0; i < x; ++i) {
-			unsigned char *d = (unsigned char *)data + (j*x + i)*comp;
+			uchar *d = (uchar *)data + (j*x + i)*comp;
 			if (write_alpha < 0)
 				fwrite(&d[comp - 1], 1, 1, f);
 			switch (comp) {
@@ -5169,10 +5173,10 @@ static void *stbiw__sbgrowf(void **arr, int increment, int itemsize)
 	return *arr;
 }
 
-static unsigned char *stbiw__zlib_flushf(unsigned char *data, unsigned int *bitbuffer, int *bitcount)
+static uchar *stbiw__zlib_flushf(uchar *data, unsigned int *bitbuffer, int *bitcount)
 {
 	while (*bitcount >= 8) {
-		stbiw__sbpush(data, (unsigned char)*bitbuffer);
+		stbiw__sbpush(data, (uchar)*bitbuffer);
 		*bitbuffer >>= 8;
 		*bitcount -= 8;
 	}
@@ -5189,7 +5193,7 @@ static int stbiw__zlib_bitrev(int code, int codebits)
 	return res;
 }
 
-static unsigned int stbiw__zlib_countm(unsigned char *a, unsigned char *b, int limit)
+static unsigned int stbiw__zlib_countm(uchar *a, uchar *b, int limit)
 {
 	int i;
 	for (i = 0; i < limit && i < 258; ++i)
@@ -5197,7 +5201,7 @@ static unsigned int stbiw__zlib_countm(unsigned char *a, unsigned char *b, int l
 	return i;
 }
 
-static unsigned int stbiw__zhash(unsigned char *data)
+static unsigned int stbiw__zhash(uchar *data)
 {
 	stbiw_uint32 hash = data[0] + (data[1] << 8) + (data[2] << 16);
 	hash ^= hash << 3;
@@ -5223,16 +5227,16 @@ static unsigned int stbiw__zhash(unsigned char *data)
 
 #define stbiw__ZHASH   16384
 
-unsigned char * stbi_zlib_compress(unsigned char *data, int data_len, int *out_len, int quality)
+uchar * stbi_zlib_compress(uchar *data, int data_len, int *out_len, int quality)
 {
 	static unsigned short lengthc[] = { 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 259 };
-	static unsigned char  lengtheb[] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0 };
+	static uchar  lengtheb[] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0 };
 	static unsigned short distc[] = { 1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577, 32768 };
-	static unsigned char  disteb[] = { 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13 };
+	static uchar  disteb[] = { 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13 };
 	unsigned int bitbuf = 0;
 	int i, j, bitcount = 0;
-	unsigned char *out = NULL;
-	unsigned char **hash_table[stbiw__ZHASH]; // 64KB on the stack!
+	uchar *out = NULL;
+	uchar **hash_table[stbiw__ZHASH]; // 64KB on the stack!
 	if (quality < 5) quality = 5;
 
 	stbiw__sbpush(out, 0x78);   // DEFLATE 32K window
@@ -5247,8 +5251,8 @@ unsigned char * stbi_zlib_compress(unsigned char *data, int data_len, int *out_l
 	while (i < data_len - 3) {
 		// hash next 3 bytes of data to be compressed 
 		int h = stbiw__zhash(data + i)&(stbiw__ZHASH - 1), best = 3;
-		unsigned char *bestloc = 0;
-		unsigned char **hlist = hash_table[h];
+		uchar *bestloc = 0;
+		uchar **hlist = hash_table[h];
 		int n = stbiw__sbcount(hlist);
 		for (j = 0; j < n; ++j) {
 			if (hlist[j] - data > i - 32768) { // if entry lies within window
@@ -5316,18 +5320,18 @@ unsigned char * stbi_zlib_compress(unsigned char *data, int data_len, int *out_l
 			j += blocklen;
 			blocklen = 5552;
 		}
-		stbiw__sbpush(out, (unsigned char)(s2 >> 8));
-		stbiw__sbpush(out, (unsigned char)s2);
-		stbiw__sbpush(out, (unsigned char)(s1 >> 8));
-		stbiw__sbpush(out, (unsigned char)s1);
+		stbiw__sbpush(out, (uchar)(s2 >> 8));
+		stbiw__sbpush(out, (uchar)s2);
+		stbiw__sbpush(out, (uchar)(s1 >> 8));
+		stbiw__sbpush(out, (uchar)s1);
 	}
 	*out_len = stbiw__sbn(out);
 	// make returned pointer freeable
 	memmove(stbiw__sbraw(out), out, *out_len);
-	return (unsigned char *)stbiw__sbraw(out);
+	return (uchar *)stbiw__sbraw(out);
 }
 
-unsigned int stbiw__crc32(unsigned char *buffer, int len)
+unsigned int stbiw__crc32(uchar *buffer, int len)
 {
 	static unsigned int crc_table[256];
 	unsigned int crc = ~0u;
@@ -5341,36 +5345,36 @@ unsigned int stbiw__crc32(unsigned char *buffer, int len)
 	return ~crc;
 }
 
-#define stbiw__wpng4(o,a,b,c,d) ((o)[0]=(unsigned char)(a),(o)[1]=(unsigned char)(b),(o)[2]=(unsigned char)(c),(o)[3]=(unsigned char)(d),(o)+=4)
+#define stbiw__wpng4(o,a,b,c,d) ((o)[0]=(uchar)(a),(o)[1]=(uchar)(b),(o)[2]=(uchar)(c),(o)[3]=(uchar)(d),(o)+=4)
 #define stbiw__wp32(data,v) stbiw__wpng4(data, (v)>>24,(v)>>16,(v)>>8,(v));
 #define stbiw__wptag(data,s) stbiw__wpng4(data, s[0],s[1],s[2],s[3])
 
-static void stbiw__wpcrc(unsigned char **data, int len)
+static void stbiw__wpcrc(uchar **data, int len)
 {
 	unsigned int crc = stbiw__crc32(*data - len - 4, len + 4);
 	stbiw__wp32(*data, crc);
 }
 
-static unsigned char stbiw__paeth(int a, int b, int c)
+static uchar stbiw__paeth(int a, int b, int c)
 {
 	int p = a + b - c, pa = abs(p - a), pb = abs(p - b), pc = abs(p - c);
-	if (pa <= pb && pa <= pc) return (unsigned char)a;
-	if (pb <= pc) return (unsigned char)b;
-	return (unsigned char)c;
+	if (pa <= pb && pa <= pc) return (uchar)a;
+	if (pb <= pc) return (uchar)b;
+	return (uchar)c;
 }
 
-unsigned char *stbi_write_png_to_mem(unsigned char *pixels, int stride_bytes, int x, int y, int n, int *out_len)
+uchar *stbi_write_png_to_mem(uchar *pixels, int stride_bytes, int x, int y, int n, int *out_len)
 {
 	int ctype[5] = { -1, 0, 4, 2, 6 };
-	unsigned char sig[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
-	unsigned char *out, *o, *filt, *zlib;
+	uchar sig[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
+	uchar *out, *o, *filt, *zlib;
 	signed char *line_buffer;
 	int i, j, k, p, zlen;
 
 	if (stride_bytes == 0)
 		stride_bytes = x * n;
 
-	filt = (unsigned char *)malloc((x*n + 1) * y); if (!filt) return 0;
+	filt = (uchar *)malloc((x*n + 1) * y); if (!filt) return 0;
 	line_buffer = (signed char *)malloc(x * n); if (!line_buffer) { free(filt); return 0; }
 	for (j = 0; j < y; ++j) {
 		static int mapping[] = { 0, 1, 2, 3, 4 };
@@ -5380,7 +5384,7 @@ unsigned char *stbi_write_png_to_mem(unsigned char *pixels, int stride_bytes, in
 		for (p = 0; p < 2; ++p) {
 			for (k = p ? best : 0; k < 5; ++k) {
 				int type = mymap[k], est = 0;
-				unsigned char *z = pixels + stride_bytes*j;
+				uchar *z = pixels + stride_bytes*j;
 				for (i = 0; i < n; ++i)
 					switch (type) {
 					case 0: line_buffer[i] = z[i]; break;
@@ -5409,7 +5413,7 @@ unsigned char *stbi_write_png_to_mem(unsigned char *pixels, int stride_bytes, in
 			}
 		}
 		// when we get here, best contains the filter type, and line_buffer contains the data
-		filt[j*(x*n + 1)] = (unsigned char)best;
+		filt[j*(x*n + 1)] = (uchar)best;
 		memcpy(filt + j*(x*n + 1) + 1, line_buffer, x*n);
 	}
 	free(line_buffer);
@@ -5418,7 +5422,7 @@ unsigned char *stbi_write_png_to_mem(unsigned char *pixels, int stride_bytes, in
 	if (!zlib) return 0;
 
 	// each tag requires 12 bytes of overhead
-	out = (unsigned char *)malloc(8 + 12 + 13 + 12 + zlen + 12);
+	out = (uchar *)malloc(8 + 12 + 13 + 12 + zlen + 12);
 	if (!out) return 0;
 	*out_len = 8 + 12 + 13 + 12 + zlen + 12;
 
@@ -5429,7 +5433,7 @@ unsigned char *stbi_write_png_to_mem(unsigned char *pixels, int stride_bytes, in
 	stbiw__wp32(o, x);
 	stbiw__wp32(o, y);
 	*o++ = 8;
-	*o++ = (unsigned char)ctype[n];
+	*o++ = (uchar)ctype[n];
 	*o++ = 0;
 	*o++ = 0;
 	*o++ = 0;
@@ -5453,7 +5457,7 @@ int stbi_write_png(char const *filename, int x, int y, int comp, const void *dat
 {
 	FILE *f;
 	int len;
-	unsigned char *png = stbi_write_png_to_mem((unsigned char *)data, stride_bytes, x, y, comp, &len);
+	uchar *png = stbi_write_png_to_mem((uchar *)data, stride_bytes, x, y, comp, &len);
 	if (!png) return 0;
 	f = fopen(filename, "wb");
 	if (!f) { free(png); return 0; }
@@ -5473,7 +5477,7 @@ rename private functions to avoid conflicts with stb_image.h
 0.93 (2014-05-27)
 warning fixes
 0.92 (2010-08-01)
-casts to unsigned char to fix warnings
+casts to uchar to fix warnings
 0.91 (2010-07-17)
 first public release
 0.90   first internal release

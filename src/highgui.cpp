@@ -2318,18 +2318,18 @@ namespace cimg_library_suffixed {
       static const char* format(const bool val) { static const char* s[] = { "false", "true" }; return s[val?1:0]; }
     };
 
-    template<> struct type<unsigned char> {
-      static const char* string() { static const char *const s = "unsigned char"; return s; }
+    template<> struct type<uchar> {
+      static const char* string() { static const char *const s = "uchar"; return s; }
       static bool is_float() { return false; }
-      static bool is_inf(const unsigned char) { return false; }
-      static bool is_nan(const unsigned char) { return false; }
-      static unsigned char min() { return 0; }
-      static unsigned char max() { return (unsigned char)~0U; }
-      static unsigned char inf() { return max(); }
-      static unsigned char cut(const double val) {
-        return val<(double)min()?min():val>(double)max()?max():(unsigned char)val; }
+      static bool is_inf(const uchar) { return false; }
+      static bool is_nan(const uchar) { return false; }
+      static uchar min() { return 0; }
+      static uchar max() { return (uchar)~0U; }
+      static uchar inf() { return max(); }
+      static uchar cut(const double val) {
+        return val<(double)min()?min():val>(double)max()?max():(uchar)val; }
       static const char* format() { return "%u"; }
-      static unsigned int format(const unsigned char val) { return (unsigned int)val; }
+      static unsigned int format(const uchar val) { return (unsigned int)val; }
     };
 
     template<> struct type<char> {
@@ -2493,7 +2493,7 @@ namespace cimg_library_suffixed {
     };
 
     template<typename T, typename t> struct superset { typedef T type; };
-    template<> struct superset<bool,unsigned char> { typedef unsigned char type; };
+    template<> struct superset<bool,uchar> { typedef uchar type; };
     template<> struct superset<bool,char> { typedef char type; };
     template<> struct superset<bool,signed char> { typedef signed char type; };
     template<> struct superset<bool,unsigned short> { typedef unsigned short type; };
@@ -2504,17 +2504,17 @@ namespace cimg_library_suffixed {
     template<> struct superset<bool,long> { typedef long type; };
     template<> struct superset<bool,float> { typedef float type; };
     template<> struct superset<bool,double> { typedef double type; };
-    template<> struct superset<unsigned char,char> { typedef short type; };
-    template<> struct superset<unsigned char,signed char> { typedef short type; };
-    template<> struct superset<unsigned char,unsigned short> { typedef unsigned short type; };
-    template<> struct superset<unsigned char,short> { typedef short type; };
-    template<> struct superset<unsigned char,unsigned int> { typedef unsigned int type; };
-    template<> struct superset<unsigned char,int> { typedef int type; };
-    template<> struct superset<unsigned char,unsigned long> { typedef unsigned long type; };
-    template<> struct superset<unsigned char,long> { typedef long type; };
-    template<> struct superset<unsigned char,float> { typedef float type; };
-    template<> struct superset<unsigned char,double> { typedef double type; };
-    template<> struct superset<signed char,unsigned char> { typedef short type; };
+    template<> struct superset<uchar,char> { typedef short type; };
+    template<> struct superset<uchar,signed char> { typedef short type; };
+    template<> struct superset<uchar,unsigned short> { typedef unsigned short type; };
+    template<> struct superset<uchar,short> { typedef short type; };
+    template<> struct superset<uchar,unsigned int> { typedef unsigned int type; };
+    template<> struct superset<uchar,int> { typedef int type; };
+    template<> struct superset<uchar,unsigned long> { typedef unsigned long type; };
+    template<> struct superset<uchar,long> { typedef long type; };
+    template<> struct superset<uchar,float> { typedef float type; };
+    template<> struct superset<uchar,double> { typedef double type; };
+    template<> struct superset<signed char,uchar> { typedef short type; };
     template<> struct superset<signed char,char> { typedef short type; };
     template<> struct superset<signed char,unsigned short> { typedef int type; };
     template<> struct superset<signed char,short> { typedef short type; };
@@ -2524,7 +2524,7 @@ namespace cimg_library_suffixed {
     template<> struct superset<signed char,long> { typedef long type; };
     template<> struct superset<signed char,float> { typedef float type; };
     template<> struct superset<signed char,double> { typedef double type; };
-    template<> struct superset<char,unsigned char> { typedef short type; };
+    template<> struct superset<char,uchar> { typedef short type; };
     template<> struct superset<char,signed char> { typedef short type; };
     template<> struct superset<char,unsigned short> { typedef int type; };
     template<> struct superset<char,short> { typedef short type; };
@@ -3808,7 +3808,7 @@ namespace cimg_library_suffixed {
 "                                                                                                                              D" };
 
     // Define a 40x38 'danger' color logo (used by cimg::dialog()).
-    const unsigned char logo40x38[4576] = {
+    const uchar logo40x38[4576] = {
       177,200,200,200,3,123,123,0,36,200,200,200,1,123,123,0,2,255,255,0,1,189,189,189,1,0,0,0,34,200,200,200,
       1,123,123,0,4,255,255,0,1,189,189,189,1,0,0,0,1,123,123,123,32,200,200,200,1,123,123,0,5,255,255,0,1,0,0,
       0,2,123,123,123,30,200,200,200,1,123,123,0,6,255,255,0,1,189,189,189,1,0,0,0,2,123,123,123,29,200,200,200,
@@ -4004,7 +4004,7 @@ namespace cimg_library_suffixed {
     **/
     inline bool endianness() {
       const int x = 1;
-      return ((unsigned char*)&x)[0]?false:true;
+      return ((uchar*)&x)[0]?false:true;
     }
 
     //! Reverse endianness of all elements in a memory buffer.
@@ -4027,7 +4027,7 @@ namespace cimg_library_suffixed {
       }
       } break;
       default : { for (T* ptr = buffer+size; ptr>buffer; ) {
-        unsigned char *pb = (unsigned char*)(--ptr), *pe = pb + sizeof(T);
+        uchar *pb = (uchar*)(--ptr), *pe = pb + sizeof(T);
         for (int i = 0; i<(int)sizeof(T)/2; ++i) swap(*(pb++),*(--pe));
       }
       }
@@ -4275,7 +4275,7 @@ namespace cimg_library_suffixed {
     inline bool abs(const bool a) {
       return a;
     }
-    inline unsigned char abs(const unsigned char a) {
+    inline uchar abs(const uchar a) {
       return a;
     }
     inline unsigned short abs(const unsigned short a) {
@@ -4395,7 +4395,7 @@ namespace cimg_library_suffixed {
     inline int mod(const long x, const long m) {
       return x>=0?x%m:(x%m?m+x%m:0);
     }
-    inline int mod(const unsigned char x, const unsigned char m) {
+    inline int mod(const uchar x, const uchar m) {
       return x%m;
     }
     inline int mod(const unsigned short x, const unsigned short m) {
@@ -5330,7 +5330,7 @@ namespace cimg_library_suffixed {
       std::FILE *const nfile = file?file:cimg::fopen(filename,"rb");
       const char *f_type = 0, *head;
       char header[2048] = { 0 }, item[1024] = { 0 };
-      const unsigned char *const uheader = (unsigned char*)header;
+      const uchar *const uheader = (uchar*)header;
       int err; char cerr;
       const unsigned int siz = (unsigned int)std::fread(header,2048,1,nfile);   // Read first 2048 bytes.
       if (!file) cimg::fclose(nfile);
@@ -5868,7 +5868,7 @@ namespace cimg_library_suffixed {
   }
 
   _cimg_create_ext_operators(bool)
-  _cimg_create_ext_operators(unsigned char)
+  _cimg_create_ext_operators(uchar)
   _cimg_create_ext_operators(char)
   _cimg_create_ext_operators(signed char)
   _cimg_create_ext_operators(unsigned short)
@@ -6676,7 +6676,7 @@ namespace cimg_library_suffixed {
        coefficients are kept for next displayed frames.
        - \c 3: Value normalization depends on the pixel type of the data to display. For integer pixel types,
        the normalization is done regarding the minimum/maximum values of the type (no normalization occurs then
-       for <tt>unsigned char</tt>).
+       for <tt>uchar</tt>).
        For float-valued pixel types, the normalization is done regarding the minimum/maximum value of the image
        data instead.
     **/
@@ -8071,7 +8071,7 @@ namespace cimg_library_suffixed {
       if (!dimw || !dimh) return assign();
       _assign(dimw,dimh,title,normalization_type,fullscreen_flag,closed_flag);
       _min = _max = 0;
-      std::memset(_data,0,(cimg::X11_attr().nb_bits==8?sizeof(unsigned char):
+      std::memset(_data,0,(cimg::X11_attr().nb_bits==8?sizeof(uchar):
                            (cimg::X11_attr().nb_bits==16?sizeof(unsigned short):sizeof(unsigned int)))*
                   (unsigned long)_width*_height);
       return paint();
@@ -8108,7 +8108,7 @@ namespace cimg_library_suffixed {
     CImgDisplay& assign(const CImgDisplay& disp) {
       if (!disp) return assign();
       _assign(disp._width,disp._height,disp._title,disp._normalization,disp._is_fullscreen,disp._is_closed);
-      std::memcpy(_data,disp._data,(cimg::X11_attr().nb_bits==8?sizeof(unsigned char):
+      std::memcpy(_data,disp._data,(cimg::X11_attr().nb_bits==8?sizeof(uchar):
                                     cimg::X11_attr().nb_bits==16?sizeof(unsigned short):
                                     sizeof(unsigned int))*(unsigned long)_width*_height);
       return paint();
@@ -8134,7 +8134,7 @@ namespace cimg_library_suffixed {
         }
       }
       if (_width!=dimx || _height!=dimy) switch (cimg::X11_attr().nb_bits) {
-        case 8 :  { unsigned char pixel_type = 0; _resize(pixel_type,dimx,dimy,force_redraw); } break;
+        case 8 :  { uchar pixel_type = 0; _resize(pixel_type,dimx,dimy,force_redraw); } break;
         case 16 : { unsigned short pixel_type = 0; _resize(pixel_type,dimx,dimy,force_redraw); } break;
         default : { unsigned int pixel_type = 0; _resize(pixel_type,dimx,dimy,force_redraw); }
         }
@@ -8294,51 +8294,51 @@ namespace cimg_library_suffixed {
       if (cimg::X11_attr().is_blue_first) cimg::swap(data1,data3);
       XLockDisplay(dpy);
 
-      if (!_normalization || (_normalization==3 && cimg::type<T>::string()==cimg::type<unsigned char>::string())) {
+      if (!_normalization || (_normalization==3 && cimg::type<T>::string()==cimg::type<uchar>::string())) {
         _min = _max = 0;
         switch (cimg::X11_attr().nb_bits) {
         case 8 : { // 256 colormap, no normalization
           _set_colormap(_colormap,img._spectrum);
-          unsigned char
-            *const ndata = (img._width==_width && img._height==_height)?(unsigned char*)_data:
-            new unsigned char[(unsigned long)img._width*img._height],
-            *ptrd = (unsigned char*)ndata;
+          uchar
+            *const ndata = (img._width==_width && img._height==_height)?(uchar*)_data:
+            new uchar[(unsigned long)img._width*img._height],
+            *ptrd = (uchar*)ndata;
           switch (img._spectrum) {
           case 1 :
             for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-              (*ptrd++) = (unsigned char)*(data1++);
+              (*ptrd++) = (uchar)*(data1++);
             break;
           case 2 : for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-              const unsigned char R = (unsigned char)*(data1++), G = (unsigned char)*(data2++);
+              const uchar R = (uchar)*(data1++), G = (uchar)*(data2++);
               (*ptrd++) = (R&0xf0) | (G>>4);
             } break;
           default : for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-              const unsigned char
-                R = (unsigned char)*(data1++),
-                G = (unsigned char)*(data2++),
-                B = (unsigned char)*(data3++);
+              const uchar
+                R = (uchar)*(data1++),
+                G = (uchar)*(data2++),
+                B = (uchar)*(data3++);
               (*ptrd++) = (R&0xe0) | ((G>>5)<<2) | (B>>6);
             }
           }
           if (ndata!=_data) {
-            _render_resize(ndata,img._width,img._height,(unsigned char*)_data,_width,_height);
+            _render_resize(ndata,img._width,img._height,(uchar*)_data,_width,_height);
             delete[] ndata;
           }
         } break;
         case 16 : { // 16 bits colors, no normalization
           unsigned short *const ndata = (img._width==_width && img._height==_height)?(unsigned short*)_data:
             new unsigned short[(unsigned long)img._width*img._height];
-          unsigned char *ptrd = (unsigned char*)ndata;
+          uchar *ptrd = (uchar*)ndata;
           const unsigned int M = 248;
           switch (img._spectrum) {
           case 1 :
             if (cimg::X11_attr().byte_order)
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char val = (unsigned char)*(data1++), G = val>>2;
+                const uchar val = (uchar)*(data1++), G = val>>2;
                 *(ptrd++) = (val&M) | (G>>3);
                 *(ptrd++) = (G<<5) | (G>>1);
               } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char val = (unsigned char)*(data1++), G = val>>2;
+                const uchar val = (uchar)*(data1++), G = val>>2;
                 *(ptrd++) = (G<<5) | (G>>1);
                 *(ptrd++) = (val&M) | (G>>3);
               }
@@ -8346,25 +8346,25 @@ namespace cimg_library_suffixed {
           case 2 :
             if (cimg::X11_attr().byte_order)
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)*(data2++)>>2;
-                *(ptrd++) = ((unsigned char)*(data1++)&M) | (G>>3);
+                const uchar G = (uchar)*(data2++)>>2;
+                *(ptrd++) = ((uchar)*(data1++)&M) | (G>>3);
                 *(ptrd++) = (G<<5);
               } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)*(data2++)>>2;
+                const uchar G = (uchar)*(data2++)>>2;
                 *(ptrd++) = (G<<5);
-                *(ptrd++) = ((unsigned char)*(data1++)&M) | (G>>3);
+                *(ptrd++) = ((uchar)*(data1++)&M) | (G>>3);
               }
             break;
           default :
             if (cimg::X11_attr().byte_order)
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)*(data2++)>>2;
-                *(ptrd++) = ((unsigned char)*(data1++)&M) | (G>>3);
-                *(ptrd++) = (G<<5) | ((unsigned char)*(data3++)>>3);
+                const uchar G = (uchar)*(data2++)>>2;
+                *(ptrd++) = ((uchar)*(data1++)&M) | (G>>3);
+                *(ptrd++) = (G<<5) | ((uchar)*(data3++)>>3);
               } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)*(data2++)>>2;
-                *(ptrd++) = (G<<5) | ((unsigned char)*(data3++)>>3);
-                *(ptrd++) = ((unsigned char)*(data1++)&M) | (G>>3);
+                const uchar G = (uchar)*(data2++)>>2;
+                *(ptrd++) = (G<<5) | ((uchar)*(data3++)>>3);
+                *(ptrd++) = ((uchar)*(data1++)&M) | (G>>3);
               }
           }
           if (ndata!=_data) {
@@ -8381,47 +8381,47 @@ namespace cimg_library_suffixed {
             case 1 :
               if (cimg::X11_attr().byte_order==cimg::endianness())
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  const unsigned char val = (unsigned char)*(data1++);
+                  const uchar val = (uchar)*(data1++);
                   *(ptrd++) = (val<<16) | (val<<8) | val;
                 }
               else
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                 const unsigned char val = (unsigned char)*(data1++);
+                 const uchar val = (uchar)*(data1++);
                   *(ptrd++) = (val<<16) | (val<<8) | val;
                 }
               break;
             case 2 :
               if (cimg::X11_attr().byte_order==cimg::endianness())
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-                  *(ptrd++) = ((unsigned char)*(data1++)<<16) | ((unsigned char)*(data2++)<<8);
+                  *(ptrd++) = ((uchar)*(data1++)<<16) | ((uchar)*(data2++)<<8);
               else
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-                  *(ptrd++) = ((unsigned char)*(data2++)<<16) | ((unsigned char)*(data1++)<<8);
+                  *(ptrd++) = ((uchar)*(data2++)<<16) | ((uchar)*(data1++)<<8);
               break;
             default :
               if (cimg::X11_attr().byte_order==cimg::endianness())
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-                  *(ptrd++) = ((unsigned char)*(data1++)<<16) | ((unsigned char)*(data2++)<<8) |
-                    (unsigned char)*(data3++);
+                  *(ptrd++) = ((uchar)*(data1++)<<16) | ((uchar)*(data2++)<<8) |
+                    (uchar)*(data3++);
               else
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-                  *(ptrd++) = ((unsigned char)*(data3++)<<24) | ((unsigned char)*(data2++)<<16) |
-                    ((unsigned char)*(data1++)<<8);
+                  *(ptrd++) = ((uchar)*(data3++)<<24) | ((uchar)*(data2++)<<16) |
+                    ((uchar)*(data1++)<<8);
             }
           } else {
-            unsigned char *ptrd = (unsigned char*)ndata;
+            uchar *ptrd = (uchar*)ndata;
             switch (img._spectrum) {
             case 1 :
               if (cimg::X11_attr().byte_order)
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
                   *(ptrd++) = 0;
-                  *(ptrd++) = (unsigned char)*(data1++);
+                  *(ptrd++) = (uchar)*(data1++);
                   *(ptrd++) = 0;
                   *(ptrd++) = 0;
                 } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
                   *(ptrd++) = 0;
                   *(ptrd++) = 0;
-                  *(ptrd++) = (unsigned char)*(data1++);
+                  *(ptrd++) = (uchar)*(data1++);
                   *(ptrd++) = 0;
                 }
               break;
@@ -8429,8 +8429,8 @@ namespace cimg_library_suffixed {
               if (cimg::X11_attr().byte_order) cimg::swap(data1,data2);
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
                 *(ptrd++) = 0;
-                *(ptrd++) = (unsigned char)*(data2++);
-                *(ptrd++) = (unsigned char)*(data1++);
+                *(ptrd++) = (uchar)*(data2++);
+                *(ptrd++) = (uchar)*(data1++);
                 *(ptrd++) = 0;
               }
               break;
@@ -8438,13 +8438,13 @@ namespace cimg_library_suffixed {
               if (cimg::X11_attr().byte_order)
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
                   *(ptrd++) = 0;
-                  *(ptrd++) = (unsigned char)*(data1++);
-                  *(ptrd++) = (unsigned char)*(data2++);
-                  *(ptrd++) = (unsigned char)*(data3++);
+                  *(ptrd++) = (uchar)*(data1++);
+                  *(ptrd++) = (uchar)*(data2++);
+                  *(ptrd++) = (uchar)*(data3++);
                 } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  *(ptrd++) = (unsigned char)*(data3++);
-                  *(ptrd++) = (unsigned char)*(data2++);
-                  *(ptrd++) = (unsigned char)*(data1++);
+                  *(ptrd++) = (uchar)*(data3++);
+                  *(ptrd++) = (uchar)*(data2++);
+                  *(ptrd++) = (uchar)*(data1++);
                   *(ptrd++) = 0;
                 }
             }
@@ -8464,48 +8464,48 @@ namespace cimg_library_suffixed {
         switch (cimg::X11_attr().nb_bits) {
         case 8 : { // 256 colormap, with normalization
           _set_colormap(_colormap,img._spectrum);
-          unsigned char *const ndata = (img._width==_width && img._height==_height)?(unsigned char*)_data:
-            new unsigned char[(unsigned long)img._width*img._height];
-          unsigned char *ptrd = (unsigned char*)ndata;
+          uchar *const ndata = (img._width==_width && img._height==_height)?(uchar*)_data:
+            new uchar[(unsigned long)img._width*img._height];
+          uchar *ptrd = (uchar*)ndata;
           switch (img._spectrum) {
           case 1 : for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-              const unsigned char R = (unsigned char)((*(data1++)-_min)*mm);
+              const uchar R = (uchar)((*(data1++)-_min)*mm);
               *(ptrd++) = R;
             } break;
           case 2 : for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-              const unsigned char
-                R = (unsigned char)((*(data1++)-_min)*mm),
-                G = (unsigned char)((*(data2++)-_min)*mm);
+              const uchar
+                R = (uchar)((*(data1++)-_min)*mm),
+                G = (uchar)((*(data2++)-_min)*mm);
             (*ptrd++) = (R&0xf0) | (G>>4);
           } break;
           default :
             for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-              const unsigned char
-                R = (unsigned char)((*(data1++)-_min)*mm),
-                G = (unsigned char)((*(data2++)-_min)*mm),
-                B = (unsigned char)((*(data3++)-_min)*mm);
+              const uchar
+                R = (uchar)((*(data1++)-_min)*mm),
+                G = (uchar)((*(data2++)-_min)*mm),
+                B = (uchar)((*(data3++)-_min)*mm);
               *(ptrd++) = (R&0xe0) | ((G>>5)<<2) | (B>>6);
             }
           }
           if (ndata!=_data) {
-            _render_resize(ndata,img._width,img._height,(unsigned char*)_data,_width,_height);
+            _render_resize(ndata,img._width,img._height,(uchar*)_data,_width,_height);
             delete[] ndata;
           }
         } break;
         case 16 : { // 16 bits colors, with normalization
           unsigned short *const ndata = (img._width==_width && img._height==_height)?(unsigned short*)_data:
             new unsigned short[(unsigned long)img._width*img._height];
-          unsigned char *ptrd = (unsigned char*)ndata;
+          uchar *ptrd = (uchar*)ndata;
           const unsigned int M = 248;
           switch (img._spectrum) {
           case 1 :
             if (cimg::X11_attr().byte_order)
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char val = (unsigned char)((*(data1++)-_min)*mm), G = val>>2;
+                const uchar val = (uchar)((*(data1++)-_min)*mm), G = val>>2;
                 *(ptrd++) = (val&M) | (G>>3);
                 *(ptrd++) = (G<<5) | (val>>3);
               } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char val = (unsigned char)((*(data1++)-_min)*mm), G = val>>2;
+                const uchar val = (uchar)((*(data1++)-_min)*mm), G = val>>2;
                 *(ptrd++) = (G<<5) | (val>>3);
                 *(ptrd++) = (val&M) | (G>>3);
               }
@@ -8513,25 +8513,25 @@ namespace cimg_library_suffixed {
           case 2 :
             if (cimg::X11_attr().byte_order)
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)((*(data2++)-_min)*mm)>>2;
-                *(ptrd++) = ((unsigned char)((*(data1++)-_min)*mm)&M) | (G>>3);
+                const uchar G = (uchar)((*(data2++)-_min)*mm)>>2;
+                *(ptrd++) = ((uchar)((*(data1++)-_min)*mm)&M) | (G>>3);
                 *(ptrd++) = (G<<5);
               } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)((*(data2++)-_min)*mm)>>2;
+                const uchar G = (uchar)((*(data2++)-_min)*mm)>>2;
                 *(ptrd++) = (G<<5);
-                *(ptrd++) = ((unsigned char)((*(data1++)-_min)*mm)&M) | (G>>3);
+                *(ptrd++) = ((uchar)((*(data1++)-_min)*mm)&M) | (G>>3);
               }
             break;
           default :
             if (cimg::X11_attr().byte_order)
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)((*(data2++)-_min)*mm)>>2;
-                *(ptrd++) = ((unsigned char)((*(data1++)-_min)*mm)&M) | (G>>3);
-                *(ptrd++) = (G<<5) | ((unsigned char)((*(data3++)-_min)*mm)>>3);
+                const uchar G = (uchar)((*(data2++)-_min)*mm)>>2;
+                *(ptrd++) = ((uchar)((*(data1++)-_min)*mm)&M) | (G>>3);
+                *(ptrd++) = (G<<5) | ((uchar)((*(data3++)-_min)*mm)>>3);
               } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                const unsigned char G = (unsigned char)((*(data2++)-_min)*mm)>>2;
-                *(ptrd++) = (G<<5) | ((unsigned char)((*(data3++)-_min)*mm)>>3);
-                *(ptrd++) = ((unsigned char)((*(data1++)-_min)*mm)&M) | (G>>3);
+                const uchar G = (uchar)((*(data2++)-_min)*mm)>>2;
+                *(ptrd++) = (G<<5) | ((uchar)((*(data3++)-_min)*mm)>>3);
+                *(ptrd++) = ((uchar)((*(data1++)-_min)*mm)&M) | (G>>3);
               }
           }
           if (ndata!=_data) {
@@ -8548,12 +8548,12 @@ namespace cimg_library_suffixed {
             case 1 :
               if (cimg::X11_attr().byte_order==cimg::endianness())
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  const unsigned char val = (unsigned char)((*(data1++)-_min)*mm);
+                  const uchar val = (uchar)((*(data1++)-_min)*mm);
                   *(ptrd++) = (val<<16) | (val<<8) | val;
                 }
               else
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  const unsigned char val = (unsigned char)((*(data1++)-_min)*mm);
+                  const uchar val = (uchar)((*(data1++)-_min)*mm);
                   *(ptrd++) = (val<<24) | (val<<16) | (val<<8);
                 }
               break;
@@ -8561,41 +8561,41 @@ namespace cimg_library_suffixed {
               if (cimg::X11_attr().byte_order==cimg::endianness())
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
                   *(ptrd++) =
-                    ((unsigned char)((*(data1++)-_min)*mm)<<16) |
-                    ((unsigned char)((*(data2++)-_min)*mm)<<8);
+                    ((uchar)((*(data1++)-_min)*mm)<<16) |
+                    ((uchar)((*(data2++)-_min)*mm)<<8);
               else
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
                   *(ptrd++) =
-                    ((unsigned char)((*(data2++)-_min)*mm)<<16) |
-                    ((unsigned char)((*(data1++)-_min)*mm)<<8);
+                    ((uchar)((*(data2++)-_min)*mm)<<16) |
+                    ((uchar)((*(data1++)-_min)*mm)<<8);
               break;
             default :
               if (cimg::X11_attr().byte_order==cimg::endianness())
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
                   *(ptrd++) =
-                    ((unsigned char)((*(data1++)-_min)*mm)<<16) |
-                    ((unsigned char)((*(data2++)-_min)*mm)<<8) |
-                    (unsigned char)((*(data3++)-_min)*mm);
+                    ((uchar)((*(data1++)-_min)*mm)<<16) |
+                    ((uchar)((*(data2++)-_min)*mm)<<8) |
+                    (uchar)((*(data3++)-_min)*mm);
               else
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
                   *(ptrd++) =
-                    ((unsigned char)((*(data3++)-_min)*mm)<<24) |
-                    ((unsigned char)((*(data2++)-_min)*mm)<<16) |
-                    ((unsigned char)((*(data1++)-_min)*mm)<<8);
+                    ((uchar)((*(data3++)-_min)*mm)<<24) |
+                    ((uchar)((*(data2++)-_min)*mm)<<16) |
+                    ((uchar)((*(data1++)-_min)*mm)<<8);
             }
           } else {
-            unsigned char *ptrd = (unsigned char*)ndata;
+            uchar *ptrd = (uchar*)ndata;
             switch (img._spectrum) {
             case 1 :
               if (cimg::X11_attr().byte_order)
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  const unsigned char val = (unsigned char)((*(data1++)-_min)*mm);
+                  const uchar val = (uchar)((*(data1++)-_min)*mm);
                   (*ptrd++) = 0;
                   (*ptrd++) = val;
                   (*ptrd++) = val;
                   (*ptrd++) = val;
                 } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  const unsigned char val = (unsigned char)((*(data1++)-_min)*mm);
+                  const uchar val = (uchar)((*(data1++)-_min)*mm);
                   (*ptrd++) = val;
                   (*ptrd++) = val;
                   (*ptrd++) = val;
@@ -8606,8 +8606,8 @@ namespace cimg_library_suffixed {
               if (cimg::X11_attr().byte_order) cimg::swap(data1,data2);
               for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
                 (*ptrd++) = 0;
-                (*ptrd++) = (unsigned char)((*(data2++)-_min)*mm);
-                (*ptrd++) = (unsigned char)((*(data1++)-_min)*mm);
+                (*ptrd++) = (uchar)((*(data2++)-_min)*mm);
+                (*ptrd++) = (uchar)((*(data1++)-_min)*mm);
                 (*ptrd++) = 0;
               }
               break;
@@ -8615,13 +8615,13 @@ namespace cimg_library_suffixed {
               if (cimg::X11_attr().byte_order)
                 for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
                   (*ptrd++) = 0;
-                  (*ptrd++) = (unsigned char)((*(data1++)-_min)*mm);
-                  (*ptrd++) = (unsigned char)((*(data2++)-_min)*mm);
-                  (*ptrd++) = (unsigned char)((*(data3++)-_min)*mm);
+                  (*ptrd++) = (uchar)((*(data1++)-_min)*mm);
+                  (*ptrd++) = (uchar)((*(data2++)-_min)*mm);
+                  (*ptrd++) = (uchar)((*(data3++)-_min)*mm);
                 } else for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-                  (*ptrd++) = (unsigned char)((*(data3++)-_min)*mm);
-                  (*ptrd++) = (unsigned char)((*(data2++)-_min)*mm);
-                  (*ptrd++) = (unsigned char)((*(data1++)-_min)*mm);
+                  (*ptrd++) = (uchar)((*(data3++)-_min)*mm);
+                  (*ptrd++) = (uchar)((*(data2++)-_min)*mm);
+                  (*ptrd++) = (uchar)((*(data1++)-_min)*mm);
                   (*ptrd++) = 0;
                 }
             }
@@ -8640,7 +8640,7 @@ namespace cimg_library_suffixed {
     template<typename T>
     const CImgDisplay& snapshot(CImg<T>& img) const {
       if (is_empty()) { img.assign(); return *this; }
-      const unsigned char *ptrs = (unsigned char*)_data;
+      const uchar *ptrs = (uchar*)_data;
       img.assign(_width,_height,1,3);
       T
         *data1 = img.data(0,0,0,0),
@@ -8650,7 +8650,7 @@ namespace cimg_library_suffixed {
       switch (cimg::X11_attr().nb_bits) {
       case 8 : {
         for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-          const unsigned char val = *(ptrs++);
+          const uchar val = *(ptrs++);
           *(data1++) = (T)(val&0xe0);
           *(data2++) = (T)((val&0x1c)<<3);
           *(data3++) = (T)(val<<6);
@@ -8658,7 +8658,7 @@ namespace cimg_library_suffixed {
       } break;
       case 16 : {
         if (cimg::X11_attr().byte_order) for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-          const unsigned char val0 = *(ptrs++), val1 = *(ptrs++);
+          const uchar val0 = *(ptrs++), val1 = *(ptrs++);
           *(data1++) = (T)(val0&0xf8);
           *(data2++) = (T)((val0<<5) | ((val1&0xe0)>>5));
           *(data3++) = (T)(val1<<3);
@@ -9194,22 +9194,22 @@ namespace cimg_library_suffixed {
         new unsigned int[(unsigned long)img._width*img._height],
         *ptrd = ndata;
 
-      if (!_normalization || (_normalization==3 && cimg::type<T>::string()==cimg::type<unsigned char>::string())) {
+      if (!_normalization || (_normalization==3 && cimg::type<T>::string()==cimg::type<uchar>::string())) {
         _min = _max = 0;
         switch (img._spectrum) {
         case 1 : {
           for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-            const unsigned char val = (unsigned char)*(data1++);
+            const uchar val = (uchar)*(data1++);
             *(ptrd++) = (val<<16) | (val<<8) | val;
           }
         } break;
         case 2 : {
           for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-            *(ptrd++) = ((unsigned char)*(data1++)<<16) | ((unsigned char)*(data2++)<<8);
+            *(ptrd++) = ((uchar)*(data1++)<<16) | ((uchar)*(data2++)<<8);
         } break;
         default : {
           for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy)
-            *(ptrd++) = ((unsigned char)*(data1++)<<16) | ((unsigned char)*(data2++)<<8) | (unsigned char)*(data3++);
+            *(ptrd++) = ((uchar)*(data1++)<<16) | ((uchar)*(data2++)<<8) | (uchar)*(data3++);
         }
         }
       } else {
@@ -9221,24 +9221,24 @@ namespace cimg_library_suffixed {
         switch (img._spectrum) {
         case 1 : {
           for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-            const unsigned char val = (unsigned char)((*(data1++)-_min)*mm);
+            const uchar val = (uchar)((*(data1++)-_min)*mm);
             *(ptrd++) = (val<<16) | (val<<8) | val;
           }
         } break;
         case 2 : {
           for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-            const unsigned char
-              R = (unsigned char)((*(data1++)-_min)*mm),
-              G = (unsigned char)((*(data2++)-_min)*mm);
+            const uchar
+              R = (uchar)((*(data1++)-_min)*mm),
+              G = (uchar)((*(data2++)-_min)*mm);
             *(ptrd++) = (R<<16) | (G<<8);
           }
         } break;
         default : {
           for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
-            const unsigned char
-              R = (unsigned char)((*(data1++)-_min)*mm),
-              G = (unsigned char)((*(data2++)-_min)*mm),
-              B = (unsigned char)((*(data3++)-_min)*mm);
+            const uchar
+              R = (uchar)((*(data1++)-_min)*mm),
+              G = (uchar)((*(data2++)-_min)*mm),
+              B = (uchar)((*(data3++)-_min)*mm);
             *(ptrd++) = (R<<16) | (G<<8) | B;
           }
         }
@@ -9260,9 +9260,9 @@ namespace cimg_library_suffixed {
         *data3 = img.data(0,0,0,2);
       for (unsigned long xy = (unsigned long)img._width*img._height; xy>0; --xy) {
         const unsigned int val = *(ptrs++);
-        *(data1++) = (T)(unsigned char)(val>>16);
-        *(data2++) = (T)(unsigned char)((val>>8)&0xFF);
-        *(data3++) = (T)(unsigned char)(val&0xFF);
+        *(data1++) = (T)(uchar)(val>>16);
+        *(data2++) = (T)(uchar)((val>>8)&0xFF);
+        *(data3++) = (T)(uchar)(val&0xFF);
       }
       return *this;
     }
@@ -9303,9 +9303,9 @@ namespace cimg_library_suffixed {
      Most member functions of the class CImg<\c T> are designed to handle this maximum case of (3+1) dimensions.
 
      Concerning the pixel value type \c T:
-     fully supported template types are the basic C++ types: <tt>unsigned char, char, short, unsigned int, int,
+     fully supported template types are the basic C++ types: <tt>uchar, char, short, unsigned int, int,
      unsigned long, long, float, double, ... </tt>.
-     Typically, fast image display can be done using <tt>CImg<unsigned char></tt> images,
+     Typically, fast image display can be done using <tt>CImg<uchar></tt> images,
      while complex image processing algorithms may be rather coded using <tt>CImg<float></tt> or <tt>CImg<double></tt>
      images that have floating-point pixel values. The default value for the template T is \c float.
      Using your own template types may be possible. However, you will certainly have to define the complete set
@@ -9338,10 +9338,10 @@ namespace cimg_library_suffixed {
 
      - Construct images from arbitrary dimensions:
          - <tt>CImg<char> img;</tt> declares an empty image.
-         - <tt>CImg<unsigned char> img(128,128);</tt> declares a 128x128 greyscale image with
+         - <tt>CImg<uchar> img(128,128);</tt> declares a 128x128 greyscale image with
          \c unsigned \c char pixel values.
          - <tt>CImg<double> img(3,3);</tt> declares a 3x3 matrix with \c double coefficients.
-         - <tt>CImg<unsigned char> img(256,256,1,3);</tt> declares a 256x256x1x3 (color) image
+         - <tt>CImg<uchar> img(256,256,1,3);</tt> declares a 256x256x1x3 (color) image
          (colors are stored as an image with three channels).
          - <tt>CImg<double> img(128,128,128);</tt> declares a 128x128x128 volumetric and greyscale image
          (with \c double pixel values).
@@ -9352,7 +9352,7 @@ namespace cimg_library_suffixed {
          <tt>CImg<> img(128,128,128,3,0);</tt> declares a 128x128x128 volumetric color image with all pixel values to 0.
 
      - Construct images from filenames:
-         - <tt>CImg<unsigned char> img("image.jpg");</tt> reads a JPEG color image from the file "image.jpg".
+         - <tt>CImg<uchar> img("image.jpg");</tt> reads a JPEG color image from the file "image.jpg".
          - <tt>CImg<float> img("analyze.hdr");</tt> reads a volumetric image (ANALYZE7.5 format) from the
          file "analyze.hdr".
          - \b Note: You need to install <a href="http://www.imagemagick.org">ImageMagick</a>
@@ -9361,9 +9361,9 @@ namespace cimg_library_suffixed {
      - Construct images from C-style arrays:
          - <tt>CImg<int> img(data_buffer,256,256);</tt> constructs a 256x256 greyscale image from a \c int* buffer
          \c data_buffer (of size 256x256=65536).
-         - <tt>CImg<unsigned char> img(data_buffer,256,256,1,3,false);</tt> constructs a 256x256 color image
+         - <tt>CImg<uchar> img(data_buffer,256,256,1,3,false);</tt> constructs a 256x256 color image
          from a \c unsigned \c char* buffer \c data_buffer (where R,G,B channels follow each others).
-         - <tt>CImg<unsigned char> img(data_buffer,256,256,1,3,true);</tt> constructs a 256x256 color image
+         - <tt>CImg<uchar> img(data_buffer,256,256,1,3,true);</tt> constructs a 256x256 color image
          from a \c unsigned \c char* buffer \c data_buffer (where R,G,B channels are multiplexed).
 
          The complete list of constructors can be found <a href="#constructors">here</a>.
@@ -9426,7 +9426,7 @@ namespace cimg_library_suffixed {
 
     // Define common types related to template type T.
     typedef typename cimg::superset<T,bool>::type Tbool;
-    typedef typename cimg::superset<T,unsigned char>::type Tuchar;
+    typedef typename cimg::superset<T,uchar>::type Tuchar;
     typedef typename cimg::superset<T,char>::type Tchar;
     typedef typename cimg::superset<T,unsigned short>::type Tushort;
     typedef typename cimg::superset<T,short>::type Tshort;
@@ -9437,7 +9437,7 @@ namespace cimg_library_suffixed {
     typedef typename cimg::superset<T,float>::type Tfloat;
     typedef typename cimg::superset<T,double>::type Tdouble;
     typedef typename cimg::last<T,bool>::type boolT;
-    typedef typename cimg::last<T,unsigned char>::type ucharT;
+    typedef typename cimg::last<T,uchar>::type ucharT;
     typedef typename cimg::last<T,char>::type charT;
     typedef typename cimg::last<T,unsigned short>::type ushortT;
     typedef typename cimg::last<T,short>::type shortT;
@@ -9844,8 +9844,8 @@ namespace cimg_library_suffixed {
          (e.g. already deallocated).
        \par Example
        \code
-       unsigned char tab[256*256] = { 0 };
-       CImg<unsigned char> img1(tab,256,256,1,1,false), // Construct new non-shared image from buffer 'tab'.
+       uchar tab[256*256] = { 0 };
+       CImg<uchar> img1(tab,256,256,1,1,false), // Construct new non-shared image from buffer 'tab'.
                            img2(tab,256,256,1,1,true);  // Construct new shared-image from buffer 'tab'.
        tab[1024] = 255;                                 // Here, 'img2' is indirectly modified, but not 'img1'.
        \endcode
@@ -9908,7 +9908,7 @@ namespace cimg_library_suffixed {
        - The recognition of the image file format by %CImg higly depends on the tools installed on your system
          and on the external libraries you used to link your code against.
        - Considered pixel type \c T should better fit the file format specification, or data loss may occur during
-         file load (e.g. constructing a \c CImg<unsigned char> from a float-valued image file).
+         file load (e.g. constructing a \c CImg<uchar> from a float-valued image file).
        - A \c CImgIOException is thrown when the specified \c filename cannot be read, or if the file format is not
          recognized.
        \par Example
@@ -10702,7 +10702,7 @@ namespace cimg_library_suffixed {
          For instance, adding \c 0.2 to a \c CImg<char> is possible but does nothing indeed.
        - Overflow values are treated as with standard C++ numeric types. For instance,
        \code
-       CImg<unsigned char> img(100,100,1,1,255); // Construct a 100x100 image with pixel values '255'.
+       CImg<uchar> img(100,100,1,1,255); // Construct a 100x100 image with pixel values '255'.
        img+=1;                                   // Add '1' to each pixels -> Overflow.
        // here all pixels of image 'img' are equal to '0'.
        \endcode
@@ -10710,12 +10710,12 @@ namespace cimg_library_suffixed {
          and use cut() after addition.
        \par Example
        \code
-       CImg<unsigned char> img1("reference.jpg");          // Load a 8-bits RGB image (values in [0,255]).
+       CImg<uchar> img1("reference.jpg");          // Load a 8-bits RGB image (values in [0,255]).
        CImg<float> img2(img1);                             // Construct a float-valued copy of 'img1'.
        img2+=100;                                          // Add '100' to pixel values -> goes out of [0,255] but no problems with floats.
-       img2.cut(0,255);                                    // Cut values in [0,255] to fit the 'unsigned char' constraint.
-       img1 = img2;                                        // Rewrite safe result in 'unsigned char' version 'img1'.
-       const CImg<unsigned char> img3 = (img1 + 100).cut(0,255); // Do the same in a more simple and elegant way.
+       img2.cut(0,255);                                    // Cut values in [0,255] to fit the 'uchar' constraint.
+       img1 = img2;                                        // Rewrite safe result in 'uchar' version 'img1'.
+       const CImg<uchar> img3 = (img1 + 100).cut(0,255); // Do the same in a more simple and elegant way.
        (img1,img2,img3).display();
        \endcode
        \image html ref_operator_plus.jpg
@@ -10976,9 +10976,9 @@ namespace cimg_library_suffixed {
          For instance, the \c unsigned \c char opposite of \c 1 is \c 255.
        \par Example
        \code
-       const CImg<unsigned char>
+       const CImg<uchar>
          img1("reference.jpg"),   // Load a RGB color image.
-         img2 = -img1;            // Compute its opposite (in 'unsigned char').
+         img2 = -img1;            // Compute its opposite (in 'uchar').
        (img1,img2).display();
        \endcode
        \image html ref_operator_minus.jpg
@@ -12015,8 +12015,8 @@ namespace cimg_library_suffixed {
        - Similar to get_split(char,int) const, with default second argument.
        \par Example
        \code
-       const CImg<unsigned char> img("reference.jpg"); // Load a RGB color image.
-       const CImgList<unsigned char> list = (img<'c'); // Get a list of its three R,G,B channels.
+       const CImg<uchar> img("reference.jpg"); // Load a RGB color image.
+       const CImgList<uchar> list = (img<'c'); // Get a list of its three R,G,B channels.
        (img,list).display();
        \endcode
        \image html ref_operator_less.jpg
@@ -12037,7 +12037,7 @@ namespace cimg_library_suffixed {
        Return a \c char* string containing the usual type name of the image pixel values
        (i.e. a stringified version of the template parameter \c T).
        \note
-       - The returned string may contain spaces (as in \c "unsigned char").
+       - The returned string may contain spaces (as in \c "uchar").
        - If the pixel type \c T does not correspond to a registered type, the string <tt>"unknown"</tt> is returned.
     **/
     static const char* pixel_type() {
@@ -20070,7 +20070,7 @@ namespace cimg_library_suffixed {
        \image html ref_colormap_lines.jpg
     **/
     static const CImg<Tuchar>& lines_LUT256() {
-      static const unsigned char pal[] = {
+      static const uchar pal[] = {
         217,62,88,75,1,237,240,12,56,160,165,116,1,1,204,2,15,248,148,185,133,141,46,246,222,116,16,5,207,226,
         17,114,247,1,214,53,238,0,95,55,233,235,109,0,17,54,33,0,90,30,3,0,94,27,19,0,68,212,166,130,0,15,7,119,
         238,2,246,198,0,3,16,10,13,2,25,28,12,6,2,99,18,141,30,4,3,140,12,4,30,233,7,10,0,136,35,160,168,184,20,
@@ -29379,9 +29379,9 @@ namespace cimg_library_suffixed {
        \code
        const CImg<float> img("reference.jpg");
        CImgList<unsigned int> faces3d;
-       CImgList<unsigned char> colors3d;
+       CImgList<uchar> colors3d;
        const CImg<float> points3d = img.get_elevation3d(faces3d,colors3d,img.get_norm()*0.2);
-       CImg<unsigned char>().display_object3d("Elevation3d",points3d,faces3d,colors3d);
+       CImg<uchar>().display_object3d("Elevation3d",points3d,faces3d,colors3d);
        \endcode
        \image html ref_elevation3d.jpg
     **/
@@ -29401,10 +29401,10 @@ namespace cimg_library_suffixed {
       const unsigned int size_x1 = _width - 1, size_y1 = _height - 1;
       for (unsigned int y = 0; y<size_y1; ++y)
         for (unsigned int x = 0; x<size_x1; ++x) {
-          const unsigned char
-            r = (unsigned char)(((*this)(x,y,0) - m)*255/(M-m)),
-            g = _spectrum>1?(unsigned char)(((*this)(x,y,1) - m)*255/(M-m)):r,
-            b = _spectrum>2?(unsigned char)(((*this)(x,y,2) - m)*255/(M-m)):(_spectrum>1?0:r);
+          const uchar
+            r = (uchar)(((*this)(x,y,0) - m)*255/(M-m)),
+            g = _spectrum>1?(uchar)(((*this)(x,y,1) - m)*255/(M-m)):r,
+            b = _spectrum>2?(uchar)(((*this)(x,y,2) - m)*255/(M-m)):(_spectrum>1?0:r);
           CImg<tc>::vector((tc)r,(tc)g,(tc)b).move_to(colors);
         }
       const typename CImg<te>::_functor2d_int func(elevation);
@@ -29473,7 +29473,7 @@ namespace cimg_library_suffixed {
        const CImg<float> img("reference.jpg");
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = img.get_isoline3d(faces3d,100);
-       CImg<unsigned char>().display_object3d("Isoline3d",points3d,faces3d,colors3d);
+       CImg<uchar>().display_object3d("Isoline3d",points3d,faces3d,colors3d);
        \endcode
        \image html ref_isoline3d.jpg
     **/
@@ -29512,10 +29512,10 @@ namespace cimg_library_suffixed {
        \return The N vertices (xi,yi,zi) of the 3d object as a Nx3 CImg<float> image (0<=i<=N-1).
        \par Example
        \code
-       const CImg<float> img = CImg<unsigned char>("reference.jpg").resize(-100,-100,20);
+       const CImg<float> img = CImg<uchar>("reference.jpg").resize(-100,-100,20);
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = img.get_isosurface3d(faces3d,100);
-       CImg<unsigned char>().display_object3d("Isosurface3d",points3d,faces3d,colors3d);
+       CImg<uchar>().display_object3d("Isosurface3d",points3d,faces3d,colors3d);
        \endcode
        \image html ref_isosurface3d.jpg
     **/
@@ -30250,7 +30250,7 @@ namespace cimg_library_suffixed {
        \code
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = CImg<float>::box3d(faces3d,10,20,30);
-       CImg<unsigned char>().display_object3d("Box3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Box3d",points3d,faces3d);
        \endcode
        \image html ref_box3d.jpg
     **/
@@ -30276,7 +30276,7 @@ namespace cimg_library_suffixed {
        \code
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = CImg<float>::cone3d(faces3d,50);
-       CImg<unsigned char>().display_object3d("Cone3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Cone3d",points3d,faces3d);
        \endcode
        \image html ref_cone3d.jpg
     **/
@@ -30313,7 +30313,7 @@ namespace cimg_library_suffixed {
        \code
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = CImg<float>::cylinder3d(faces3d,50);
-       CImg<unsigned char>().display_object3d("Cylinder3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Cylinder3d",points3d,faces3d);
        \endcode
        \image html ref_cylinder3d.jpg
     **/
@@ -30353,7 +30353,7 @@ namespace cimg_library_suffixed {
        \code
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = CImg<float>::torus3d(faces3d,20,4);
-       CImg<unsigned char>().display_object3d("Torus3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Torus3d",points3d,faces3d);
        \endcode
        \image html ref_torus3d.jpg
     **/
@@ -30401,7 +30401,7 @@ namespace cimg_library_suffixed {
        \code
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = CImg<float>::plane3d(faces3d,100,50);
-       CImg<unsigned char>().display_object3d("Plane3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Plane3d",points3d,faces3d);
        \endcode
        \image html ref_plane3d.jpg
     **/
@@ -30434,7 +30434,7 @@ namespace cimg_library_suffixed {
        \code
        CImgList<unsigned int> faces3d;
        const CImg<float> points3d = CImg<float>::sphere3d(faces3d,100,4);
-       CImg<unsigned char>().display_object3d("Sphere3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Sphere3d",points3d,faces3d);
        \endcode
        \image html ref_sphere3d.jpg
     **/
@@ -30503,7 +30503,7 @@ namespace cimg_library_suffixed {
        CImgList<unsigned int> faces3d;
        const CImg<float> tensor = CImg<float>::diagonal(10,7,3),
                          points3d = CImg<float>::ellipsoid3d(faces3d,tensor,4);
-       CImg<unsigned char>().display_object3d("Ellipsoid3d",points3d,faces3d);
+       CImg<uchar>().display_object3d("Ellipsoid3d",points3d,faces3d);
        \endcode
        \image html ref_ellipsoid3d.jpg
     **/
@@ -30879,8 +30879,8 @@ namespace cimg_library_suffixed {
        - To set pixel values without clipping needs, you should use the faster CImg::operator()() function.
        \par Example:
        \code
-       CImg<unsigned char> img(100,100,1,3,0);
-       const unsigned char color[] = { 255,128,64 };
+       CImg<uchar> img(100,100,1,3,0);
+       const uchar color[] = { 255,128,64 };
        img.draw_point(50,50,color);
        \endcode
     **/
@@ -30951,8 +30951,8 @@ namespace cimg_library_suffixed {
        - Set \p init_hatch = false to draw consecutive hatched segments without breaking the line pattern.
        \par Example:
        \code
-       CImg<unsigned char> img(100,100,1,3,0);
-       const unsigned char color[] = { 255,128,64 };
+       CImg<uchar> img(100,100,1,3,0);
+       const uchar color[] = { 255,128,64 };
         img.draw_line(40,40,80,70,color);
        \endcode
     **/
@@ -31268,8 +31268,8 @@ namespace cimg_library_suffixed {
        - Line routine uses the well known Bresenham's algorithm.
        \par Example:
        \code
-       CImg<unsigned char> img(100,100,1,3,0), texture("texture256x256.ppm");
-       const unsigned char color[] = { 255,128,64 };
+       CImg<uchar> img(100,100,1,3,0), texture("texture256x256.ppm");
+       const uchar color[] = { 255,128,64 };
        img.draw_line(40,40,80,70,texture,0,0,255,255);
        \endcode
     **/
@@ -31794,8 +31794,8 @@ namespace cimg_library_suffixed {
        \p u0 = (\p xa - \p x0), \p v0 = (\p ya - \p y0), \p u1 = (\p x1 - \p xb) and \p v1 = (\p y1 - \p yb).
        \par Example:
        \code
-       CImg<unsigned char> img(100,100,1,3,0);
-       const unsigned char color[] = { 255,255,255 };
+       CImg<uchar> img(100,100,1,3,0);
+       const uchar color[] = { 255,255,255 };
        img.draw_spline(30,30,0,100,90,40,0,-100,color);
        \endcode
     **/
@@ -32753,7 +32753,7 @@ namespace cimg_library_suffixed {
                            const tc2 *const color2,
                            const tc3 *const color3,
                            const float opacity=1) {
-      const unsigned char one = 1;
+      const uchar one = 1;
       cimg_forC(*this,c)
         get_shared_channel(c).draw_triangle(x0,y0,x1,y1,x2,y2,&one,color1[c],color2[c],color3[c],opacity);
       return *this;
@@ -34342,8 +34342,8 @@ namespace cimg_library_suffixed {
           dx = 1 + nxmax - nxmin,
           dy = 1 + nymax - nymin;
         npoints_x-=nxmin; npoints_y-=nymin;
-        unsigned char one = 1;
-        const CImg<unsigned char> mask = CImg<unsigned char>(dx,dy,1,1,0).draw_polygon(npoints,&one,1);
+        uchar one = 1;
+        const CImg<uchar> mask = CImg<uchar>(dx,dy,1,1,0).draw_polygon(npoints,&one,1);
         CImg<T> _color(dx,dy,1,spectrum());
         cimg_forC(_color,c) _color.get_shared_channel(c).fill(color[c]);
         return draw_image(nxmin,nymin,0,0,_color,mask,opacity,1);
@@ -35010,7 +35010,7 @@ namespace cimg_library_suffixed {
       if (_is_empty) {
         // If needed, pre-compute necessary size of the image
         int x = 0, y = 0, w = 0;
-        unsigned char c = 0;
+        uchar c = 0;
         for (unsigned int i = 0; i<text_length; ++i) {
           c = text[i];
           switch (c) {
@@ -35028,7 +35028,7 @@ namespace cimg_library_suffixed {
 
       int x = x0, y = y0;
       for (unsigned int i = 0; i<text_length; ++i) {
-        const unsigned char c = text[i];
+        const uchar c = text[i];
         switch (c) {
         case '\n' : y+=font[0]._height; x = x0; break;
         case '\t' : x+=4*font[' ']._width; break;
@@ -36638,7 +36638,7 @@ namespace cimg_library_suffixed {
               draw_point(x0,y0,pcolor,opacity);
 #ifdef cimg_use_board
               if (pboard) {
-                board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+                board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
                 board.fillCircle((float)x0,height()-(float)y0,0);
               }
 #endif
@@ -36710,7 +36710,7 @@ namespace cimg_library_suffixed {
             else draw_line(x0,y0,x1,y1,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.drawLine((float)x0,height()-(float)y0,x1,height()-(float)y1);
             }
 #endif
@@ -36718,7 +36718,7 @@ namespace cimg_library_suffixed {
             draw_point(x0,y0,pcolor,opacity).draw_point(x1,y1,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.drawCircle((float)x0,height()-(float)y0,0);
               board.drawCircle((float)x1,height()-(float)y1,0);
             }
@@ -36745,7 +36745,7 @@ namespace cimg_library_suffixed {
             draw_point((int)xc,(int)yc,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.fillCircle(xc,height()-yc,0);
             }
 #endif
@@ -36754,7 +36754,7 @@ namespace cimg_library_suffixed {
             draw_circle((int)xc,(int)yc,(int)radius,pcolor,opacity,~0U);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.setFillColor(LibBoard::Color::None);
               board.drawCircle(xc,height()-yc,radius);
             }
@@ -36765,7 +36765,7 @@ namespace cimg_library_suffixed {
             else draw_circle((int)xc,(int)yc,(int)radius,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               if (!is_wireframe) board.fillCircle(xc,height()-yc,radius);
               else {
                 board.setFillColor(LibBoard::Color::None);
@@ -36799,7 +36799,7 @@ namespace cimg_library_suffixed {
             else draw_line(x0,y0,x1,y1,color,tx0,ty0,tx1,ty1,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.drawLine((float)x0,height()-(float)y0,(float)x1,height()-(float)y1);
             }
 #endif
@@ -36808,7 +36808,7 @@ namespace cimg_library_suffixed {
               draw_point(x1,y1,color.get_vector_at(tx1,ty1)._data,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.drawCircle((float)x0,height()-(float)y0,0);
               board.drawCircle((float)x1,height()-(float)y1,0);
             }
@@ -36833,7 +36833,7 @@ namespace cimg_library_suffixed {
             draw_point(x0,y0,pcolor,opacity).draw_point(x1,y1,pcolor,opacity).draw_point(x2,y2,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.drawCircle((float)x0,height()-(float)y0,0);
               board.drawCircle((float)x1,height()-(float)y1,0);
               board.drawCircle((float)x2,height()-(float)y2,0);
@@ -36849,7 +36849,7 @@ namespace cimg_library_suffixed {
                 draw_line(x1,y1,x2,y2,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.drawLine((float)x0,height()-(float)y0,(float)x1,height()-(float)y1);
               board.drawLine((float)x0,height()-(float)y0,(float)x2,height()-(float)y2);
               board.drawLine((float)x1,height()-(float)y1,(float)x2,height()-(float)y2);
@@ -36861,7 +36861,7 @@ namespace cimg_library_suffixed {
             else draw_triangle(x0,y0,x1,y1,x2,y2,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -36874,10 +36874,10 @@ namespace cimg_library_suffixed {
 #ifdef cimg_use_board
             if (pboard) {
               const float lp = cimg::min(lightprops(l),1);
-              board.setPenColorRGBi((unsigned char)(color[0]*lp),
-                                     (unsigned char)(color[1]*lp),
-                                     (unsigned char)(color[2]*lp),
-                                     (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(color[0]*lp),
+                                     (uchar)(color[1]*lp),
+                                     (uchar)(color[2]*lp),
+                                     (uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -36891,10 +36891,10 @@ namespace cimg_library_suffixed {
             else draw_triangle(x0,y0,x1,y1,x2,y2,pcolor,lightprops(n0),lightprops(n1),lightprops(n2),opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi((unsigned char)(color[0]),
-                                     (unsigned char)(color[1]),
-                                     (unsigned char)(color[2]),
-                                     (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(color[0]),
+                                     (uchar)(color[1]),
+                                     (uchar)(color[2]),
+                                     (uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,lightprops(n0),
                                          (float)x1,height()-(float)y1,lightprops(n1),
                                          (float)x2,height()-(float)y2,lightprops(n2));
@@ -36918,10 +36918,10 @@ namespace cimg_library_suffixed {
                                    (int)(light_texture.height()/2*(1+lightprops(n1,1)))),
                 l2 = light_texture((int)(light_texture.width()/2*(1+lightprops(n2,0))),
                                    (int)(light_texture.height()/2*(1+lightprops(n2,1))));
-              board.setPenColorRGBi((unsigned char)(color[0]),
-                                     (unsigned char)(color[1]),
-                                     (unsigned char)(color[2]),
-                                     (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(color[0]),
+                                     (uchar)(color[1]),
+                                     (uchar)(color[2]),
+                                     (uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,l0,
                                          (float)x1,height()-(float)y1,l1,
                                          (float)x2,height()-(float)y2,l2);
@@ -36953,7 +36953,7 @@ namespace cimg_library_suffixed {
               draw_point(x2,y2,pcolor,opacity).draw_point(x3,y3,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.drawCircle((float)x0,height()-(float)y0,0);
               board.drawCircle((float)x1,height()-(float)y1,0);
               board.drawCircle((float)x2,height()-(float)y2,0);
@@ -36970,7 +36970,7 @@ namespace cimg_library_suffixed {
                 draw_line(x2,y2,x3,y3,pcolor,opacity).draw_line(x3,y3,x0,y0,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.drawLine((float)x0,height()-(float)y0,(float)x1,height()-(float)y1);
               board.drawLine((float)x1,height()-(float)y1,(float)x2,height()-(float)y2);
               board.drawLine((float)x2,height()-(float)y2,(float)x3,height()-(float)y3);
@@ -36986,7 +36986,7 @@ namespace cimg_library_suffixed {
               draw_triangle(x0,y0,x1,y1,x2,y2,pcolor,opacity).draw_triangle(x0,y0,x2,y2,x3,y3,pcolor,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(color[0],color[1],color[2],(unsigned char)(opacity*255));
+              board.setPenColorRGBi(color[0],color[1],color[2],(uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -37006,9 +37006,9 @@ namespace cimg_library_suffixed {
 #ifdef cimg_use_board
             if (pboard) {
               const float lp = cimg::min(lightprops(l),1);
-              board.setPenColorRGBi((unsigned char)(color[0]*lp),
-                                     (unsigned char)(color[1]*lp),
-                                     (unsigned char)(color[2]*lp),(unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(color[0]*lp),
+                                     (uchar)(color[1]*lp),
+                                     (uchar)(color[2]*lp),(uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -37030,10 +37030,10 @@ namespace cimg_library_suffixed {
                 draw_triangle(x0,y0,x2,y2,x3,y3,pcolor,lightprop0,lightprop2,lightprop3,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi((unsigned char)(color[0]),
-                                     (unsigned char)(color[1]),
-                                     (unsigned char)(color[2]),
-                                     (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(color[0]),
+                                     (uchar)(color[1]),
+                                     (uchar)(color[2]),
+                                     (uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,lightprop0,
                                          (float)x1,height()-(float)y1,lightprop1,
                                          (float)x2,height()-(float)y2,lightprop2);
@@ -37062,10 +37062,10 @@ namespace cimg_library_suffixed {
                 l1 = light_texture((int)(light_texture.width()/2*(1+lx1)), (int)(light_texture.height()/2*(1+ly1))),
                 l2 = light_texture((int)(light_texture.width()/2*(1+lx2)), (int)(light_texture.height()/2*(1+ly2))),
                 l3 = light_texture((int)(light_texture.width()/2*(1+lx3)), (int)(light_texture.height()/2*(1+ly3)));
-              board.setPenColorRGBi((unsigned char)(color[0]),
-                                     (unsigned char)(color[1]),
-                                     (unsigned char)(color[2]),
-                                     (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(color[0]),
+                                     (uchar)(color[1]),
+                                     (uchar)(color[2]),
+                                     (uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,l0,
                                          (float)x1,height()-(float)y1,l1,
                                          (float)x2,height()-(float)y2,l2);
@@ -37107,7 +37107,7 @@ namespace cimg_library_suffixed {
               draw_point(x2,y2,color.get_vector_at(tx2,ty2)._data,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.drawCircle((float)x0,height()-(float)y0,0);
               board.drawCircle((float)x1,height()-(float)y1,0);
               board.drawCircle((float)x2,height()-(float)y2,0);
@@ -37125,7 +37125,7 @@ namespace cimg_library_suffixed {
                 draw_line(x1,y1,z1,x2,y2,z2,color,tx1,ty1,tx2,ty2,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.drawLine((float)x0,height()-(float)y0,(float)x1,height()-(float)y1);
               board.drawLine((float)x0,height()-(float)y0,(float)x2,height()-(float)y2);
               board.drawLine((float)x1,height()-(float)y1,(float)x2,height()-(float)y2);
@@ -37137,7 +37137,7 @@ namespace cimg_library_suffixed {
             else draw_triangle(x0,y0,z0,x1,y1,z1,x2,y2,z2,color,tx0,ty0,tx1,ty1,tx2,ty2,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -37151,10 +37151,10 @@ namespace cimg_library_suffixed {
 #ifdef cimg_use_board
             if (pboard) {
               const float lp = cimg::min(lightprops(l),1);
-              board.setPenColorRGBi((unsigned char)(128*lp),
-                                    (unsigned char)(128*lp),
-                                    (unsigned char)(128*lp),
-                                    (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(128*lp),
+                                    (uchar)(128*lp),
+                                    (uchar)(128*lp),
+                                    (uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -37170,7 +37170,7 @@ namespace cimg_library_suffixed {
                             lightprops(n0),lightprops(n1),lightprops(n2),opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,lightprops(n0),
                                         (float)x1,height()-(float)y1,lightprops(n1),
                                         (float)x2,height()-(float)y2,lightprops(n2));
@@ -37199,7 +37199,7 @@ namespace cimg_library_suffixed {
                                    (int)(light_texture.height()/2*(1+lightprops(n1,1)))),
                 l2 = light_texture((int)(light_texture.width()/2*(1+lightprops(n2,0))),
                                    (int)(light_texture.height()/2*(1+lightprops(n2,1))));
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,l0,
                                         (float)x1,height()-(float)y1,l1,
                                         (float)x2,height()-(float)y2,l2);
@@ -37245,7 +37245,7 @@ namespace cimg_library_suffixed {
               draw_point(x3,y3,color.get_vector_at(tx3,ty3)._data,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.drawCircle((float)x0,height()-(float)y0,0);
               board.drawCircle((float)x1,height()-(float)y1,0);
               board.drawCircle((float)x2,height()-(float)y2,0);
@@ -37266,7 +37266,7 @@ namespace cimg_library_suffixed {
                 draw_line(x3,y3,z3,x0,y0,z0,color,tx3,ty3,tx0,ty0,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.drawLine((float)x0,height()-(float)y0,(float)x1,height()-(float)y1);
               board.drawLine((float)x1,height()-(float)y1,(float)x2,height()-(float)y2);
               board.drawLine((float)x2,height()-(float)y2,(float)x3,height()-(float)y3);
@@ -37283,7 +37283,7 @@ namespace cimg_library_suffixed {
                 draw_triangle(x0,y0,z0,x2,y2,z2,x3,y3,z3,color,tx0,ty0,tx2,ty2,tx3,ty3,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -37303,10 +37303,10 @@ namespace cimg_library_suffixed {
 #ifdef cimg_use_board
             if (pboard) {
               const float lp = cimg::min(lightprops(l),1);
-              board.setPenColorRGBi((unsigned char)(128*lp),
-                                     (unsigned char)(128*lp),
-                                     (unsigned char)(128*lp),
-                                     (unsigned char)(opacity*255));
+              board.setPenColorRGBi((uchar)(128*lp),
+                                     (uchar)(128*lp),
+                                     (uchar)(128*lp),
+                                     (uchar)(opacity*255));
               board.fillTriangle((float)x0,height()-(float)y0,
                                  (float)x1,height()-(float)y1,
                                  (float)x2,height()-(float)y2);
@@ -37332,7 +37332,7 @@ namespace cimg_library_suffixed {
                               lightprop0,lightprop2,lightprop3,opacity);
 #ifdef cimg_use_board
             if (pboard) {
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,lightprop0,
                                          (float)x1,height()-(float)y1,lightprop1,
                                          (float)x2,height()-(float)y2,lightprop2);
@@ -37365,7 +37365,7 @@ namespace cimg_library_suffixed {
                 l1 = light_texture((int)(light_texture.width()/2*(1+lx1)), (int)(light_texture.height()/2*(1+ly1))),
                 l2 = light_texture((int)(light_texture.width()/2*(1+lx2)), (int)(light_texture.height()/2*(1+ly2))),
                 l3 = light_texture((int)(light_texture.width()/2*(1+lx3)), (int)(light_texture.height()/2*(1+ly3)));
-              board.setPenColorRGBi(128,128,128,(unsigned char)(opacity*255));
+              board.setPenColorRGBi(128,128,128,(uchar)(opacity*255));
               board.fillGouraudTriangle((float)x0,height()-(float)y0,l0,
                                          (float)x1,height()-(float)y1,l1,
                                          (float)x2,height()-(float)y2,l2);
@@ -37437,7 +37437,7 @@ namespace cimg_library_suffixed {
       disp._normalization = 0;
       disp.show().set_key(0).set_wheel().show_mouse();
 
-      unsigned char foreground_color[] = { 255,255,255 }, background_color[] = { 0,0,0 };
+      uchar foreground_color[] = { 255,255,255 }, background_color[] = { 0,0,0 };
 
       int area = 0, starting_area = 0, clicked_area = 0, phase = 0,
         X0 = (int)((XYZ?XYZ[0]:(_width-1)/2)%_width),
@@ -38030,8 +38030,8 @@ namespace cimg_library_suffixed {
       if (nymin==nymax) { --nymin; ++nymax; }
       if (nxmin==nxmax && nxmin==0) { nxmin = 0; nxmax = siz - 1.0; }
 
-      const unsigned char black[] = { 0, 0, 0 }, white[] = { 255, 255, 255 }, gray[] = { 220, 220, 220 };
-      const unsigned char gray2[] = { 110, 110, 110 }, ngray[] = { 35, 35, 35 };
+      const uchar black[] = { 0, 0, 0 }, white[] = { 255, 255, 255 }, gray[] = { 220, 220, 220 };
+      const uchar gray2[] = { 110, 110, 110 }, ngray[] = { 35, 35, 35 };
       static unsigned int odimv = 0;
       static CImg<ucharT> colormap;
       if (odimv!=_spectrum) {
@@ -38050,7 +38050,7 @@ namespace cimg_library_suffixed {
       const unsigned int one = plot_type==3?0:1;
       unsigned int okey = 0, obutton = 0;
       char message[1024] = { 0 };
-      CImg_3x3(I,unsigned char);
+      CImg_3x3(I,uchar);
 
       for (bool selected = false; !selected && !disp.is_closed() && !okey && !disp.wheel(); ) {
         const int mouse_x = disp.mouse_x(), mouse_y = disp.mouse_y();
@@ -38087,10 +38087,10 @@ namespace cimg_library_suffixed {
             if (nxmin>0) axes.draw_axis(0,seqy,gray,1,~0U,13,allow_zero);
             if (nxmax<0) axes.draw_axis(gdimx-1,seqy,gray,1,~0U,13,allow_zero);
 
-            cimg_for3x3(axes,x,y,0,0,I,unsigned char)
+            cimg_for3x3(axes,x,y,0,0,I,uchar)
               if (Icc) {
                 if (Icc==255) cimg_forC(graph,c) graph(x,y,c) = 0;
-                else cimg_forC(graph,c) graph(x,y,c) = (unsigned char)(2*graph(x,y,c)/3);
+                else cimg_forC(graph,c) graph(x,y,c) = (uchar)(2*graph(x,y,c)/3);
               }
               else if (Ipc || Inc || Icp || Icn || Ipp || Inn || Ipn || Inp)
                 cimg_forC(graph,c) graph(x,y,c) = (graph(x,y,c)+511)/3;
@@ -38583,7 +38583,7 @@ namespace cimg_library_suffixed {
                                     cimg_instance);
 
       std::FILE *const nfile = file?file:cimg::fopen(filename,"rb");
-      unsigned char header[64] = { 0 };
+      uchar header[64] = { 0 };
       cimg::fread(header,54,nfile);
       if (*header!='B' || header[1]!='M') {
         if (!file) cimg::fclose(nfile);
@@ -38626,7 +38626,7 @@ namespace cimg_library_suffixed {
       CImg<ucharT> buffer;
       if (buf_size<cimg_iobuffer) { buffer.assign(buf_size); cimg::fread(buffer._data,buf_size,nfile); }
       else buffer.assign(dx_bytes + align_bytes);
-      unsigned char *ptrs = buffer;
+      uchar *ptrs = buffer;
 
       // Decompress buffer (if necessary)
       if (compression) {
@@ -38649,10 +38649,10 @@ namespace cimg_library_suffixed {
             cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
             std::fseek(nfile,align_bytes,SEEK_CUR);
           }
-          unsigned char mask = 0x80, val = 0;
+          uchar mask = 0x80, val = 0;
           cimg_forX(*this,x) {
             if (mask==0x80) val = *(ptrs++);
-            const unsigned char *col = (unsigned char*)(colormap._data + (val&mask?1:0));
+            const uchar *col = (uchar*)(colormap._data + (val&mask?1:0));
             (*this)(x,y,2) = (T)*(col++);
             (*this)(x,y,1) = (T)*(col++);
             (*this)(x,y,0) = (T)*(col++);
@@ -38667,11 +38667,11 @@ namespace cimg_library_suffixed {
             cimg::fread(ptrs=buffer._data,dx_bytes,nfile);
             std::fseek(nfile,align_bytes,SEEK_CUR);
           }
-          unsigned char mask = 0xF0, val = 0;
+          uchar mask = 0xF0, val = 0;
           cimg_forX(*this,x) {
             if (mask==0xF0) val = *(ptrs++);
-            const unsigned char color = (unsigned char)((mask<16)?(val&mask):((val&mask)>>4));
-            const unsigned char *col = (unsigned char*)(colormap._data + color);
+            const uchar color = (uchar)((mask<16)?(val&mask):((val&mask)>>4));
+            const uchar *col = (uchar*)(colormap._data + color);
             (*this)(x,y,2) = (T)*(col++);
             (*this)(x,y,1) = (T)*(col++);
             (*this)(x,y,0) = (T)*(col++);
@@ -38687,7 +38687,7 @@ namespace cimg_library_suffixed {
             std::fseek(nfile,align_bytes,SEEK_CUR);
           }
           cimg_forX(*this,x) {
-            const unsigned char *col = (unsigned char*)(colormap._data + *(ptrs++));
+            const uchar *col = (uchar*)(colormap._data + *(ptrs++));
             (*this)(x,y,2) = (T)*(col++);
             (*this)(x,y,1) = (T)*(col++);
             (*this)(x,y,0) = (T)*(col++);
@@ -38702,7 +38702,7 @@ namespace cimg_library_suffixed {
             std::fseek(nfile,align_bytes,SEEK_CUR);
           }
           cimg_forX(*this,x) {
-            const unsigned char c1 = *(ptrs++), c2 = *(ptrs++);
+            const uchar c1 = *(ptrs++), c2 = *(ptrs++);
             const unsigned short col = (unsigned short)(c1|(c2<<8));
             (*this)(x,y,2) = (T)(col&0x1F);
             (*this)(x,y,1) = (T)((col>>5)&0x1F);
@@ -38840,7 +38840,7 @@ namespace cimg_library_suffixed {
                      cimg_instance,filename?filename:"(FILE*)");
           break;
         }
-        const unsigned char *ptrs = buffer._data;
+        const uchar *ptrs = buffer._data;
         switch (_spectrum) {
         case 1 : {
           cimg_forX(*this,x) *(ptr_r++) = (T)*(ptrs++);
@@ -38986,7 +38986,7 @@ namespace cimg_library_suffixed {
       const char *volatile nfilename = filename; // two 'volatile' here to remove a g++ warning due to 'setjmp'.
       std::FILE *volatile nfile = file?file:cimg::fopen(nfilename,"rb");
 
-      unsigned char pngCheck[8] = { 0 };
+      uchar pngCheck[8] = { 0 };
       cimg::fread(pngCheck,8,(std::FILE*)nfile);
       if (png_sig_cmp(pngCheck,0,8)) {
         if (!file) cimg::fclose(nfile);
@@ -39104,7 +39104,7 @@ namespace cimg_library_suffixed {
       switch (bit_depth) {
       case 8 : {
         cimg_forY(*this,y) {
-          const unsigned char *ptrs = (unsigned char*)imgData[y];
+          const uchar *ptrs = (uchar*)imgData[y];
           cimg_forX(*this,x) {
             *(ptr_r++) = (T)*(ptrs++);
             if (ptr_g) *(ptr_g++) = (T)*(ptrs++); else ++ptrs;
@@ -39227,8 +39227,8 @@ namespace cimg_library_suffixed {
           raw.assign(cimg::min(to_read,cimg_iobuffer));
           cimg::fread(raw._data,raw._width,nfile);
           to_read-=raw._width;
-          const unsigned char *ptrs = raw._data;
-          unsigned char mask = 0, val = 0;
+          const uchar *ptrs = raw._data;
+          uchar mask = 0, val = 0;
           for (unsigned long off = (unsigned long)raw._width; off || mask; mask>>=1) {
             if (!mask) { if (off--) val = *(ptrs++); mask = 128; }
             *(ptrd++) = (T)((val&mask)?0:255);
@@ -39245,7 +39245,7 @@ namespace cimg_library_suffixed {
             raw.assign(cimg::min(to_read,cimg_iobuffer));
             cimg::fread(raw._data,raw._width,nfile);
             to_read-=raw._width;
-            const unsigned char *ptrs = raw._data;
+            const uchar *ptrs = raw._data;
             for (unsigned long off = (unsigned long)raw._width; off; --off) *(ptrd++) = (T)*(ptrs++);
           }
         } else { // 16 bits.
@@ -39274,7 +39274,7 @@ namespace cimg_library_suffixed {
             raw.assign(cimg::min(to_read,cimg_iobuffer));
             cimg::fread(raw._data,raw._width,nfile);
             to_read-=raw._width;
-            const unsigned char *ptrs = raw._data;
+            const uchar *ptrs = raw._data;
             for (unsigned long off = (unsigned long)raw._width/3; off; --off) {
               *(ptr_r++) = (T)*(ptrs++);
               *(ptr_g++) = (T)*(ptrs++);
@@ -39472,7 +39472,7 @@ namespace cimg_library_suffixed {
         raw.assign(cimg::min(to_read,cimg_iobuffer));
         cimg::fread(raw._data,raw._width,nfile);
         to_read-=raw._width;
-        const unsigned char *ptrs = raw._data;
+        const uchar *ptrs = raw._data;
         for (unsigned long off = raw._width/3UL; off; --off) {
           *(ptr_r++) = (T)*(ptrs++);
           *(ptr_g++) = (T)*(ptrs++);
@@ -39529,7 +39529,7 @@ namespace cimg_library_suffixed {
         raw.assign(cimg::min(to_read,cimg_iobuffer));
         cimg::fread(raw._data,raw._width,nfile);
         to_read-=raw._width;
-        const unsigned char *ptrs = raw._data;
+        const uchar *ptrs = raw._data;
         for (unsigned long off = raw._width/4UL; off; --off) {
           *(ptr_r++) = (T)*(ptrs++);
           *(ptr_g++) = (T)*(ptrs++);
@@ -39804,7 +39804,7 @@ namespace cimg_library_suffixed {
           if (config==PLANARCONFIG_CONTIG) switch (bitspersample) {
             case 8 : {
               if (sampleformat==SAMPLEFORMAT_UINT)
-                _load_tiff_tiled_contig<unsigned char>(tif,samplesperpixel,nx,ny,tw,th);
+                _load_tiff_tiled_contig<uchar>(tif,samplesperpixel,nx,ny,tw,th);
               else _load_tiff_tiled_contig<signed char>(tif,samplesperpixel,nx,ny,tw,th);
             } break;
             case 16 :
@@ -39822,7 +39822,7 @@ namespace cimg_library_suffixed {
             } else switch (bitspersample) {
             case 8 :
               if (sampleformat==SAMPLEFORMAT_UINT)
-                _load_tiff_tiled_separate<unsigned char>(tif,samplesperpixel,nx,ny,tw,th);
+                _load_tiff_tiled_separate<uchar>(tif,samplesperpixel,nx,ny,tw,th);
               else _load_tiff_tiled_separate<signed char>(tif,samplesperpixel,nx,ny,tw,th);
               break;
             case 16 :
@@ -39842,7 +39842,7 @@ namespace cimg_library_suffixed {
           if (config==PLANARCONFIG_CONTIG) switch (bitspersample) {
             case 8 :
               if (sampleformat==SAMPLEFORMAT_UINT)
-                _load_tiff_contig<unsigned char>(tif,samplesperpixel,nx,ny);
+                _load_tiff_contig<uchar>(tif,samplesperpixel,nx,ny);
               else _load_tiff_contig<signed char>(tif,samplesperpixel,nx,ny);
               break;
             case 16 :
@@ -39856,7 +39856,7 @@ namespace cimg_library_suffixed {
               break;
             } else switch (bitspersample) {
             case 8 :
-              if (sampleformat==SAMPLEFORMAT_UINT) _load_tiff_separate<unsigned char>(tif,samplesperpixel,nx,ny);
+              if (sampleformat==SAMPLEFORMAT_UINT) _load_tiff_separate<uchar>(tif,samplesperpixel,nx,ny);
               else _load_tiff_separate<signed char>(tif,samplesperpixel,nx,ny);
               break;
             case 16 :
@@ -39894,7 +39894,7 @@ namespace cimg_library_suffixed {
              rdr.ndim(2)?rdr.ndim(2):1,
              rdr.ndim(3)?rdr.ndim(3):1,
              rdr.ndim(4)?rdr.ndim(4):1);
-      if(typeid(T)==typeid(unsigned char))
+      if(typeid(T)==typeid(uchar))
         rdr.setup_read_byte();
       else if(typeid(T)==typeid(int))
         rdr.setup_read_int();
@@ -39973,7 +39973,7 @@ namespace cimg_library_suffixed {
                               filename?filename:"(FILE*)");
 
       if (header_size>=4096) { endian = true; cimg::invert_endianness(header_size); }
-      unsigned char *const header = new unsigned char[header_size];
+      uchar *const header = new uchar[header_size];
       cimg::fread(header+4,header_size-4,nfile_header);
       if (!file && nfile_header!=nfile) cimg::fclose(nfile_header);
       if (endian) {
@@ -40012,7 +40012,7 @@ namespace cimg_library_suffixed {
       assign(dimx,dimy,dimz,dimv);
       switch (datatype) {
       case 2 : {
-        unsigned char *const buffer = new unsigned char[dimx*dimy*dimz*dimv];
+        uchar *const buffer = new uchar[dimx*dimy*dimz*dimv];
         cimg::fread(buffer,dimx*dimy*dimz*dimv,nfile);
         cimg_foroff(*this,off) _data[off] = (T)(buffer[off]*scalefactor);
         delete[] buffer;
@@ -40249,7 +40249,7 @@ namespace cimg_library_suffixed {
       if (voxel_size) voxel_size[0] = voxel_size[1] = voxel_size[2] = 1;
       _load_inr_header(nfile,fopt,voxel_size);
       assign(fopt[0],fopt[1],fopt[2],fopt[3]);
-      _cimg_load_inr_case(0,0,8,unsigned char);
+      _cimg_load_inr_case(0,0,8,uchar);
       _cimg_load_inr_case(0,1,8,char);
       _cimg_load_inr_case(0,0,16,unsigned short);
       _cimg_load_inr_case(0,1,16,short);
@@ -40377,13 +40377,13 @@ namespace cimg_library_suffixed {
       cimg::fread(header,20,nfile);
 
       switch (imageid) {
-      case 2 : _cimg_load_pandore_case(2,dims[1],1,1,1,unsigned char,unsigned char,unsigned char,1); break;
+      case 2 : _cimg_load_pandore_case(2,dims[1],1,1,1,uchar,uchar,uchar,1); break;
       case 3 : _cimg_load_pandore_case(2,dims[1],1,1,1,long,int,short,4); break;
       case 4 : _cimg_load_pandore_case(2,dims[1],1,1,1,double,float,float,4); break;
-      case 5 : _cimg_load_pandore_case(3,dims[2],dims[1],1,1,unsigned char,unsigned char,unsigned char,1); break;
+      case 5 : _cimg_load_pandore_case(3,dims[2],dims[1],1,1,uchar,uchar,uchar,1); break;
       case 6 : _cimg_load_pandore_case(3,dims[2],dims[1],1,1,long,int,short,4); break;
       case 7 : _cimg_load_pandore_case(3,dims[2],dims[1],1,1,double,float,float,4); break;
-      case 8 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],1,unsigned char,unsigned char,unsigned char,1); break;
+      case 8 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],1,uchar,uchar,uchar,1); break;
       case 9 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],1,long,int,short,4); break;
       case 10 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],1,double,float,float,4); break;
       case 11 : { // Region 1d
@@ -40392,7 +40392,7 @@ namespace cimg_library_suffixed {
         assign(dims[1],1,1,1);
         const unsigned siz = size();
         if (dims[2]<256) {
-          unsigned char *buffer = new unsigned char[siz];
+          uchar *buffer = new uchar[siz];
           cimg::fread(buffer,siz,nfile);
           T *ptrd = _data;
           cimg_foroff(*this,off) *(ptrd++) = (T)*(buffer++);
@@ -40425,7 +40425,7 @@ namespace cimg_library_suffixed {
         assign(dims[2],dims[1],1,1);
         const unsigned int siz = size();
         if (dims[3]<256) {
-          unsigned char *buffer = new unsigned char[siz];
+          uchar *buffer = new uchar[siz];
           cimg::fread(buffer,siz,nfile);
           T *ptrd = _data;
           cimg_foroff(*this,off) *(ptrd++) = (T)*(buffer++);
@@ -40458,7 +40458,7 @@ namespace cimg_library_suffixed {
         assign(dims[3],dims[2],dims[1],1);
         const unsigned int siz = size();
         if (dims[4]<256) {
-          unsigned char *buffer = new unsigned char[siz];
+          uchar *buffer = new uchar[siz];
           cimg::fread(buffer,siz,nfile);
           T *ptrd = _data;
           cimg_foroff(*this,off) *(ptrd++) = (T)*(buffer++);
@@ -40485,21 +40485,21 @@ namespace cimg_library_suffixed {
         }
       }
         break;
-      case 16 : _cimg_load_pandore_case(4,dims[2],dims[1],1,3,unsigned char,unsigned char,unsigned char,1); break;
+      case 16 : _cimg_load_pandore_case(4,dims[2],dims[1],1,3,uchar,uchar,uchar,1); break;
       case 17 : _cimg_load_pandore_case(4,dims[2],dims[1],1,3,long,int,short,4); break;
       case 18 : _cimg_load_pandore_case(4,dims[2],dims[1],1,3,double,float,float,4); break;
-      case 19 : _cimg_load_pandore_case(5,dims[3],dims[2],dims[1],3,unsigned char,unsigned char,unsigned char,1); break;
+      case 19 : _cimg_load_pandore_case(5,dims[3],dims[2],dims[1],3,uchar,uchar,uchar,1); break;
       case 20 : _cimg_load_pandore_case(5,dims[3],dims[2],dims[1],3,long,int,short,4); break;
       case 21 : _cimg_load_pandore_case(5,dims[3],dims[2],dims[1],3,double,float,float,4); break;
-      case 22 : _cimg_load_pandore_case(2,dims[1],1,1,dims[0],unsigned char,unsigned char,unsigned char,1); break;
+      case 22 : _cimg_load_pandore_case(2,dims[1],1,1,dims[0],uchar,uchar,uchar,1); break;
       case 23 : _cimg_load_pandore_case(2,dims[1],1,1,dims[0],long,int,short,4);
       case 24 : _cimg_load_pandore_case(2,dims[1],1,1,dims[0],unsigned long,unsigned int,unsigned short,4); break;
       case 25 : _cimg_load_pandore_case(2,dims[1],1,1,dims[0],double,float,float,4); break;
-      case 26 : _cimg_load_pandore_case(3,dims[2],dims[1],1,dims[0],unsigned char,unsigned char,unsigned char,1); break;
+      case 26 : _cimg_load_pandore_case(3,dims[2],dims[1],1,dims[0],uchar,uchar,uchar,1); break;
       case 27 : _cimg_load_pandore_case(3,dims[2],dims[1],1,dims[0],long,int,short,4); break;
       case 28 : _cimg_load_pandore_case(3,dims[2],dims[1],1,dims[0],unsigned long,unsigned int,unsigned short,4); break;
       case 29 : _cimg_load_pandore_case(3,dims[2],dims[1],1,dims[0],double,float,float,4); break;
-      case 30 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],dims[0],unsigned char,unsigned char,unsigned char,1);
+      case 30 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],dims[0],uchar,uchar,uchar,1);
         break;
       case 31 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],dims[0],long,int,short,4); break;
       case 32 : _cimg_load_pandore_case(4,dims[3],dims[2],dims[1],dims[0],unsigned long,unsigned int,unsigned short,4);
@@ -41294,7 +41294,7 @@ namespace cimg_library_suffixed {
       if (img) {
         const int step = (int)(img->widthStep - 3*img->width);
         assign(img->width,img->height,1,3);
-        const unsigned char* ptrs = (unsigned char*)img->imageData;
+        const uchar* ptrs = (uchar*)img->imageData;
         T *ptr_r = data(0,0,0,0), *ptr_g = data(0,0,0,1), *ptr_b = data(0,0,0,2);
         if (step>0) cimg_forY(*this,y) {
             cimg_forX(*this,x) { *(ptr_b++) = (T)*(ptrs++); *(ptr_g++) = (T)*(ptrs++); *(ptr_r++) = (T)*(ptrs++); }
@@ -42672,7 +42672,7 @@ namespace cimg_library_suffixed {
                    filename?filename:"(FILE*)");
 
       std::FILE *const nfile = file?file:cimg::fopen(filename,"wb");
-      unsigned char header[54] = { 0 }, align_buf[4] = { 0 };
+      uchar header[54] = { 0 }, align_buf[4] = { 0 };
       const unsigned int
         align = (4 - (3*_width)%4)%4,
         buf_size = (3*_width + align)*height(),
@@ -42713,7 +42713,7 @@ namespace cimg_library_suffixed {
       case 1 : {
         cimg_forY(*this,y) {
           cimg_forX(*this,x) {
-            const unsigned char val = (unsigned char)*(ptr_r++);
+            const uchar val = (uchar)*(ptr_r++);
             std::fputc(val,nfile); std::fputc(val,nfile); std::fputc(val,nfile);
           }
           cimg::fwrite(align_buf,align,nfile);
@@ -42724,8 +42724,8 @@ namespace cimg_library_suffixed {
         cimg_forY(*this,y) {
           cimg_forX(*this,x) {
             std::fputc(0,nfile);
-            std::fputc((unsigned char)(*(ptr_g++)),nfile);
-            std::fputc((unsigned char)(*(ptr_r++)),nfile);
+            std::fputc((uchar)(*(ptr_g++)),nfile);
+            std::fputc((uchar)(*(ptr_r++)),nfile);
           }
           cimg::fwrite(align_buf,align,nfile);
           ptr_r-=2*_width; ptr_g-=2*_width;
@@ -42734,9 +42734,9 @@ namespace cimg_library_suffixed {
       default : {
         cimg_forY(*this,y) {
           cimg_forX(*this,x) {
-            std::fputc((unsigned char)(*(ptr_b++)),nfile);
-            std::fputc((unsigned char)(*(ptr_g++)),nfile);
-            std::fputc((unsigned char)(*(ptr_r++)),nfile);
+            std::fputc((uchar)(*(ptr_b++)),nfile);
+            std::fputc((uchar)(*(ptr_g++)),nfile);
+            std::fputc((uchar)(*(ptr_r++)),nfile);
           }
           cimg::fwrite(align_buf,align,nfile);
           ptr_r-=2*_width; ptr_g-=2*_width; ptr_b-=2*_width;
@@ -42808,21 +42808,21 @@ namespace cimg_library_suffixed {
       CImg<ucharT> buffer((unsigned long)_width*dimbuf);
 
       while (cinfo.next_scanline<cinfo.image_height) {
-        unsigned char *ptrd = buffer._data;
+        uchar *ptrd = buffer._data;
 
         // Fill pixel buffer
         switch (_spectrum) {
         case 1 : { // Greyscale images
           const T *ptr_g = data(0, cinfo.next_scanline);
           for(unsigned int b = 0; b < cinfo.image_width; b++)
-            *(ptrd++) = (unsigned char)*(ptr_g++);
+            *(ptrd++) = (uchar)*(ptr_g++);
         } break;
         case 2 : { // RG images
           const T *ptr_r = data(0,cinfo.next_scanline,0,0),
             *ptr_g = data(0,cinfo.next_scanline,0,1);
           for(unsigned int b = 0; b < cinfo.image_width; ++b) {
-            *(ptrd++) = (unsigned char)*(ptr_r++);
-            *(ptrd++) = (unsigned char)*(ptr_g++);
+            *(ptrd++) = (uchar)*(ptr_r++);
+            *(ptrd++) = (uchar)*(ptr_g++);
             *(ptrd++) = 0;
           }
         } break;
@@ -42831,9 +42831,9 @@ namespace cimg_library_suffixed {
             *ptr_g = data(0,cinfo.next_scanline,0,1),
             *ptr_b = data(0,cinfo.next_scanline,0,2);
           for(unsigned int b = 0; b < cinfo.image_width; ++b) {
-            *(ptrd++) = (unsigned char)*(ptr_r++);
-            *(ptrd++) = (unsigned char)*(ptr_g++);
-            *(ptrd++) = (unsigned char)*(ptr_b++);
+            *(ptrd++) = (uchar)*(ptr_r++);
+            *(ptrd++) = (uchar)*(ptr_g++);
+            *(ptrd++) = (uchar)*(ptr_b++);
           }
         } break;
         default : { // CMYK images
@@ -42842,10 +42842,10 @@ namespace cimg_library_suffixed {
             *ptr_b = data(0,cinfo.next_scanline,0,2),
             *ptr_a = data(0,cinfo.next_scanline,0,3);
           for(unsigned int b = 0; b < cinfo.image_width; ++b) {
-            *(ptrd++) = (unsigned char)*(ptr_r++);
-            *(ptrd++) = (unsigned char)*(ptr_g++);
-            *(ptrd++) = (unsigned char)*(ptr_b++);
-            *(ptrd++) = (unsigned char)*(ptr_a++);
+            *(ptrd++) = (uchar)*(ptr_r++);
+            *(ptrd++) = (uchar)*(ptr_g++);
+            *(ptrd++) = (uchar)*(ptr_b++);
+            *(ptrd++) = (uchar)*(ptr_a++);
           }
         }
         }
@@ -43041,40 +43041,40 @@ namespace cimg_library_suffixed {
       switch (pixel_bit_depth_flag) {
       case 7 :  { // Gray 8-bit
         cimg_forY(*this,y) {
-          unsigned char *ptrd = imgData[y];
-          cimg_forX(*this,x) *(ptrd++) = (unsigned char)*(pC0++);
+          uchar *ptrd = imgData[y];
+          cimg_forX(*this,x) *(ptrd++) = (uchar)*(pC0++);
         }
       } break;
       case 14 : { // Gray w/ Alpha 8-bit
         const T *pC1 = data(0,0,0,1);
         cimg_forY(*this,y) {
-          unsigned char *ptrd = imgData[y];
+          uchar *ptrd = imgData[y];
           cimg_forX(*this,x) {
-            *(ptrd++) = (unsigned char)*(pC0++);
-            *(ptrd++) = (unsigned char)*(pC1++);
+            *(ptrd++) = (uchar)*(pC0++);
+            *(ptrd++) = (uchar)*(pC1++);
           }
         }
       } break;
       case 21 :  { // RGB 8-bit
         const T *pC1 = data(0,0,0,1), *pC2 = data(0,0,0,2);
         cimg_forY(*this,y) {
-          unsigned char *ptrd = imgData[y];
+          uchar *ptrd = imgData[y];
           cimg_forX(*this,x) {
-            *(ptrd++) = (unsigned char)*(pC0++);
-            *(ptrd++) = (unsigned char)*(pC1++);
-            *(ptrd++) = (unsigned char)*(pC2++);
+            *(ptrd++) = (uchar)*(pC0++);
+            *(ptrd++) = (uchar)*(pC1++);
+            *(ptrd++) = (uchar)*(pC2++);
           }
         }
       } break;
       case 28 : { // RGB x/ Alpha 8-bit
         const T *pC1 = data(0,0,0,1), *pC2 = data(0,0,0,2), *pC3 = data(0,0,0,3);
         cimg_forY(*this,y){
-          unsigned char *ptrd = imgData[y];
+          uchar *ptrd = imgData[y];
           cimg_forX(*this,x){
-            *(ptrd++) = (unsigned char)*(pC0++);
-            *(ptrd++) = (unsigned char)*(pC1++);
-            *(ptrd++) = (unsigned char)*(pC2++);
-            *(ptrd++) = (unsigned char)*(pC3++);
+            *(ptrd++) = (uchar)*(pC0++);
+            *(ptrd++) = (uchar)*(pC1++);
+            *(ptrd++) = (uchar)*(pC2++);
+            *(ptrd++) = (uchar)*(pC3++);
           }
         }
       } break;
@@ -43196,8 +43196,8 @@ namespace cimg_library_suffixed {
           CImg<ucharT> buf(buf_size);
           for (long to_write = (long)_width*_height; to_write>0; ) {
             const unsigned long N = cimg::min((unsigned long)to_write,buf_size);
-            unsigned char *ptrd = buf._data;
-            for (unsigned long i = N; i>0; --i) *(ptrd++) = (unsigned char)*(ptr_r++);
+            uchar *ptrd = buf._data;
+            for (unsigned long i = N; i>0; --i) *(ptrd++) = (uchar)*(ptr_r++);
             cimg::fwrite(buf._data,N,nfile);
             to_write-=N;
           }
@@ -43218,10 +43218,10 @@ namespace cimg_library_suffixed {
           CImg<ucharT> buf(buf_size);
           for (long to_write = (long)_width*_height; to_write>0; ) {
             const unsigned long N = cimg::min((unsigned long)to_write,buf_size/3);
-            unsigned char *ptrd = buf._data;
+            uchar *ptrd = buf._data;
             for (unsigned long i = N; i>0; --i) {
-              *(ptrd++) = (unsigned char)*(ptr_r++);
-              *(ptrd++) = (unsigned char)*(ptr_g++);
+              *(ptrd++) = (uchar)*(ptr_r++);
+              *(ptrd++) = (uchar)*(ptr_g++);
               *(ptrd++) = 0;
             }
             cimg::fwrite(buf._data,3*N,nfile);
@@ -43248,11 +43248,11 @@ namespace cimg_library_suffixed {
           CImg<ucharT> buf(buf_size);
           for (long to_write = (long)_width*_height; to_write>0; ) {
             const unsigned long N = cimg::min((unsigned long)to_write,buf_size/3);
-            unsigned char *ptrd = buf._data;
+            uchar *ptrd = buf._data;
             for (unsigned long i = N; i>0; --i) {
-              *(ptrd++) = (unsigned char)*(ptr_r++);
-              *(ptrd++) = (unsigned char)*(ptr_g++);
-              *(ptrd++) = (unsigned char)*(ptr_b++);
+              *(ptrd++) = (uchar)*(ptr_r++);
+              *(ptrd++) = (uchar)*(ptr_g++);
+              *(ptrd++) = (uchar)*(ptr_b++);
             }
             cimg::fwrite(buf._data,3*N,nfile);
             to_write-=N;
@@ -43314,8 +43314,8 @@ namespace cimg_library_suffixed {
         CImg<ucharT> buf(buf_size);
         for (long to_write = (long)_width*_height*_depth; to_write>0; ) {
           const unsigned long N = cimg::min((unsigned long)to_write,buf_size);
-          unsigned char *ptrd = buf._data;
-          for (unsigned long i = N; i>0; --i) *(ptrd++) = (unsigned char)*(ptr++);
+          uchar *ptrd = buf._data;
+          for (unsigned long i = N; i>0; --i) *(ptrd++) = (uchar)*(ptr++);
           cimg::fwrite(buf._data,N,nfile);
           to_write-=N;
         }
@@ -43464,7 +43464,7 @@ namespace cimg_library_suffixed {
 
       std::FILE *const nfile = file?file:cimg::fopen(filename,"wb");
       const unsigned long wh = (unsigned long)_width*_height;
-      unsigned char *const buffer = new unsigned char[3*wh], *nbuffer = buffer;
+      uchar *const buffer = new uchar[3*wh], *nbuffer = buffer;
       const T
         *ptr1 = data(0,0,0,0),
         *ptr2 = _spectrum>1?data(0,0,0,1):0,
@@ -43472,7 +43472,7 @@ namespace cimg_library_suffixed {
       switch (_spectrum) {
       case 1 : { // Scalar image
         for (unsigned long k = 0; k<wh; ++k) {
-          const unsigned char val = (unsigned char)*(ptr1++);
+          const uchar val = (uchar)*(ptr1++);
           *(nbuffer++) = val;
           *(nbuffer++) = val;
           *(nbuffer++) = val;
@@ -43480,16 +43480,16 @@ namespace cimg_library_suffixed {
       } break;
       case 2 : { // RG image
         for (unsigned long k = 0; k<wh; ++k) {
-          *(nbuffer++) = (unsigned char)(*(ptr1++));
-          *(nbuffer++) = (unsigned char)(*(ptr2++));
+          *(nbuffer++) = (uchar)(*(ptr1++));
+          *(nbuffer++) = (uchar)(*(ptr2++));
           *(nbuffer++) = 0;
         }
       } break;
       default : { // RGB image
         for (unsigned long k = 0; k<wh; ++k) {
-          *(nbuffer++) = (unsigned char)(*(ptr1++));
-          *(nbuffer++) = (unsigned char)(*(ptr2++));
-          *(nbuffer++) = (unsigned char)(*(ptr3++));
+          *(nbuffer++) = (uchar)(*(ptr1++));
+          *(nbuffer++) = (uchar)(*(ptr2++));
+          *(nbuffer++) = (uchar)(*(ptr3++));
         }
       }
       }
@@ -43526,7 +43526,7 @@ namespace cimg_library_suffixed {
 
       std::FILE *const nfile = file?file:cimg::fopen(filename,"wb");
       const unsigned long wh = (unsigned long)_width*_height;
-      unsigned char *const buffer = new unsigned char[4*wh], *nbuffer = buffer;
+      uchar *const buffer = new uchar[4*wh], *nbuffer = buffer;
       const T
         *ptr1 = data(0,0,0,0),
         *ptr2 = _spectrum>1?data(0,0,0,1):0,
@@ -43535,7 +43535,7 @@ namespace cimg_library_suffixed {
       switch (_spectrum) {
       case 1 : { // Scalar images
         for (unsigned long k = 0; k<wh; ++k) {
-          const unsigned char val = (unsigned char)*(ptr1++);
+          const uchar val = (uchar)*(ptr1++);
           *(nbuffer++) = val;
           *(nbuffer++) = val;
           *(nbuffer++) = val;
@@ -43544,26 +43544,26 @@ namespace cimg_library_suffixed {
       } break;
       case 2 : { // RG images
         for (unsigned long k = 0; k<wh; ++k) {
-          *(nbuffer++) = (unsigned char)(*(ptr1++));
-          *(nbuffer++) = (unsigned char)(*(ptr2++));
+          *(nbuffer++) = (uchar)(*(ptr1++));
+          *(nbuffer++) = (uchar)(*(ptr2++));
           *(nbuffer++) = 0;
           *(nbuffer++) = 255;
         }
       } break;
       case 3 : { // RGB images
         for (unsigned long k = 0; k<wh; ++k) {
-          *(nbuffer++) = (unsigned char)(*(ptr1++));
-          *(nbuffer++) = (unsigned char)(*(ptr2++));
-          *(nbuffer++) = (unsigned char)(*(ptr3++));
+          *(nbuffer++) = (uchar)(*(ptr1++));
+          *(nbuffer++) = (uchar)(*(ptr2++));
+          *(nbuffer++) = (uchar)(*(ptr3++));
           *(nbuffer++) = 255;
         }
       } break;
       default : { // RGBA images
         for (unsigned long k = 0; k<wh; ++k) {
-          *(nbuffer++) = (unsigned char)(*(ptr1++));
-          *(nbuffer++) = (unsigned char)(*(ptr2++));
-          *(nbuffer++) = (unsigned char)(*(ptr3++));
-          *(nbuffer++) = (unsigned char)(*(ptr4++));
+          *(nbuffer++) = (uchar)(*(ptr1++));
+          *(nbuffer++) = (uchar)(*(ptr2++));
+          *(nbuffer++) = (uchar)(*(ptr3++));
+          *(nbuffer++) = (uchar)(*(ptr4++));
         }
       }
       }
@@ -43677,9 +43677,9 @@ namespace cimg_library_suffixed {
 
     const CImg<T>& _save_tiff(TIFF *tif, const unsigned int directory, const unsigned int compression_type,
                               const float *const voxel_size, const char *const description) const {
-      _cimg_save_tiff("bool",unsigned char,compression_type);
+      _cimg_save_tiff("bool",uchar,compression_type);
       _cimg_save_tiff("char",char,compression_type);
-      _cimg_save_tiff("unsigned char",unsigned char,compression_type);
+      _cimg_save_tiff("uchar",uchar,compression_type);
       _cimg_save_tiff("short",short,compression_type);
       _cimg_save_tiff("unsigned short",unsigned short,compression_type);
       _cimg_save_tiff("int",int,compression_type);
@@ -43725,7 +43725,7 @@ namespace cimg_library_suffixed {
        if(spectrum()) di.push_back(minc::dim_info(spectrum(), spectrum()*0.5, -1, minc::dim_info::DIM_TIME));
        wtr.open(filename, di, 1, NC_FLOAT, 0);
      }
-     if(typeid(T)==typeid(unsigned char))
+     if(typeid(T)==typeid(uchar))
        wtr.setup_write_byte();
      else if(typeid(T)==typeid(int))
        wtr.setup_write_int();
@@ -43784,7 +43784,7 @@ namespace cimg_library_suffixed {
       ((short*)(header + 40))[3] = _depth;
       ((short*)(header + 40))[4] = _spectrum;
       if (!cimg::strcasecmp(pixel_type(),"bool")) datatype = 2;
-      if (!cimg::strcasecmp(pixel_type(),"unsigned char")) datatype = 2;
+      if (!cimg::strcasecmp(pixel_type(),"uchar")) datatype = 2;
       if (!cimg::strcasecmp(pixel_type(),"char")) datatype = 2;
       if (!cimg::strcasecmp(pixel_type(),"unsigned short")) datatype = 4;
       if (!cimg::strcasecmp(pixel_type(),"short")) datatype = 4;
@@ -43910,7 +43910,7 @@ namespace cimg_library_suffixed {
 
       int inrpixsize=-1;
       const char *inrtype = "unsigned fixed\nPIXSIZE=8 bits\nSCALE=2**0";
-      if (!cimg::strcasecmp(pixel_type(),"unsigned char")) {
+      if (!cimg::strcasecmp(pixel_type(),"uchar")) {
         inrtype = "unsigned fixed\nPIXSIZE=8 bits\nSCALE=2**0"; inrpixsize = 1;
       }
       if (!cimg::strcasecmp(pixel_type(),"char")) {
@@ -44101,7 +44101,7 @@ namespace cimg_library_suffixed {
                                    cimg_instance, \
                                    filename?filename:"(FILE*)"); \
         if (id==2 || id==5 || id==8 || id==16 || id==19 || id==22 || id==26 || id==30) { \
-          __cimg_save_pandore_case(unsigned char); \
+          __cimg_save_pandore_case(uchar); \
         } else if (id==3 || id==6 || id==9 || id==17 || id==20 || id==23 || id==27 || id==31) { \
           if (sizeof(unsigned long)==4) { __cimg_save_pandore_case(unsigned long); } \
           else if (sizeof(unsigned int)==4) { __cimg_save_pandore_case(unsigned int); } \
@@ -44128,11 +44128,11 @@ namespace cimg_library_suffixed {
       if (is_empty()) { cimg::fempty(file,filename); return *this; }
 
       std::FILE *const nfile = file?file:cimg::fopen(filename,"wb");
-      unsigned char header[36] = { 'P','A','N','D','O','R','E','0','4',0,0,0,
+      uchar header[36] = { 'P','A','N','D','O','R','E','0','4',0,0,0,
                                    0,0,0,0,'C','I','m','g',0,0,0,0,0,'N','o',' ','d','a','t','e',0,0,0,0 };
       unsigned int nbdims, dims[5] = { 0 };
       bool saved = false;
-      _cimg_save_pandore_case(1,1,1,"unsigned char",2);
+      _cimg_save_pandore_case(1,1,1,"uchar",2);
       _cimg_save_pandore_case(1,1,1,"char",3);
       _cimg_save_pandore_case(1,1,1,"short",3);
       _cimg_save_pandore_case(1,1,1,"unsigned short",3);
@@ -44143,7 +44143,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(1,1,1,"float",4);
       _cimg_save_pandore_case(1,1,1,"double",4);
 
-      _cimg_save_pandore_case(0,1,1,"unsigned char",5);
+      _cimg_save_pandore_case(0,1,1,"uchar",5);
       _cimg_save_pandore_case(0,1,1,"char",6);
       _cimg_save_pandore_case(0,1,1,"short",6);
       _cimg_save_pandore_case(0,1,1,"unsigned short",6);
@@ -44154,7 +44154,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(0,1,1,"float",7);
       _cimg_save_pandore_case(0,1,1,"double",7);
 
-      _cimg_save_pandore_case(0,0,1,"unsigned char",8);
+      _cimg_save_pandore_case(0,0,1,"uchar",8);
       _cimg_save_pandore_case(0,0,1,"char",9);
       _cimg_save_pandore_case(0,0,1,"short",9);
       _cimg_save_pandore_case(0,0,1,"unsigned short",9);
@@ -44165,7 +44165,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(0,0,1,"float",10);
       _cimg_save_pandore_case(0,0,1,"double",10);
 
-      _cimg_save_pandore_case(0,1,3,"unsigned char",16);
+      _cimg_save_pandore_case(0,1,3,"uchar",16);
       _cimg_save_pandore_case(0,1,3,"char",17);
       _cimg_save_pandore_case(0,1,3,"short",17);
       _cimg_save_pandore_case(0,1,3,"unsigned short",17);
@@ -44176,7 +44176,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(0,1,3,"float",18);
       _cimg_save_pandore_case(0,1,3,"double",18);
 
-      _cimg_save_pandore_case(0,0,3,"unsigned char",19);
+      _cimg_save_pandore_case(0,0,3,"uchar",19);
       _cimg_save_pandore_case(0,0,3,"char",20);
       _cimg_save_pandore_case(0,0,3,"short",20);
       _cimg_save_pandore_case(0,0,3,"unsigned short",20);
@@ -44187,7 +44187,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(0,0,3,"float",21);
       _cimg_save_pandore_case(0,0,3,"double",21);
 
-      _cimg_save_pandore_case(1,1,0,"unsigned char",22);
+      _cimg_save_pandore_case(1,1,0,"uchar",22);
       _cimg_save_pandore_case(1,1,0,"char",23);
       _cimg_save_pandore_case(1,1,0,"short",23);
       _cimg_save_pandore_case(1,1,0,"unsigned short",23);
@@ -44198,7 +44198,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(1,1,0,"float",25);
       _cimg_save_pandore_case(1,1,0,"double",25);
 
-      _cimg_save_pandore_case(0,1,0,"unsigned char",26);
+      _cimg_save_pandore_case(0,1,0,"uchar",26);
       _cimg_save_pandore_case(0,1,0,"char",27);
       _cimg_save_pandore_case(0,1,0,"short",27);
       _cimg_save_pandore_case(0,1,0,"unsigned short",27);
@@ -44209,7 +44209,7 @@ namespace cimg_library_suffixed {
       _cimg_save_pandore_case(0,1,0,"float",29);
       _cimg_save_pandore_case(0,1,0,"double",29);
 
-      _cimg_save_pandore_case(0,0,0,"unsigned char",30);
+      _cimg_save_pandore_case(0,0,0,"uchar",30);
       _cimg_save_pandore_case(0,0,0,"char",31);
       _cimg_save_pandore_case(0,0,0,"short",31);
       _cimg_save_pandore_case(0,0,0,"unsigned short",31);
@@ -44684,10 +44684,10 @@ namespace cimg_library_suffixed {
     // [internal] Return a 40x38 color logo of a 'danger' item.
     static CImg<T> _logo40x38() {
       CImg<T> res(40,38,1,3);
-      const unsigned char *ptrs = cimg::logo40x38;
+      const uchar *ptrs = cimg::logo40x38;
       T *ptr1 = res.data(0,0,0,0), *ptr2 = res.data(0,0,0,1), *ptr3 = res.data(0,0,0,2);
       for (unsigned long off = 0; off<(unsigned long)res._width*res._height;) {
-        const unsigned char n = *(ptrs++), r = *(ptrs++), g = *(ptrs++), b = *(ptrs++);
+        const uchar n = *(ptrs++), r = *(ptrs++), g = *(ptrs++), b = *(ptrs++);
         for (unsigned int l = 0; l<n; ++off, ++l) { *(ptr1++) = (T)r; *(ptr2++) = (T)g; *(ptr3++) = (T)b; }
       }
       return res;
@@ -44750,7 +44750,7 @@ namespace cimg_library_suffixed {
 
     // Define common T-dependant types.
     typedef typename cimg::superset<T,bool>::type Tbool;
-    typedef typename cimg::superset<T,unsigned char>::type Tuchar;
+    typedef typename cimg::superset<T,uchar>::type Tuchar;
     typedef typename cimg::superset<T,char>::type Tchar;
     typedef typename cimg::superset<T,unsigned short>::type Tushort;
     typedef typename cimg::superset<T,short>::type Tshort;
@@ -44761,7 +44761,7 @@ namespace cimg_library_suffixed {
     typedef typename cimg::superset<T,float>::type Tfloat;
     typedef typename cimg::superset<T,double>::type Tdouble;
     typedef typename cimg::last<T,bool>::type boolT;
-    typedef typename cimg::last<T,unsigned char>::type ucharT;
+    typedef typename cimg::last<T,uchar>::type ucharT;
     typedef typename cimg::last<T,char>::type charT;
     typedef typename cimg::last<T,unsigned short>::type ushortT;
     typedef typename cimg::last<T,short>::type shortT;
@@ -45604,7 +45604,7 @@ namespace cimg_library_suffixed {
        Return a \c char* string containing the usual type name of the image pixel values
        (i.e. a stringified version of the template parameter \c T).
        \note
-       - The returned string may contain spaces (as in \c "unsigned char").
+       - The returned string may contain spaces (as in \c "uchar").
        - If the pixel type \c T does not correspond to a registered type, the string <tt>"unknown"</tt> is returned.
     **/
     static const char* pixel_type() {
@@ -47024,7 +47024,7 @@ namespace cimg_library_suffixed {
       bool old_is_resized = disp.is_resized();
       disp._normalization = 0;
       disp.show().set_key(0);
-      const unsigned char foreground_color[] = { 255,255,255 }, background_color[] = { 0,0,0 };
+      const uchar foreground_color[] = { 255,255,255 }, background_color[] = { 0,0,0 };
 
       // Enter event loop.
       CImg<ucharT> visu0, visu;
@@ -47066,7 +47066,7 @@ namespace cimg_library_suffixed {
                   CImg<T>(),
                 &img2d = _img2d?_img2d:src;
               CImg<ucharT> res = old_normalization==1 ||
-                (old_normalization==3 && cimg::type<T>::string()!=cimg::type<unsigned char>::string())?
+                (old_normalization==3 && cimg::type<T>::string()!=cimg::type<uchar>::string())?
                 CImg<ucharT>(img2d.get_normalize(0,255)):
                 CImg<ucharT>(img2d);
               if (res._spectrum>3) res.channels(0,2);
@@ -47430,8 +47430,8 @@ namespace cimg_library_suffixed {
       else if (!cimg::strncasecmp("big",str_endian,3)) endian = true;
       assign(N);
       _cimg_load_cimg_case("bool",bool);
-      _cimg_load_cimg_case("unsigned_char",unsigned char);
-      _cimg_load_cimg_case("uchar",unsigned char);
+      _cimg_load_cimg_case("unsigned_char",uchar);
+      _cimg_load_cimg_case("uchar",uchar);
       _cimg_load_cimg_case("char",char);
       _cimg_load_cimg_case("unsigned_short",unsigned short);
       _cimg_load_cimg_case("ushort",unsigned short);
@@ -47611,8 +47611,8 @@ namespace cimg_library_suffixed {
                                     n0,x0,y0,z0,c0,n1,x1,y1,z1,c1,filename?filename:"(FILE*)",N);
       assign(1+nn1-n0);
       _cimg_load_cimg_case2("bool",bool);
-      _cimg_load_cimg_case2("unsigned_char",unsigned char);
-      _cimg_load_cimg_case2("uchar",unsigned char);
+      _cimg_load_cimg_case2("unsigned_char",uchar);
+      _cimg_load_cimg_case2("uchar",uchar);
       _cimg_load_cimg_case2("char",char);
       _cimg_load_cimg_case2("unsigned_short",unsigned short);
       _cimg_load_cimg_case2("ushort",unsigned short);
@@ -47992,7 +47992,7 @@ namespace cimg_library_suffixed {
         if (src) {
           CImg<T> frame(src->width,src->height,1,3);
           const int step = (int)(src->widthStep - 3*src->width);
-          const unsigned char* ptrs = (unsigned char*)src->imageData;
+          const uchar* ptrs = (uchar*)src->imageData;
           T *ptr_r = frame.data(0,0,0,0), *ptr_g = frame.data(0,0,0,1), *ptr_b = frame.data(0,0,0,2);
           if (step>0) cimg_forY(frame,y) {
               cimg_forX(frame,x) { *(ptr_b++) = (T)*(ptrs++); *(ptr_g++) = (T)*(ptrs++); *(ptr_r++) = (T)*(ptrs++); }
@@ -48855,8 +48855,8 @@ namespace cimg_library_suffixed {
       else if (!cimg::strncasecmp("big",str_endian,3)) endian = true;
       const unsigned int lmax = cimg::min(N,n0+_width);
       _cimg_save_cimg_case("bool",bool);
-      _cimg_save_cimg_case("unsigned_char",unsigned char);
-      _cimg_save_cimg_case("uchar",unsigned char);
+      _cimg_save_cimg_case("unsigned_char",uchar);
+      _cimg_save_cimg_case("uchar",uchar);
       _cimg_save_cimg_case("char",char);
       _cimg_save_cimg_case("unsigned_short",unsigned short);
       _cimg_save_cimg_case("ushort",unsigned short);
@@ -49151,9 +49151,9 @@ namespace cimg_library_suffixed {
               *(ptrd++) = (char)*(ptr_b++); *(ptrd++) = (char)*(ptr_g++); *(ptrd++) = (char)*(ptr_r++);
             }
           } else {
-            CImg<unsigned char> _src(src,false);
+            CImg<uchar> _src(src,false);
             _src.channels(0,cimg::min(_src._spectrum-1,2U)).resize(W,H);
-            const unsigned char *ptr_r = _src.data(0,0,0,0), *ptr_g = _src.data(0,0,0,1), *ptr_b = _src.data(0,0,0,2);
+            const uchar *ptr_r = _src.data(0,0,0,0), *ptr_g = _src.data(0,0,0,1), *ptr_b = _src.data(0,0,0,2);
             char *ptrd = ipl->imageData;
             cimg_forXY(_src,x,y) {
               *(ptrd++) = (char)*(ptr_b++); *(ptrd++) = (char)*(ptr_g++); *(ptrd++) = (char)*(ptr_r++);
@@ -49293,8 +49293,8 @@ namespace cimg_library_suffixed {
         const unsigned int w = data_widths[data_ind], h = data_heights[data_ind], M = data_Ms[data_ind];
         base_font.assign(256*w,h);
         const char *data_font = data_fonts[data_ind];
-        unsigned char *ptrd = base_font;
-        const unsigned char *const ptrde = base_font.end();
+        uchar *ptrd = base_font;
+        const uchar *const ptrde = base_font.end();
 
         // Special case needed for 90x103 to avoid MS compiler limit with big strings.
         CImg<char> data90x103;
@@ -49507,17 +49507,17 @@ namespace cimg {
                  logo._data,is_centered);
     throw CImgIOException("cimg::dialog(): No display available.");
 #else
-    const unsigned char
+    const uchar
       black[] = { 0,0,0 }, white[] = { 255,255,255 }, gray[] = { 200,200,200 }, gray2[] = { 150,150,150 };
 
     // Create buttons and canvas graphics
-    CImgList<unsigned char> buttons, cbuttons, sbuttons;
-    if (button1_label) { CImg<unsigned char>().draw_text(0,0,button1_label,black,gray,1,13).move_to(buttons);
-      if (button2_label) { CImg<unsigned char>().draw_text(0,0,button2_label,black,gray,1,13).move_to(buttons);
-        if (button3_label) { CImg<unsigned char>().draw_text(0,0,button3_label,black,gray,1,13).move_to(buttons);
-          if (button4_label) { CImg<unsigned char>().draw_text(0,0,button4_label,black,gray,1,13).move_to(buttons);
-            if (button5_label) { CImg<unsigned char>().draw_text(0,0,button5_label,black,gray,1,13).move_to(buttons);
-              if (button6_label) { CImg<unsigned char>().draw_text(0,0,button6_label,black,gray,1,13).move_to(buttons);
+    CImgList<uchar> buttons, cbuttons, sbuttons;
+    if (button1_label) { CImg<uchar>().draw_text(0,0,button1_label,black,gray,1,13).move_to(buttons);
+      if (button2_label) { CImg<uchar>().draw_text(0,0,button2_label,black,gray,1,13).move_to(buttons);
+        if (button3_label) { CImg<uchar>().draw_text(0,0,button3_label,black,gray,1,13).move_to(buttons);
+          if (button4_label) { CImg<uchar>().draw_text(0,0,button4_label,black,gray,1,13).move_to(buttons);
+            if (button5_label) { CImg<uchar>().draw_text(0,0,button5_label,black,gray,1,13).move_to(buttons);
+              if (button6_label) { CImg<uchar>().draw_text(0,0,button6_label,black,gray,1,13).move_to(buttons);
               }}}}}}
     if (!buttons._width)
       throw CImgArgumentException("cimg::dialog(): No buttons have been defined.");
@@ -49531,12 +49531,12 @@ namespace cimg {
     if (bh<24) bh = 24;
     if (bh>48) bh = 48;
 
-    CImg<unsigned char> button(bw,bh,1,3);
+    CImg<uchar> button(bw,bh,1,3);
     button.draw_rectangle(0,0,bw-1,bh-1,gray);
     button.draw_line(0,0,bw-1,0,white).draw_line(0,bh-1,0,0,white);
     button.draw_line(bw-1,0,bw-1,bh-1,black).draw_line(bw-1,bh-1,0,bh-1,black);
     button.draw_line(1,bh-2,bw-2,bh-2,gray2).draw_line(bw-2,bh-2,bw-2,1,gray2);
-    CImg<unsigned char> sbutton(bw,bh,1,3);
+    CImg<uchar> sbutton(bw,bh,1,3);
     sbutton.draw_rectangle(0,0,bw-1,bh-1,gray);
     sbutton.draw_line(0,0,bw-1,0,black).draw_line(bw-1,0,bw-1,bh-1,black);
     sbutton.draw_line(bw-1,bh-1,0,bh-1,black).draw_line(0,bh-1,0,0,black);
@@ -49545,23 +49545,23 @@ namespace cimg {
     sbutton.draw_line(2,bh-3,bw-3,bh-3,gray2).draw_line(bw-3,bh-3,bw-3,2,gray2);
     sbutton.draw_line(4,4,bw-5,4,black,1,0xAAAAAAAA,true).draw_line(bw-5,4,bw-5,bh-5,black,1,0xAAAAAAAA,false);
     sbutton.draw_line(bw-5,bh-5,4,bh-5,black,1,0xAAAAAAAA,false).draw_line(4,bh-5,4,4,black,1,0xAAAAAAAA,false);
-    CImg<unsigned char> cbutton(bw,bh,1,3);
+    CImg<uchar> cbutton(bw,bh,1,3);
     cbutton.draw_rectangle(0,0,bw-1,bh-1,black).draw_rectangle(1,1,bw-2,bh-2,gray2).draw_rectangle(2,2,bw-3,bh-3,gray);
     cbutton.draw_line(4,4,bw-5,4,black,1,0xAAAAAAAA,true).draw_line(bw-5,4,bw-5,bh-5,black,1,0xAAAAAAAA,false);
     cbutton.draw_line(bw-5,bh-5,4,bh-5,black,1,0xAAAAAAAA,false).draw_line(4,bh-5,4,4,black,1,0xAAAAAAAA,false);
 
     cimglist_for(buttons,ll) {
-      CImg<unsigned char>(cbutton).draw_image(1+(bw-buttons[ll].width())/2,1+(bh-buttons[ll].height())/2,buttons[ll]).
+      CImg<uchar>(cbutton).draw_image(1+(bw-buttons[ll].width())/2,1+(bh-buttons[ll].height())/2,buttons[ll]).
         move_to(cbuttons);
-      CImg<unsigned char>(sbutton).draw_image((bw-buttons[ll].width())/2,(bh-buttons[ll].height())/2,buttons[ll]).
+      CImg<uchar>(sbutton).draw_image((bw-buttons[ll].width())/2,(bh-buttons[ll].height())/2,buttons[ll]).
         move_to(sbuttons);
-      CImg<unsigned char>(button).draw_image((bw-buttons[ll].width())/2,(bh-buttons[ll].height())/2,buttons[ll]).
+      CImg<uchar>(button).draw_image((bw-buttons[ll].width())/2,(bh-buttons[ll].height())/2,buttons[ll]).
         move_to(buttons[ll]);
     }
 
-    CImg<unsigned char> canvas;
+    CImg<uchar> canvas;
     if (msg)
-      ((CImg<unsigned char>().draw_text(0,0,"%s",gray,0,1,13,msg)*=-1)+=200).resize(-100,-100,1,3).move_to(canvas);
+      ((CImg<uchar>().draw_text(0,0,"%s",gray,0,1,13,msg)*=-1)+=200).resize(-100,-100,1,3).move_to(canvas);
 
     const unsigned int
       bwall = (buttons._width-1)*(12+bw) + bw,
@@ -49575,13 +49575,13 @@ namespace cimg {
       by = h-12-bh;
 
     if (canvas._data)
-      canvas = CImg<unsigned char>(w,h,1,3).
+      canvas = CImg<uchar>(w,h,1,3).
         draw_rectangle(0,0,w-1,h-1,gray).
         draw_line(0,0,w-1,0,white).draw_line(0,h-1,0,0,white).
         draw_line(w-1,0,w-1,h-1,black).draw_line(w-1,h-1,0,h-1,black).
         draw_image(tx,ty,canvas);
     else
-      canvas = CImg<unsigned char>(w,h,1,3).
+      canvas = CImg<uchar>(w,h,1,3).
         draw_rectangle(0,0,w-1,h-1,gray).
         draw_line(0,0,w-1,0,white).draw_line(0,h-1,0,0,white).
         draw_line(w-1,0,w-1,h-1,black).draw_line(w-1,h-1,0,h-1,black);
@@ -49599,10 +49599,10 @@ namespace cimg {
     while (!disp.is_closed() && !stop_flag) {
       if (refresh) {
         if (clicked>=0)
-          CImg<unsigned char>(canvas).draw_image(xbuttons[clicked],by,cbuttons[clicked]).display(disp);
+          CImg<uchar>(canvas).draw_image(xbuttons[clicked],by,cbuttons[clicked]).display(disp);
         else {
           if (selected>=0)
-            CImg<unsigned char>(canvas).draw_image(xbuttons[selected],by,sbuttons[selected]).display(disp);
+            CImg<uchar>(canvas).draw_image(xbuttons[selected],by,sbuttons[selected]).display(disp);
           else canvas.display(disp);
         }
         refresh = false;
@@ -49648,7 +49648,7 @@ namespace cimg {
                     const char *const button4_label, const char *const button5_label, const char *const button6_label,
                     const bool is_centered) {
     return dialog(title,msg,button1_label,button2_label,button3_label,button4_label,button5_label,button6_label,
-                  CImg<unsigned char>::_logo40x38(),is_centered);
+                  CImg<uchar>::_logo40x38(),is_centered);
   }
 
   //! Evaluate math expression.

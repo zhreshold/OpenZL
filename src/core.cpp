@@ -76,7 +76,7 @@ void set_conio_terminal_mode()
 int get_last_key()
 {
 	int r;
-	unsigned char c;
+	uchar c;
 	if ((r = read(0, &c, sizeof(c))) < 0) {
 		return r;
 	}

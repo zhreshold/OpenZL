@@ -7,56 +7,32 @@ using namespace zl;
 
 int main()
 {
-	//println("q is:", (int)('q'));
-	//int key = -1;
-	//while (key != 'q')
-	//{
-	//	key = waitkey(1);
-	//	if (key != -1)
-	//	{
-	//		println(key);
-	//	}
-	//}
-
+	// test imread/imshow
 	Timer t;
 	Mat image;
-	imread(image, "D:\\Dev\\vs_projects\\OpenZL\\cache\\test.png", 1);
+	imread(image, "../../cache/graf.jpg", 1);
 	imshow("Test", image);
 
-	Mat empty;
-	Mat imageTest = empty;
 
+	// test convert to gray
 	Mat gray;
-	cvt_color(image, gray, ZL_RGBA2GRAY);
+	cvt_color(image, gray, ZL_RGB2GRAY);
 
 	imshow("Gray", gray);
-	//bool ret = imwrite("D:\\Dev\\vs_projects\\OpenZL\\cache\\test_out.jpg", image, 1, 90);
-	//for (int i = 1; i < 10; i++)
-	//{
-	//	char title[20];
-	//	sprintf(title, "Debug_%d", i);
-	//	imshow(title, image);
-	//}
-
-	//destroy_window("Debug_5");
-
-	//waitkey();
-
-	//destroy_all_windows();
 
 	Mat gray2;
 
+
+	// copy 1 channel to 2d vector matrix
 	Vec2u8 v, v2;
-
 	v = gray;
-
 	gray2 = gray;
-	
-
 	Scalar c = Scalar(255, 0, 0);
 
+	// copy constructor
 	Mat image2 = image;
 
+	// various drawing functions
 	draw_line(image, Point(100, 100), Point(500, 100), Scalar(255, 255, 0), 20);
 	draw_line(image, Point(700, 100), Point(700, 500), Scalar(255, 255, 0), 20);
 	Timer te;
@@ -66,7 +42,7 @@ int main()
 	draw_line(image, Point(300, 500), Point(20,20), c, 3);
 	println("Line2: ", te.get_elapsed_time_us(), "us");
 	te.update();
-	draw_circle(image, 600, 600, 100, c, 10);
+	draw_circle(image, 200, 300, 100, c, 10);
 	println("circle: ", te.get_elapsed_time_us(), "us");
 	te.update();
 	draw_rectangle(image, 500, 400, 300, 300, c, 20, 0);
@@ -86,7 +62,7 @@ int main()
 
 
 
-	draw_circle(image2, 600, 600, 500, Scalar(255, 255, 0), 1, true);
+	draw_circle(image2, 300, 100, 300, Scalar(255, 255, 0), 1, true);
 
 	Point pt1 = Point(200, 100) + Point(300, 100);
 
@@ -99,6 +75,13 @@ int main()
 	t.update();
 	waitkey(10000);
 	println("Waited: ", t.get_elapsed_time_ms(), " ms");
+
+	destroy_all_windows();
+	println("Destroyed all windows");
+
+	// imwrite function
+	imwrite("../../cache/write_out_good.jpg", image, 1, 90);
+	imwrite("../../cache/write_out_poor.jpg", image, 1, 30);
 
 	zl::hold_screen();
 	return 0;

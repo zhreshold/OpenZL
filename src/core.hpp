@@ -1,4 +1,28 @@
 /***********************************************************************/
+//
+//		i#f,.,##f                                        ##KKKKKE###  .K##L.        
+//	   G#W     K#K                                       #       ##    .##          
+//	  G##       ##                                      .W      W#t     ##          
+//	  ##         ##                                     ..    :###      ##          
+//	 i#E         G#j   :t :ff:       tLi      t  .f:          ###,      ##          
+//	 D#f         t#K  W#K ####     i#G###: .L#D L###t         ##G       ##          
+//	 ##i         ;## j##DjfG##G   t#   D## ft#LEE,W##        ;##        ##          
+//	 ##;         :##  G#W    j#L  #     ##   EG    ##t      K#f         ##          
+//	 ##t         :##  G#K     #K  #W####KK   EG    ##t     j##          ##          
+//	 K#j         ;##  G#K     ##  #          EG    ##t    .###          ##          
+//	 f#D         t#L  G#K     ##  #.         EG    ##t    ###i          ##          
+//	  ##,        #K   G#K     #f  ##         EG    ##t   ,##        E   ##         j
+//	  ##K       j#    G#K     #.  ##G    :   EG    ##t   ##,       fj   ##        j 
+//	  :##j     ,##    G##    ;D   ###E  i#   ED    ##j  E#L        #:   ##       j  
+//		 f#WEW#f      G#EELD#E     :####t  jW##Kf ####,#############  E###########  
+//		  .iti        G#K i;         .,                                             
+//					  G#K                                                           
+//					  G#K                                                           
+//					  D#W                                                           
+//					 i###D                                                          
+//					 ,::::                                                          
+//
+/***********************************************************************/
 /*
 /#   Script File: core.cpp
 /#
@@ -50,8 +74,10 @@
 #define _CRT_SECURE_NO_WARNINGS // suppress warnings about fopen() and similar "unsafe" functions defined by MS
 #endif
 
-#include <climits>
+#if __cplusplus > 201100L
 #include <cstdint>
+#endif
+#include <climits>
 #include <string>
 #include <sstream>
 #include <string.h>
@@ -66,6 +92,7 @@
 
 //////////////////////////////// Typedef ////////////////////////////////
 /// fixed bits integer, guaranteed, however, this require c++11
+#if __cplusplus > 201100L
 typedef uint8_t			uchar;		//!< unsigned 8-bit integer
 typedef int8_t			schar;		//!< signed 8-bit integer
 typedef uint16_t		ushort;		//!< unsigned 16-bit integer
@@ -74,6 +101,17 @@ typedef uint32_t        uint;		//!< unsigned 32-bit integer
 typedef int32_t			sint;		//!< signed 32-bit integer
 typedef uint64_t		ulong;		//!< unsigned 64-bit integer
 typedef int64_t			slong;		//!< signed 64-bit integer
+#else
+// at least n-bits guaranteed, however, maximum width not guaranteed. Be careful.
+typedef unsigned char		uchar;		//!< unsigned 8-bit integer(at least, maximum length not guaranteed)
+typedef signed char			schar;		//!< signed 8-bit integer(at least, maximum length not guaranteed)
+typedef unsigned int		ushort;		//!< unsigned 16-bit integer(at least, maximum length not guaranteed)
+typedef signed int			sshort;		//!< signed 16-bit integer(at least, maximum length not guaranteed)
+typedef unsigned long		uint;		//!< unsigned 32-bit integer(at least, maximum length not guaranteed)
+typedef signed long			sint;		//!< signed 32-bit integer(at least, maximum length not guaranteed)
+typedef unsigned long long	ulong;		//!< unsigned 64-bit integer(at least, maximum length not guaranteed)
+typedef signed long long	slong;		//!< signed 64-bit integer(at least, maximum length not guaranteed)
+#endif
 typedef std::string		String;		//!< STL string
 template<typename... Ts> using Vec = std::vector<Ts...>;	//!< STL vector
 typedef std::vector<sint> Veci;		//!< signed 32-bit integer vector
@@ -549,38 +587,38 @@ namespace zl
 	template<typename _Tp> static inline _Tp saturate_cast(uchar v)    { return _Tp(v); }
 	template<typename _Tp> static inline _Tp saturate_cast(schar v)    { return _Tp(v); }
 	template<typename _Tp> static inline _Tp saturate_cast(ushort v)   { return _Tp(v); }
-	template<typename _Tp> static inline _Tp saturate_cast(short v)    { return _Tp(v); }
-	template<typename _Tp> static inline _Tp saturate_cast(unsigned v) { return _Tp(v); }
-	template<typename _Tp> static inline _Tp saturate_cast(int v)      { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(sshort v)    { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(uint v) { return _Tp(v); }
+	template<typename _Tp> static inline _Tp saturate_cast(sint v)      { return _Tp(v); }
 	template<typename _Tp> static inline _Tp saturate_cast(float v)    { return _Tp(v); }
 	template<typename _Tp> static inline _Tp saturate_cast(double v)   { return _Tp(v); }
 
 	template<> inline uchar saturate_cast<uchar>(schar v)        { return (uchar)std::max((int)v, 0); }
-	template<> inline uchar saturate_cast<uchar>(ushort v)       { return (uchar)std::min((unsigned)v, (unsigned)UCHAR_MAX); }
-	template<> inline uchar saturate_cast<uchar>(int v)          { return (uchar)((unsigned)v <= UCHAR_MAX ? v : v > 0 ? UCHAR_MAX : 0); }
-	template<> inline uchar saturate_cast<uchar>(short v)        { return saturate_cast<uchar>((int)v); }
-	template<> inline uchar saturate_cast<uchar>(unsigned v)     { return (uchar)std::min(v, (unsigned)UCHAR_MAX); }
+	template<> inline uchar saturate_cast<uchar>(ushort v)       { return (uchar)std::min((uint)v, (uint)UCHAR_MAX); }
+	template<> inline uchar saturate_cast<uchar>(sint v)          { return (uchar)((uint)v <= UCHAR_MAX ? v : v > 0 ? UCHAR_MAX : 0); }
+	template<> inline uchar saturate_cast<uchar>(sshort v)        { return saturate_cast<uchar>((sint)v); }
+	template<> inline uchar saturate_cast<uchar>(uint v)     { return (uchar)std::min(v, (uint)UCHAR_MAX); }
 	template<> inline uchar saturate_cast<uchar>(float v)        { int iv = fast_round(v); return saturate_cast<uchar>(iv); }
 	template<> inline uchar saturate_cast<uchar>(double v)       { int iv = fast_round(v); return saturate_cast<uchar>(iv); }
 
 	template<> inline schar saturate_cast<schar>(uchar v)        { return (schar)std::min((int)v, SCHAR_MAX); }
 	template<> inline schar saturate_cast<schar>(ushort v)       { return (schar)std::min((unsigned)v, (unsigned)SCHAR_MAX); }
-	template<> inline schar saturate_cast<schar>(int v)          { return (schar)((unsigned)(v - SCHAR_MIN) <= (unsigned)UCHAR_MAX ? v : v > 0 ? SCHAR_MAX : SCHAR_MIN); }
-	template<> inline schar saturate_cast<schar>(short v)        { return saturate_cast<schar>((int)v); }
-	template<> inline schar saturate_cast<schar>(unsigned v)     { return (schar)std::min(v, (unsigned)SCHAR_MAX); }
+	template<> inline schar saturate_cast<schar>(sint v)          { return (schar)((unsigned)(v - SCHAR_MIN) <= (unsigned)UCHAR_MAX ? v : v > 0 ? SCHAR_MAX : SCHAR_MIN); }
+	template<> inline schar saturate_cast<schar>(sshort v)        { return saturate_cast<schar>((int)v); }
+	template<> inline schar saturate_cast<schar>(uint v)     { return (schar)std::min(v, (uint)SCHAR_MAX); }
 	template<> inline schar saturate_cast<schar>(float v)        { int iv = fast_round(v); return saturate_cast<schar>(iv); }
 	template<> inline schar saturate_cast<schar>(double v)       { int iv = fast_round(v); return saturate_cast<schar>(iv); }
 
 	template<> inline ushort saturate_cast<ushort>(schar v)      { return (ushort)std::max((int)v, 0); }
-	template<> inline ushort saturate_cast<ushort>(short v)      { return (ushort)std::max((int)v, 0); }
-	template<> inline ushort saturate_cast<ushort>(int v)        { return (ushort)((unsigned)v <= (unsigned)USHRT_MAX ? v : v > 0 ? USHRT_MAX : 0); }
-	template<> inline ushort saturate_cast<ushort>(unsigned v)   { return (ushort)std::min(v, (unsigned)USHRT_MAX); }
+	template<> inline ushort saturate_cast<ushort>(sshort v)      { return (ushort)std::max((int)v, 0); }
+	template<> inline ushort saturate_cast<ushort>(sint v)        { return (ushort)((unsigned)v <= (unsigned)USHRT_MAX ? v : v > 0 ? USHRT_MAX : 0); }
+	template<> inline ushort saturate_cast<ushort>(uint v)   { return (ushort)std::min(v, (uint)USHRT_MAX); }
 	template<> inline ushort saturate_cast<ushort>(float v)      { int iv = fast_round(v); return saturate_cast<ushort>(iv); }
 	template<> inline ushort saturate_cast<ushort>(double v)     { int iv = fast_round(v); return saturate_cast<ushort>(iv); }
 
 	template<> inline short saturate_cast<short>(ushort v)       { return (short)std::min((int)v, SHRT_MAX); }
-	template<> inline short saturate_cast<short>(int v)          { return (short)((unsigned)(v - SHRT_MIN) <= (unsigned)USHRT_MAX ? v : v > 0 ? SHRT_MAX : SHRT_MIN); }
-	template<> inline short saturate_cast<short>(unsigned v)     { return (short)std::min(v, (unsigned)SHRT_MAX); }
+	template<> inline short saturate_cast<short>(sint v)          { return (short)((unsigned)(v - SHRT_MIN) <= (unsigned)USHRT_MAX ? v : v > 0 ? SHRT_MAX : SHRT_MIN); }
+	template<> inline short saturate_cast<short>(uint v)     { return (short)std::min(v, (uint)SHRT_MAX); }
 	template<> inline short saturate_cast<short>(float v)        { int iv = fast_round(v); return saturate_cast<short>(iv); }
 	template<> inline short saturate_cast<short>(double v)       { int iv = fast_round(v); return saturate_cast<short>(iv); }
 
@@ -588,8 +626,8 @@ namespace zl
 	template<> inline int saturate_cast<int>(double v)           { return fast_round(v); }
 
 	// we intentionally do not clip negative numbers, to make -1 become 0xffffffff etc.
-	template<> inline unsigned saturate_cast<unsigned>(float v)  { return fast_round(v); }
-	template<> inline unsigned saturate_cast<unsigned>(double v) { return fast_round(v); }
+	template<> inline uint saturate_cast<uint>(float v)  { return (uint)fast_round(v); }
+	template<> inline uint saturate_cast<uint>(double v) { return (uint)fast_round(v); }
 
 
 	//////////////////////////////// 2D Point ///////////////////////////////
@@ -1094,12 +1132,14 @@ namespace zl
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_(int nrow, int ncol, int nchannel)
 	{
+			this->m_flags = 0;
 			create(nrow, ncol, nchannel);
 		}
 
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_(int nrow, int ncol, int nchannel, _Tp* dataBuf)
 	{
+			this->m_flags = 0;
 			if (create(nrow, ncol, nchannel))
 			{
 				// doing deep copy rather than copy pointer
@@ -1110,6 +1150,7 @@ namespace zl
 	template<typename _Tp> inline
 		Mat_<_Tp>::Mat_(const Mat_& other)
 	{
+			this->m_flags = 0;
 			if (!other.empty())
 			{
 				create(other.rows(), other.cols(), other.channels());
@@ -1455,7 +1496,7 @@ namespace zl
 			if (create(nrow, ncol))
 			{
 				// doing deep copy rather than copy pointer
-				memcpy(data, dataBuf, m_rows * m_step * sizeof(_Tp));
+				memcpy(this->data, dataBuf, this->m_rows * this->m_step * sizeof(_Tp));
 			}
 		}
 
@@ -1529,11 +1570,11 @@ namespace zl
 			{
 				for (int col = 0; col < src.cols(); col++)
 				{
-					Mat_<_Tp>::value_type r = src(row, col, 0);
-					Mat_<_Tp>::value_type g = src(row, col, 1);
-					Mat_<_Tp>::value_type b = src(row, col, 2);
+					typename Mat_<_Tp>::value_type r = src(row, col, 0);
+					typename Mat_<_Tp>::value_type g = src(row, col, 1);
+					typename Mat_<_Tp>::value_type b = src(row, col, 2);
 
-					Mat_<_Tp>::value_type v = static_cast<Mat_<_Tp>::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
+					typename Mat_<_Tp>::value_type v = static_cast<typename Mat_<_Tp>::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
 					buffer(row, col) = v;
 				}
 			}
@@ -1549,11 +1590,11 @@ namespace zl
 			{
 				for (int col = 0; col < src.cols(); col++)
 				{
-					Mat_<_Tp>::value_type r = src(row, col, 0);
-					Mat_<_Tp>::value_type g = src(row, col, 1);
-					Mat_<_Tp>::value_type b = src(row, col, 2);
+					typename Mat_<_Tp>::value_type r = src(row, col, 0);
+					typename Mat_<_Tp>::value_type g = src(row, col, 1);
+					typename Mat_<_Tp>::value_type b = src(row, col, 2);
 
-					Mat_<_Tp>::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
+					typename Mat_<_Tp>::value_type v = static_cast<Mat::value_type>(0.299 * r + 0.587 * g + 0.114 * b);
 					buffer(row, col) = v;
 				}
 			}
@@ -1569,7 +1610,7 @@ namespace zl
 			{
 				for (int col = 0; col < src.cols(); col++)
 				{
-					Mat_<_Tp>::value_type v = src(row, col);
+					typename Mat_<_Tp>::value_type v = src(row, col);
 					buffer(row, col, 0) = v;
 					buffer(row, col, 1) = v;
 					buffer(row, col, 2) = v;

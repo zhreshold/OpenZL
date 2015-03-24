@@ -271,13 +271,13 @@ namespace zl
 #include <stdlib.h>
 #include <math.h>
 
-static const unsigned char s_jo_ZigZag[] = { 0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13, 16, 26, 29, 42, 3, 8, 12, 17, 25, 30, 41, 43, 9, 11, 18, 24, 31, 40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38, 46, 51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57, 58, 62, 63 };
+static const uchar s_jo_ZigZag[] = { 0, 1, 5, 6, 14, 15, 27, 28, 2, 4, 7, 13, 16, 26, 29, 42, 3, 8, 12, 17, 25, 30, 41, 43, 9, 11, 18, 24, 31, 40, 44, 53, 10, 19, 23, 32, 39, 45, 52, 54, 20, 22, 33, 38, 46, 51, 55, 60, 21, 34, 37, 47, 50, 56, 59, 61, 35, 36, 48, 49, 57, 58, 62, 63 };
 
 static void jo_writeBits(FILE *fp, int &bitBuf, int &bitCnt, const unsigned short *bs) {
 	bitCnt += bs[1];
 	bitBuf |= bs[0] << (24 - bitCnt);
 	while (bitCnt >= 8) {
-		unsigned char c = (bitBuf >> 16) & 255;
+		uchar c = (bitBuf >> 16) & 255;
 		putc(c, fp);
 		if (c == 255) {
 			putc(0, fp);
@@ -403,10 +403,10 @@ static int jo_processDU(FILE *fp, int &bitBuf, int &bitCnt, float *CDU, float *f
 
 bool jo_write_jpg(const char *filename, const void *data, int width, int height, int comp, int quality) {
 	// Constants that don't pollute global namespace
-	static const unsigned char std_dc_luminance_nrcodes[] = { 0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 };
-	static const unsigned char std_dc_luminance_values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-	static const unsigned char std_ac_luminance_nrcodes[] = { 0, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 0x7d };
-	static const unsigned char std_ac_luminance_values[] = {
+	static const uchar std_dc_luminance_nrcodes[] = { 0, 0, 1, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 };
+	static const uchar std_dc_luminance_values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+	static const uchar std_ac_luminance_nrcodes[] = { 0, 0, 2, 1, 3, 3, 2, 4, 3, 5, 5, 4, 4, 0, 0, 1, 0x7d };
+	static const uchar std_ac_luminance_values[] = {
 		0x01, 0x02, 0x03, 0x00, 0x04, 0x11, 0x05, 0x12, 0x21, 0x31, 0x41, 0x06, 0x13, 0x51, 0x61, 0x07, 0x22, 0x71, 0x14, 0x32, 0x81, 0x91, 0xa1, 0x08,
 		0x23, 0x42, 0xb1, 0xc1, 0x15, 0x52, 0xd1, 0xf0, 0x24, 0x33, 0x62, 0x72, 0x82, 0x09, 0x0a, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x25, 0x26, 0x27, 0x28,
 		0x29, 0x2a, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59,
@@ -415,10 +415,10 @@ bool jo_write_jpg(const char *filename, const void *data, int width, int height,
 		0xb7, 0xb8, 0xb9, 0xba, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xd2, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7, 0xd8, 0xd9, 0xda, 0xe1, 0xe2,
 		0xe3, 0xe4, 0xe5, 0xe6, 0xe7, 0xe8, 0xe9, 0xea, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7, 0xf8, 0xf9, 0xfa
 	};
-	static const unsigned char std_dc_chrominance_nrcodes[] = { 0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 };
-	static const unsigned char std_dc_chrominance_values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-	static const unsigned char std_ac_chrominance_nrcodes[] = { 0, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 0x77 };
-	static const unsigned char std_ac_chrominance_values[] = {
+	static const uchar std_dc_chrominance_nrcodes[] = { 0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 };
+	static const uchar std_dc_chrominance_values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+	static const uchar std_ac_chrominance_nrcodes[] = { 0, 0, 2, 1, 2, 4, 4, 3, 4, 7, 5, 4, 4, 0, 1, 2, 0x77 };
+	static const uchar std_ac_chrominance_values[] = {
 		0x00, 0x01, 0x02, 0x03, 0x11, 0x04, 0x05, 0x21, 0x31, 0x06, 0x12, 0x41, 0x51, 0x07, 0x61, 0x71, 0x13, 0x22, 0x32, 0x81, 0x08, 0x14, 0x42, 0x91,
 		0xa1, 0xb1, 0xc1, 0x09, 0x23, 0x33, 0x52, 0xf0, 0x15, 0x62, 0x72, 0xd1, 0x0a, 0x16, 0x24, 0x34, 0xe1, 0x25, 0xf1, 0x17, 0x18, 0x19, 0x1a, 0x26,
 		0x27, 0x28, 0x29, 0x2a, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58,
@@ -483,7 +483,7 @@ bool jo_write_jpg(const char *filename, const void *data, int width, int height,
 	quality = quality < 1 ? 1 : quality > 100 ? 100 : quality;
 	quality = quality < 50 ? 5000 / quality : 200 - quality * 2;
 
-	unsigned char YTable[64], UVTable[64];
+	uchar YTable[64], UVTable[64];
 	for (int i = 0; i < 64; ++i) {
 		int yti = (YQT[i] * quality + 50) / 100;
 		YTable[s_jo_ZigZag[i]] = yti < 1 ? 1 : yti > 255 ? 255 : yti;
@@ -500,12 +500,12 @@ bool jo_write_jpg(const char *filename, const void *data, int width, int height,
 	}
 
 	// Write Headers
-	static const unsigned char head0[] = { 0xFF, 0xD8, 0xFF, 0xE0, 0, 0x10, 'J', 'F', 'I', 'F', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0xFF, 0xDB, 0, 0x84, 0 };
+	static const uchar head0[] = { 0xFF, 0xD8, 0xFF, 0xE0, 0, 0x10, 'J', 'F', 'I', 'F', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0xFF, 0xDB, 0, 0x84, 0 };
 	fwrite(head0, sizeof(head0), 1, fp);
 	fwrite(YTable, sizeof(YTable), 1, fp);
 	putc(1, fp);
 	fwrite(UVTable, sizeof(UVTable), 1, fp);
-	const unsigned char head1[] = { 0xFF, 0xC0, 0, 0x11, 8, (unsigned char)(height >> 8), (unsigned char)(height & 0xFF), (unsigned char)(width >> 8), (unsigned char)(width & 0xFF), 3, 1, 0x11, 0, 2, 0x11, 1, 3, 0x11, 1, 0xFF, 0xC4, 0x01, 0xA2, 0 };
+	const uchar head1[] = { 0xFF, 0xC0, 0, 0x11, 8, (uchar)(height >> 8), (uchar)(height & 0xFF), (uchar)(width >> 8), (uchar)(width & 0xFF), 3, 1, 0x11, 0, 2, 0x11, 1, 3, 0x11, 1, 0xFF, 0xC4, 0x01, 0xA2, 0 };
 	fwrite(head1, sizeof(head1), 1, fp);
 	fwrite(std_dc_luminance_nrcodes + 1, sizeof(std_dc_luminance_nrcodes)-1, 1, fp);
 	fwrite(std_dc_luminance_values, sizeof(std_dc_luminance_values), 1, fp);
@@ -518,11 +518,11 @@ bool jo_write_jpg(const char *filename, const void *data, int width, int height,
 	putc(0x11, fp); // HTUACinfo
 	fwrite(std_ac_chrominance_nrcodes + 1, sizeof(std_ac_chrominance_nrcodes)-1, 1, fp);
 	fwrite(std_ac_chrominance_values, sizeof(std_ac_chrominance_values), 1, fp);
-	static const unsigned char head2[] = { 0xFF, 0xDA, 0, 0xC, 3, 1, 0, 2, 0x11, 3, 0x11, 0, 0x3F, 0 };
+	static const uchar head2[] = { 0xFF, 0xDA, 0, 0xC, 3, 1, 0, 2, 0x11, 3, 0x11, 0, 0x3F, 0 };
 	fwrite(head2, sizeof(head2), 1, fp);
 
 	// Encode 8x8 macroblocks
-	const unsigned char *imageData = (const unsigned char *)data;
+	const uchar *imageData = (const uchar *)data;
 	int DCY = 0, DCU = 0, DCV = 0;
 	int bitBuf = 0, bitCnt = 0;
 	int ofsG = comp > 1 ? 1 : 0, ofsB = comp > 1 ? 2 : 0;
