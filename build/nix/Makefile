@@ -52,7 +52,7 @@ CC = g++
 
 #  -m32      CS107 targets architecture IA32 (32-bit)
 
-CFLAGS = -g -Wall -O0 -std=c++11 -I$(SOURCE_DIR)
+CFLAGS = -g -Wall -Wfatal-errors -O0 -std=c++11 -I$(SOURCE_DIR)
 
 
 

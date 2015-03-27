@@ -11,6 +11,8 @@ Full documentation in doc/html/
 MIT License.
 
 ## Usage
+* Make sure you have c++11 support(vc11+, -std=c++11 in gcc 4.6+/clang3.3+)
+
 * include "core.hpp" for basic class
 
 * include "imgcodecs.h" for image read/write capabilities

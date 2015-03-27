@@ -70,13 +70,19 @@
 #  error core.hpp header must be compiled as C++
 #endif
 
+// check c++ version
+#if (defined(_MSC_VER) && _MSC_VER >= 1700) || (__cplusplus >= 201103L)
+// small hack to solve wrong version bug in MSVC
+#else
+#error c++11 required, add CFLAG -std=c++11 to enable, need gcc 4.6 and above?
+#endif
+
 #if defined(_MSC_VER) && _MSC_VER >= 1400
 #define _CRT_SECURE_NO_WARNINGS // suppress warnings about fopen() and similar "unsafe" functions defined by MS
 #endif
 
-#if __cplusplus > 201100L
+
 #include <cstdint>
-#endif
 #include <climits>
 #include <string>
 #include <sstream>
@@ -92,28 +98,16 @@
 
 //////////////////////////////// Typedef ////////////////////////////////
 /// fixed bits integer, guaranteed, however, this require c++11
-#if __cplusplus > 201100L
 typedef uint8_t			uchar;		//!< unsigned 8-bit integer
 typedef int8_t			schar;		//!< signed 8-bit integer
 typedef uint16_t		ushort;		//!< unsigned 16-bit integer
 typedef int16_t			sshort;		//!< signed 16-bit integer
 typedef uint32_t        uint;		//!< unsigned 32-bit integer
 typedef int32_t			sint;		//!< signed 32-bit integer
-typedef uint64_t		ulong;		//!< unsigned 64-bit integer
-typedef int64_t			slong;		//!< signed 64-bit integer
-#else
-// at least n-bits guaranteed, however, maximum width not guaranteed. Be careful.
-typedef unsigned char		uchar;		//!< unsigned 8-bit integer(at least, maximum length not guaranteed)
-typedef signed char			schar;		//!< signed 8-bit integer(at least, maximum length not guaranteed)
-typedef unsigned int		ushort;		//!< unsigned 16-bit integer(at least, maximum length not guaranteed)
-typedef signed int			sshort;		//!< signed 16-bit integer(at least, maximum length not guaranteed)
-typedef unsigned long		uint;		//!< unsigned 32-bit integer(at least, maximum length not guaranteed)
-typedef signed long			sint;		//!< signed 32-bit integer(at least, maximum length not guaranteed)
-typedef unsigned long long	ulong;		//!< unsigned 64-bit integer(at least, maximum length not guaranteed)
-typedef signed long long	slong;		//!< signed 64-bit integer(at least, maximum length not guaranteed)
-#endif
-typedef std::string		String;		//!< STL string
+typedef uint64_t		ul64;		//!< unsigned 64-bit integer
+typedef int64_t			sl64;		//!< signed 64-bit integer
 template<typename... Ts> using Vec = std::vector<Ts...>;	//!< STL vector
+typedef std::string		String;		//!< STL string
 typedef std::vector<sint> Veci;		//!< signed 32-bit integer vector
 
 
@@ -203,6 +197,7 @@ namespace zl
 			std::cout << oss.str() << std::endl;
 		}
 
+
 	/// <summary>
 	/// Print the message with various arguments, start a new line
 	/// </summary>
@@ -214,6 +209,7 @@ namespace zl
 		std::cout << t;
 		println(u...);
 	}
+
 
 
 	//////////////////////////////// Timer ////////////////////////////////
