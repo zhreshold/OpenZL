@@ -111,3 +111,8 @@ hold_screen();
 + Image resize functions
 
 + More TBD
+
+## Acknowledgement
+
+[stb_image Library](https://github.com/nothings/stb) by Sean T. Barrett
+[JPEG_Writer](http://www.jonolick.com/code.html) by Jon Olick
