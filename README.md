@@ -7,6 +7,9 @@ Wrapped in C++ as itself lacks image IO libraries, meanwhile provide more conven
 
 Full documentation in doc/html/
 
+## Note
+This project is waiting for a major update including structure and API re-write. No exact timeline scheduled.
+
 ## License
 MIT License.
 
