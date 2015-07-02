@@ -55,11 +55,15 @@ namespace zl
 
 		};
 
-		template <typename Mutex, typename T> class Set_
+		template <typename Mutex, typename T> class Set_:private 
 		{
 		public:
+			Set_<Mutex, T>() {};
+
+
 		private:
 			std::set<T>	set_;
+			Mutex		mutex_;
 		};
 
 	} // namespace thread
