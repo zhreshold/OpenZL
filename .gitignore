@@ -6,7 +6,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-cache/
 
 # Build results
 [Dd]ebug/
@@ -15,7 +14,7 @@ cache/
 [Rr]eleases/
 x64/
 x86/
-build/
+#build/
 bld/
 [Bb]in/
 [Oo]bj/

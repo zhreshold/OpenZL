@@ -1,0 +1,2000 @@
+[06/23/15 18:17:20.991][INFO] The summation is: 0
+[06/23/15 18:17:20.991][INFO] The summation is: 1
+[06/23/15 18:17:20.991][INFO] The summation is: 2
+[06/23/15 18:17:20.991][INFO] The summation is: 3
+[06/23/15 18:17:20.991][INFO] The summation is: 4
+[06/23/15 18:17:20.991][INFO] The summation is: 5
+[06/23/15 18:17:20.991][INFO] The summation is: 6
+[06/23/15 18:17:20.991][INFO] The summation is: 7
+[06/23/15 18:17:20.991][INFO] The summation is: 8
+[06/23/15 18:17:20.991][INFO] The summation is: 9
+[06/23/15 18:17:20.991][INFO] The summation is: 10
+[06/23/15 18:17:20.991][INFO] The summation is: 11
+[06/23/15 18:17:20.991][INFO] The summation is: 12
+[06/23/15 18:17:20.992][INFO] The summation is: 13
+[06/23/15 18:17:20.992][INFO] The summation is: 14
+[06/23/15 18:17:20.992][INFO] The summation is: 15
+[06/23/15 18:17:20.992][INFO] The summation is: 16
+[06/23/15 18:17:20.992][INFO] The summation is: 17
+[06/23/15 18:17:20.992][INFO] The summation is: 18
+[06/23/15 18:17:20.992][INFO] The summation is: 19
+[06/23/15 18:17:20.992][INFO] The summation is: 20
+[06/23/15 18:17:20.992][INFO] The summation is: 21
+[06/23/15 18:17:20.992][INFO] The summation is: 22
+[06/23/15 18:17:20.992][INFO] The summation is: 23
+[06/23/15 18:17:20.992][INFO] The summation is: 24
+[06/23/15 18:17:20.992][INFO] The summation is: 25
+[06/23/15 18:17:20.992][INFO] The summation is: 26
+[06/23/15 18:17:20.993][INFO] The summation is: 27
+[06/23/15 18:17:20.993][INFO] The summation is: 28
+[06/23/15 18:17:20.993][INFO] The summation is: 29
+[06/23/15 18:17:20.993][INFO] The summation is: 30
+[06/23/15 18:17:20.993][INFO] The summation is: 31
+[06/23/15 18:17:20.993][INFO] The summation is: 32
+[06/23/15 18:17:20.993][INFO] The summation is: 33
+[06/23/15 18:17:20.993][INFO] The summation is: 34
+[06/23/15 18:17:20.993][INFO] The summation is: 35
+[06/23/15 18:17:20.993][INFO] The summation is: 36
+[06/23/15 18:17:20.993][INFO] The summation is: 37
+[06/23/15 18:17:20.993][INFO] The summation is: 38
+[06/23/15 18:17:20.993][INFO] The summation is: 39
+[06/23/15 18:17:20.993][INFO] The summation is: 40
+[06/23/15 18:17:20.993][INFO] The summation is: 41
+[06/23/15 18:17:20.993][INFO] The summation is: 42
+[06/23/15 18:17:20.993][INFO] The summation is: 43
+[06/23/15 18:17:20.993][INFO] The summation is: 44
+[06/23/15 18:17:20.993][INFO] The summation is: 45
+[06/23/15 18:17:20.993][INFO] The summation is: 46
+[06/23/15 18:17:20.993][INFO] The summation is: 47
+[06/23/15 18:17:20.994][INFO] The summation is: 48
+[06/23/15 18:17:20.994][INFO] The summation is: 49
+[06/23/15 18:17:20.994][INFO] The summation is: 50
+[06/23/15 18:17:20.994][INFO] The summation is: 51
+[06/23/15 18:17:20.994][INFO] The summation is: 52
+[06/23/15 18:17:20.994][INFO] The summation is: 53
+[06/23/15 18:17:20.994][INFO] The summation is: 54
+[06/23/15 18:17:20.994][INFO] The summation is: 55
+[06/23/15 18:17:20.994][INFO] The summation is: 56
+[06/23/15 18:17:20.994][INFO] The summation is: 57
+[06/23/15 18:17:20.994][INFO] The summation is: 58
+[06/23/15 18:17:20.994][INFO] The summation is: 59
+[06/23/15 18:17:20.994][INFO] The summation is: 60
+[06/23/15 18:17:20.994][INFO] The summation is: 61
+[06/23/15 18:17:20.995][INFO] The summation is: 62
+[06/23/15 18:17:20.995][INFO] The summation is: 63
+[06/23/15 18:17:20.995][INFO] The summation is: 64
+[06/23/15 18:17:20.995][INFO] The summation is: 65
+[06/23/15 18:17:20.995][INFO] The summation is: 66
+[06/23/15 18:17:20.995][INFO] The summation is: 67
+[06/23/15 18:17:20.995][INFO] The summation is: 68
+[06/23/15 18:17:20.995][INFO] The summation is: 69
+[06/23/15 18:17:20.995][INFO] The summation is: 70
+[06/23/15 18:17:20.995][INFO] The summation is: 71
+[06/23/15 18:17:20.995][INFO] The summation is: 72
+[06/23/15 18:17:20.995][INFO] The summation is: 73
+[06/23/15 18:17:20.995][INFO] The summation is: 74
+[06/23/15 18:17:20.995][INFO] The summation is: 75
+[06/23/15 18:17:20.996][INFO] The summation is: 76
+[06/23/15 18:17:20.996][INFO] The summation is: 77
+[06/23/15 18:17:20.996][INFO] The summation is: 78
+[06/23/15 18:17:20.996][INFO] The summation is: 79
+[06/23/15 18:17:20.996][INFO] The summation is: 80
+[06/23/15 18:17:20.996][INFO] The summation is: 81
+[06/23/15 18:17:20.996][INFO] The summation is: 82
+[06/23/15 18:17:20.996][INFO] The summation is: 83
+[06/23/15 18:17:20.996][INFO] The summation is: 84
+[06/23/15 18:17:20.996][INFO] The summation is: 85
+[06/23/15 18:17:20.996][INFO] The summation is: 86
+[06/23/15 18:17:20.996][INFO] The summation is: 87
+[06/23/15 18:17:20.996][INFO] The summation is: 88
+[06/23/15 18:17:20.996][INFO] The summation is: 89
+[06/23/15 18:17:20.997][INFO] The summation is: 90
+[06/23/15 18:17:20.997][INFO] The summation is: 91
+[06/23/15 18:17:20.997][INFO] The summation is: 92
+[06/23/15 18:17:20.997][INFO] The summation is: 93
+[06/23/15 18:17:20.997][INFO] The summation is: 94
+[06/23/15 18:17:20.997][INFO] The summation is: 95
+[06/23/15 18:17:20.997][INFO] The summation is: 96
+[06/23/15 18:17:20.997][INFO] The summation is: 97
+[06/23/15 18:17:20.997][INFO] The summation is: 98
+[06/23/15 18:17:20.997][INFO] The summation is: 99
+[06/23/15 18:17:20.997][INFO] The summation is: 100
+[06/23/15 18:17:20.997][INFO] The summation is: 101
+[06/23/15 18:17:20.997][INFO] The summation is: 102
+[06/23/15 18:17:20.997][INFO] The summation is: 103
+[06/23/15 18:17:20.997][INFO] The summation is: 104
+[06/23/15 18:17:20.997][INFO] The summation is: 105
+[06/23/15 18:17:20.997][INFO] The summation is: 106
+[06/23/15 18:17:20.997][INFO] The summation is: 107
+[06/23/15 18:17:20.997][INFO] The summation is: 108
+[06/23/15 18:17:20.997][INFO] The summation is: 109
+[06/23/15 18:17:20.998][INFO] The summation is: 110
+[06/23/15 18:17:20.998][INFO] The summation is: 111
+[06/23/15 18:17:20.998][INFO] The summation is: 112
+[06/23/15 18:17:20.998][INFO] The summation is: 113
+[06/23/15 18:17:20.998][INFO] The summation is: 114
+[06/23/15 18:17:20.998][INFO] The summation is: 115
+[06/23/15 18:17:20.998][INFO] The summation is: 116
+[06/23/15 18:17:20.998][INFO] The summation is: 117
+[06/23/15 18:17:20.998][INFO] The summation is: 118
+[06/23/15 18:17:20.998][INFO] The summation is: 119
+[06/23/15 18:17:20.998][INFO] The summation is: 120
+[06/23/15 18:17:20.998][INFO] The summation is: 121
+[06/23/15 18:17:20.998][INFO] The summation is: 122
+[06/23/15 18:17:20.998][INFO] The summation is: 123
+[06/23/15 18:17:20.998][INFO] The summation is: 124
+[06/23/15 18:17:20.998][INFO] The summation is: 125
+[06/23/15 18:17:20.998][INFO] The summation is: 126
+[06/23/15 18:17:20.998][INFO] The summation is: 127
+[06/23/15 18:17:20.998][INFO] The summation is: 128
+[06/23/15 18:17:20.999][INFO] The summation is: 129
+[06/23/15 18:17:20.999][INFO] The summation is: 130
+[06/23/15 18:17:20.999][INFO] The summation is: 131
+[06/23/15 18:17:20.999][INFO] The summation is: 132
+[06/23/15 18:17:20.999][INFO] The summation is: 133
+[06/23/15 18:17:20.999][INFO] The summation is: 134
+[06/23/15 18:17:20.999][INFO] The summation is: 135
+[06/23/15 18:17:20.999][INFO] The summation is: 136
+[06/23/15 18:17:20.999][INFO] The summation is: 137
+[06/23/15 18:17:20.999][INFO] The summation is: 138
+[06/23/15 18:17:20.999][INFO] The summation is: 139
+[06/23/15 18:17:20.999][INFO] The summation is: 140
+[06/23/15 18:17:20.999][INFO] The summation is: 141
+[06/23/15 18:17:20.999][INFO] The summation is: 142
+[06/23/15 18:17:20.999][INFO] The summation is: 143
+[06/23/15 18:17:20.999][INFO] The summation is: 144
+[06/23/15 18:17:21.0][INFO] The summation is: 145
+[06/23/15 18:17:21.0][INFO] The summation is: 146
+[06/23/15 18:17:21.0][INFO] The summation is: 147
+[06/23/15 18:17:21.0][INFO] The summation is: 148
+[06/23/15 18:17:21.0][INFO] The summation is: 149
+[06/23/15 18:17:21.0][INFO] The summation is: 150
+[06/23/15 18:17:21.0][INFO] The summation is: 151
+[06/23/15 18:17:21.0][INFO] The summation is: 152
+[06/23/15 18:17:21.0][INFO] The summation is: 153
+[06/23/15 18:17:21.0][INFO] The summation is: 154
+[06/23/15 18:17:21.0][INFO] The summation is: 155
+[06/23/15 18:17:21.0][INFO] The summation is: 156
+[06/23/15 18:17:21.0][INFO] The summation is: 157
+[06/23/15 18:17:21.0][INFO] The summation is: 158
+[06/23/15 18:17:21.0][INFO] The summation is: 159
+[06/23/15 18:17:21.0][INFO] The summation is: 160
+[06/23/15 18:17:21.1][INFO] The summation is: 161
+[06/23/15 18:17:21.1][INFO] The summation is: 162
+[06/23/15 18:17:21.1][INFO] The summation is: 163
+[06/23/15 18:17:21.1][INFO] The summation is: 164
+[06/23/15 18:17:21.1][INFO] The summation is: 165
+[06/23/15 18:17:21.1][INFO] The summation is: 166
+[06/23/15 18:17:21.1][INFO] The summation is: 167
+[06/23/15 18:17:21.1][INFO] The summation is: 168
+[06/23/15 18:17:21.1][INFO] The summation is: 169
+[06/23/15 18:17:21.1][INFO] The summation is: 170
+[06/23/15 18:17:21.1][INFO] The summation is: 171
+[06/23/15 18:17:21.1][INFO] The summation is: 172
+[06/23/15 18:17:21.1][INFO] The summation is: 173
+[06/23/15 18:17:21.1][INFO] The summation is: 174
+[06/23/15 18:17:21.1][INFO] The summation is: 175
+[06/23/15 18:17:21.1][INFO] The summation is: 176
+[06/23/15 18:17:21.1][INFO] The summation is: 177
+[06/23/15 18:17:21.1][INFO] The summation is: 178
+[06/23/15 18:17:21.1][INFO] The summation is: 179
+[06/23/15 18:17:21.2][INFO] The summation is: 180
+[06/23/15 18:17:21.2][INFO] The summation is: 181
+[06/23/15 18:17:21.2][INFO] The summation is: 182
+[06/23/15 18:17:21.2][INFO] The summation is: 183
+[06/23/15 18:17:21.2][INFO] The summation is: 184
+[06/23/15 18:17:21.2][INFO] The summation is: 185
+[06/23/15 18:17:21.2][INFO] The summation is: 186
+[06/23/15 18:17:21.2][INFO] The summation is: 187
+[06/23/15 18:17:21.2][INFO] The summation is: 188
+[06/23/15 18:17:21.2][INFO] The summation is: 189
+[06/23/15 18:17:21.2][INFO] The summation is: 190
+[06/23/15 18:17:21.2][INFO] The summation is: 191
+[06/23/15 18:17:21.2][INFO] The summation is: 192
+[06/23/15 18:17:21.2][INFO] The summation is: 193
+[06/23/15 18:17:21.2][INFO] The summation is: 194
+[06/23/15 18:17:21.2][INFO] The summation is: 195
+[06/23/15 18:17:21.2][INFO] The summation is: 196
+[06/23/15 18:17:21.2][INFO] The summation is: 197
+[06/23/15 18:17:21.2][INFO] The summation is: 198
+[06/23/15 18:17:21.3][INFO] The summation is: 199
+[06/23/15 18:17:21.3][INFO] The summation is: 200
+[06/23/15 18:17:21.3][INFO] The summation is: 201
+[06/23/15 18:17:21.3][INFO] The summation is: 202
+[06/23/15 18:17:21.3][INFO] The summation is: 203
+[06/23/15 18:17:21.3][INFO] The summation is: 204
+[06/23/15 18:17:21.3][INFO] The summation is: 205
+[06/23/15 18:17:21.3][INFO] The summation is: 206
+[06/23/15 18:17:21.3][INFO] The summation is: 207
+[06/23/15 18:17:21.3][INFO] The summation is: 208
+[06/23/15 18:17:21.3][INFO] The summation is: 209
+[06/23/15 18:17:21.3][INFO] The summation is: 210
+[06/23/15 18:17:21.3][INFO] The summation is: 211
+[06/23/15 18:17:21.3][INFO] The summation is: 212
+[06/23/15 18:17:21.3][INFO] The summation is: 213
+[06/23/15 18:17:21.3][INFO] The summation is: 214
+[06/23/15 18:17:21.3][INFO] The summation is: 215
+[06/23/15 18:17:21.3][INFO] The summation is: 216
+[06/23/15 18:17:21.3][INFO] The summation is: 217
+[06/23/15 18:17:21.3][INFO] The summation is: 218
+[06/23/15 18:17:21.3][INFO] The summation is: 219
+[06/23/15 18:17:21.3][INFO] The summation is: 220
+[06/23/15 18:17:21.3][INFO] The summation is: 221
+[06/23/15 18:17:21.3][INFO] The summation is: 222
+[06/23/15 18:17:21.3][INFO] The summation is: 223
+[06/23/15 18:17:21.3][INFO] The summation is: 224
+[06/23/15 18:17:21.3][INFO] The summation is: 225
+[06/23/15 18:17:21.3][INFO] The summation is: 226
+[06/23/15 18:17:21.3][INFO] The summation is: 227
+[06/23/15 18:17:21.4][INFO] The summation is: 228
+[06/23/15 18:17:21.4][INFO] The summation is: 229
+[06/23/15 18:17:21.4][INFO] The summation is: 230
+[06/23/15 18:17:21.4][INFO] The summation is: 231
+[06/23/15 18:17:21.4][INFO] The summation is: 232
+[06/23/15 18:17:21.4][INFO] The summation is: 233
+[06/23/15 18:17:21.4][INFO] The summation is: 234
+[06/23/15 18:17:21.4][INFO] The summation is: 235
+[06/23/15 18:17:21.4][INFO] The summation is: 236
+[06/23/15 18:17:21.4][INFO] The summation is: 237
+[06/23/15 18:17:21.4][INFO] The summation is: 238
+[06/23/15 18:17:21.4][INFO] The summation is: 239
+[06/23/15 18:17:21.4][INFO] The summation is: 240
+[06/23/15 18:17:21.4][INFO] The summation is: 241
+[06/23/15 18:17:21.5][INFO] The summation is: 242
+[06/23/15 18:17:21.5][INFO] The summation is: 243
+[06/23/15 18:17:21.5][INFO] The summation is: 244
+[06/23/15 18:17:21.5][INFO] The summation is: 245
+[06/23/15 18:17:21.5][INFO] The summation is: 246
+[06/23/15 18:17:21.5][INFO] The summation is: 247
+[06/23/15 18:17:21.5][INFO] The summation is: 248
+[06/23/15 18:17:21.5][INFO] The summation is: 249
+[06/23/15 18:17:21.5][INFO] The summation is: 250
+[06/23/15 18:17:21.5][INFO] The summation is: 251
+[06/23/15 18:17:21.5][INFO] The summation is: 252
+[06/23/15 18:17:21.5][INFO] The summation is: 253
+[06/23/15 18:17:21.5][INFO] The summation is: 254
+[06/23/15 18:17:21.5][INFO] The summation is: 255
+[06/23/15 18:17:21.5][INFO] The summation is: 256
+[06/23/15 18:17:21.5][INFO] The summation is: 257
+[06/23/15 18:17:21.5][INFO] The summation is: 258
+[06/23/15 18:17:21.5][INFO] The summation is: 259
+[06/23/15 18:17:21.5][INFO] The summation is: 260
+[06/23/15 18:17:21.5][INFO] The summation is: 261
+[06/23/15 18:17:21.5][INFO] The summation is: 262
+[06/23/15 18:17:21.5][INFO] The summation is: 263
+[06/23/15 18:17:21.5][INFO] The summation is: 264
+[06/23/15 18:17:21.5][INFO] The summation is: 265
+[06/23/15 18:17:21.5][INFO] The summation is: 266
+[06/23/15 18:17:21.5][INFO] The summation is: 267
+[06/23/15 18:17:21.6][INFO] The summation is: 268
+[06/23/15 18:17:21.6][INFO] The summation is: 269
+[06/23/15 18:17:21.6][INFO] The summation is: 270
+[06/23/15 18:17:21.6][INFO] The summation is: 271
+[06/23/15 18:17:21.6][INFO] The summation is: 272
+[06/23/15 18:17:21.6][INFO] The summation is: 273
+[06/23/15 18:17:21.6][INFO] The summation is: 274
+[06/23/15 18:17:21.6][INFO] The summation is: 275
+[06/23/15 18:17:21.6][INFO] The summation is: 276
+[06/23/15 18:17:21.6][INFO] The summation is: 277
+[06/23/15 18:17:21.6][INFO] The summation is: 278
+[06/23/15 18:17:21.6][INFO] The summation is: 279
+[06/23/15 18:17:21.6][INFO] The summation is: 280
+[06/23/15 18:17:21.6][INFO] The summation is: 281
+[06/23/15 18:17:21.6][INFO] The summation is: 282
+[06/23/15 18:17:21.6][INFO] The summation is: 283
+[06/23/15 18:17:21.6][INFO] The summation is: 284
+[06/23/15 18:17:21.7][INFO] The summation is: 285
+[06/23/15 18:17:21.7][INFO] The summation is: 286
+[06/23/15 18:17:21.7][INFO] The summation is: 287
+[06/23/15 18:17:21.7][INFO] The summation is: 288
+[06/23/15 18:17:21.7][INFO] The summation is: 289
+[06/23/15 18:17:21.7][INFO] The summation is: 290
+[06/23/15 18:17:21.7][INFO] The summation is: 291
+[06/23/15 18:17:21.7][INFO] The summation is: 292
+[06/23/15 18:17:21.7][INFO] The summation is: 293
+[06/23/15 18:17:21.7][INFO] The summation is: 294
+[06/23/15 18:17:21.7][INFO] The summation is: 295
+[06/23/15 18:17:21.7][INFO] The summation is: 296
+[06/23/15 18:17:21.7][INFO] The summation is: 297
+[06/23/15 18:17:21.7][INFO] The summation is: 298
+[06/23/15 18:17:21.7][INFO] The summation is: 299
+[06/23/15 18:17:21.7][INFO] The summation is: 300
+[06/23/15 18:17:21.8][INFO] The summation is: 301
+[06/23/15 18:17:21.8][INFO] The summation is: 302
+[06/23/15 18:17:21.8][INFO] The summation is: 303
+[06/23/15 18:17:21.8][INFO] The summation is: 304
+[06/23/15 18:17:21.8][INFO] The summation is: 305
+[06/23/15 18:17:21.8][INFO] The summation is: 306
+[06/23/15 18:17:21.8][INFO] The summation is: 307
+[06/23/15 18:17:21.8][INFO] The summation is: 308
+[06/23/15 18:17:21.8][INFO] The summation is: 309
+[06/23/15 18:17:21.8][INFO] The summation is: 310
+[06/23/15 18:17:21.8][INFO] The summation is: 311
+[06/23/15 18:17:21.8][INFO] The summation is: 312
+[06/23/15 18:17:21.8][INFO] The summation is: 313
+[06/23/15 18:17:21.8][INFO] The summation is: 314
+[06/23/15 18:17:21.8][INFO] The summation is: 315
+[06/23/15 18:17:21.8][INFO] The summation is: 316
+[06/23/15 18:17:21.8][INFO] The summation is: 317
+[06/23/15 18:17:21.9][INFO] The summation is: 318
+[06/23/15 18:17:21.9][INFO] The summation is: 319
+[06/23/15 18:17:21.9][INFO] The summation is: 320
+[06/23/15 18:17:21.9][INFO] The summation is: 321
+[06/23/15 18:17:21.9][INFO] The summation is: 322
+[06/23/15 18:17:21.9][INFO] The summation is: 323
+[06/23/15 18:17:21.9][INFO] The summation is: 324
+[06/23/15 18:17:21.9][INFO] The summation is: 325
+[06/23/15 18:17:21.9][INFO] The summation is: 326
+[06/23/15 18:17:21.9][INFO] The summation is: 327
+[06/23/15 18:17:21.9][INFO] The summation is: 328
+[06/23/15 18:17:21.9][INFO] The summation is: 329
+[06/23/15 18:17:21.9][INFO] The summation is: 330
+[06/23/15 18:17:21.9][INFO] The summation is: 331
+[06/23/15 18:17:21.9][INFO] The summation is: 332
+[06/23/15 18:17:21.10][INFO] The summation is: 333
+[06/23/15 18:17:21.10][INFO] The summation is: 334
+[06/23/15 18:17:21.10][INFO] The summation is: 335
+[06/23/15 18:17:21.10][INFO] The summation is: 336
+[06/23/15 18:17:21.10][INFO] The summation is: 337
+[06/23/15 18:17:21.10][INFO] The summation is: 338
+[06/23/15 18:17:21.10][INFO] The summation is: 339
+[06/23/15 18:17:21.10][INFO] The summation is: 340
+[06/23/15 18:17:21.10][INFO] The summation is: 341
+[06/23/15 18:17:21.10][INFO] The summation is: 342
+[06/23/15 18:17:21.10][INFO] The summation is: 343
+[06/23/15 18:17:21.10][INFO] The summation is: 344
+[06/23/15 18:17:21.10][INFO] The summation is: 345
+[06/23/15 18:17:21.10][INFO] The summation is: 346
+[06/23/15 18:17:21.10][INFO] The summation is: 347
+[06/23/15 18:17:21.10][INFO] The summation is: 348
+[06/23/15 18:17:21.10][INFO] The summation is: 349
+[06/23/15 18:17:21.11][INFO] The summation is: 350
+[06/23/15 18:17:21.11][INFO] The summation is: 351
+[06/23/15 18:17:21.11][INFO] The summation is: 352
+[06/23/15 18:17:21.11][INFO] The summation is: 353
+[06/23/15 18:17:21.11][INFO] The summation is: 354
+[06/23/15 18:17:21.11][INFO] The summation is: 355
+[06/23/15 18:17:21.11][INFO] The summation is: 356
+[06/23/15 18:17:21.11][INFO] The summation is: 357
+[06/23/15 18:17:21.11][INFO] The summation is: 358
+[06/23/15 18:17:21.11][INFO] The summation is: 359
+[06/23/15 18:17:21.11][INFO] The summation is: 360
+[06/23/15 18:17:21.11][INFO] The summation is: 361
+[06/23/15 18:17:21.11][INFO] The summation is: 362
+[06/23/15 18:17:21.11][INFO] The summation is: 363
+[06/23/15 18:17:21.11][INFO] The summation is: 364
+[06/23/15 18:17:21.11][INFO] The summation is: 365
+[06/23/15 18:17:21.11][INFO] The summation is: 366
+[06/23/15 18:17:21.11][INFO] The summation is: 367
+[06/23/15 18:17:21.11][INFO] The summation is: 368
+[06/23/15 18:17:21.11][INFO] The summation is: 369
+[06/23/15 18:17:21.11][INFO] The summation is: 370
+[06/23/15 18:17:21.11][INFO] The summation is: 371
+[06/23/15 18:17:21.12][INFO] The summation is: 372
+[06/23/15 18:17:21.12][INFO] The summation is: 373
+[06/23/15 18:17:21.12][INFO] The summation is: 374
+[06/23/15 18:17:21.12][INFO] The summation is: 375
+[06/23/15 18:17:21.12][INFO] The summation is: 376
+[06/23/15 18:17:21.12][INFO] The summation is: 377
+[06/23/15 18:17:21.12][INFO] The summation is: 378
+[06/23/15 18:17:21.12][INFO] The summation is: 379
+[06/23/15 18:17:21.12][INFO] The summation is: 380
+[06/23/15 18:17:21.12][INFO] The summation is: 381
+[06/23/15 18:17:21.12][INFO] The summation is: 382
+[06/23/15 18:17:21.12][INFO] The summation is: 383
+[06/23/15 18:17:21.13][INFO] The summation is: 384
+[06/23/15 18:17:21.13][INFO] The summation is: 385
+[06/23/15 18:17:21.13][INFO] The summation is: 386
+[06/23/15 18:17:21.13][INFO] The summation is: 387
+[06/23/15 18:17:21.13][INFO] The summation is: 388
+[06/23/15 18:17:21.13][INFO] The summation is: 389
+[06/23/15 18:17:21.13][INFO] The summation is: 390
+[06/23/15 18:17:21.13][INFO] The summation is: 391
+[06/23/15 18:17:21.13][INFO] The summation is: 392
+[06/23/15 18:17:21.13][INFO] The summation is: 393
+[06/23/15 18:17:21.13][INFO] The summation is: 394
+[06/23/15 18:17:21.13][INFO] The summation is: 395
+[06/23/15 18:17:21.13][INFO] The summation is: 396
+[06/23/15 18:17:21.13][INFO] The summation is: 397
+[06/23/15 18:17:21.14][INFO] The summation is: 398
+[06/23/15 18:17:21.14][INFO] The summation is: 399
+[06/23/15 18:17:21.14][INFO] The summation is: 400
+[06/23/15 18:17:21.14][INFO] The summation is: 401
+[06/23/15 18:17:21.14][INFO] The summation is: 402
+[06/23/15 18:17:21.14][INFO] The summation is: 403
+[06/23/15 18:17:21.14][INFO] The summation is: 404
+[06/23/15 18:17:21.14][INFO] The summation is: 405
+[06/23/15 18:17:21.14][INFO] The summation is: 406
+[06/23/15 18:17:21.14][INFO] The summation is: 407
+[06/23/15 18:17:21.14][INFO] The summation is: 408
+[06/23/15 18:17:21.14][INFO] The summation is: 409
+[06/23/15 18:17:21.14][INFO] The summation is: 410
+[06/23/15 18:17:21.14][INFO] The summation is: 411
+[06/23/15 18:17:21.15][INFO] The summation is: 412
+[06/23/15 18:17:21.15][INFO] The summation is: 413
+[06/23/15 18:17:21.15][INFO] The summation is: 414
+[06/23/15 18:17:21.15][INFO] The summation is: 415
+[06/23/15 18:17:21.15][INFO] The summation is: 416
+[06/23/15 18:17:21.15][INFO] The summation is: 417
+[06/23/15 18:17:21.15][INFO] The summation is: 418
+[06/23/15 18:17:21.15][INFO] The summation is: 419
+[06/23/15 18:17:21.15][INFO] The summation is: 420
+[06/23/15 18:17:21.15][INFO] The summation is: 421
+[06/23/15 18:17:21.15][INFO] The summation is: 422
+[06/23/15 18:17:21.15][INFO] The summation is: 423
+[06/23/15 18:17:21.15][INFO] The summation is: 424
+[06/23/15 18:17:21.15][INFO] The summation is: 425
+[06/23/15 18:17:21.15][INFO] The summation is: 426
+[06/23/15 18:17:21.15][INFO] The summation is: 427
+[06/23/15 18:17:21.16][INFO] The summation is: 428
+[06/23/15 18:17:21.16][INFO] The summation is: 429
+[06/23/15 18:17:21.16][INFO] The summation is: 430
+[06/23/15 18:17:21.16][INFO] The summation is: 431
+[06/23/15 18:17:21.16][INFO] The summation is: 432
+[06/23/15 18:17:21.16][INFO] The summation is: 433
+[06/23/15 18:17:21.16][INFO] The summation is: 434
+[06/23/15 18:17:21.16][INFO] The summation is: 435
+[06/23/15 18:17:21.16][INFO] The summation is: 436
+[06/23/15 18:17:21.16][INFO] The summation is: 437
+[06/23/15 18:17:21.16][INFO] The summation is: 438
+[06/23/15 18:17:21.16][INFO] The summation is: 439
+[06/23/15 18:17:21.16][INFO] The summation is: 440
+[06/23/15 18:17:21.16][INFO] The summation is: 441
+[06/23/15 18:17:21.16][INFO] The summation is: 442
+[06/23/15 18:17:21.16][INFO] The summation is: 443
+[06/23/15 18:17:21.17][INFO] The summation is: 444
+[06/23/15 18:17:21.17][INFO] The summation is: 445
+[06/23/15 18:17:21.17][INFO] The summation is: 446
+[06/23/15 18:17:21.17][INFO] The summation is: 447
+[06/23/15 18:17:21.17][INFO] The summation is: 448
+[06/23/15 18:17:21.17][INFO] The summation is: 449
+[06/23/15 18:17:21.17][INFO] The summation is: 450
+[06/23/15 18:17:21.17][INFO] The summation is: 451
+[06/23/15 18:17:21.17][INFO] The summation is: 452
+[06/23/15 18:17:21.17][INFO] The summation is: 453
+[06/23/15 18:17:21.17][INFO] The summation is: 454
+[06/23/15 18:17:21.17][INFO] The summation is: 455
+[06/23/15 18:17:21.17][INFO] The summation is: 456
+[06/23/15 18:17:21.17][INFO] The summation is: 457
+[06/23/15 18:17:21.17][INFO] The summation is: 458
+[06/23/15 18:17:21.17][INFO] The summation is: 459
+[06/23/15 18:17:21.17][INFO] The summation is: 460
+[06/23/15 18:17:21.17][INFO] The summation is: 461
+[06/23/15 18:17:21.17][INFO] The summation is: 462
+[06/23/15 18:17:21.17][INFO] The summation is: 463
+[06/23/15 18:17:21.17][INFO] The summation is: 464
+[06/23/15 18:17:21.17][INFO] The summation is: 465
+[06/23/15 18:17:21.17][INFO] The summation is: 466
+[06/23/15 18:17:21.17][INFO] The summation is: 467
+[06/23/15 18:17:21.17][INFO] The summation is: 468
+[06/23/15 18:17:21.17][INFO] The summation is: 469
+[06/23/15 18:17:21.17][INFO] The summation is: 470
+[06/23/15 18:17:21.18][INFO] The summation is: 471
+[06/23/15 18:17:21.18][INFO] The summation is: 472
+[06/23/15 18:17:21.18][INFO] The summation is: 473
+[06/23/15 18:17:21.18][INFO] The summation is: 474
+[06/23/15 18:17:21.18][INFO] The summation is: 475
+[06/23/15 18:17:21.18][INFO] The summation is: 476
+[06/23/15 18:17:21.18][INFO] The summation is: 477
+[06/23/15 18:17:21.18][INFO] The summation is: 478
+[06/23/15 18:17:21.18][INFO] The summation is: 479
+[06/23/15 18:17:21.18][INFO] The summation is: 480
+[06/23/15 18:17:21.18][INFO] The summation is: 481
+[06/23/15 18:17:21.18][INFO] The summation is: 482
+[06/23/15 18:17:21.18][INFO] The summation is: 483
+[06/23/15 18:17:21.18][INFO] The summation is: 484
+[06/23/15 18:17:21.18][INFO] The summation is: 485
+[06/23/15 18:17:21.18][INFO] The summation is: 486
+[06/23/15 18:17:21.18][INFO] The summation is: 487
+[06/23/15 18:17:21.18][INFO] The summation is: 488
+[06/23/15 18:17:21.18][INFO] The summation is: 489
+[06/23/15 18:17:21.18][INFO] The summation is: 490
+[06/23/15 18:17:21.18][INFO] The summation is: 491
+[06/23/15 18:17:21.18][INFO] The summation is: 492
+[06/23/15 18:17:21.18][INFO] The summation is: 493
+[06/23/15 18:17:21.18][INFO] The summation is: 494
+[06/23/15 18:17:21.18][INFO] The summation is: 495
+[06/23/15 18:17:21.18][INFO] The summation is: 496
+[06/23/15 18:17:21.18][INFO] The summation is: 497
+[06/23/15 18:17:21.18][INFO] The summation is: 498
+[06/23/15 18:17:21.19][INFO] The summation is: 499
+[06/23/15 18:17:21.19][INFO] The summation is: 500
+[06/23/15 18:17:21.19][INFO] The summation is: 501
+[06/23/15 18:17:21.19][INFO] The summation is: 502
+[06/23/15 18:17:21.19][INFO] The summation is: 503
+[06/23/15 18:17:21.19][INFO] The summation is: 504
+[06/23/15 18:17:21.19][INFO] The summation is: 505
+[06/23/15 18:17:21.19][INFO] The summation is: 506
+[06/23/15 18:17:21.19][INFO] The summation is: 507
+[06/23/15 18:17:21.19][INFO] The summation is: 508
+[06/23/15 18:17:21.19][INFO] The summation is: 509
+[06/23/15 18:17:21.19][INFO] The summation is: 510
+[06/23/15 18:17:21.19][INFO] The summation is: 511
+[06/23/15 18:17:21.19][INFO] The summation is: 512
+[06/23/15 18:17:21.19][INFO] The summation is: 513
+[06/23/15 18:17:21.19][INFO] The summation is: 514
+[06/23/15 18:17:21.19][INFO] The summation is: 515
+[06/23/15 18:17:21.19][INFO] The summation is: 516
+[06/23/15 18:17:21.19][INFO] The summation is: 517
+[06/23/15 18:17:21.19][INFO] The summation is: 518
+[06/23/15 18:17:21.19][INFO] The summation is: 519
+[06/23/15 18:17:21.19][INFO] The summation is: 520
+[06/23/15 18:17:21.19][INFO] The summation is: 521
+[06/23/15 18:17:21.19][INFO] The summation is: 522
+[06/23/15 18:17:21.19][INFO] The summation is: 523
+[06/23/15 18:17:21.19][INFO] The summation is: 524
+[06/23/15 18:17:21.19][INFO] The summation is: 525
+[06/23/15 18:17:21.19][INFO] The summation is: 526
+[06/23/15 18:17:21.19][INFO] The summation is: 527
+[06/23/15 18:17:21.20][INFO] The summation is: 528
+[06/23/15 18:17:21.20][INFO] The summation is: 529
+[06/23/15 18:17:21.20][INFO] The summation is: 530
+[06/23/15 18:17:21.20][INFO] The summation is: 531
+[06/23/15 18:17:21.20][INFO] The summation is: 532
+[06/23/15 18:17:21.20][INFO] The summation is: 533
+[06/23/15 18:17:21.20][INFO] The summation is: 534
+[06/23/15 18:17:21.20][INFO] The summation is: 535
+[06/23/15 18:17:21.20][INFO] The summation is: 536
+[06/23/15 18:17:21.20][INFO] The summation is: 537
+[06/23/15 18:17:21.20][INFO] The summation is: 538
+[06/23/15 18:17:21.21][INFO] The summation is: 539
+[06/23/15 18:17:21.21][INFO] The summation is: 540
+[06/23/15 18:17:21.21][INFO] The summation is: 541
+[06/23/15 18:17:21.21][INFO] The summation is: 542
+[06/23/15 18:17:21.21][INFO] The summation is: 543
+[06/23/15 18:17:21.21][INFO] The summation is: 544
+[06/23/15 18:17:21.21][INFO] The summation is: 545
+[06/23/15 18:17:21.21][INFO] The summation is: 546
+[06/23/15 18:17:21.21][INFO] The summation is: 547
+[06/23/15 18:17:21.21][INFO] The summation is: 548
+[06/23/15 18:17:21.21][INFO] The summation is: 549
+[06/23/15 18:17:21.21][INFO] The summation is: 550
+[06/23/15 18:17:21.21][INFO] The summation is: 551
+[06/23/15 18:17:21.21][INFO] The summation is: 552
+[06/23/15 18:17:21.21][INFO] The summation is: 553
+[06/23/15 18:17:21.21][INFO] The summation is: 554
+[06/23/15 18:17:21.22][INFO] The summation is: 555
+[06/23/15 18:17:21.22][INFO] The summation is: 556
+[06/23/15 18:17:21.22][INFO] The summation is: 557
+[06/23/15 18:17:21.22][INFO] The summation is: 558
+[06/23/15 18:17:21.22][INFO] The summation is: 559
+[06/23/15 18:17:21.22][INFO] The summation is: 560
+[06/23/15 18:17:21.22][INFO] The summation is: 561
+[06/23/15 18:17:21.22][INFO] The summation is: 562
+[06/23/15 18:17:21.22][INFO] The summation is: 563
+[06/23/15 18:17:21.22][INFO] The summation is: 564
+[06/23/15 18:17:21.22][INFO] The summation is: 565
+[06/23/15 18:17:21.22][INFO] The summation is: 566
+[06/23/15 18:17:21.22][INFO] The summation is: 567
+[06/23/15 18:17:21.22][INFO] The summation is: 568
+[06/23/15 18:17:21.22][INFO] The summation is: 569
+[06/23/15 18:17:21.23][INFO] The summation is: 570
+[06/23/15 18:17:21.23][INFO] The summation is: 571
+[06/23/15 18:17:21.23][INFO] The summation is: 572
+[06/23/15 18:17:21.23][INFO] The summation is: 573
+[06/23/15 18:17:21.23][INFO] The summation is: 574
+[06/23/15 18:17:21.23][INFO] The summation is: 575
+[06/23/15 18:17:21.23][INFO] The summation is: 576
+[06/23/15 18:17:21.23][INFO] The summation is: 577
+[06/23/15 18:17:21.23][INFO] The summation is: 578
+[06/23/15 18:17:21.23][INFO] The summation is: 579
+[06/23/15 18:17:21.23][INFO] The summation is: 580
+[06/23/15 18:17:21.23][INFO] The summation is: 581
+[06/23/15 18:17:21.23][INFO] The summation is: 582
+[06/23/15 18:17:21.23][INFO] The summation is: 583
+[06/23/15 18:17:21.23][INFO] The summation is: 584
+[06/23/15 18:17:21.23][INFO] The summation is: 585
+[06/23/15 18:17:21.24][INFO] The summation is: 586
+[06/23/15 18:17:21.24][INFO] The summation is: 587
+[06/23/15 18:17:21.24][INFO] The summation is: 588
+[06/23/15 18:17:21.24][INFO] The summation is: 589
+[06/23/15 18:17:21.24][INFO] The summation is: 590
+[06/23/15 18:17:21.24][INFO] The summation is: 591
+[06/23/15 18:17:21.24][INFO] The summation is: 592
+[06/23/15 18:17:21.24][INFO] The summation is: 593
+[06/23/15 18:17:21.24][INFO] The summation is: 594
+[06/23/15 18:17:21.24][INFO] The summation is: 595
+[06/23/15 18:17:21.24][INFO] The summation is: 596
+[06/23/15 18:17:21.24][INFO] The summation is: 597
+[06/23/15 18:17:21.24][INFO] The summation is: 598
+[06/23/15 18:17:21.24][INFO] The summation is: 599
+[06/23/15 18:17:21.24][INFO] The summation is: 600
+[06/23/15 18:17:21.25][INFO] The summation is: 601
+[06/23/15 18:17:21.25][INFO] The summation is: 602
+[06/23/15 18:17:21.25][INFO] The summation is: 603
+[06/23/15 18:17:21.25][INFO] The summation is: 604
+[06/23/15 18:17:21.25][INFO] The summation is: 605
+[06/23/15 18:17:21.25][INFO] The summation is: 606
+[06/23/15 18:17:21.25][INFO] The summation is: 607
+[06/23/15 18:17:21.25][INFO] The summation is: 608
+[06/23/15 18:17:21.25][INFO] The summation is: 609
+[06/23/15 18:17:21.25][INFO] The summation is: 610
+[06/23/15 18:17:21.25][INFO] The summation is: 611
+[06/23/15 18:17:21.25][INFO] The summation is: 612
+[06/23/15 18:17:21.25][INFO] The summation is: 613
+[06/23/15 18:17:21.25][INFO] The summation is: 614
+[06/23/15 18:17:21.26][INFO] The summation is: 615
+[06/23/15 18:17:21.26][INFO] The summation is: 616
+[06/23/15 18:17:21.26][INFO] The summation is: 617
+[06/23/15 18:17:21.26][INFO] The summation is: 618
+[06/23/15 18:17:21.26][INFO] The summation is: 619
+[06/23/15 18:17:21.26][INFO] The summation is: 620
+[06/23/15 18:17:21.26][INFO] The summation is: 621
+[06/23/15 18:17:21.27][INFO] The summation is: 622
+[06/23/15 18:17:21.27][INFO] The summation is: 623
+[06/23/15 18:17:21.27][INFO] The summation is: 624
+[06/23/15 18:17:21.27][INFO] The summation is: 625
+[06/23/15 18:17:21.27][INFO] The summation is: 626
+[06/23/15 18:17:21.27][INFO] The summation is: 627
+[06/23/15 18:17:21.27][INFO] The summation is: 628
+[06/23/15 18:17:21.27][INFO] The summation is: 629
+[06/23/15 18:17:21.27][INFO] The summation is: 630
+[06/23/15 18:17:21.27][INFO] The summation is: 631
+[06/23/15 18:17:21.27][INFO] The summation is: 632
+[06/23/15 18:17:21.27][INFO] The summation is: 633
+[06/23/15 18:17:21.28][INFO] The summation is: 634
+[06/23/15 18:17:21.28][INFO] The summation is: 635
+[06/23/15 18:17:21.28][INFO] The summation is: 636
+[06/23/15 18:17:21.28][INFO] The summation is: 637
+[06/23/15 18:17:21.28][INFO] The summation is: 638
+[06/23/15 18:17:21.28][INFO] The summation is: 639
+[06/23/15 18:17:21.28][INFO] The summation is: 640
+[06/23/15 18:17:21.28][INFO] The summation is: 641
+[06/23/15 18:17:21.28][INFO] The summation is: 642
+[06/23/15 18:17:21.29][INFO] The summation is: 643
+[06/23/15 18:17:21.29][INFO] The summation is: 644
+[06/23/15 18:17:21.29][INFO] The summation is: 645
+[06/23/15 18:17:21.29][INFO] The summation is: 646
+[06/23/15 18:17:21.29][INFO] The summation is: 647
+[06/23/15 18:17:21.29][INFO] The summation is: 648
+[06/23/15 18:17:21.29][INFO] The summation is: 649
+[06/23/15 18:17:21.29][INFO] The summation is: 650
+[06/23/15 18:17:21.29][INFO] The summation is: 651
+[06/23/15 18:17:21.29][INFO] The summation is: 652
+[06/23/15 18:17:21.29][INFO] The summation is: 653
+[06/23/15 18:17:21.29][INFO] The summation is: 654
+[06/23/15 18:17:21.29][INFO] The summation is: 655
+[06/23/15 18:17:21.30][INFO] The summation is: 656
+[06/23/15 18:17:21.30][INFO] The summation is: 657
+[06/23/15 18:17:21.30][INFO] The summation is: 658
+[06/23/15 18:17:21.30][INFO] The summation is: 659
+[06/23/15 18:17:21.30][INFO] The summation is: 660
+[06/23/15 18:17:21.30][INFO] The summation is: 661
+[06/23/15 18:17:21.30][INFO] The summation is: 662
+[06/23/15 18:17:21.30][INFO] The summation is: 663
+[06/23/15 18:17:21.30][INFO] The summation is: 664
+[06/23/15 18:17:21.30][INFO] The summation is: 665
+[06/23/15 18:17:21.30][INFO] The summation is: 666
+[06/23/15 18:17:21.30][INFO] The summation is: 667
+[06/23/15 18:17:21.30][INFO] The summation is: 668
+[06/23/15 18:17:21.30][INFO] The summation is: 669
+[06/23/15 18:17:21.31][INFO] The summation is: 670
+[06/23/15 18:17:21.31][INFO] The summation is: 671
+[06/23/15 18:17:21.31][INFO] The summation is: 672
+[06/23/15 18:17:21.31][INFO] The summation is: 673
+[06/23/15 18:17:21.31][INFO] The summation is: 674
+[06/23/15 18:17:21.31][INFO] The summation is: 675
+[06/23/15 18:17:21.31][INFO] The summation is: 676
+[06/23/15 18:17:21.31][INFO] The summation is: 677
+[06/23/15 18:17:21.31][INFO] The summation is: 678
+[06/23/15 18:17:21.31][INFO] The summation is: 679
+[06/23/15 18:17:21.31][INFO] The summation is: 680
+[06/23/15 18:17:21.31][INFO] The summation is: 681
+[06/23/15 18:17:21.31][INFO] The summation is: 682
+[06/23/15 18:17:21.31][INFO] The summation is: 683
+[06/23/15 18:17:21.31][INFO] The summation is: 684
+[06/23/15 18:17:21.31][INFO] The summation is: 685
+[06/23/15 18:17:21.32][INFO] The summation is: 686
+[06/23/15 18:17:21.32][INFO] The summation is: 687
+[06/23/15 18:17:21.32][INFO] The summation is: 688
+[06/23/15 18:17:21.32][INFO] The summation is: 689
+[06/23/15 18:17:21.32][INFO] The summation is: 690
+[06/23/15 18:17:21.32][INFO] The summation is: 691
+[06/23/15 18:17:21.32][INFO] The summation is: 692
+[06/23/15 18:17:21.32][INFO] The summation is: 693
+[06/23/15 18:17:21.32][INFO] The summation is: 694
+[06/23/15 18:17:21.32][INFO] The summation is: 695
+[06/23/15 18:17:21.32][INFO] The summation is: 696
+[06/23/15 18:17:21.32][INFO] The summation is: 697
+[06/23/15 18:17:21.32][INFO] The summation is: 698
+[06/23/15 18:17:21.32][INFO] The summation is: 699
+[06/23/15 18:17:21.32][INFO] The summation is: 700
+[06/23/15 18:17:21.32][INFO] The summation is: 701
+[06/23/15 18:17:21.32][INFO] The summation is: 702
+[06/23/15 18:17:21.32][INFO] The summation is: 703
+[06/23/15 18:17:21.33][INFO] The summation is: 704
+[06/23/15 18:17:21.33][INFO] The summation is: 705
+[06/23/15 18:17:21.33][INFO] The summation is: 706
+[06/23/15 18:17:21.33][INFO] The summation is: 707
+[06/23/15 18:17:21.33][INFO] The summation is: 708
+[06/23/15 18:17:21.33][INFO] The summation is: 709
+[06/23/15 18:17:21.33][INFO] The summation is: 710
+[06/23/15 18:17:21.33][INFO] The summation is: 711
+[06/23/15 18:17:21.33][INFO] The summation is: 712
+[06/23/15 18:17:21.33][INFO] The summation is: 713
+[06/23/15 18:17:21.33][INFO] The summation is: 714
+[06/23/15 18:17:21.33][INFO] The summation is: 715
+[06/23/15 18:17:21.33][INFO] The summation is: 716
+[06/23/15 18:17:21.33][INFO] The summation is: 717
+[06/23/15 18:17:21.33][INFO] The summation is: 718
+[06/23/15 18:17:21.33][INFO] The summation is: 719
+[06/23/15 18:17:21.33][INFO] The summation is: 720
+[06/23/15 18:17:21.33][INFO] The summation is: 721
+[06/23/15 18:17:21.34][INFO] The summation is: 722
+[06/23/15 18:17:21.34][INFO] The summation is: 723
+[06/23/15 18:17:21.34][INFO] The summation is: 724
+[06/23/15 18:17:21.34][INFO] The summation is: 725
+[06/23/15 18:17:21.34][INFO] The summation is: 726
+[06/23/15 18:17:21.34][INFO] The summation is: 727
+[06/23/15 18:17:21.34][INFO] The summation is: 728
+[06/23/15 18:17:21.34][INFO] The summation is: 729
+[06/23/15 18:17:21.34][INFO] The summation is: 730
+[06/23/15 18:17:21.34][INFO] The summation is: 731
+[06/23/15 18:17:21.34][INFO] The summation is: 732
+[06/23/15 18:17:21.34][INFO] The summation is: 733
+[06/23/15 18:17:21.34][INFO] The summation is: 734
+[06/23/15 18:17:21.34][INFO] The summation is: 735
+[06/23/15 18:17:21.34][INFO] The summation is: 736
+[06/23/15 18:17:21.34][INFO] The summation is: 737
+[06/23/15 18:17:21.34][INFO] The summation is: 738
+[06/23/15 18:17:21.34][INFO] The summation is: 739
+[06/23/15 18:17:21.35][INFO] The summation is: 740
+[06/23/15 18:17:21.35][INFO] The summation is: 741
+[06/23/15 18:17:21.35][INFO] The summation is: 742
+[06/23/15 18:17:21.35][INFO] The summation is: 743
+[06/23/15 18:17:21.35][INFO] The summation is: 744
+[06/23/15 18:17:21.35][INFO] The summation is: 745
+[06/23/15 18:17:21.35][INFO] The summation is: 746
+[06/23/15 18:17:21.35][INFO] The summation is: 747
+[06/23/15 18:17:21.35][INFO] The summation is: 748
+[06/23/15 18:17:21.35][INFO] The summation is: 749
+[06/23/15 18:17:21.35][INFO] The summation is: 750
+[06/23/15 18:17:21.35][INFO] The summation is: 751
+[06/23/15 18:17:21.36][INFO] The summation is: 752
+[06/23/15 18:17:21.36][INFO] The summation is: 753
+[06/23/15 18:17:21.36][INFO] The summation is: 754
+[06/23/15 18:17:21.36][INFO] The summation is: 755
+[06/23/15 18:17:21.36][INFO] The summation is: 756
+[06/23/15 18:17:21.36][INFO] The summation is: 757
+[06/23/15 18:17:21.36][INFO] The summation is: 758
+[06/23/15 18:17:21.36][INFO] The summation is: 759
+[06/23/15 18:17:21.36][INFO] The summation is: 760
+[06/23/15 18:17:21.36][INFO] The summation is: 761
+[06/23/15 18:17:21.36][INFO] The summation is: 762
+[06/23/15 18:17:21.36][INFO] The summation is: 763
+[06/23/15 18:17:21.36][INFO] The summation is: 764
+[06/23/15 18:17:21.36][INFO] The summation is: 765
+[06/23/15 18:17:21.36][INFO] The summation is: 766
+[06/23/15 18:17:21.36][INFO] The summation is: 767
+[06/23/15 18:17:21.36][INFO] The summation is: 768
+[06/23/15 18:17:21.37][INFO] The summation is: 769
+[06/23/15 18:17:21.37][INFO] The summation is: 770
+[06/23/15 18:17:21.37][INFO] The summation is: 771
+[06/23/15 18:17:21.37][INFO] The summation is: 772
+[06/23/15 18:17:21.37][INFO] The summation is: 773
+[06/23/15 18:17:21.37][INFO] The summation is: 774
+[06/23/15 18:17:21.37][INFO] The summation is: 775
+[06/23/15 18:17:21.37][INFO] The summation is: 776
+[06/23/15 18:17:21.37][INFO] The summation is: 777
+[06/23/15 18:17:21.37][INFO] The summation is: 778
+[06/23/15 18:17:21.37][INFO] The summation is: 779
+[06/23/15 18:17:21.37][INFO] The summation is: 780
+[06/23/15 18:17:21.37][INFO] The summation is: 781
+[06/23/15 18:17:21.37][INFO] The summation is: 782
+[06/23/15 18:17:21.37][INFO] The summation is: 783
+[06/23/15 18:17:21.37][INFO] The summation is: 784
+[06/23/15 18:17:21.37][INFO] The summation is: 785
+[06/23/15 18:17:21.37][INFO] The summation is: 786
+[06/23/15 18:17:21.37][INFO] The summation is: 787
+[06/23/15 18:17:21.37][INFO] The summation is: 788
+[06/23/15 18:17:21.38][INFO] The summation is: 789
+[06/23/15 18:17:21.38][INFO] The summation is: 790
+[06/23/15 18:17:21.38][INFO] The summation is: 791
+[06/23/15 18:17:21.38][INFO] The summation is: 792
+[06/23/15 18:17:21.38][INFO] The summation is: 793
+[06/23/15 18:17:21.38][INFO] The summation is: 794
+[06/23/15 18:17:21.38][INFO] The summation is: 795
+[06/23/15 18:17:21.38][INFO] The summation is: 796
+[06/23/15 18:17:21.38][INFO] The summation is: 797
+[06/23/15 18:17:21.38][INFO] The summation is: 798
+[06/23/15 18:17:21.38][INFO] The summation is: 799
+[06/23/15 18:17:21.38][INFO] The summation is: 800
+[06/23/15 18:17:21.38][INFO] The summation is: 801
+[06/23/15 18:17:21.38][INFO] The summation is: 802
+[06/23/15 18:17:21.38][INFO] The summation is: 803
+[06/23/15 18:17:21.38][INFO] The summation is: 804
+[06/23/15 18:17:21.38][INFO] The summation is: 805
+[06/23/15 18:17:21.39][INFO] The summation is: 806
+[06/23/15 18:17:21.39][INFO] The summation is: 807
+[06/23/15 18:17:21.39][INFO] The summation is: 808
+[06/23/15 18:17:21.39][INFO] The summation is: 809
+[06/23/15 18:17:21.39][INFO] The summation is: 810
+[06/23/15 18:17:21.39][INFO] The summation is: 811
+[06/23/15 18:17:21.39][INFO] The summation is: 812
+[06/23/15 18:17:21.39][INFO] The summation is: 813
+[06/23/15 18:17:21.39][INFO] The summation is: 814
+[06/23/15 18:17:21.39][INFO] The summation is: 815
+[06/23/15 18:17:21.39][INFO] The summation is: 816
+[06/23/15 18:17:21.39][INFO] The summation is: 817
+[06/23/15 18:17:21.39][INFO] The summation is: 818
+[06/23/15 18:17:21.39][INFO] The summation is: 819
+[06/23/15 18:17:21.39][INFO] The summation is: 820
+[06/23/15 18:17:21.39][INFO] The summation is: 821
+[06/23/15 18:17:21.39][INFO] The summation is: 822
+[06/23/15 18:17:21.39][INFO] The summation is: 823
+[06/23/15 18:17:21.40][INFO] The summation is: 824
+[06/23/15 18:17:21.40][INFO] The summation is: 825
+[06/23/15 18:17:21.40][INFO] The summation is: 826
+[06/23/15 18:17:21.40][INFO] The summation is: 827
+[06/23/15 18:17:21.40][INFO] The summation is: 828
+[06/23/15 18:17:21.40][INFO] The summation is: 829
+[06/23/15 18:17:21.40][INFO] The summation is: 830
+[06/23/15 18:17:21.40][INFO] The summation is: 831
+[06/23/15 18:17:21.40][INFO] The summation is: 832
+[06/23/15 18:17:21.40][INFO] The summation is: 833
+[06/23/15 18:17:21.40][INFO] The summation is: 834
+[06/23/15 18:17:21.40][INFO] The summation is: 835
+[06/23/15 18:17:21.40][INFO] The summation is: 836
+[06/23/15 18:17:21.40][INFO] The summation is: 837
+[06/23/15 18:17:21.40][INFO] The summation is: 838
+[06/23/15 18:17:21.40][INFO] The summation is: 839
+[06/23/15 18:17:21.41][INFO] The summation is: 840
+[06/23/15 18:17:21.41][INFO] The summation is: 841
+[06/23/15 18:17:21.41][INFO] The summation is: 842
+[06/23/15 18:17:21.41][INFO] The summation is: 843
+[06/23/15 18:17:21.41][INFO] The summation is: 844
+[06/23/15 18:17:21.41][INFO] The summation is: 845
+[06/23/15 18:17:21.41][INFO] The summation is: 846
+[06/23/15 18:17:21.41][INFO] The summation is: 847
+[06/23/15 18:17:21.41][INFO] The summation is: 848
+[06/23/15 18:17:21.41][INFO] The summation is: 849
+[06/23/15 18:17:21.41][INFO] The summation is: 850
+[06/23/15 18:17:21.41][INFO] The summation is: 851
+[06/23/15 18:17:21.41][INFO] The summation is: 852
+[06/23/15 18:17:21.41][INFO] The summation is: 853
+[06/23/15 18:17:21.41][INFO] The summation is: 854
+[06/23/15 18:17:21.41][INFO] The summation is: 855
+[06/23/15 18:17:21.41][INFO] The summation is: 856
+[06/23/15 18:17:21.41][INFO] The summation is: 857
+[06/23/15 18:17:21.41][INFO] The summation is: 858
+[06/23/15 18:17:21.41][INFO] The summation is: 859
+[06/23/15 18:17:21.41][INFO] The summation is: 860
+[06/23/15 18:17:21.41][INFO] The summation is: 861
+[06/23/15 18:17:21.41][INFO] The summation is: 862
+[06/23/15 18:17:21.41][INFO] The summation is: 863
+[06/23/15 18:17:21.41][INFO] The summation is: 864
+[06/23/15 18:17:21.41][INFO] The summation is: 865
+[06/23/15 18:17:21.41][INFO] The summation is: 866
+[06/23/15 18:17:21.42][INFO] The summation is: 867
+[06/23/15 18:17:21.42][INFO] The summation is: 868
+[06/23/15 18:17:21.42][INFO] The summation is: 869
+[06/23/15 18:17:21.42][INFO] The summation is: 870
+[06/23/15 18:17:21.42][INFO] The summation is: 871
+[06/23/15 18:17:21.42][INFO] The summation is: 872
+[06/23/15 18:17:21.42][INFO] The summation is: 873
+[06/23/15 18:17:21.42][INFO] The summation is: 874
+[06/23/15 18:17:21.42][INFO] The summation is: 875
+[06/23/15 18:17:21.42][INFO] The summation is: 876
+[06/23/15 18:17:21.42][INFO] The summation is: 877
+[06/23/15 18:17:21.42][INFO] The summation is: 878
+[06/23/15 18:17:21.42][INFO] The summation is: 879
+[06/23/15 18:17:21.42][INFO] The summation is: 880
+[06/23/15 18:17:21.42][INFO] The summation is: 881
+[06/23/15 18:17:21.42][INFO] The summation is: 882
+[06/23/15 18:17:21.42][INFO] The summation is: 883
+[06/23/15 18:17:21.42][INFO] The summation is: 884
+[06/23/15 18:17:21.42][INFO] The summation is: 885
+[06/23/15 18:17:21.42][INFO] The summation is: 886
+[06/23/15 18:17:21.42][INFO] The summation is: 887
+[06/23/15 18:17:21.42][INFO] The summation is: 888
+[06/23/15 18:17:21.42][INFO] The summation is: 889
+[06/23/15 18:17:21.42][INFO] The summation is: 890
+[06/23/15 18:17:21.42][INFO] The summation is: 891
+[06/23/15 18:17:21.42][INFO] The summation is: 892
+[06/23/15 18:17:21.42][INFO] The summation is: 893
+[06/23/15 18:17:21.42][INFO] The summation is: 894
+[06/23/15 18:17:21.43][INFO] The summation is: 895
+[06/23/15 18:17:21.43][INFO] The summation is: 896
+[06/23/15 18:17:21.43][INFO] The summation is: 897
+[06/23/15 18:17:21.43][INFO] The summation is: 898
+[06/23/15 18:17:21.43][INFO] The summation is: 899
+[06/23/15 18:17:21.43][INFO] The summation is: 900
+[06/23/15 18:17:21.43][INFO] The summation is: 901
+[06/23/15 18:17:21.43][INFO] The summation is: 902
+[06/23/15 18:17:21.43][INFO] The summation is: 903
+[06/23/15 18:17:21.43][INFO] The summation is: 904
+[06/23/15 18:17:21.43][INFO] The summation is: 905
+[06/23/15 18:17:21.43][INFO] The summation is: 906
+[06/23/15 18:17:21.43][INFO] The summation is: 907
+[06/23/15 18:17:21.43][INFO] The summation is: 908
+[06/23/15 18:17:21.43][INFO] The summation is: 909
+[06/23/15 18:17:21.43][INFO] The summation is: 910
+[06/23/15 18:17:21.43][INFO] The summation is: 911
+[06/23/15 18:17:21.43][INFO] The summation is: 912
+[06/23/15 18:17:21.43][INFO] The summation is: 913
+[06/23/15 18:17:21.44][INFO] The summation is: 914
+[06/23/15 18:17:21.44][INFO] The summation is: 915
+[06/23/15 18:17:21.44][INFO] The summation is: 916
+[06/23/15 18:17:21.44][INFO] The summation is: 917
+[06/23/15 18:17:21.44][INFO] The summation is: 918
+[06/23/15 18:17:21.44][INFO] The summation is: 919
+[06/23/15 18:17:21.44][INFO] The summation is: 920
+[06/23/15 18:17:21.44][INFO] The summation is: 921
+[06/23/15 18:17:21.44][INFO] The summation is: 922
+[06/23/15 18:17:21.44][INFO] The summation is: 923
+[06/23/15 18:17:21.44][INFO] The summation is: 924
+[06/23/15 18:17:21.44][INFO] The summation is: 925
+[06/23/15 18:17:21.44][INFO] The summation is: 926
+[06/23/15 18:17:21.44][INFO] The summation is: 927
+[06/23/15 18:17:21.44][INFO] The summation is: 928
+[06/23/15 18:17:21.44][INFO] The summation is: 929
+[06/23/15 18:17:21.44][INFO] The summation is: 930
+[06/23/15 18:17:21.44][INFO] The summation is: 931
+[06/23/15 18:17:21.44][INFO] The summation is: 932
+[06/23/15 18:17:21.44][INFO] The summation is: 933
+[06/23/15 18:17:21.44][INFO] The summation is: 934
+[06/23/15 18:17:21.45][INFO] The summation is: 935
+[06/23/15 18:17:21.45][INFO] The summation is: 936
+[06/23/15 18:17:21.45][INFO] The summation is: 937
+[06/23/15 18:17:21.45][INFO] The summation is: 938
+[06/23/15 18:17:21.45][INFO] The summation is: 939
+[06/23/15 18:17:21.45][INFO] The summation is: 940
+[06/23/15 18:17:21.45][INFO] The summation is: 941
+[06/23/15 18:17:21.45][INFO] The summation is: 942
+[06/23/15 18:17:21.45][INFO] The summation is: 943
+[06/23/15 18:17:21.45][INFO] The summation is: 944
+[06/23/15 18:17:21.45][INFO] The summation is: 945
+[06/23/15 18:17:21.45][INFO] The summation is: 946
+[06/23/15 18:17:21.45][INFO] The summation is: 947
+[06/23/15 18:17:21.45][INFO] The summation is: 948
+[06/23/15 18:17:21.45][INFO] The summation is: 949
+[06/23/15 18:17:21.45][INFO] The summation is: 950
+[06/23/15 18:17:21.45][INFO] The summation is: 951
+[06/23/15 18:17:21.45][INFO] The summation is: 952
+[06/23/15 18:17:21.45][INFO] The summation is: 953
+[06/23/15 18:17:21.45][INFO] The summation is: 954
+[06/23/15 18:17:21.45][INFO] The summation is: 955
+[06/23/15 18:17:21.45][INFO] The summation is: 956
+[06/23/15 18:17:21.45][INFO] The summation is: 957
+[06/23/15 18:17:21.45][INFO] The summation is: 958
+[06/23/15 18:17:21.45][INFO] The summation is: 959
+[06/23/15 18:17:21.45][INFO] The summation is: 960
+[06/23/15 18:17:21.45][INFO] The summation is: 961
+[06/23/15 18:17:21.45][INFO] The summation is: 962
+[06/23/15 18:17:21.46][INFO] The summation is: 963
+[06/23/15 18:17:21.46][INFO] The summation is: 964
+[06/23/15 18:17:21.46][INFO] The summation is: 965
+[06/23/15 18:17:21.46][INFO] The summation is: 966
+[06/23/15 18:17:21.46][INFO] The summation is: 967
+[06/23/15 18:17:21.46][INFO] The summation is: 968
+[06/23/15 18:17:21.46][INFO] The summation is: 969
+[06/23/15 18:17:21.46][INFO] The summation is: 970
+[06/23/15 18:17:21.46][INFO] The summation is: 971
+[06/23/15 18:17:21.46][INFO] The summation is: 972
+[06/23/15 18:17:21.46][INFO] The summation is: 973
+[06/23/15 18:17:21.46][INFO] The summation is: 974
+[06/23/15 18:17:21.46][INFO] The summation is: 975
+[06/23/15 18:17:21.46][INFO] The summation is: 976
+[06/23/15 18:17:21.46][INFO] The summation is: 977
+[06/23/15 18:17:21.46][INFO] The summation is: 978
+[06/23/15 18:17:21.46][INFO] The summation is: 979
+[06/23/15 18:17:21.46][INFO] The summation is: 980
+[06/23/15 18:17:21.46][INFO] The summation is: 981
+[06/23/15 18:17:21.46][INFO] The summation is: 982
+[06/23/15 18:17:21.46][INFO] The summation is: 983
+[06/23/15 18:17:21.46][INFO] The summation is: 984
+[06/23/15 18:17:21.46][INFO] The summation is: 985
+[06/23/15 18:17:21.46][INFO] The summation is: 986
+[06/23/15 18:17:21.46][INFO] The summation is: 987
+[06/23/15 18:17:21.46][INFO] The summation is: 988
+[06/23/15 18:17:21.46][INFO] The summation is: 989
+[06/23/15 18:17:21.46][INFO] The summation is: 990
+[06/23/15 18:17:21.46][INFO] The summation is: 991
+[06/23/15 18:17:21.46][INFO] The summation is: 992
+[06/23/15 18:17:21.47][INFO] The summation is: 993
+[06/23/15 18:17:21.47][INFO] The summation is: 994
+[06/23/15 18:17:21.47][INFO] The summation is: 995
+[06/23/15 18:17:21.47][INFO] The summation is: 996
+[06/23/15 18:17:21.47][INFO] The summation is: 997
+[06/23/15 18:17:21.47][INFO] The summation is: 998
+[06/23/15 18:17:21.47][INFO] The summation is: 999
+[06/23/15 18:17:21.50]The summation is: 1000
+[06/23/15 18:17:21.50]The summation is: 1001
+[06/23/15 18:17:21.50]The summation is: 1002
+[06/23/15 18:17:21.50]The summation is: 1003
+[06/23/15 18:17:21.50]The summation is: 1004
+[06/23/15 18:17:21.50]The summation is: 1005
+[06/23/15 18:17:21.50]The summation is: 1006
+[06/23/15 18:17:21.50]The summation is: 1007
+[06/23/15 18:17:21.50]The summation is: 1008
+[06/23/15 18:17:21.50]The summation is: 1009
+[06/23/15 18:17:21.50]The summation is: 1010
+[06/23/15 18:17:21.50]The summation is: 1011
+[06/23/15 18:17:21.50]The summation is: 1012
+[06/23/15 18:17:21.50]The summation is: 1013
+[06/23/15 18:17:21.50]The summation is: 1014
+[06/23/15 18:17:21.50]The summation is: 1015
+[06/23/15 18:17:21.50]The summation is: 1016
+[06/23/15 18:17:21.50]The summation is: 1017
+[06/23/15 18:17:21.50]The summation is: 1018
+[06/23/15 18:17:21.50]The summation is: 1019
+[06/23/15 18:17:21.51]The summation is: 1020
+[06/23/15 18:17:21.51]The summation is: 1021
+[06/23/15 18:17:21.51]The summation is: 1022
+[06/23/15 18:17:21.51]The summation is: 1023
+[06/23/15 18:17:21.51]The summation is: 1024
+[06/23/15 18:17:21.51]The summation is: 1025
+[06/23/15 18:17:21.51]The summation is: 1026
+[06/23/15 18:17:21.51]The summation is: 1027
+[06/23/15 18:17:21.51]The summation is: 1028
+[06/23/15 18:17:21.51]The summation is: 1029
+[06/23/15 18:17:21.51]The summation is: 1030
+[06/23/15 18:17:21.51]The summation is: 1031
+[06/23/15 18:17:21.51]The summation is: 1032
+[06/23/15 18:17:21.51]The summation is: 1033
+[06/23/15 18:17:21.51]The summation is: 1034
+[06/23/15 18:17:21.51]The summation is: 1035
+[06/23/15 18:17:21.51]The summation is: 1036
+[06/23/15 18:17:21.51]The summation is: 1037
+[06/23/15 18:17:21.51]The summation is: 1038
+[06/23/15 18:17:21.51]The summation is: 1039
+[06/23/15 18:17:21.51]The summation is: 1040
+[06/23/15 18:17:21.51]The summation is: 1041
+[06/23/15 18:17:21.51]The summation is: 1042
+[06/23/15 18:17:21.51]The summation is: 1043
+[06/23/15 18:17:21.51]The summation is: 1044
+[06/23/15 18:17:21.51]The summation is: 1045
+[06/23/15 18:17:21.52]The summation is: 1046
+[06/23/15 18:17:21.52]The summation is: 1047
+[06/23/15 18:17:21.52]The summation is: 1048
+[06/23/15 18:17:21.52]The summation is: 1049
+[06/23/15 18:17:21.52]The summation is: 1050
+[06/23/15 18:17:21.52]The summation is: 1051
+[06/23/15 18:17:21.52]The summation is: 1052
+[06/23/15 18:17:21.52]The summation is: 1053
+[06/23/15 18:17:21.52]The summation is: 1054
+[06/23/15 18:17:21.52]The summation is: 1055
+[06/23/15 18:17:21.52]The summation is: 1056
+[06/23/15 18:17:21.52]The summation is: 1057
+[06/23/15 18:17:21.52]The summation is: 1058
+[06/23/15 18:17:21.52]The summation is: 1059
+[06/23/15 18:17:21.52]The summation is: 1060
+[06/23/15 18:17:21.52]The summation is: 1061
+[06/23/15 18:17:21.52]The summation is: 1062
+[06/23/15 18:17:21.52]The summation is: 1063
+[06/23/15 18:17:21.52]The summation is: 1064
+[06/23/15 18:17:21.52]The summation is: 1065
+[06/23/15 18:17:21.52]The summation is: 1066
+[06/23/15 18:17:21.52]The summation is: 1067
+[06/23/15 18:17:21.52]The summation is: 1068
+[06/23/15 18:17:21.52]The summation is: 1069
+[06/23/15 18:17:21.52]The summation is: 1070
+[06/23/15 18:17:21.52]The summation is: 1071
+[06/23/15 18:17:21.52]The summation is: 1072
+[06/23/15 18:17:21.53]The summation is: 1073
+[06/23/15 18:17:21.53]The summation is: 1074
+[06/23/15 18:17:21.53]The summation is: 1075
+[06/23/15 18:17:21.53]The summation is: 1076
+[06/23/15 18:17:21.53]The summation is: 1077
+[06/23/15 18:17:21.53]The summation is: 1078
+[06/23/15 18:17:21.53]The summation is: 1079
+[06/23/15 18:17:21.53]The summation is: 1080
+[06/23/15 18:17:21.53]The summation is: 1081
+[06/23/15 18:17:21.53]The summation is: 1082
+[06/23/15 18:17:21.53]The summation is: 1083
+[06/23/15 18:17:21.53]The summation is: 1084
+[06/23/15 18:17:21.53]The summation is: 1085
+[06/23/15 18:17:21.53]The summation is: 1086
+[06/23/15 18:17:21.53]The summation is: 1087
+[06/23/15 18:17:21.53]The summation is: 1088
+[06/23/15 18:17:21.53]The summation is: 1089
+[06/23/15 18:17:21.53]The summation is: 1090
+[06/23/15 18:17:21.53]The summation is: 1091
+[06/23/15 18:17:21.53]The summation is: 1092
+[06/23/15 18:17:21.53]The summation is: 1093
+[06/23/15 18:17:21.53]The summation is: 1094
+[06/23/15 18:17:21.53]The summation is: 1095
+[06/23/15 18:17:21.53]The summation is: 1096
+[06/23/15 18:17:21.53]The summation is: 1097
+[06/23/15 18:17:21.53]The summation is: 1098
+[06/23/15 18:17:21.53]The summation is: 1099
+[06/23/15 18:17:21.54]The summation is: 1100
+[06/23/15 18:17:21.54]The summation is: 1101
+[06/23/15 18:17:21.54]The summation is: 1102
+[06/23/15 18:17:21.54]The summation is: 1103
+[06/23/15 18:17:21.54]The summation is: 1104
+[06/23/15 18:17:21.54]The summation is: 1105
+[06/23/15 18:17:21.54]The summation is: 1106
+[06/23/15 18:17:21.54]The summation is: 1107
+[06/23/15 18:17:21.54]The summation is: 1108
+[06/23/15 18:17:21.54]The summation is: 1109
+[06/23/15 18:17:21.54]The summation is: 1110
+[06/23/15 18:17:21.54]The summation is: 1111
+[06/23/15 18:17:21.54]The summation is: 1112
+[06/23/15 18:17:21.54]The summation is: 1113
+[06/23/15 18:17:21.54]The summation is: 1114
+[06/23/15 18:17:21.54]The summation is: 1115
+[06/23/15 18:17:21.54]The summation is: 1116
+[06/23/15 18:17:21.54]The summation is: 1117
+[06/23/15 18:17:21.54]The summation is: 1118
+[06/23/15 18:17:21.54]The summation is: 1119
+[06/23/15 18:17:21.54]The summation is: 1120
+[06/23/15 18:17:21.54]The summation is: 1121
+[06/23/15 18:17:21.54]The summation is: 1122
+[06/23/15 18:17:21.54]The summation is: 1123
+[06/23/15 18:17:21.54]The summation is: 1124
+[06/23/15 18:17:21.54]The summation is: 1125
+[06/23/15 18:17:21.54]The summation is: 1126
+[06/23/15 18:17:21.55]The summation is: 1127
+[06/23/15 18:17:21.55]The summation is: 1128
+[06/23/15 18:17:21.55]The summation is: 1129
+[06/23/15 18:17:21.55]The summation is: 1130
+[06/23/15 18:17:21.55]The summation is: 1131
+[06/23/15 18:17:21.55]The summation is: 1132
+[06/23/15 18:17:21.55]The summation is: 1133
+[06/23/15 18:17:21.55]The summation is: 1134
+[06/23/15 18:17:21.55]The summation is: 1135
+[06/23/15 18:17:21.55]The summation is: 1136
+[06/23/15 18:17:21.55]The summation is: 1137
+[06/23/15 18:17:21.55]The summation is: 1138
+[06/23/15 18:17:21.55]The summation is: 1139
+[06/23/15 18:17:21.55]The summation is: 1140
+[06/23/15 18:17:21.55]The summation is: 1141
+[06/23/15 18:17:21.55]The summation is: 1142
+[06/23/15 18:17:21.55]The summation is: 1143
+[06/23/15 18:17:21.55]The summation is: 1144
+[06/23/15 18:17:21.55]The summation is: 1145
+[06/23/15 18:17:21.55]The summation is: 1146
+[06/23/15 18:17:21.55]The summation is: 1147
+[06/23/15 18:17:21.55]The summation is: 1148
+[06/23/15 18:17:21.55]The summation is: 1149
+[06/23/15 18:17:21.55]The summation is: 1150
+[06/23/15 18:17:21.55]The summation is: 1151
+[06/23/15 18:17:21.56]The summation is: 1152
+[06/23/15 18:17:21.56]The summation is: 1153
+[06/23/15 18:17:21.56]The summation is: 1154
+[06/23/15 18:17:21.56]The summation is: 1155
+[06/23/15 18:17:21.56]The summation is: 1156
+[06/23/15 18:17:21.56]The summation is: 1157
+[06/23/15 18:17:21.56]The summation is: 1158
+[06/23/15 18:17:21.56]The summation is: 1159
+[06/23/15 18:17:21.56]The summation is: 1160
+[06/23/15 18:17:21.56]The summation is: 1161
+[06/23/15 18:17:21.56]The summation is: 1162
+[06/23/15 18:17:21.56]The summation is: 1163
+[06/23/15 18:17:21.56]The summation is: 1164
+[06/23/15 18:17:21.56]The summation is: 1165
+[06/23/15 18:17:21.56]The summation is: 1166
+[06/23/15 18:17:21.56]The summation is: 1167
+[06/23/15 18:17:21.56]The summation is: 1168
+[06/23/15 18:17:21.56]The summation is: 1169
+[06/23/15 18:17:21.56]The summation is: 1170
+[06/23/15 18:17:21.56]The summation is: 1171
+[06/23/15 18:17:21.56]The summation is: 1172
+[06/23/15 18:17:21.56]The summation is: 1173
+[06/23/15 18:17:21.56]The summation is: 1174
+[06/23/15 18:17:21.56]The summation is: 1175
+[06/23/15 18:17:21.56]The summation is: 1176
+[06/23/15 18:17:21.56]The summation is: 1177
+[06/23/15 18:17:21.56]The summation is: 1178
+[06/23/15 18:17:21.56]The summation is: 1179
+[06/23/15 18:17:21.57]The summation is: 1180
+[06/23/15 18:17:21.57]The summation is: 1181
+[06/23/15 18:17:21.57]The summation is: 1182
+[06/23/15 18:17:21.57]The summation is: 1183
+[06/23/15 18:17:21.57]The summation is: 1184
+[06/23/15 18:17:21.57]The summation is: 1185
+[06/23/15 18:17:21.57]The summation is: 1186
+[06/23/15 18:17:21.57]The summation is: 1187
+[06/23/15 18:17:21.57]The summation is: 1188
+[06/23/15 18:17:21.57]The summation is: 1189
+[06/23/15 18:17:21.57]The summation is: 1190
+[06/23/15 18:17:21.57]The summation is: 1191
+[06/23/15 18:17:21.57]The summation is: 1192
+[06/23/15 18:17:21.57]The summation is: 1193
+[06/23/15 18:17:21.57]The summation is: 1194
+[06/23/15 18:17:21.57]The summation is: 1195
+[06/23/15 18:17:21.57]The summation is: 1196
+[06/23/15 18:17:21.57]The summation is: 1197
+[06/23/15 18:17:21.57]The summation is: 1198
+[06/23/15 18:17:21.57]The summation is: 1199
+[06/23/15 18:17:21.57]The summation is: 1200
+[06/23/15 18:17:21.57]The summation is: 1201
+[06/23/15 18:17:21.57]The summation is: 1202
+[06/23/15 18:17:21.57]The summation is: 1203
+[06/23/15 18:17:21.58]The summation is: 1204
+[06/23/15 18:17:21.58]The summation is: 1205
+[06/23/15 18:17:21.58]The summation is: 1206
+[06/23/15 18:17:21.58]The summation is: 1207
+[06/23/15 18:17:21.58]The summation is: 1208
+[06/23/15 18:17:21.58]The summation is: 1209
+[06/23/15 18:17:21.58]The summation is: 1210
+[06/23/15 18:17:21.58]The summation is: 1211
+[06/23/15 18:17:21.58]The summation is: 1212
+[06/23/15 18:17:21.58]The summation is: 1213
+[06/23/15 18:17:21.58]The summation is: 1214
+[06/23/15 18:17:21.58]The summation is: 1215
+[06/23/15 18:17:21.58]The summation is: 1216
+[06/23/15 18:17:21.58]The summation is: 1217
+[06/23/15 18:17:21.58]The summation is: 1218
+[06/23/15 18:17:21.58]The summation is: 1219
+[06/23/15 18:17:21.58]The summation is: 1220
+[06/23/15 18:17:21.58]The summation is: 1221
+[06/23/15 18:17:21.58]The summation is: 1222
+[06/23/15 18:17:21.58]The summation is: 1223
+[06/23/15 18:17:21.58]The summation is: 1224
+[06/23/15 18:17:21.58]The summation is: 1225
+[06/23/15 18:17:21.58]The summation is: 1226
+[06/23/15 18:17:21.58]The summation is: 1227
+[06/23/15 18:17:21.59]The summation is: 1228
+[06/23/15 18:17:21.59]The summation is: 1229
+[06/23/15 18:17:21.59]The summation is: 1230
+[06/23/15 18:17:21.59]The summation is: 1231
+[06/23/15 18:17:21.59]The summation is: 1232
+[06/23/15 18:17:21.59]The summation is: 1233
+[06/23/15 18:17:21.59]The summation is: 1234
+[06/23/15 18:17:21.59]The summation is: 1235
+[06/23/15 18:17:21.59]The summation is: 1236
+[06/23/15 18:17:21.59]The summation is: 1237
+[06/23/15 18:17:21.59]The summation is: 1238
+[06/23/15 18:17:21.59]The summation is: 1239
+[06/23/15 18:17:21.59]The summation is: 1240
+[06/23/15 18:17:21.59]The summation is: 1241
+[06/23/15 18:17:21.59]The summation is: 1242
+[06/23/15 18:17:21.59]The summation is: 1243
+[06/23/15 18:17:21.59]The summation is: 1244
+[06/23/15 18:17:21.59]The summation is: 1245
+[06/23/15 18:17:21.59]The summation is: 1246
+[06/23/15 18:17:21.59]The summation is: 1247
+[06/23/15 18:17:21.59]The summation is: 1248
+[06/23/15 18:17:21.59]The summation is: 1249
+[06/23/15 18:17:21.59]The summation is: 1250
+[06/23/15 18:17:21.59]The summation is: 1251
+[06/23/15 18:17:21.59]The summation is: 1252
+[06/23/15 18:17:21.59]The summation is: 1253
+[06/23/15 18:17:21.59]The summation is: 1254
+[06/23/15 18:17:21.59]The summation is: 1255
+[06/23/15 18:17:21.59]The summation is: 1256
+[06/23/15 18:17:21.59]The summation is: 1257
+[06/23/15 18:17:21.59]The summation is: 1258
+[06/23/15 18:17:21.59]The summation is: 1259
+[06/23/15 18:17:21.59]The summation is: 1260
+[06/23/15 18:17:21.60]The summation is: 1261
+[06/23/15 18:17:21.60]The summation is: 1262
+[06/23/15 18:17:21.60]The summation is: 1263
+[06/23/15 18:17:21.60]The summation is: 1264
+[06/23/15 18:17:21.60]The summation is: 1265
+[06/23/15 18:17:21.60]The summation is: 1266
+[06/23/15 18:17:21.60]The summation is: 1267
+[06/23/15 18:17:21.60]The summation is: 1268
+[06/23/15 18:17:21.60]The summation is: 1269
+[06/23/15 18:17:21.60]The summation is: 1270
+[06/23/15 18:17:21.60]The summation is: 1271
+[06/23/15 18:17:21.60]The summation is: 1272
+[06/23/15 18:17:21.60]The summation is: 1273
+[06/23/15 18:17:21.60]The summation is: 1274
+[06/23/15 18:17:21.60]The summation is: 1275
+[06/23/15 18:17:21.60]The summation is: 1276
+[06/23/15 18:17:21.60]The summation is: 1277
+[06/23/15 18:17:21.60]The summation is: 1278
+[06/23/15 18:17:21.60]The summation is: 1279
+[06/23/15 18:17:21.60]The summation is: 1280
+[06/23/15 18:17:21.60]The summation is: 1281
+[06/23/15 18:17:21.60]The summation is: 1282
+[06/23/15 18:17:21.60]The summation is: 1283
+[06/23/15 18:17:21.60]The summation is: 1284
+[06/23/15 18:17:21.60]The summation is: 1285
+[06/23/15 18:17:21.60]The summation is: 1286
+[06/23/15 18:17:21.60]The summation is: 1287
+[06/23/15 18:17:21.60]The summation is: 1288
+[06/23/15 18:17:21.60]The summation is: 1289
+[06/23/15 18:17:21.60]The summation is: 1290
+[06/23/15 18:17:21.60]The summation is: 1291
+[06/23/15 18:17:21.60]The summation is: 1292
+[06/23/15 18:17:21.60]The summation is: 1293
+[06/23/15 18:17:21.60]The summation is: 1294
+[06/23/15 18:17:21.60]The summation is: 1295
+[06/23/15 18:17:21.60]The summation is: 1296
+[06/23/15 18:17:21.60]The summation is: 1297
+[06/23/15 18:17:21.61]The summation is: 1298
+[06/23/15 18:17:21.61]The summation is: 1299
+[06/23/15 18:17:21.61]The summation is: 1300
+[06/23/15 18:17:21.61]The summation is: 1301
+[06/23/15 18:17:21.61]The summation is: 1302
+[06/23/15 18:17:21.61]The summation is: 1303
+[06/23/15 18:17:21.61]The summation is: 1304
+[06/23/15 18:17:21.61]The summation is: 1305
+[06/23/15 18:17:21.61]The summation is: 1306
+[06/23/15 18:17:21.61]The summation is: 1307
+[06/23/15 18:17:21.61]The summation is: 1308
+[06/23/15 18:17:21.61]The summation is: 1309
+[06/23/15 18:17:21.61]The summation is: 1310
+[06/23/15 18:17:21.61]The summation is: 1311
+[06/23/15 18:17:21.61]The summation is: 1312
+[06/23/15 18:17:21.61]The summation is: 1313
+[06/23/15 18:17:21.61]The summation is: 1314
+[06/23/15 18:17:21.61]The summation is: 1315
+[06/23/15 18:17:21.61]The summation is: 1316
+[06/23/15 18:17:21.61]The summation is: 1317
+[06/23/15 18:17:21.61]The summation is: 1318
+[06/23/15 18:17:21.61]The summation is: 1319
+[06/23/15 18:17:21.62]The summation is: 1320
+[06/23/15 18:17:21.62]The summation is: 1321
+[06/23/15 18:17:21.62]The summation is: 1322
+[06/23/15 18:17:21.62]The summation is: 1323
+[06/23/15 18:17:21.62]The summation is: 1324
+[06/23/15 18:17:21.62]The summation is: 1325
+[06/23/15 18:17:21.62]The summation is: 1326
+[06/23/15 18:17:21.62]The summation is: 1327
+[06/23/15 18:17:21.62]The summation is: 1328
+[06/23/15 18:17:21.62]The summation is: 1329
+[06/23/15 18:17:21.62]The summation is: 1330
+[06/23/15 18:17:21.62]The summation is: 1331
+[06/23/15 18:17:21.62]The summation is: 1332
+[06/23/15 18:17:21.62]The summation is: 1333
+[06/23/15 18:17:21.62]The summation is: 1334
+[06/23/15 18:17:21.62]The summation is: 1335
+[06/23/15 18:17:21.62]The summation is: 1336
+[06/23/15 18:17:21.62]The summation is: 1337
+[06/23/15 18:17:21.62]The summation is: 1338
+[06/23/15 18:17:21.62]The summation is: 1339
+[06/23/15 18:17:21.62]The summation is: 1340
+[06/23/15 18:17:21.62]The summation is: 1341
+[06/23/15 18:17:21.63]The summation is: 1342
+[06/23/15 18:17:21.63]The summation is: 1343
+[06/23/15 18:17:21.63]The summation is: 1344
+[06/23/15 18:17:21.63]The summation is: 1345
+[06/23/15 18:17:21.63]The summation is: 1346
+[06/23/15 18:17:21.63]The summation is: 1347
+[06/23/15 18:17:21.63]The summation is: 1348
+[06/23/15 18:17:21.63]The summation is: 1349
+[06/23/15 18:17:21.63]The summation is: 1350
+[06/23/15 18:17:21.63]The summation is: 1351
+[06/23/15 18:17:21.63]The summation is: 1352
+[06/23/15 18:17:21.63]The summation is: 1353
+[06/23/15 18:17:21.63]The summation is: 1354
+[06/23/15 18:17:21.63]The summation is: 1355
+[06/23/15 18:17:21.63]The summation is: 1356
+[06/23/15 18:17:21.63]The summation is: 1357
+[06/23/15 18:17:21.63]The summation is: 1358
+[06/23/15 18:17:21.63]The summation is: 1359
+[06/23/15 18:17:21.63]The summation is: 1360
+[06/23/15 18:17:21.63]The summation is: 1361
+[06/23/15 18:17:21.63]The summation is: 1362
+[06/23/15 18:17:21.63]The summation is: 1363
+[06/23/15 18:17:21.63]The summation is: 1364
+[06/23/15 18:17:21.63]The summation is: 1365
+[06/23/15 18:17:21.63]The summation is: 1366
+[06/23/15 18:17:21.64]The summation is: 1367
+[06/23/15 18:17:21.64]The summation is: 1368
+[06/23/15 18:17:21.64]The summation is: 1369
+[06/23/15 18:17:21.64]The summation is: 1370
+[06/23/15 18:17:21.64]The summation is: 1371
+[06/23/15 18:17:21.64]The summation is: 1372
+[06/23/15 18:17:21.64]The summation is: 1373
+[06/23/15 18:17:21.64]The summation is: 1374
+[06/23/15 18:17:21.64]The summation is: 1375
+[06/23/15 18:17:21.64]The summation is: 1376
+[06/23/15 18:17:21.64]The summation is: 1377
+[06/23/15 18:17:21.64]The summation is: 1378
+[06/23/15 18:17:21.64]The summation is: 1379
+[06/23/15 18:17:21.64]The summation is: 1380
+[06/23/15 18:17:21.64]The summation is: 1381
+[06/23/15 18:17:21.64]The summation is: 1382
+[06/23/15 18:17:21.64]The summation is: 1383
+[06/23/15 18:17:21.64]The summation is: 1384
+[06/23/15 18:17:21.64]The summation is: 1385
+[06/23/15 18:17:21.64]The summation is: 1386
+[06/23/15 18:17:21.64]The summation is: 1387
+[06/23/15 18:17:21.64]The summation is: 1388
+[06/23/15 18:17:21.64]The summation is: 1389
+[06/23/15 18:17:21.64]The summation is: 1390
+[06/23/15 18:17:21.65]The summation is: 1391
+[06/23/15 18:17:21.65]The summation is: 1392
+[06/23/15 18:17:21.65]The summation is: 1393
+[06/23/15 18:17:21.65]The summation is: 1394
+[06/23/15 18:17:21.65]The summation is: 1395
+[06/23/15 18:17:21.65]The summation is: 1396
+[06/23/15 18:17:21.65]The summation is: 1397
+[06/23/15 18:17:21.65]The summation is: 1398
+[06/23/15 18:17:21.65]The summation is: 1399
+[06/23/15 18:17:21.65]The summation is: 1400
+[06/23/15 18:17:21.65]The summation is: 1401
+[06/23/15 18:17:21.65]The summation is: 1402
+[06/23/15 18:17:21.65]The summation is: 1403
+[06/23/15 18:17:21.65]The summation is: 1404
+[06/23/15 18:17:21.65]The summation is: 1405
+[06/23/15 18:17:21.65]The summation is: 1406
+[06/23/15 18:17:21.65]The summation is: 1407
+[06/23/15 18:17:21.65]The summation is: 1408
+[06/23/15 18:17:21.65]The summation is: 1409
+[06/23/15 18:17:21.65]The summation is: 1410
+[06/23/15 18:17:21.65]The summation is: 1411
+[06/23/15 18:17:21.65]The summation is: 1412
+[06/23/15 18:17:21.65]The summation is: 1413
+[06/23/15 18:17:21.65]The summation is: 1414
+[06/23/15 18:17:21.65]The summation is: 1415
+[06/23/15 18:17:21.65]The summation is: 1416
+[06/23/15 18:17:21.66]The summation is: 1417
+[06/23/15 18:17:21.66]The summation is: 1418
+[06/23/15 18:17:21.66]The summation is: 1419
+[06/23/15 18:17:21.66]The summation is: 1420
+[06/23/15 18:17:21.66]The summation is: 1421
+[06/23/15 18:17:21.66]The summation is: 1422
+[06/23/15 18:17:21.66]The summation is: 1423
+[06/23/15 18:17:21.66]The summation is: 1424
+[06/23/15 18:17:21.66]The summation is: 1425
+[06/23/15 18:17:21.66]The summation is: 1426
+[06/23/15 18:17:21.66]The summation is: 1427
+[06/23/15 18:17:21.66]The summation is: 1428
+[06/23/15 18:17:21.66]The summation is: 1429
+[06/23/15 18:17:21.66]The summation is: 1430
+[06/23/15 18:17:21.66]The summation is: 1431
+[06/23/15 18:17:21.66]The summation is: 1432
+[06/23/15 18:17:21.66]The summation is: 1433
+[06/23/15 18:17:21.66]The summation is: 1434
+[06/23/15 18:17:21.66]The summation is: 1435
+[06/23/15 18:17:21.66]The summation is: 1436
+[06/23/15 18:17:21.66]The summation is: 1437
+[06/23/15 18:17:21.66]The summation is: 1438
+[06/23/15 18:17:21.66]The summation is: 1439
+[06/23/15 18:17:21.66]The summation is: 1440
+[06/23/15 18:17:21.66]The summation is: 1441
+[06/23/15 18:17:21.66]The summation is: 1442
+[06/23/15 18:17:21.67]The summation is: 1443
+[06/23/15 18:17:21.67]The summation is: 1444
+[06/23/15 18:17:21.67]The summation is: 1445
+[06/23/15 18:17:21.67]The summation is: 1446
+[06/23/15 18:17:21.67]The summation is: 1447
+[06/23/15 18:17:21.67]The summation is: 1448
+[06/23/15 18:17:21.67]The summation is: 1449
+[06/23/15 18:17:21.67]The summation is: 1450
+[06/23/15 18:17:21.67]The summation is: 1451
+[06/23/15 18:17:21.67]The summation is: 1452
+[06/23/15 18:17:21.67]The summation is: 1453
+[06/23/15 18:17:21.67]The summation is: 1454
+[06/23/15 18:17:21.67]The summation is: 1455
+[06/23/15 18:17:21.67]The summation is: 1456
+[06/23/15 18:17:21.67]The summation is: 1457
+[06/23/15 18:17:21.67]The summation is: 1458
+[06/23/15 18:17:21.67]The summation is: 1459
+[06/23/15 18:17:21.67]The summation is: 1460
+[06/23/15 18:17:21.67]The summation is: 1461
+[06/23/15 18:17:21.67]The summation is: 1462
+[06/23/15 18:17:21.67]The summation is: 1463
+[06/23/15 18:17:21.67]The summation is: 1464
+[06/23/15 18:17:21.67]The summation is: 1465
+[06/23/15 18:17:21.67]The summation is: 1466
+[06/23/15 18:17:21.68]The summation is: 1467
+[06/23/15 18:17:21.68]The summation is: 1468
+[06/23/15 18:17:21.68]The summation is: 1469
+[06/23/15 18:17:21.68]The summation is: 1470
+[06/23/15 18:17:21.68]The summation is: 1471
+[06/23/15 18:17:21.68]The summation is: 1472
+[06/23/15 18:17:21.68]The summation is: 1473
+[06/23/15 18:17:21.68]The summation is: 1474
+[06/23/15 18:17:21.68]The summation is: 1475
+[06/23/15 18:17:21.68]The summation is: 1476
+[06/23/15 18:17:21.68]The summation is: 1477
+[06/23/15 18:17:21.68]The summation is: 1478
+[06/23/15 18:17:21.68]The summation is: 1479
+[06/23/15 18:17:21.68]The summation is: 1480
+[06/23/15 18:17:21.68]The summation is: 1481
+[06/23/15 18:17:21.68]The summation is: 1482
+[06/23/15 18:17:21.68]The summation is: 1483
+[06/23/15 18:17:21.68]The summation is: 1484
+[06/23/15 18:17:21.68]The summation is: 1485
+[06/23/15 18:17:21.69]The summation is: 1486
+[06/23/15 18:17:21.69]The summation is: 1487
+[06/23/15 18:17:21.69]The summation is: 1488
+[06/23/15 18:17:21.69]The summation is: 1489
+[06/23/15 18:17:21.69]The summation is: 1490
+[06/23/15 18:17:21.69]The summation is: 1491
+[06/23/15 18:17:21.69]The summation is: 1492
+[06/23/15 18:17:21.69]The summation is: 1493
+[06/23/15 18:17:21.69]The summation is: 1494
+[06/23/15 18:17:21.69]The summation is: 1495
+[06/23/15 18:17:21.69]The summation is: 1496
+[06/23/15 18:17:21.69]The summation is: 1497
+[06/23/15 18:17:21.69]The summation is: 1498
+[06/23/15 18:17:21.69]The summation is: 1499
+[06/23/15 18:17:21.69]The summation is: 1500
+[06/23/15 18:17:21.69]The summation is: 1501
+[06/23/15 18:17:21.69]The summation is: 1502
+[06/23/15 18:17:21.69]The summation is: 1503
+[06/23/15 18:17:21.69]The summation is: 1504
+[06/23/15 18:17:21.69]The summation is: 1505
+[06/23/15 18:17:21.69]The summation is: 1506
+[06/23/15 18:17:21.69]The summation is: 1507
+[06/23/15 18:17:21.69]The summation is: 1508
+[06/23/15 18:17:21.70]The summation is: 1509
+[06/23/15 18:17:21.70]The summation is: 1510
+[06/23/15 18:17:21.70]The summation is: 1511
+[06/23/15 18:17:21.70]The summation is: 1512
+[06/23/15 18:17:21.70]The summation is: 1513
+[06/23/15 18:17:21.70]The summation is: 1514
+[06/23/15 18:17:21.70]The summation is: 1515
+[06/23/15 18:17:21.70]The summation is: 1516
+[06/23/15 18:17:21.70]The summation is: 1517
+[06/23/15 18:17:21.70]The summation is: 1518
+[06/23/15 18:17:21.70]The summation is: 1519
+[06/23/15 18:17:21.70]The summation is: 1520
+[06/23/15 18:17:21.70]The summation is: 1521
+[06/23/15 18:17:21.70]The summation is: 1522
+[06/23/15 18:17:21.70]The summation is: 1523
+[06/23/15 18:17:21.70]The summation is: 1524
+[06/23/15 18:17:21.70]The summation is: 1525
+[06/23/15 18:17:21.70]The summation is: 1526
+[06/23/15 18:17:21.70]The summation is: 1527
+[06/23/15 18:17:21.70]The summation is: 1528
+[06/23/15 18:17:21.70]The summation is: 1529
+[06/23/15 18:17:21.71]The summation is: 1530
+[06/23/15 18:17:21.71]The summation is: 1531
+[06/23/15 18:17:21.71]The summation is: 1532
+[06/23/15 18:17:21.71]The summation is: 1533
+[06/23/15 18:17:21.71]The summation is: 1534
+[06/23/15 18:17:21.71]The summation is: 1535
+[06/23/15 18:17:21.71]The summation is: 1536
+[06/23/15 18:17:21.71]The summation is: 1537
+[06/23/15 18:17:21.71]The summation is: 1538
+[06/23/15 18:17:21.71]The summation is: 1539
+[06/23/15 18:17:21.71]The summation is: 1540
+[06/23/15 18:17:21.71]The summation is: 1541
+[06/23/15 18:17:21.71]The summation is: 1542
+[06/23/15 18:17:21.71]The summation is: 1543
+[06/23/15 18:17:21.71]The summation is: 1544
+[06/23/15 18:17:21.71]The summation is: 1545
+[06/23/15 18:17:21.71]The summation is: 1546
+[06/23/15 18:17:21.71]The summation is: 1547
+[06/23/15 18:17:21.71]The summation is: 1548
+[06/23/15 18:17:21.71]The summation is: 1549
+[06/23/15 18:17:21.71]The summation is: 1550
+[06/23/15 18:17:21.71]The summation is: 1551
+[06/23/15 18:17:21.72]The summation is: 1552
+[06/23/15 18:17:21.72]The summation is: 1553
+[06/23/15 18:17:21.72]The summation is: 1554
+[06/23/15 18:17:21.72]The summation is: 1555
+[06/23/15 18:17:21.72]The summation is: 1556
+[06/23/15 18:17:21.72]The summation is: 1557
+[06/23/15 18:17:21.72]The summation is: 1558
+[06/23/15 18:17:21.72]The summation is: 1559
+[06/23/15 18:17:21.72]The summation is: 1560
+[06/23/15 18:17:21.72]The summation is: 1561
+[06/23/15 18:17:21.72]The summation is: 1562
+[06/23/15 18:17:21.72]The summation is: 1563
+[06/23/15 18:17:21.72]The summation is: 1564
+[06/23/15 18:17:21.72]The summation is: 1565
+[06/23/15 18:17:21.72]The summation is: 1566
+[06/23/15 18:17:21.72]The summation is: 1567
+[06/23/15 18:17:21.72]The summation is: 1568
+[06/23/15 18:17:21.72]The summation is: 1569
+[06/23/15 18:17:21.72]The summation is: 1570
+[06/23/15 18:17:21.72]The summation is: 1571
+[06/23/15 18:17:21.72]The summation is: 1572
+[06/23/15 18:17:21.72]The summation is: 1573
+[06/23/15 18:17:21.72]The summation is: 1574
+[06/23/15 18:17:21.73]The summation is: 1575
+[06/23/15 18:17:21.73]The summation is: 1576
+[06/23/15 18:17:21.73]The summation is: 1577
+[06/23/15 18:17:21.73]The summation is: 1578
+[06/23/15 18:17:21.73]The summation is: 1579
+[06/23/15 18:17:21.73]The summation is: 1580
+[06/23/15 18:17:21.73]The summation is: 1581
+[06/23/15 18:17:21.73]The summation is: 1582
+[06/23/15 18:17:21.73]The summation is: 1583
+[06/23/15 18:17:21.73]The summation is: 1584
+[06/23/15 18:17:21.73]The summation is: 1585
+[06/23/15 18:17:21.73]The summation is: 1586
+[06/23/15 18:17:21.73]The summation is: 1587
+[06/23/15 18:17:21.73]The summation is: 1588
+[06/23/15 18:17:21.73]The summation is: 1589
+[06/23/15 18:17:21.73]The summation is: 1590
+[06/23/15 18:17:21.73]The summation is: 1591
+[06/23/15 18:17:21.73]The summation is: 1592
+[06/23/15 18:17:21.73]The summation is: 1593
+[06/23/15 18:17:21.74]The summation is: 1594
+[06/23/15 18:17:21.74]The summation is: 1595
+[06/23/15 18:17:21.74]The summation is: 1596
+[06/23/15 18:17:21.74]The summation is: 1597
+[06/23/15 18:17:21.74]The summation is: 1598
+[06/23/15 18:17:21.74]The summation is: 1599
+[06/23/15 18:17:21.74]The summation is: 1600
+[06/23/15 18:17:21.74]The summation is: 1601
+[06/23/15 18:17:21.74]The summation is: 1602
+[06/23/15 18:17:21.74]The summation is: 1603
+[06/23/15 18:17:21.74]The summation is: 1604
+[06/23/15 18:17:21.74]The summation is: 1605
+[06/23/15 18:17:21.74]The summation is: 1606
+[06/23/15 18:17:21.74]The summation is: 1607
+[06/23/15 18:17:21.74]The summation is: 1608
+[06/23/15 18:17:21.74]The summation is: 1609
+[06/23/15 18:17:21.74]The summation is: 1610
+[06/23/15 18:17:21.74]The summation is: 1611
+[06/23/15 18:17:21.74]The summation is: 1612
+[06/23/15 18:17:21.74]The summation is: 1613
+[06/23/15 18:17:21.75]The summation is: 1614
+[06/23/15 18:17:21.75]The summation is: 1615
+[06/23/15 18:17:21.75]The summation is: 1616
+[06/23/15 18:17:21.75]The summation is: 1617
+[06/23/15 18:17:21.75]The summation is: 1618
+[06/23/15 18:17:21.75]The summation is: 1619
+[06/23/15 18:17:21.75]The summation is: 1620
+[06/23/15 18:17:21.75]The summation is: 1621
+[06/23/15 18:17:21.75]The summation is: 1622
+[06/23/15 18:17:21.75]The summation is: 1623
+[06/23/15 18:17:21.75]The summation is: 1624
+[06/23/15 18:17:21.75]The summation is: 1625
+[06/23/15 18:17:21.75]The summation is: 1626
+[06/23/15 18:17:21.75]The summation is: 1627
+[06/23/15 18:17:21.75]The summation is: 1628
+[06/23/15 18:17:21.75]The summation is: 1629
+[06/23/15 18:17:21.75]The summation is: 1630
+[06/23/15 18:17:21.75]The summation is: 1631
+[06/23/15 18:17:21.75]The summation is: 1632
+[06/23/15 18:17:21.75]The summation is: 1633
+[06/23/15 18:17:21.75]The summation is: 1634
+[06/23/15 18:17:21.75]The summation is: 1635
+[06/23/15 18:17:21.75]The summation is: 1636
+[06/23/15 18:17:21.75]The summation is: 1637
+[06/23/15 18:17:21.75]The summation is: 1638
+[06/23/15 18:17:21.75]The summation is: 1639
+[06/23/15 18:17:21.75]The summation is: 1640
+[06/23/15 18:17:21.76]The summation is: 1641
+[06/23/15 18:17:21.76]The summation is: 1642
+[06/23/15 18:17:21.76]The summation is: 1643
+[06/23/15 18:17:21.76]The summation is: 1644
+[06/23/15 18:17:21.76]The summation is: 1645
+[06/23/15 18:17:21.76]The summation is: 1646
+[06/23/15 18:17:21.76]The summation is: 1647
+[06/23/15 18:17:21.76]The summation is: 1648
+[06/23/15 18:17:21.76]The summation is: 1649
+[06/23/15 18:17:21.76]The summation is: 1650
+[06/23/15 18:17:21.76]The summation is: 1651
+[06/23/15 18:17:21.76]The summation is: 1652
+[06/23/15 18:17:21.76]The summation is: 1653
+[06/23/15 18:17:21.76]The summation is: 1654
+[06/23/15 18:17:21.76]The summation is: 1655
+[06/23/15 18:17:21.76]The summation is: 1656
+[06/23/15 18:17:21.76]The summation is: 1657
+[06/23/15 18:17:21.76]The summation is: 1658
+[06/23/15 18:17:21.76]The summation is: 1659
+[06/23/15 18:17:21.76]The summation is: 1660
+[06/23/15 18:17:21.76]The summation is: 1661
+[06/23/15 18:17:21.76]The summation is: 1662
+[06/23/15 18:17:21.76]The summation is: 1663
+[06/23/15 18:17:21.76]The summation is: 1664
+[06/23/15 18:17:21.77]The summation is: 1665
+[06/23/15 18:17:21.77]The summation is: 1666
+[06/23/15 18:17:21.77]The summation is: 1667
+[06/23/15 18:17:21.77]The summation is: 1668
+[06/23/15 18:17:21.77]The summation is: 1669
+[06/23/15 18:17:21.77]The summation is: 1670
+[06/23/15 18:17:21.77]The summation is: 1671
+[06/23/15 18:17:21.77]The summation is: 1672
+[06/23/15 18:17:21.77]The summation is: 1673
+[06/23/15 18:17:21.77]The summation is: 1674
+[06/23/15 18:17:21.77]The summation is: 1675
+[06/23/15 18:17:21.77]The summation is: 1676
+[06/23/15 18:17:21.77]The summation is: 1677
+[06/23/15 18:17:21.77]The summation is: 1678
+[06/23/15 18:17:21.77]The summation is: 1679
+[06/23/15 18:17:21.77]The summation is: 1680
+[06/23/15 18:17:21.77]The summation is: 1681
+[06/23/15 18:17:21.77]The summation is: 1682
+[06/23/15 18:17:21.77]The summation is: 1683
+[06/23/15 18:17:21.77]The summation is: 1684
+[06/23/15 18:17:21.77]The summation is: 1685
+[06/23/15 18:17:21.77]The summation is: 1686
+[06/23/15 18:17:21.77]The summation is: 1687
+[06/23/15 18:17:21.77]The summation is: 1688
+[06/23/15 18:17:21.77]The summation is: 1689
+[06/23/15 18:17:21.77]The summation is: 1690
+[06/23/15 18:17:21.77]The summation is: 1691
+[06/23/15 18:17:21.77]The summation is: 1692
+[06/23/15 18:17:21.78]The summation is: 1693
+[06/23/15 18:17:21.78]The summation is: 1694
+[06/23/15 18:17:21.78]The summation is: 1695
+[06/23/15 18:17:21.78]The summation is: 1696
+[06/23/15 18:17:21.78]The summation is: 1697
+[06/23/15 18:17:21.78]The summation is: 1698
+[06/23/15 18:17:21.78]The summation is: 1699
+[06/23/15 18:17:21.78]The summation is: 1700
+[06/23/15 18:17:21.78]The summation is: 1701
+[06/23/15 18:17:21.78]The summation is: 1702
+[06/23/15 18:17:21.78]The summation is: 1703
+[06/23/15 18:17:21.78]The summation is: 1704
+[06/23/15 18:17:21.78]The summation is: 1705
+[06/23/15 18:17:21.78]The summation is: 1706
+[06/23/15 18:17:21.78]The summation is: 1707
+[06/23/15 18:17:21.78]The summation is: 1708
+[06/23/15 18:17:21.78]The summation is: 1709
+[06/23/15 18:17:21.78]The summation is: 1710
+[06/23/15 18:17:21.78]The summation is: 1711
+[06/23/15 18:17:21.78]The summation is: 1712
+[06/23/15 18:17:21.78]The summation is: 1713
+[06/23/15 18:17:21.78]The summation is: 1714
+[06/23/15 18:17:21.78]The summation is: 1715
+[06/23/15 18:17:21.78]The summation is: 1716
+[06/23/15 18:17:21.78]The summation is: 1717
+[06/23/15 18:17:21.78]The summation is: 1718
+[06/23/15 18:17:21.78]The summation is: 1719
+[06/23/15 18:17:21.79]The summation is: 1720
+[06/23/15 18:17:21.79]The summation is: 1721
+[06/23/15 18:17:21.79]The summation is: 1722
+[06/23/15 18:17:21.79]The summation is: 1723
+[06/23/15 18:17:21.79]The summation is: 1724
+[06/23/15 18:17:21.79]The summation is: 1725
+[06/23/15 18:17:21.79]The summation is: 1726
+[06/23/15 18:17:21.79]The summation is: 1727
+[06/23/15 18:17:21.79]The summation is: 1728
+[06/23/15 18:17:21.79]The summation is: 1729
+[06/23/15 18:17:21.79]The summation is: 1730
+[06/23/15 18:17:21.79]The summation is: 1731
+[06/23/15 18:17:21.79]The summation is: 1732
+[06/23/15 18:17:21.79]The summation is: 1733
+[06/23/15 18:17:21.79]The summation is: 1734
+[06/23/15 18:17:21.79]The summation is: 1735
+[06/23/15 18:17:21.79]The summation is: 1736
+[06/23/15 18:17:21.79]The summation is: 1737
+[06/23/15 18:17:21.79]The summation is: 1738
+[06/23/15 18:17:21.79]The summation is: 1739
+[06/23/15 18:17:21.79]The summation is: 1740
+[06/23/15 18:17:21.79]The summation is: 1741
+[06/23/15 18:17:21.79]The summation is: 1742
+[06/23/15 18:17:21.79]The summation is: 1743
+[06/23/15 18:17:21.79]The summation is: 1744
+[06/23/15 18:17:21.80]The summation is: 1745
+[06/23/15 18:17:21.80]The summation is: 1746
+[06/23/15 18:17:21.80]The summation is: 1747
+[06/23/15 18:17:21.80]The summation is: 1748
+[06/23/15 18:17:21.80]The summation is: 1749
+[06/23/15 18:17:21.80]The summation is: 1750
+[06/23/15 18:17:21.80]The summation is: 1751
+[06/23/15 18:17:21.80]The summation is: 1752
+[06/23/15 18:17:21.80]The summation is: 1753
+[06/23/15 18:17:21.80]The summation is: 1754
+[06/23/15 18:17:21.80]The summation is: 1755
+[06/23/15 18:17:21.80]The summation is: 1756
+[06/23/15 18:17:21.80]The summation is: 1757
+[06/23/15 18:17:21.80]The summation is: 1758
+[06/23/15 18:17:21.80]The summation is: 1759
+[06/23/15 18:17:21.80]The summation is: 1760
+[06/23/15 18:17:21.80]The summation is: 1761
+[06/23/15 18:17:21.80]The summation is: 1762
+[06/23/15 18:17:21.80]The summation is: 1763
+[06/23/15 18:17:21.80]The summation is: 1764
+[06/23/15 18:17:21.81]The summation is: 1765
+[06/23/15 18:17:21.81]The summation is: 1766
+[06/23/15 18:17:21.81]The summation is: 1767
+[06/23/15 18:17:21.81]The summation is: 1768
+[06/23/15 18:17:21.81]The summation is: 1769
+[06/23/15 18:17:21.81]The summation is: 1770
+[06/23/15 18:17:21.81]The summation is: 1771
+[06/23/15 18:17:21.81]The summation is: 1772
+[06/23/15 18:17:21.81]The summation is: 1773
+[06/23/15 18:17:21.81]The summation is: 1774
+[06/23/15 18:17:21.81]The summation is: 1775
+[06/23/15 18:17:21.81]The summation is: 1776
+[06/23/15 18:17:21.81]The summation is: 1777
+[06/23/15 18:17:21.81]The summation is: 1778
+[06/23/15 18:17:21.81]The summation is: 1779
+[06/23/15 18:17:21.81]The summation is: 1780
+[06/23/15 18:17:21.81]The summation is: 1781
+[06/23/15 18:17:21.81]The summation is: 1782
+[06/23/15 18:17:21.81]The summation is: 1783
+[06/23/15 18:17:21.82]The summation is: 1784
+[06/23/15 18:17:21.82]The summation is: 1785
+[06/23/15 18:17:21.82]The summation is: 1786
+[06/23/15 18:17:21.82]The summation is: 1787
+[06/23/15 18:17:21.82]The summation is: 1788
+[06/23/15 18:17:21.82]The summation is: 1789
+[06/23/15 18:17:21.82]The summation is: 1790
+[06/23/15 18:17:21.82]The summation is: 1791
+[06/23/15 18:17:21.82]The summation is: 1792
+[06/23/15 18:17:21.82]The summation is: 1793
+[06/23/15 18:17:21.82]The summation is: 1794
+[06/23/15 18:17:21.82]The summation is: 1795
+[06/23/15 18:17:21.82]The summation is: 1796
+[06/23/15 18:17:21.82]The summation is: 1797
+[06/23/15 18:17:21.82]The summation is: 1798
+[06/23/15 18:17:21.82]The summation is: 1799
+[06/23/15 18:17:21.82]The summation is: 1800
+[06/23/15 18:17:21.82]The summation is: 1801
+[06/23/15 18:17:21.82]The summation is: 1802
+[06/23/15 18:17:21.82]The summation is: 1803
+[06/23/15 18:17:21.83]The summation is: 1804
+[06/23/15 18:17:21.83]The summation is: 1805
+[06/23/15 18:17:21.83]The summation is: 1806
+[06/23/15 18:17:21.83]The summation is: 1807
+[06/23/15 18:17:21.83]The summation is: 1808
+[06/23/15 18:17:21.83]The summation is: 1809
+[06/23/15 18:17:21.83]The summation is: 1810
+[06/23/15 18:17:21.83]The summation is: 1811
+[06/23/15 18:17:21.83]The summation is: 1812
+[06/23/15 18:17:21.83]The summation is: 1813
+[06/23/15 18:17:21.83]The summation is: 1814
+[06/23/15 18:17:21.83]The summation is: 1815
+[06/23/15 18:17:21.83]The summation is: 1816
+[06/23/15 18:17:21.83]The summation is: 1817
+[06/23/15 18:17:21.83]The summation is: 1818
+[06/23/15 18:17:21.83]The summation is: 1819
+[06/23/15 18:17:21.83]The summation is: 1820
+[06/23/15 18:17:21.83]The summation is: 1821
+[06/23/15 18:17:21.83]The summation is: 1822
+[06/23/15 18:17:21.83]The summation is: 1823
+[06/23/15 18:17:21.83]The summation is: 1824
+[06/23/15 18:17:21.83]The summation is: 1825
+[06/23/15 18:17:21.83]The summation is: 1826
+[06/23/15 18:17:21.83]The summation is: 1827
+[06/23/15 18:17:21.83]The summation is: 1828
+[06/23/15 18:17:21.84]The summation is: 1829
+[06/23/15 18:17:21.84]The summation is: 1830
+[06/23/15 18:17:21.84]The summation is: 1831
+[06/23/15 18:17:21.84]The summation is: 1832
+[06/23/15 18:17:21.84]The summation is: 1833
+[06/23/15 18:17:21.84]The summation is: 1834
+[06/23/15 18:17:21.84]The summation is: 1835
+[06/23/15 18:17:21.84]The summation is: 1836
+[06/23/15 18:17:21.84]The summation is: 1837
+[06/23/15 18:17:21.84]The summation is: 1838
+[06/23/15 18:17:21.84]The summation is: 1839
+[06/23/15 18:17:21.84]The summation is: 1840
+[06/23/15 18:17:21.84]The summation is: 1841
+[06/23/15 18:17:21.84]The summation is: 1842
+[06/23/15 18:17:21.84]The summation is: 1843
+[06/23/15 18:17:21.84]The summation is: 1844
+[06/23/15 18:17:21.84]The summation is: 1845
+[06/23/15 18:17:21.84]The summation is: 1846
+[06/23/15 18:17:21.84]The summation is: 1847
+[06/23/15 18:17:21.84]The summation is: 1848
+[06/23/15 18:17:21.85]The summation is: 1849
+[06/23/15 18:17:21.85]The summation is: 1850
+[06/23/15 18:17:21.85]The summation is: 1851
+[06/23/15 18:17:21.85]The summation is: 1852
+[06/23/15 18:17:21.85]The summation is: 1853
+[06/23/15 18:17:21.85]The summation is: 1854
+[06/23/15 18:17:21.85]The summation is: 1855
+[06/23/15 18:17:21.85]The summation is: 1856
+[06/23/15 18:17:21.85]The summation is: 1857
+[06/23/15 18:17:21.85]The summation is: 1858
+[06/23/15 18:17:21.85]The summation is: 1859
+[06/23/15 18:17:21.85]The summation is: 1860
+[06/23/15 18:17:21.85]The summation is: 1861
+[06/23/15 18:17:21.85]The summation is: 1862
+[06/23/15 18:17:21.85]The summation is: 1863
+[06/23/15 18:17:21.85]The summation is: 1864
+[06/23/15 18:17:21.85]The summation is: 1865
+[06/23/15 18:17:21.85]The summation is: 1866
+[06/23/15 18:17:21.85]The summation is: 1867
+[06/23/15 18:17:21.85]The summation is: 1868
+[06/23/15 18:17:21.85]The summation is: 1869
+[06/23/15 18:17:21.85]The summation is: 1870
+[06/23/15 18:17:21.85]The summation is: 1871
+[06/23/15 18:17:21.85]The summation is: 1872
+[06/23/15 18:17:21.85]The summation is: 1873
+[06/23/15 18:17:21.85]The summation is: 1874
+[06/23/15 18:17:21.85]The summation is: 1875
+[06/23/15 18:17:21.86]The summation is: 1876
+[06/23/15 18:17:21.86]The summation is: 1877
+[06/23/15 18:17:21.86]The summation is: 1878
+[06/23/15 18:17:21.86]The summation is: 1879
+[06/23/15 18:17:21.86]The summation is: 1880
+[06/23/15 18:17:21.86]The summation is: 1881
+[06/23/15 18:17:21.86]The summation is: 1882
+[06/23/15 18:17:21.86]The summation is: 1883
+[06/23/15 18:17:21.86]The summation is: 1884
+[06/23/15 18:17:21.86]The summation is: 1885
+[06/23/15 18:17:21.86]The summation is: 1886
+[06/23/15 18:17:21.86]The summation is: 1887
+[06/23/15 18:17:21.86]The summation is: 1888
+[06/23/15 18:17:21.86]The summation is: 1889
+[06/23/15 18:17:21.86]The summation is: 1890
+[06/23/15 18:17:21.86]The summation is: 1891
+[06/23/15 18:17:21.86]The summation is: 1892
+[06/23/15 18:17:21.86]The summation is: 1893
+[06/23/15 18:17:21.86]The summation is: 1894
+[06/23/15 18:17:21.86]The summation is: 1895
+[06/23/15 18:17:21.86]The summation is: 1896
+[06/23/15 18:17:21.86]The summation is: 1897
+[06/23/15 18:17:21.86]The summation is: 1898
+[06/23/15 18:17:21.86]The summation is: 1899
+[06/23/15 18:17:21.86]The summation is: 1900
+[06/23/15 18:17:21.86]The summation is: 1901
+[06/23/15 18:17:21.86]The summation is: 1902
+[06/23/15 18:17:21.86]The summation is: 1903
+[06/23/15 18:17:21.87]The summation is: 1904
+[06/23/15 18:17:21.87]The summation is: 1905
+[06/23/15 18:17:21.87]The summation is: 1906
+[06/23/15 18:17:21.87]The summation is: 1907
+[06/23/15 18:17:21.87]The summation is: 1908
+[06/23/15 18:17:21.87]The summation is: 1909
+[06/23/15 18:17:21.87]The summation is: 1910
+[06/23/15 18:17:21.87]The summation is: 1911
+[06/23/15 18:17:21.87]The summation is: 1912
+[06/23/15 18:17:21.87]The summation is: 1913
+[06/23/15 18:17:21.87]The summation is: 1914
+[06/23/15 18:17:21.87]The summation is: 1915
+[06/23/15 18:17:21.87]The summation is: 1916
+[06/23/15 18:17:21.87]The summation is: 1917
+[06/23/15 18:17:21.87]The summation is: 1918
+[06/23/15 18:17:21.87]The summation is: 1919
+[06/23/15 18:17:21.87]The summation is: 1920
+[06/23/15 18:17:21.87]The summation is: 1921
+[06/23/15 18:17:21.87]The summation is: 1922
+[06/23/15 18:17:21.87]The summation is: 1923
+[06/23/15 18:17:21.87]The summation is: 1924
+[06/23/15 18:17:21.87]The summation is: 1925
+[06/23/15 18:17:21.87]The summation is: 1926
+[06/23/15 18:17:21.87]The summation is: 1927
+[06/23/15 18:17:21.87]The summation is: 1928
+[06/23/15 18:17:21.87]The summation is: 1929
+[06/23/15 18:17:21.88]The summation is: 1930
+[06/23/15 18:17:21.88]The summation is: 1931
+[06/23/15 18:17:21.88]The summation is: 1932
+[06/23/15 18:17:21.88]The summation is: 1933
+[06/23/15 18:17:21.88]The summation is: 1934
+[06/23/15 18:17:21.88]The summation is: 1935
+[06/23/15 18:17:21.88]The summation is: 1936
+[06/23/15 18:17:21.88]The summation is: 1937
+[06/23/15 18:17:21.88]The summation is: 1938
+[06/23/15 18:17:21.88]The summation is: 1939
+[06/23/15 18:17:21.88]The summation is: 1940
+[06/23/15 18:17:21.88]The summation is: 1941
+[06/23/15 18:17:21.88]The summation is: 1942
+[06/23/15 18:17:21.88]The summation is: 1943
+[06/23/15 18:17:21.88]The summation is: 1944
+[06/23/15 18:17:21.88]The summation is: 1945
+[06/23/15 18:17:21.88]The summation is: 1946
+[06/23/15 18:17:21.88]The summation is: 1947
+[06/23/15 18:17:21.88]The summation is: 1948
+[06/23/15 18:17:21.88]The summation is: 1949
+[06/23/15 18:17:21.88]The summation is: 1950
+[06/23/15 18:17:21.88]The summation is: 1951
+[06/23/15 18:17:21.88]The summation is: 1952
+[06/23/15 18:17:21.88]The summation is: 1953
+[06/23/15 18:17:21.88]The summation is: 1954
+[06/23/15 18:17:21.89]The summation is: 1955
+[06/23/15 18:17:21.89]The summation is: 1956
+[06/23/15 18:17:21.89]The summation is: 1957
+[06/23/15 18:17:21.89]The summation is: 1958
+[06/23/15 18:17:21.89]The summation is: 1959
+[06/23/15 18:17:21.89]The summation is: 1960
+[06/23/15 18:17:21.89]The summation is: 1961
+[06/23/15 18:17:21.89]The summation is: 1962
+[06/23/15 18:17:21.89]The summation is: 1963
+[06/23/15 18:17:21.89]The summation is: 1964
+[06/23/15 18:17:21.89]The summation is: 1965
+[06/23/15 18:17:21.89]The summation is: 1966
+[06/23/15 18:17:21.89]The summation is: 1967
+[06/23/15 18:17:21.89]The summation is: 1968
+[06/23/15 18:17:21.89]The summation is: 1969
+[06/23/15 18:17:21.89]The summation is: 1970
+[06/23/15 18:17:21.89]The summation is: 1971
+[06/23/15 18:17:21.89]The summation is: 1972
+[06/23/15 18:17:21.89]The summation is: 1973
+[06/23/15 18:17:21.89]The summation is: 1974
+[06/23/15 18:17:21.89]The summation is: 1975
+[06/23/15 18:17:21.89]The summation is: 1976
+[06/23/15 18:17:21.89]The summation is: 1977
+[06/23/15 18:17:21.89]The summation is: 1978
+[06/23/15 18:17:21.89]The summation is: 1979
+[06/23/15 18:17:21.89]The summation is: 1980
+[06/23/15 18:17:21.89]The summation is: 1981
+[06/23/15 18:17:21.89]The summation is: 1982
+[06/23/15 18:17:21.90]The summation is: 1983
+[06/23/15 18:17:21.90]The summation is: 1984
+[06/23/15 18:17:21.90]The summation is: 1985
+[06/23/15 18:17:21.90]The summation is: 1986
+[06/23/15 18:17:21.90]The summation is: 1987
+[06/23/15 18:17:21.90]The summation is: 1988
+[06/23/15 18:17:21.90]The summation is: 1989
+[06/23/15 18:17:21.90]The summation is: 1990
+[06/23/15 18:17:21.90]The summation is: 1991
+[06/23/15 18:17:21.90]The summation is: 1992
+[06/23/15 18:17:21.90]The summation is: 1993
+[06/23/15 18:17:21.90]The summation is: 1994
+[06/23/15 18:17:21.90]The summation is: 1995
+[06/23/15 18:17:21.90]The summation is: 1996
+[06/23/15 18:17:21.90]The summation is: 1997
+[06/23/15 18:17:21.90]The summation is: 1998
+[06/23/15 18:17:21.90]The summation is: 1999
