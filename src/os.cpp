@@ -72,6 +72,8 @@
 #include "os.hpp"
 #include "format.hpp"
 #include <string>
+#include <functional>
+#include <thread>
 
 namespace zl
 {
@@ -228,8 +230,22 @@ namespace zl
 				free(buffer);
 				return wstring_to_utf8(ret);
 			}
-#elif OPENZL_OS_UNIX
+#elif __GNUC__
 			char *buffer = get_current_dir_name();
+			if (buffer == nullptr)
+			{
+				// failed
+				return std::string();
+			}
+			else
+			{
+				// success
+				std::string ret(buffer);
+				free(buffer);
+				return ret;
+			}
+#else
+			char *buffer = getcwd(nullptr, 0);
 			if (buffer == nullptr)
 			{
 				// failed
