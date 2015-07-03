@@ -27,6 +27,7 @@
 #ifndef _OPENZL_THREAD_HPP_
 #define _OPENZL_THREAD_HPP_
 
+#include "common.hpp"
 #include <thread>
 #include <mutex>
 #include <set>
@@ -55,13 +56,44 @@ namespace zl
 
 		};
 
-		template <typename Mutex, typename T> class Set_:private 
+		template <typename Mutex, typename T> class Set_: private UnMovable
 		{
 		public:
-			Set_<Mutex, T>() {};
+			static Set_<Mutex, T>& instance()
+			{
+				static Set_<Mutex, T> instance_;
+				return instance_;
+			}
 
+			bool contains(T &entry) const
+			{
+				return set_.count(entry) > 0;
+			}
+
+			bool try_insert(T &entry)
+			{
+				// return false if already exist
+				if (contains(entry)) return false;
+				std::lock_guard<Mutex> lock_(mutex_);
+				set_.insert(entry);
+				return true;
+			}
+
+			void erase(T &entry)
+			{
+				if (!contains(entry)) return;
+				std::lock_guard<Mutex> lock_(mutex_);
+				set_.erase(entry);
+			}
 
 		private:
+			void clear()
+			{
+				std::lock_guard<Mutex> lock_(mutex_);
+				set_.clear();
+			}
+
+			Set_<Mutex, T>() {};
 			std::set<T>	set_;
 			Mutex		mutex_;
 		};

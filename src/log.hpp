@@ -28,13 +28,52 @@
 #ifndef _OPENZL_LOG_HPP_
 #define _OPENZL_LOG_HPP_
 
-
+#include "common.hpp"
+#include <string>
+#include <utility>
 
 namespace zl
 {
+	namespace log
+	{
+		template<typename Callback> class LineLogger : private UnCopyable
+		{
+		public:
+			LineLogger(Callback *callback, bool enable) : callback_(callback), enabled_(enable) {}
+			LineLogger(LineLogger&& other) :callback_(other.callback_), msg_(std::move(other.msg_)), enabled_(other.enabled_)
+			{
+				other.msg_ = std::string();
+				other.enabled_ = false;
+			}
+
+			
+			~LineLogger()
+			{
+				if (enabled_)
+				{
+					callback_->write(msg_);
+				}
+			}
+
+			LineLogger& operator=(LineLogger&&) = delete;
 
 
+			void disable()
+			{
+				enabled_ = false;
+			}
 
+			bool is_enabled() const
+			{
+				return enabled_;
+			}
+
+		private:
+			Callback	*callback_;
+			std::string msg_;
+			bool		enabled_;
+		};
+	} // namespace log
 } // namespace zl
 
 #endif //END _OPENZL_LOG_HPP_

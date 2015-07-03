@@ -44,30 +44,18 @@ namespace zl
 
 	namespace fs
 	{
-		class File: private UnCopyable
+		class FileEditor: private UnCopyable
 		{
 		public:
-			/*!
-			 * \fn	File::File(std::string filename, std::ios::openmode openmode = std::ios::in, int retryTimes = consts::kDefaultFileOpenRetryTimes, int retryInterval = consts::kDefaultFileOpenRetryInterval)
-			 *
-			 * \brief	Constructor.
-			 *
-			 * \param	filename	 	Filename of the file.
-			 * \param	openmode	 	The openmode.
-			 * \param	retryTimes   	List of times of the retries.
-			 * \param	retryInterval	The retry interval.
-			 */
-			File(std::string filename, std::ios::openmode openmode = std::ios::in, 
+			FileEditor() = delete;
+			FileEditor(std::string filename, bool truncateOrNot = false,
 				int retryTimes = consts::kDefaultFileOpenRetryTimes, 
 				int retryInterval = consts::kDefaultFileOpenRetryInterval)
-				: openmode_(openmode) 
 			{
 				// use absolute path
 				filename_ = os::get_absolute_path(filename);
-				// always use binary mode
-				openmode_ |= std::ios::binary;	
-				this->check_valid();
-				this->try_open(retryTimes, retryInterval);
+				// try open
+				this->try_open(retryTimes, retryInterval, truncateOrNot);
 			};
 
 			/*!
@@ -77,43 +65,73 @@ namespace zl
 			*
 			* \param [in,out]	other	Source for the instance.
 			*/
-			File(File&& other) : filename_(std::move(other.filename_)), stream_(std::move(other.stream_)), openmode_(other.openmode_)
+			FileEditor(FileEditor&& other) : filename_(std::move(other.filename_)),
+				stream_(std::move(other.stream_)), 
+				readPos_(std::move(other.readPos_)),
+				writePos_(std::move(other.writePos_))
 			{ 
-				other.filename_ = std::string(); 
-				other.openmode_ = std::ios::in;
+				other.filename_ = std::string();
 			};
 
-			virtual ~File() = default;
+			virtual ~FileEditor() { this->close(); }
 
 			// No move operator
-			File& operator=(File&&) = delete;
+			FileEditor& operator=(FileEditor&&) = delete;
 
 			// overload << operator
 			template <typename T>
-			File& operator<<(T what) { stream_ << what; return *this; }
-
-			static std::string endl();
+			FileEditor& operator<<(T what) { stream_ << what; return *this; }
 
 			std::string filename() { return filename_; }
 
-			
-			bool is_valid() { return !filename_.empty(); }
-			
-			bool is_open() { return stream_.is_open(); }
-
+			bool open(bool truncateOrNot = false);
+			bool try_open(int retryTime, int retryInterval, bool truncateOrNot = false);
+			void close();
+			bool is_valid() const { return !filename_.empty(); }
+			bool is_open() const { return stream_.is_open(); }
 			void flush() { stream_.flush(); }
 		private:
-			File() {}
-
-			bool open();
+			
 			void check_valid() { if (!this->is_valid()) throw RuntimeException("Invalid File handler!"); }
-			void try_open(int retryTime, int retryInterval);
 
 			std::string		filename_;
 			std::fstream	stream_;
-			std::ios::openmode openmode_;
+			std::streampos	readPos_;
+			std::streampos	writePos_;
 		};
 
+		class FileReader : private UnCopyable
+		{
+		public:
+			FileReader() = delete;
+			FileReader(std::string filename, int retryTimes = consts::kDefaultFileOpenRetryTimes,
+				int retryInterval = consts::kDefaultFileOpenRetryInterval)
+			{
+				// use absolute path
+				filename_ = os::get_absolute_path(filename);
+				// try open
+				this->try_open(retryTimes, retryInterval);
+			}
+
+			FileReader(FileReader&& other) : filename_(std::move(other.filename_)), istream_(std::move(other.istream_))
+			{
+				other.filename_ = std::string();
+			};
+
+			bool is_open() const { return istream_.is_open(); }
+			bool is_valid() const { return !filename_.empty(); }
+			bool open();
+			bool try_open(int retryTime, int retryInterval);
+			void close() { istream_.close(); };
+
+		private:
+			
+			void check_valid(){ if (!this->is_valid()) throw RuntimeException("Invalid File handler!"); }
+			std::string		filename_;
+			std::ifstream	istream_;
+		};
+
+		using os::endl;
 	} //namespace fs
 } // namespace zl
 

@@ -102,6 +102,7 @@ namespace zl
 		static const char* kExceptionPrefixLogic = "[OpenZL Exception->Logic] ";
 		static const char* kExceptionPrefixArgument = "[OpenZL Exception->Logic->Argument] ";
 		static const char* kExceptionPrefixRuntime = "[OpenZL Exception->Runtime] ";
+		static const char* kExceptionPrefixIO = "[OpenZL Exception->Runtime->IO] ";
 		static const char* kExceptionPrefixMemory = "[OpenZL Exception->Runtime->Memory] ";
 		static const char* kExceptionPrefixStrictWarn = "[OpenZL Exception->StrictWarn] ";
 	}
@@ -197,6 +198,13 @@ namespace zl
 	public:
 		explicit RuntimeException(const char *message) : Exception(message, consts::kExceptionPrefixRuntime){};
 		explicit RuntimeException(const std::string &message) : Exception(message, consts::kExceptionPrefixRuntime){};
+	};
+
+	class IOException : public Exception
+	{
+	public:
+		explicit IOException(const char *message) : Exception(message, consts::kExceptionPrefixIO){};
+		explicit IOException(const std::string &message) : Exception(message, consts::kExceptionPrefixIO){};
 	};
 
 	/*!

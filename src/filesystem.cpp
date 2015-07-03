@@ -27,37 +27,74 @@
 #include "filesystem.hpp"
 #include "os.hpp"
 #include "time.hpp"
+#include "thread.hpp"
 
 namespace zl
 {
 	namespace fs
 	{
 
-		bool File::open()
+		bool FileEditor::open(bool truncateOrNot)
 		{
-			os::fstream_open(stream_, filename_, openmode_);
+			if (this->is_open()) return true;
+			std::ios::openmode mode = std::ios::in | std::ios::out | std::ios::binary;
+			if (truncateOrNot)
+			{
+				mode |= std::ios::trunc;
+			}
+			else
+			{
+				mode |= std::ios::ate;
+			}
+
+			// try to register this file to avoid multiply access to the same file
+			bool success = thread::Set_<std::mutex, std::string>::instance().try_insert(filename_);
+			// fail means someone is editing this file, just return
+			if (!success)
+			{
+				//throw IOException("File: " + filename_ + " already opened by other.");
+				return false;
+			}
+
+			os::fstream_open(stream_, filename_, mode);
 			if (this->is_open()) return true;
 			return false;
 		}
 
-		void File::try_open(int retryTime, int retryInterval)
+		void FileEditor::close()
 		{
-			while (retryTime > 0 && this->is_open() != true)
+			stream_.close();
+			// unregister this file
+			thread::Set_<std::mutex, std::string>::instance().erase(filename_);
+		}
+
+		bool FileEditor::try_open(int retryTime, int retryInterval, bool truncateOrNot)
+		{
+			while (retryTime > 0 && (!this->open(truncateOrNot)))
 			{
-				this->open();
 				time::sleep(retryInterval);
 				--retryTime;
 			}
-
-			auto stategood = stream_.good();
-			auto statebad = stream_.bad();
-			auto statefail = stream_.fail();
-			auto staterd = stream_.rdstate();
+			return this->is_open();
 		}
 
-		std::string File::endl()
+		bool FileReader::open()
 		{
-			return os::endl();
+			if (this->is_open()) return true;
+			this->check_valid();
+			os::ifstream_open(istream_, filename_, std::ios::in|std::ios::binary);
+			if (this->is_open()) return true;
+			return false;
+		}
+
+		bool FileReader::try_open(int retryTime, int retryInterval)
+		{
+			while (retryTime > 0 && (!this->open()))
+			{
+				time::sleep(retryInterval);
+				--retryTime;
+			}
+			return this->is_open();
 		}
 
 		std::size_t get_file_size(std::string filename) 
