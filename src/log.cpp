@@ -23,3 +23,13 @@
  *   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
 ***************************************************************************/
+
+#include "log.hpp"
+
+namespace zl
+{
+	namespace log
+	{
+
+	} // namespace log
+}// namespace zl

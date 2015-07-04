@@ -41,9 +41,6 @@ void test_date()
 
 }
 
-void test_logger()
-{
-}
 
 void test_filehandler()
 {
@@ -82,6 +79,22 @@ void test_directory()
 	fh << os::get_absolute_path("") << os::endl();
 }
 
+void test_formatter()
+{
+	std::string str = "somwlojdlks {} here some {}, {}, {}";
+	fmt::format_string(str, 1, 2.2, 3.3f);
+	cout << str << endl;
+}
+
+void test_logger()
+{
+	log::Logger logger("default");
+	logger.info("test info {} {}", 1, 2.2);
+	logger.info() << "call method 2  " << 1;
+	logger.warn("method3") << " followed by this" << os::endl() << " " << os::endl();
+}
+
+
 int main()
 {
 #ifdef _MSC_VER
@@ -93,6 +106,7 @@ int main()
 	test_logger();
 	test_filehandler();
 	test_directory();
+	test_formatter();
 
 	system("pause");
 

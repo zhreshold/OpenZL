@@ -1,5 +1,0 @@
-中文.txt good, support UTF-8
-中文.txt good2, support UTF-8!
-中文.txt good3, support UTF-8
-中文.txt good, support UTF-8
-中文.txt good2, support UTF-8!

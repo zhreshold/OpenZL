@@ -34,7 +34,7 @@ namespace zl
 {
 	namespace consts
 	{
-		static const char			kFormatSpecifierChar = '%';
+		static const char			kFormatSpecifierEscapeChar = '%';
 		static const std::string	kZeroPaddingStr = std::string("0");
 	}
 
@@ -119,7 +119,7 @@ namespace zl
 			std::size_t foundAt = std::string::npos;
 			while ((foundAt = str.find(replaceWhat, foundAt + 1)) != std::string::npos) 
 			{
-				if (foundAt > 0 && str[foundAt - 1] == consts::kFormatSpecifierChar) 
+				if (foundAt > 0 && str[foundAt - 1] == consts::kFormatSpecifierEscapeChar)
 				{
 					str.erase(foundAt > 0 ? foundAt - 1 : 0, 1);
 					++foundAt;
@@ -137,7 +137,7 @@ namespace zl
 			std::size_t foundAt = std::string::npos;
 			while ((foundAt = str.find(replaceWhat, foundAt + 1)) != std::string::npos)
 			{
-				if (foundAt > 0 && str[foundAt - 1] == consts::kFormatSpecifierChar)
+				if (foundAt > 0 && str[foundAt - 1] == consts::kFormatSpecifierEscapeChar)
 				{
 					str.erase(foundAt > 0 ? foundAt - 1 : 0, 1);
 					++foundAt;

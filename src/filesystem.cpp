@@ -48,7 +48,7 @@ namespace zl
 			}
 
 			// try to register this file to avoid multiply access to the same file
-			bool success = thread::Set_<std::mutex, std::string>::instance().try_insert(filename_);
+			bool success = thread::FileEditorRegistry::instance().try_insert(filename_);
 			// fail means someone is editing this file, just return
 			if (!success)
 			{
@@ -65,7 +65,7 @@ namespace zl
 		{
 			stream_.close();
 			// unregister this file
-			thread::Set_<std::mutex, std::string>::instance().erase(filename_);
+			thread::FileEditorRegistry::instance().erase(filename_);
 		}
 
 		bool FileEditor::try_open(int retryTime, int retryInterval, bool truncateOrNot)
@@ -95,6 +95,12 @@ namespace zl
 				--retryTime;
 			}
 			return this->is_open();
+		}
+
+		bool is_occupied(std::string &filename)
+		{
+			std::string fn = os::get_absolute_path(filename);
+			return thread::FileEditorRegistry::instance().contains(fn);
 		}
 
 		std::size_t get_file_size(std::string filename) 

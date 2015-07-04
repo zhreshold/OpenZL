@@ -33,6 +33,11 @@
 
 namespace zl
 {
+	namespace consts
+	{
+		static const std::string kFormatSpecifierPlaceHolder = std::string("{}");
+	}
+
 	namespace fmt
 	{
 		namespace detail
@@ -74,6 +79,19 @@ namespace zl
 		{
 			std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> cvt;
 			return cvt.to_bytes(u32str);
+		}
+
+		template<typename Arg>
+		inline void format_string(std::string &fmt, const Arg &last)
+		{
+			replace_first_with_escape(fmt, consts::kFormatSpecifierPlaceHolder, std::to_string(last));
+		}
+
+		template<typename Arg, typename... Args>
+		inline void format_string(std::string &fmt, const Arg& current, const Args&... more)
+		{
+			replace_first_with_escape(fmt, consts::kFormatSpecifierPlaceHolder, std::to_string(current));
+			format_string(fmt, more...);
 		}
 
 	} // namespace format

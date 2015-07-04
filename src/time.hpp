@@ -57,7 +57,7 @@ namespace zl
 
 			void to_utc_time();
 
-			std::string to_string(const char *format = "[%c.%frac]");
+			std::string to_string(const char *format = "[%y/%m/%d %H:%M:%S.%frac]");
 
 			static Date local_time();
 
@@ -66,7 +66,7 @@ namespace zl
 		private:
 			std::time_t		timeStamp_;
 			int				fraction_;
-			std::string		fractionStr_;
+			char			fractionStr_[10];
 			struct std::tm	calendar_;
 
 		};

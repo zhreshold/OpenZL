@@ -58,6 +58,8 @@
 #include "time.hpp"
 #include "filesystem.hpp"
 #include "os.hpp"
+#include "format.hpp"
+#include "log.hpp"
 
 // Macro overloading hack
 //#define EXPAND(X) X    // for MSVC10 compatibility

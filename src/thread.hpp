@@ -31,6 +31,7 @@
 #include <thread>
 #include <mutex>
 #include <set>
+#include <string>
 
 namespace zl
 {
@@ -56,47 +57,50 @@ namespace zl
 
 		};
 
-		template <typename Mutex, typename T> class Set_: private UnMovable
+		template <typename Mutex> class FileEditorRegistry_: private UnMovable
 		{
 		public:
-			static Set_<Mutex, T>& instance()
+			static FileEditorRegistry_<Mutex>& instance()
 			{
-				static Set_<Mutex, T> instance_;
+				static FileEditorRegistry_<Mutex> instance_;
 				return instance_;
 			}
 
-			bool contains(T &entry) const
+			bool contains(std::string &entry) const
 			{
 				return set_.count(entry) > 0;
 			}
 
-			bool try_insert(T &entry)
+			bool try_insert(std::string &entry)
 			{
 				// return false if already exist
 				if (contains(entry)) return false;
-				std::lock_guard<Mutex> lock_(mutex_);
+				std::lock_guard<Mutex> lock(mutex_);
 				set_.insert(entry);
 				return true;
 			}
 
-			void erase(T &entry)
+			void erase(std::string &entry)
 			{
 				if (!contains(entry)) return;
-				std::lock_guard<Mutex> lock_(mutex_);
+				std::lock_guard<Mutex> lock(mutex_);
 				set_.erase(entry);
 			}
 
 		private:
 			void clear()
 			{
-				std::lock_guard<Mutex> lock_(mutex_);
+				std::lock_guard<Mutex> lock(mutex_);
 				set_.clear();
 			}
 
-			Set_<Mutex, T>() {};
-			std::set<T>	set_;
+			FileEditorRegistry_<Mutex>() {};
+
+			std::set<std::string>	set_;
 			Mutex		mutex_;
 		};
+
+		typedef FileEditorRegistry_<std::mutex> FileEditorRegistry;
 
 	} // namespace thread
 } // namespace zl

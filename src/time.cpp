@@ -43,6 +43,7 @@ namespace zl
 		static const char			*kTimerPrecisionMsSpecifier = "%ms";
 		static const char			*kTimerPrecisionUsSpecifier = "%us";
 		static const char			*kTimerPrecisionNsSpecifier = "%ns";
+		static const char			*kDateTimeSpecifier = "%datetime";
 	}
 
 	namespace time
@@ -53,9 +54,7 @@ namespace zl
 			timeStamp_ = std::chrono::system_clock::to_time_t(now);
 			fraction_ = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
 			calendar_ = os::localtime(timeStamp_);
-			char buf[10];
-			sprintf(buf, "%03d", fraction_);
-			fractionStr_ = std::string(buf);
+			sprintf(fractionStr_, "%03d", fraction_);
 		}
 
 		void Date::to_local_time()
@@ -71,7 +70,7 @@ namespace zl
 		std::string Date::to_string(const char *format)
 		{
 			std::string fmt(format);
-			fmt::replace_all_with_escape(fmt, consts::kDateFractionSpecifier, fractionStr_);
+			fmt::replace_all_with_escape(fmt, consts::kDateFractionSpecifier, std::string(fractionStr_));
 			std::ostringstream buf;
 			buf << std::put_time(&calendar_, fmt.c_str());
 			return buf.str();

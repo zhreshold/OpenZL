@@ -92,7 +92,7 @@ namespace zl
 			void flush() { stream_.flush(); }
 		private:
 			
-			void check_valid() { if (!this->is_valid()) throw RuntimeException("Invalid File handler!"); }
+			void check_valid() { if (!this->is_valid()) throw RuntimeException("Invalid File Editor!"); }
 
 			std::string		filename_;
 			std::fstream	stream_;
@@ -126,12 +126,13 @@ namespace zl
 
 		private:
 			
-			void check_valid(){ if (!this->is_valid()) throw RuntimeException("Invalid File handler!"); }
+			void check_valid(){ if (!this->is_valid()) throw RuntimeException("Invalid File Reader!"); }
 			std::string		filename_;
 			std::ifstream	istream_;
 		};
 
-		using os::endl;
+		bool is_occupied(std::string &filename);
+
 	} //namespace fs
 } // namespace zl
 
