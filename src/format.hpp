@@ -51,6 +51,8 @@ namespace zl
 			};
 		} // namespace detail
 
+		bool ends_with(const std::string& str, const std::string& end);
+
 		bool str_equals(const char* s1, const char* s2);
 
 		void replace_first_with_escape(std::string &str, const std::string &replaceWhat, const std::string &replaceWith);

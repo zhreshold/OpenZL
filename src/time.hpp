@@ -57,7 +57,7 @@ namespace zl
 
 			void to_utc_time();
 
-			std::string to_string(const char *format = "[%y/%m/%d %H:%M:%S.%frac]");
+			std::string to_string(const char *format = "%y/%m/%d %H:%M:%S.%frac");
 
 			static Date local_time();
 

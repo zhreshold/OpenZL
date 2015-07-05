@@ -44,7 +44,7 @@ namespace zl
 			}
 			else
 			{
-				mode |= std::ios::ate;
+				mode |= std::ios::app;
 			}
 
 			// try to register this file to avoid multiply access to the same file

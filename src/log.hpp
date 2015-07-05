@@ -32,10 +32,15 @@
 #include "time.hpp"
 #include "os.hpp"
 #include "format.hpp"
+#include "filesystem.hpp"
 #include <string>
 #include <sstream>
 #include <utility>
 #include <atomic>
+#include <mutex>
+#include <memory>
+#include <vector>
+#include <type_traits>
 
 
 
@@ -60,23 +65,36 @@ namespace zl
 
 		namespace consts
 		{
-			static const char* level_names[] { "TRACE", "DEBUG", "INFO ", "WARN ", "ERROR", "FATAL", "'OFF'"};
-			static const char* short_level_names[] { "T", "D", "I", "W", "E", "F", "O"};
+			static const char	*kLevel_names[] { "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "OFF"};
+			static const char	*kShort_level_names[] { "T", "D", "I", "W", "E", "F", "O"};
+			static const int	kAsyncQueueSize = 4096;	//!< asynchrous queue size, must be power of 2
+
+			static const char	*kSinkDatetimeSpecifier = "%datetime";
+			static const char	*kSinkLoggerNameSpecifier = "%logger";
+			static const char	*kSinkThreadSpecifier = "%thread";
+			static const char	*kSinkLevelSpecifier = "%level";
+			static const char	*kSinkMessageSpecifier = "%msg";
+			static const char	*kSinkDefaultFormat = "[%datetime][T:%thread][%logger][%level] %msg";
 		}
 
 		namespace detail
 		{
 			struct LogMessage;
 			class LineLogger;
+			class SinkInterface;
 		}
 		
-
+		typedef std::shared_ptr<detail::SinkInterface> SinkPtr;
 		class Logger
 		{
 		public:
 			Logger(std::string name) : name_(name)
 			{
 				level_ = LogLevels::info;
+			}
+
+			~Logger()
+			{
 			}
 
 			// logger.info(format string, arg1, arg2, arg3, ...) call style
@@ -116,8 +134,7 @@ namespace zl
 			}
 			const std::string& name() const { return name_; };
 
-			void log_msg(detail::LogMessage msg);
-
+			
 		private:
 
 			friend detail::LineLogger;
@@ -130,16 +147,120 @@ namespace zl
 			template<typename T>
 			detail::LineLogger log_if_enabled(LogLevels lvl, const T& msg);
 
-			
+			void log_msg(detail::LogMessage msg);
 
-			std::string		name_;
-			std::atomic_int	level_;
+			std::string				name_;
+			std::atomic_int			level_;
+		public:
+			std::vector<SinkPtr>	sinkPtrs_;
+			std::vector<bool>		sinkValves_;
 		};
 
 
 
 		namespace detail
 		{
+			template<typename T>
+			class mpmc_bounded_queue
+			{
+			public:
+
+				using item_type = T;
+				mpmc_bounded_queue(size_t buffer_size)
+					: buffer_(new cell_t[buffer_size]),
+					buffer_mask_(buffer_size - 1)
+				{
+					//queue size must be power of two
+					if (!((buffer_size >= 2) && ((buffer_size & (buffer_size - 1)) == 0)))
+						throw ArgException("async logger queue size must be power of two");
+
+					for (size_t i = 0; i != buffer_size; i += 1)
+						buffer_[i].sequence_.store(i, std::memory_order_relaxed);
+					enqueue_pos_.store(0, std::memory_order_relaxed);
+					dequeue_pos_.store(0, std::memory_order_relaxed);
+				}
+
+				~mpmc_bounded_queue()
+				{
+					delete[] buffer_;
+				}
+
+
+				bool enqueue(T&& data)
+				{
+					cell_t* cell;
+					size_t pos = enqueue_pos_.load(std::memory_order_relaxed);
+					for (;;)
+					{
+						cell = &buffer_[pos & buffer_mask_];
+						size_t seq = cell->sequence_.load(std::memory_order_acquire);
+						intptr_t dif = (intptr_t)seq - (intptr_t)pos;
+						if (dif == 0)
+						{
+							if (enqueue_pos_.compare_exchange_weak(pos, pos + 1, std::memory_order_relaxed))
+								break;
+						}
+						else if (dif < 0)
+						{
+							return false;
+						}
+						else
+						{
+							pos = enqueue_pos_.load(std::memory_order_relaxed);
+						}
+					}
+					cell->data_ = std::move(data);
+					cell->sequence_.store(pos + 1, std::memory_order_release);
+					return true;
+				}
+
+				bool dequeue(T& data)
+				{
+					cell_t* cell;
+					size_t pos = dequeue_pos_.load(std::memory_order_relaxed);
+					for (;;)
+					{
+						cell = &buffer_[pos & buffer_mask_];
+						size_t seq =
+							cell->sequence_.load(std::memory_order_acquire);
+						intptr_t dif = (intptr_t)seq - (intptr_t)(pos + 1);
+						if (dif == 0)
+						{
+							if (dequeue_pos_.compare_exchange_weak(pos, pos + 1, std::memory_order_relaxed))
+								break;
+						}
+						else if (dif < 0)
+							return false;
+						else
+							pos = dequeue_pos_.load(std::memory_order_relaxed);
+					}
+					data = std::move(cell->data_);
+					cell->sequence_.store(pos + buffer_mask_ + 1, std::memory_order_release);
+					return true;
+				}
+
+			private:
+				struct cell_t
+				{
+					std::atomic<size_t>   sequence_;
+					T                     data_;
+				};
+
+				static size_t const     cacheline_size = 64;
+				typedef char            cacheline_pad_t[cacheline_size];
+
+				cacheline_pad_t         pad0_;
+				cell_t* const           buffer_;
+				size_t const            buffer_mask_;
+				cacheline_pad_t         pad1_;
+				std::atomic<size_t>     enqueue_pos_;
+				cacheline_pad_t         pad2_;
+				std::atomic<size_t>     dequeue_pos_;
+				cacheline_pad_t         pad3_;
+
+				mpmc_bounded_queue(mpmc_bounded_queue const&);
+				void operator = (mpmc_bounded_queue const&);
+			};
 
 			struct LogMessage
 			{
@@ -198,15 +319,13 @@ namespace zl
 
 				LineLogger& operator<<(const char* what)
 				{
-					if (enabled_)
-						msg_.buffer_ += what;
+					if (enabled_) msg_.buffer_ += what;
 					return *this;
 				}
 
 				LineLogger& operator<<(const std::string& what)
 				{
-					if (enabled_)
-						msg_.buffer_ += what;
+					if (enabled_) msg_.buffer_ += what;
 					return *this;
 				}
 
@@ -214,7 +333,9 @@ namespace zl
 				LineLogger& operator<<(const T& what)
 				{
 					if (enabled_)
+					{
 						msg_.buffer_ += dynamic_cast<std::ostringstream &>(std::ostringstream() << std::dec << what).str();
+					}
 					return *this;
 				}
 
@@ -232,7 +353,157 @@ namespace zl
 				LogMessage		msg_;
 				bool			enabled_;
 			};
-		}
+
+			class SinkInterface : private UnCopyable
+			{
+			public:
+				virtual ~SinkInterface() {};
+				virtual void log(const LogMessage& msg) = 0;
+				virtual void flush() = 0;
+			};
+
+			class Sink : public SinkInterface
+			{
+			public:
+				Sink() : queue_(consts::kAsyncQueueSize), 
+					format_(consts::kSinkDefaultFormat),
+					mutex_()
+				{};
+
+				virtual ~Sink() {};
+
+				void log(const LogMessage& msg) override
+				{
+					fill_sink(msg);
+				}
+
+				void fill_sink(const LogMessage& msg)
+				{
+					// stop filling sink if ready to destory it
+					if (!enabled_) return;
+					std::string finalMessage = format_message(msg);
+					while (!queue_.enqueue(std::move(finalMessage)))
+					{
+						time::sleep(10);
+					}
+				}
+
+				void set_format(const std::string &format)
+				{
+					std::lock_guard<std::mutex> lock(mutex_);
+					format_ = format;
+				}
+
+				virtual void sink_it(const std::string &finalMsg) = 0;
+
+			protected:
+				void init_sink()
+				{
+					enabled_ = true;
+					workThread_ = std::move(std::thread(&Sink::work_loop, this));
+				}
+
+				void start_sink()
+				{
+					stop_sink();
+					enabled_ = true;
+					workThread_ = std::move(std::thread(&Sink::work_loop, this));
+				}
+
+				void stop_sink()
+				{
+					enabled_ = false;
+					if (workThread_.joinable())
+					{
+						workThread_.join();
+					}
+					else
+					{
+						throw RuntimeException("Corrupted work thread.");
+					}
+				}
+
+				std::string format_message(const LogMessage &msg)
+				{
+					std::string ret(format_);
+					// datetime
+					auto dt = msg.dateTime_;
+					fmt::replace_all_with_escape(ret, consts::kSinkDatetimeSpecifier, dt.to_string());
+					fmt::replace_all_with_escape(ret, consts::kSinkLoggerNameSpecifier, msg.loggerName_);
+					fmt::replace_all_with_escape(ret, consts::kSinkThreadSpecifier, std::to_string(msg.threadId_));
+					fmt::replace_all_with_escape(ret, consts::kSinkLevelSpecifier, consts::kLevel_names[msg.level_]);
+					fmt::replace_all_with_escape(ret, consts::kSinkMessageSpecifier, msg.buffer_);
+					if (!fmt::ends_with(ret, os::endl()))
+					{
+						ret += os::endl();
+					}
+					return ret;
+				}
+
+				void work_loop()
+				{
+					std::string nextMsg;
+					while (1)
+					{
+						if (queue_.dequeue(nextMsg))
+						{
+							sink_it(nextMsg);
+						}
+						else
+						{
+							// empty queue
+							if (enabled_)
+							{
+								time::sleep(10);
+							}
+							else
+							{
+								// should return and join
+								return;
+							}
+						}
+					}
+				}
+
+			private:	
+
+				std::atomic_bool				enabled_;
+				std::string						format_;
+				std::mutex						mutex_;
+				mpmc_bounded_queue<std::string>	queue_;
+				std::thread						workThread_;
+
+			};
+
+		} // namespace detail
+
+		class SimpleFileSink : public detail::Sink
+		{
+		public:
+			SimpleFileSink(const std::string filename) :fileEditor_(filename, false)
+			{
+				init_sink();
+			}
+
+			~SimpleFileSink()
+			{
+				stop_sink();
+			}
+
+			void flush() override
+			{
+				fileEditor_.flush();
+			}
+
+			void sink_it(const std::string &finalMsg) override
+			{
+				fileEditor_ << finalMsg;
+			}
+
+		private:
+			fs::FileEditor fileEditor_;
+		};
+
 
 		inline detail::LineLogger Logger::log_if_enabled(LogLevels lvl)
 		{
@@ -350,8 +621,10 @@ namespace zl
 
 		inline void Logger::log_msg(detail::LogMessage msg)
 		{
-			std::cout << "called log_msg: " << std::endl;
-			std::cout << msg.buffer_ << std::endl;
+			for (auto sink : sinkPtrs_)
+			{
+				sink->log(msg);
+			}
 		}
 
 	} // namespace log
