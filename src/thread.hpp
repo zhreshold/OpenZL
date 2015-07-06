@@ -30,7 +30,8 @@
 #include "common.hpp"
 #include <thread>
 #include <mutex>
-#include <set>
+#include <unordered_set>
+#include <unordered_map>
 #include <string>
 
 namespace zl
@@ -52,55 +53,10 @@ namespace zl
 			}
 		};
 
-		template <typename Mutex> class HashMap_
-		{
 
-		};
 
-		template <typename Mutex> class FileEditorRegistry_: private UnMovable
-		{
-		public:
-			static FileEditorRegistry_<Mutex>& instance()
-			{
-				static FileEditorRegistry_<Mutex> instance_;
-				return instance_;
-			}
 
-			bool contains(std::string &entry) const
-			{
-				return set_.count(entry) > 0;
-			}
 
-			bool try_insert(std::string &entry)
-			{
-				// return false if already exist
-				if (contains(entry)) return false;
-				std::lock_guard<Mutex> lock(mutex_);
-				set_.insert(entry);
-				return true;
-			}
-
-			void erase(std::string &entry)
-			{
-				if (!contains(entry)) return;
-				std::lock_guard<Mutex> lock(mutex_);
-				set_.erase(entry);
-			}
-
-		private:
-			void clear()
-			{
-				std::lock_guard<Mutex> lock(mutex_);
-				set_.clear();
-			}
-
-			FileEditorRegistry_<Mutex>() {};
-
-			std::set<std::string>	set_;
-			Mutex		mutex_;
-		};
-
-		typedef FileEditorRegistry_<std::mutex> FileEditorRegistry;
 
 	} // namespace thread
 } // namespace zl

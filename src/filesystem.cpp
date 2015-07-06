@@ -27,7 +27,7 @@
 #include "filesystem.hpp"
 #include "os.hpp"
 #include "time.hpp"
-#include "thread.hpp"
+
 
 namespace zl
 {
@@ -48,7 +48,7 @@ namespace zl
 			}
 
 			// try to register this file to avoid multiply access to the same file
-			bool success = thread::FileEditorRegistry::instance().try_insert(filename_);
+			bool success = detail::FileEditorRegistry::instance().try_insert(filename_);
 			// fail means someone is editing this file, just return
 			if (!success)
 			{
@@ -65,7 +65,7 @@ namespace zl
 		{
 			stream_.close();
 			// unregister this file
-			thread::FileEditorRegistry::instance().erase(filename_);
+			detail::FileEditorRegistry::instance().erase(filename_);
 		}
 
 		bool FileEditor::try_open(int retryTime, int retryInterval, bool truncateOrNot)
@@ -100,7 +100,7 @@ namespace zl
 		bool is_occupied(std::string &filename)
 		{
 			std::string fn = os::get_absolute_path(filename);
-			return thread::FileEditorRegistry::instance().contains(fn);
+			return detail::FileEditorRegistry::instance().contains(fn);
 		}
 
 		std::size_t get_file_size(std::string filename) 

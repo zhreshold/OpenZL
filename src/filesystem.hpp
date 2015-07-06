@@ -29,6 +29,7 @@
 
 #include "common.hpp"
 #include "os.hpp"
+#include "thread.hpp"
 #include <fstream>
 #include <string>
 #include <utility>
@@ -132,6 +133,58 @@ namespace zl
 		};
 
 		bool is_occupied(std::string &filename);
+
+		namespace detail
+		{
+			template <typename Mutex> class FileEditorRegistry_ : private UnMovable
+			{
+			public:
+				static FileEditorRegistry_<Mutex>& instance()
+				{
+					static FileEditorRegistry_<Mutex> sInstance;
+					return sInstance;
+				}
+
+				bool contains(std::string &entry) const
+				{
+					return set_.count(entry) > 0;
+				}
+
+				bool try_insert(std::string &entry)
+				{
+					// return false if already exist
+					if (contains(entry)) return false;
+					std::lock_guard<Mutex> lock(mutex_);
+					set_.insert(entry);
+					return true;
+				}
+
+				void erase(std::string &entry)
+				{
+					if (!contains(entry)) return;
+					std::lock_guard<Mutex> lock(mutex_);
+					set_.erase(entry);
+				}
+
+			private:
+				void clear()
+				{
+					std::lock_guard<Mutex> lock(mutex_);
+					set_.clear();
+				}
+
+				FileEditorRegistry_<Mutex>(): mutex_() {};
+
+				std::unordered_set<std::string>	set_;
+				Mutex		mutex_;
+			};
+
+#ifdef ZL_SINGLE_THREAD_ONLY
+			typedef FileEditorRegistry_<thread::NullMutex> FileEditorRegistry;
+#else
+			typedef FileEditorRegistry_<std::mutex> FileEditorRegistry;
+#endif
+		} // namespace detail
 
 	} //namespace fs
 } // namespace zl

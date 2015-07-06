@@ -33,6 +33,7 @@
 #include "os.hpp"
 #include "format.hpp"
 #include "filesystem.hpp"
+#include "thread.hpp"
 #include <string>
 #include <sstream>
 #include <utility>
@@ -74,17 +75,19 @@ namespace zl
 			static const char	*kSinkThreadSpecifier = "%thread";
 			static const char	*kSinkLevelSpecifier = "%level";
 			static const char	*kSinkMessageSpecifier = "%msg";
-			static const char	*kSinkDefaultFormat = "[%datetime][T:%thread][%logger][%level] %msg";
+			static const char	*kSinkDefaultFormat = "[%datetime][T%thread][%logger][%level] %msg";
 		}
 
+		// forward declaration
 		namespace detail
 		{
 			struct LogMessage;
 			class LineLogger;
 			class SinkInterface;
-		}
-		
+		} // namespace detail
 		typedef std::shared_ptr<detail::SinkInterface> SinkPtr;
+		
+		
 		class Logger
 		{
 		public:
@@ -155,7 +158,7 @@ namespace zl
 			std::vector<SinkPtr>	sinkPtrs_;
 			std::vector<bool>		sinkValves_;
 		};
-
+		typedef std::shared_ptr<Logger> LoggerPtr;
 
 
 		namespace detail
@@ -362,7 +365,7 @@ namespace zl
 				virtual void flush() = 0;
 			};
 
-			class Sink : public SinkInterface
+			template <typename Mutex> class Sink : public SinkInterface
 			{
 			public:
 				Sink() : queue_(consts::kAsyncQueueSize), 
@@ -390,7 +393,7 @@ namespace zl
 
 				void set_format(const std::string &format)
 				{
-					std::lock_guard<std::mutex> lock(mutex_);
+					std::lock_guard<Mutex> lock(mutex_);
 					format_ = format;
 				}
 
@@ -469,23 +472,101 @@ namespace zl
 
 				std::atomic_bool				enabled_;
 				std::string						format_;
-				std::mutex						mutex_;
+				Mutex							mutex_;
 				mpmc_bounded_queue<std::string>	queue_;
 				std::thread						workThread_;
 
 			};
 
+			template <typename Mutex> class LoggerRegistry_ : UnMovable
+			{
+			public:
+				static LoggerRegistry_<Mutex>& instance()
+				{
+					static LoggerRegistry_<Mutex> sInstance;
+					return sInstance;
+				}
+
+				LoggerPtr register_logger(Logger &logger)
+				{
+					std::lock_guard<Mutex> lock(mutex_);
+					if (contains(logger.name()))
+					{
+						throw RuntimeException("Logger with name: " + name + " already existed.");
+					}
+					LoggerPtr ptr = std::make_shared<Logger>(logger);
+					do_registry(logger.name(), ptr);
+					return ptr;
+				}
+
+				LoggerPtr create(std::string &name)
+				{
+					std::lock_guard<Mutex> lock(mutex_);
+
+					if (contains(name))
+					{
+						throw RuntimeException("Logger with name: " + name + " already existed.");
+					}
+					return new_registry(name);
+				}
+
+				LoggerPtr get(std::string &name)
+				{
+					std::lock_guard<Mutex> lock(mutex_);
+					if (contains(name))
+					{
+						return loggers_.find(name)->second;
+					}
+					return nullptr;
+				}
+
+				void drop(std::string &name)
+				{
+					std::lock_guard<Mutex> lock(mutex_);
+					loggers_.erase(name);
+				}
+
+				void drop_all()
+				{
+					std::lock_guard<Mutex> lock(mutex_);
+					loggers_.clear();
+				}
+
+			private:
+				LoggerRegistry_<Mutex>() : mutex_(){}
+
+				LoggerPtr do_registry(std::string &name, LoggerPtr pLogger)
+				{
+					loggers_.insert({ { name, pLogger } });
+				}
+
+				LoggerPtr new_registry(std::string &name)
+				{
+					LoggerPtr newLogger = std::make_shared<Logger>(name);
+					loggers_.insert({ { name, newLogger } });
+					return newLogger;
+				}
+
+				bool contains(std::string &name)
+				{
+					return loggers_.count(name) > 0;
+				}
+
+				Mutex		mutex_;
+				std::unordered_map<std::string, std::shared_ptr<Logger>> loggers_;
+			};
+
 		} // namespace detail
 
-		class SimpleFileSink : public detail::Sink
+		template <typename Mutex> class SimpleFileSink_ : public detail::Sink<Mutex>
 		{
 		public:
-			SimpleFileSink(const std::string filename) :fileEditor_(filename, false)
+			SimpleFileSink_(const std::string filename) :fileEditor_(filename, false)
 			{
 				init_sink();
 			}
 
-			~SimpleFileSink()
+			~SimpleFileSink_()
 			{
 				stop_sink();
 			}
@@ -504,6 +585,11 @@ namespace zl
 			fs::FileEditor fileEditor_;
 		};
 
+#ifdef ZL_SINGLE_THREAD_ONLY
+			typedef SimpleFileSink_<thread::NullMutex> SimpleFileSink;
+#else
+			typedef SimpleFileSink_<std::mutex> SimpleFileSink;
+#endif
 
 		inline detail::LineLogger Logger::log_if_enabled(LogLevels lvl)
 		{
