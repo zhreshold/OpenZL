@@ -88,18 +88,19 @@ void test_formatter()
 
 void test_logger()
 {
-	log::Logger logger("default");
-	auto sptr = std::make_shared<log::SimpleFileSink>("test.log");
-	logger.sinkPtrs_.push_back(sptr);
-	logger.sinkValves_.push_back(true);
-	logger.info("test info {} {}", 1, 2.2);
-	logger.info() << "call method 2  " << 1;
-	logger.warn("method3") << " followed by this" << os::endl() << " " << os::endl();
+	auto logger = log::get_logger("default");
+	//auto stdcout = log::new_stdout_sink();
+	//logger->attach_sink(log::new_stdout_sink());
+	//auto fl = log::new_simple_file_sink("test1.log", true);
+	logger->attach_sink(log::new_simple_file_sink("test1.log", true));
+	logger->info("test info {} {}", 1, 2.2);
+	logger->info() << "call method 2  " << 1;
+	logger->warn("method3") << " followed by this" << " " << os::endl();
 
-	for (auto i = 0; i < 99999; ++i)
-	{
-		logger.info("Sequence increment {}", i);
-	}
+	//for (auto i = 0; i < 999; ++i)
+	//{
+	//	logger->info("Sequence increment {}", i);
+	//}
 }
 
 

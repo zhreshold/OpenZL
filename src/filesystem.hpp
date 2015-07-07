@@ -83,7 +83,7 @@ namespace zl
 			template <typename T>
 			FileEditor& operator<<(T what) { stream_ << what; return *this; }
 
-			std::string filename() { return filename_; }
+			std::string filename() const { return filename_; }
 
 			bool open(bool truncateOrNot = false);
 			bool try_open(int retryTime, int retryInterval, bool truncateOrNot = false);
@@ -119,6 +119,8 @@ namespace zl
 				other.filename_ = std::string();
 			};
 
+			std::string filename() const { return filename_; }
+
 			bool is_open() const { return istream_.is_open(); }
 			bool is_valid() const { return !filename_.empty(); }
 			bool open();
@@ -145,24 +147,24 @@ namespace zl
 					return sInstance;
 				}
 
-				bool contains(std::string &entry) const
+				bool contains(std::string &entry)
 				{
+					std::lock_guard<Mutex> lock(mutex_);
 					return set_.count(entry) > 0;
 				}
 
 				bool try_insert(std::string &entry)
 				{
-					// return false if already exist
-					if (contains(entry)) return false;
 					std::lock_guard<Mutex> lock(mutex_);
+					if (set_.count(entry) > 0) return false;
 					set_.insert(entry);
 					return true;
 				}
 
 				void erase(std::string &entry)
 				{
-					if (!contains(entry)) return;
 					std::lock_guard<Mutex> lock(mutex_);
+					if (set_.count(entry) <= 0) return;
 					set_.erase(entry);
 				}
 
