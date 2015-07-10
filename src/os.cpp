@@ -79,8 +79,8 @@ namespace zl
 {
 	namespace consts
 	{
-		static const std::string kEndLineWindows = std::string("\r\n");
-		static const std::string kEndLineUniversal = std::string("\n");
+		static const std::string kEndLineCRLF = std::string("\r\n");
+		static const std::string kEndLineLF = std::string("\n");
 	}
 
 	namespace os
@@ -209,9 +209,9 @@ namespace zl
 		std::string endl()
 		{
 #if OPENZL_OS_WINDOWS
-			return consts::kEndLineWindows;
-#else
-			return consts::kEndLineUniversal;
+			return consts::kEndLineCRLF;
+#else // *nix, OSX, and almost everything else(OS 9 or ealier use CR only, but they are antiques now)
+			return consts::kEndLineLF;
 #endif
 		}
 

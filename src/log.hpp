@@ -43,8 +43,6 @@
 #include <vector>
 #include <type_traits>
 
-
-
 #include <iostream>
 
 namespace zl
@@ -59,7 +57,8 @@ namespace zl
 			warn = 3,
 			error = 4,
 			fatal = 5,
-			off = 6
+			off = 6,
+			sentinel = 63
 		}LogLevels;
 
 		namespace consts
@@ -87,19 +86,26 @@ namespace zl
 		} // namespace detail
 		typedef std::shared_ptr<detail::SinkInterface> SinkPtr;
 		
+		inline bool level_should_log(int levelMask, LogLevels lvl)
+		{
+			return (LogLevels::sentinel & levelMask & (1 << lvl)) > 0;
+		}
 		
 		class Logger : UnMovable
 		{
 		public:
 			Logger(std::string name) : name_(name)
 			{
-				level_ = LogLevels::info;
-				sinks_.store(new SinkMap());
+#ifdef NDEBUG
+				levelMask_ = 0x3C;	//!< 0x3C->b111100: no debug, no trace
+#else
+				levelMask_ = 0x3E;	//!< 0x3E->b111110: debug, no trace
+#endif
 			}
 
-			~Logger()
+			Logger(std::string name, int levelMask) : name_(name)
 			{
-				delete sinks_.exchange(nullptr);
+				levelMask_ = levelMask;
 			}
 
 			// logger.info(format string, arg1, arg2, arg3, ...) call style
@@ -128,24 +134,32 @@ namespace zl
 			detail::LineLogger error();
 			detail::LineLogger fatal();
 
-			const LogLevels level() const
+			//const LogLevels level() const
+			//{
+			//	return static_cast<LogLevels>(level_.load(std::memory_order_relaxed));
+			//}
+			
+			void set_level_mask(int levelMask)
 			{
-				return static_cast<LogLevels>(level_.load(std::memory_order_relaxed));
+				levelMask_ = levelMask & LogLevels::sentinel;
 			}
 			
 			bool should_log(LogLevels msgLevel) const
 			{
-				return msgLevel >= this->level();
+				return level_should_log(levelMask_, msgLevel);
 			}
 
-			const std::string& name() const { return name_; };
+			std::string name() const { return name_; };
 
-			SinkPtr get_sink(std::string &name);
+			SinkPtr get_sink(std::string name);
 
 			void attach_sink(SinkPtr sink);
 
 			void detach_sink(SinkPtr sink);
 
+			void attach_console();
+
+			void detach_console();
 			
 		private:
 
@@ -162,14 +176,10 @@ namespace zl
 			void log_msg(detail::LogMessage msg);
 
 			std::string				name_;
-			std::atomic_int			level_;
-			std::mutex				mutex_;
-
-			typedef std::unordered_map<std::string, SinkPtr> SinkMap;
-			std::atomic<SinkMap*> sinks_;
+			std::atomic_int			levelMask_;
+			thread::AtomicUnorderedMap<std::string, SinkPtr> sinks_;
 		};
 		typedef std::shared_ptr<Logger> LoggerPtr;
-
 
 		namespace detail
 		{
@@ -376,69 +386,44 @@ namespace zl
 				virtual std::string name() const = 0;
 			};
 
-			template <typename Mutex> class Sink : public SinkInterface,  private UnCopyable
+			class Sink : public SinkInterface,  private UnCopyable
 			{
 			public:
-				Sink() : queue_(consts::kAsyncQueueSize), 
-					format_(consts::kSinkDefaultFormat)
-				{};
+				Sink()
+				{
+					levelMask_ = 0x3F;
+					set_format(std::string(consts::kSinkDefaultFormat));
+				};
 
-				virtual ~Sink() {};
+				virtual ~Sink()  {};
 
 				void log(const LogMessage& msg) override
 				{
-					fill_sink(msg);
-				}
-
-				void fill_sink(const LogMessage& msg)
-				{
-					// stop filling sink if ready to destory it
-					if (!enabled_) return;
-					std::string finalMessage = format_message(msg);
-					while (!queue_.enqueue(std::move(finalMessage)))
+					if (!level_should_log(levelMask_, msg.level_))
 					{
-						time::sleep(10);
+						return;
 					}
+
+					std::string finalMessage = format_message(msg);
+					sink_it(finalMessage);
 				}
 
-				//void set_format(const std::string &format)
-				//{
-				//	std::lock_guard<Mutex> lock(mutex_);
-				//	format_ = format;
-				//}
+				void set_level_mask(int levelMask)
+				{
+					levelMask_ = levelMask & LogLevels::sentinel;
+				}
+
+				void set_format(const std::string &format)
+				{
+					format_.set(format);
+				}
 
 				virtual void sink_it(const std::string &finalMsg) = 0;
 
-			protected:
-				void init_sink()
-				{
-					enabled_ = true;
-					workThread_ = std::move(std::thread(&Sink::work_loop, this));
-				}
-
-				void start_sink()
-				{
-					stop_sink();
-					enabled_ = true;
-					workThread_ = std::move(std::thread(&Sink::work_loop, this));
-				}
-
-				void stop_sink()
-				{
-					enabled_ = false;
-					if (workThread_.joinable())
-					{
-						workThread_.join();
-					}
-					else
-					{
-						throw RuntimeException("Corrupted work thread.");
-					}
-				}
-
+			private:
 				std::string format_message(const LogMessage &msg)
 				{
-					std::string ret(format_);
+					std::string ret(*(format_.get()));
 					auto dt = msg.dateTime_;
 					fmt::replace_all_with_escape(ret, consts::kSinkDatetimeSpecifier, dt.to_string());
 					fmt::replace_all_with_escape(ret, consts::kSinkLoggerNameSpecifier, msg.loggerName_);
@@ -453,50 +438,15 @@ namespace zl
 					return ret;
 				}
 
-				void work_loop()
-				{
-					std::string nextMsg;
-					while (1)
-					{
-						if (queue_.dequeue(nextMsg))
-						{
-							sink_it(nextMsg);
-						}
-						else
-						{
-							// empty queue
-							if (enabled_)
-							{
-								time::sleep(10);
-							}
-							else
-							{
-								// should return and join
-								return;
-							}
-						}
-					}
-				}
-
-			private:	
-
-				std::atomic_bool				enabled_;
-				std::string						format_;
-				mpmc_bounded_queue<std::string>	queue_;
-				std::thread						workThread_;
+				std::atomic_int								levelMask_;
+				thread::AtomicNonTrivial<std::string>		format_;
 			};
 
-			template <typename Mutex> class SimpleFileSink_ : public Sink<Mutex>
+			class SimpleFileSink : public Sink
 			{
 			public:
-				SimpleFileSink_(const std::string filename, bool truncate) :fileEditor_(filename, truncate)
+				SimpleFileSink(const std::string filename, bool truncate) :fileEditor_(filename, truncate)
 				{
-					init_sink();
-				}
-
-				~SimpleFileSink_()
-				{
-					stop_sink();
 				}
 
 				void flush() override
@@ -518,18 +468,12 @@ namespace zl
 				fs::FileEditor fileEditor_;
 			};
 
-			template<class Mutex> class OStreamSink_ : public Sink<Mutex>
+			class OStreamSink : public Sink
 			{
 			public:
-				explicit OStreamSink_(std::ostream& os, const char *name, bool forceFlush = false)
+				explicit OStreamSink(std::ostream& os, const char *name, bool forceFlush = false)
 					:ostream_(os), name_(name),	forceFlush_(forceFlush)
 				{
-					init_sink();
-				}
-
-				~OStreamSink_()
-				{
-					stop_sink();
 				}
 
 				std::string name() const override
@@ -554,157 +498,149 @@ namespace zl
 				bool			forceFlush_;
 			};
 
-			template <class Mutex> class StdoutSink_ : public OStreamSink_<Mutex>
+			class StdoutSink : public OStreamSink
 			{
-				using MyType = StdoutSink_<Mutex>;
 			public:
-				StdoutSink_() : OStreamSink_<Mutex>(std::cout, consts::kStdoutSinkName, true) {}
-				static std::shared_ptr<MyType> instance()
+				StdoutSink() : OStreamSink(std::cout, consts::kStdoutSinkName, true) 
 				{
-					static std::shared_ptr<MyType> instance = std::make_shared<MyType>();
+					// stdout by design should not receive warning and error message
+					// so add cout and cerr together and filter by level is a better idea
+					set_level_mask(0x07);
+ 				}
+				static std::shared_ptr<StdoutSink> instance()
+				{
+					static std::shared_ptr<StdoutSink> instance = std::make_shared<StdoutSink>();
 					return instance;
 				}
 			};
 
-			template <class Mutex> class StderrSink_ : public OStreamSink_<Mutex>
+			class StderrSink : public OStreamSink
 			{
-				using MyType = StderrSink_<Mutex>;
 			public:
-				StderrSink_() : OStreamSink_<Mutex>(std::cerr, consts::kStderrSinkName, true) {}
-				static std::shared_ptr<MyType> instance()
+				StderrSink() : OStreamSink(std::cerr, consts::kStderrSinkName, true)
 				{
-					static std::shared_ptr<MyType> instance = std::make_shared<MyType>();
+					// stderr by design should only log error/warning msg
+					set_level_mask(0x38);
+				}
+				static std::shared_ptr<StderrSink> instance()
+				{
+					static std::shared_ptr<StderrSink> instance = std::make_shared<StderrSink>();
 					return instance;
 				}
 			};
 
-			template <typename Mutex> class LoggerRegistry_ : UnMovable
+			class LoggerRegistry : UnMovable
 			{
 			public:
-				static LoggerRegistry_<Mutex>& instance()
+				static LoggerRegistry& instance()
 				{
-					static LoggerRegistry_<Mutex> sInstance;
+					static LoggerRegistry sInstance;
 					return sInstance;
 				}
 
-				LoggerPtr register_logger(Logger &logger)
+				//LoggerPtr register_logger(Logger &logger)
+				//{
+				//	std::lock_guard<std::mutex> lock(mutex_);
+				//	if (contains(logger.name()))
+				//	{
+				//		throw RuntimeException("Logger with name: " + logger.name() + " already existed.");
+				//	}
+				//	LoggerPtr ptr = std::make_shared<Logger>(logger);
+				//	do_registry(logger.name(), ptr);
+				//	return ptr;
+				//}
+
+				//LoggerPtr register_logger(LoggerPtr pLogger)
+				//{
+				//	std::lock_guard<std::mutex> lock(mutex_);
+				//	if (contains(pLogger->name()))
+				//	{
+				//		throw RuntimeException("Logger with name: " + pLogger->name() + " already existed.");
+				//	}
+				//	do_registry(pLogger->name(), pLogger);
+				//	return pLogger;
+				//}
+
+				LoggerPtr create(const std::string &name)
 				{
-					std::lock_guard<Mutex> lock(mutex_);
-					if (contains(logger.name()))
+					auto ptr = new_registry(name);
+					if (!ptr)
 					{
 						throw RuntimeException("Logger with name: " + name + " already existed.");
 					}
-					LoggerPtr ptr = std::make_shared<Logger>(logger);
-					do_registry(logger.name(), ptr);
 					return ptr;
-				}
-
-				LoggerPtr register_logger(LoggerPtr pLogger)
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-					if (contains(pLogger->name()))
-					{
-						throw RuntimeException("Logger with name: " + name + " already existed.");
-					}
-					do_registry(pLogger->name(), pLogger);
-					return pLogger;
-				}
-
-				LoggerPtr create(std::string &name)
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-
-					if (contains(name))
-					{
-						throw RuntimeException("Logger with name: " + name + " already existed.");
-					}
-					return new_registry(name);
 				}
 
 				LoggerPtr ensure_get(std::string &name)
 				{
-					std::lock_guard<Mutex> lock(mutex_);
-					if (contains(name))
+					auto map = loggers_.get();
+					LoggerPtr	ptr;
+					while (map->find(name) == map->end())
 					{
-						return loggers_.find(name)->second;
+						ptr = new_registry(name);
+						map = loggers_.get();
 					}
-					return new_registry(name);
+					return map->find(name)->second;
 				}
 
 				LoggerPtr get(std::string &name)
 				{
-					std::lock_guard<Mutex> lock(mutex_);
-					if (contains(name))
+					auto ptr = loggers_.get();
+					auto pos = ptr->find(name);
+					if (pos != ptr->end())
 					{
-						return loggers_.find(name)->second;
+						return pos->second;
 					}
 					return nullptr;
 				}
 
-				std::vector<LoggerPtr> list()
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-					std::vector<LoggerPtr> list;
-					for (logger : loggers_)
-					{
-						list.push_back(logger);
-					}
-					return list;
-				}
+				//std::vector<LoggerPtr> list()
+				//{
+				//	std::lock_guard<std::mutex> lock(mutex_);
+				//	std::vector<LoggerPtr> list;
+				//	for (logger : loggers_)
+				//	{
+				//		list.push_back(logger);
+				//	}
+				//	return list;
+				//}
 
-				void drop(std::string &name)
+				void drop(const std::string &name)
 				{
-					std::lock_guard<Mutex> lock(mutex_);
 					loggers_.erase(name);
 				}
 
 				void drop_all()
 				{
-					std::lock_guard<Mutex> lock(mutex_);
 					loggers_.clear();
 				}
 
 			private:
-				LoggerRegistry_<Mutex>() : mutex_(){}
+				LoggerRegistry(){}
 
-				LoggerPtr do_registry(std::string &name, LoggerPtr pLogger)
+				LoggerPtr do_registry(const std::string &name, LoggerPtr pLogger)
 				{
-					loggers_.insert({ { name, pLogger } });
+					if (loggers_.insert(name, pLogger))
+					{
+						return pLogger;
+					}
+					return nullptr;
 				}
 
-				LoggerPtr new_registry(std::string &name)
+				LoggerPtr new_registry(const std::string &name)
 				{
 					LoggerPtr newLogger = std::make_shared<Logger>(name);
-					loggers_.insert({name, newLogger});
-					return newLogger;
+					if (loggers_.insert(name, newLogger))
+					{
+						return newLogger;
+					}
+					return nullptr;
 				}
 
-				bool contains(std::string &name)
-				{
-					return loggers_.count(name) > 0;
-				}
-
-				Mutex		mutex_;
-				std::unordered_map<std::string, std::shared_ptr<Logger>> loggers_;
+				thread::AtomicUnorderedMap<std::string, LoggerPtr> loggers_;
 			};
 
 		} // namespace detail
-
-
-
-#ifdef ZL_SINGLE_THREAD_ONLY
-		typedef detail::SimpleFileSink_<thread::NullMutex> SimpleFileSink;
-		typedef detail::StdoutSink_<thread::NullMutex> StdoutSink;
-		typedef detail::StderrSink_<thread::NullMutex> StderrSink;
-		typedef detail::LoggerRegistry_<thread::NullMutex> LoggerRegistry;
-#else
-		typedef detail::SimpleFileSink_<std::mutex> SimpleFileSink;
-		typedef detail::StdoutSink_<std::mutex> StdoutSink;
-		typedef detail::StderrSink_<std::mutex> StderrSink;
-		typedef detail::LoggerRegistry_<std::mutex> LoggerRegistry;
-#endif
-
-		
 
 		inline detail::LineLogger Logger::log_if_enabled(LogLevels lvl)
 		{
@@ -820,40 +756,32 @@ namespace zl
 			return log_if_enabled(LogLevels::fatal);
 		}
 
-		inline SinkPtr Logger::get_sink(std::string &name)
+		inline SinkPtr Logger::get_sink(std::string name)
 		{
-			auto sinkmap = sinks_.load();
+			auto sinkmap = sinks_.get();
 			auto f = sinkmap->find(name);
 			return (f == sinkmap->end() ? nullptr : f->second);
 		}
 
 		inline void Logger::attach_sink(SinkPtr sink)
 		{
-			auto name = sink->name();
-			auto sinkmap = new SinkMap(*sinks_.load());
-			if (sinkmap->find(name) != sinkmap->end())
+			if (!sinks_.insert(sink->name(), sink))
 			{
 				throw RuntimeException("Sink with name: " + sink->name() + " already attached to logger: " + name_);
 			}
-			sinkmap->insert({ name, sink });
-			delete sinks_.exchange(sinkmap);
-			
 		}
 
 		inline void Logger::detach_sink(SinkPtr sink)
 		{
-			auto name = sink->name();
-			auto sinkmap = new SinkMap(*sinks_.load());
-			sinkmap->erase(name);
-			delete sinks_.exchange(sinkmap);
+			sinks_.erase(sink->name());
 		}
 
 		inline void Logger::log_msg(detail::LogMessage msg)
 		{
-			auto sinkmap = *sinks_.load();
-			for (auto sink = sinkmap.begin(); sink != sinkmap.end(); ++sink)
+			auto sinkmap = sinks_.get();
+			for (auto sink : *sinkmap)
 			{
-				sink->second->log(msg);
+				sink.second->log(msg);
 			}
 		}
 
@@ -861,27 +789,44 @@ namespace zl
 		{
 			if (createIfNotExists)
 			{
-				return LoggerRegistry::instance().ensure_get(name);
+				return detail::LoggerRegistry::instance().ensure_get(name);
 			}
 			else
 			{
-				return LoggerRegistry::instance().get(name);
+				return detail::LoggerRegistry::instance().get(name);
 			}
 		}
 
+		//inline void destroy_registry()
+		//{
+		//	detail::LoggerRegistry::instance().~LoggerRegistry();
+		//}
+
 		inline SinkPtr new_stdout_sink()
 		{
-			return StdoutSink::instance();
+			return detail::StdoutSink::instance();
 		}
 
 		inline SinkPtr new_stderr_sink()
 		{
-			return StderrSink::instance();
+			return detail::StderrSink::instance();
 		}
 
 		inline SinkPtr new_simple_file_sink(std::string filename, bool truncate = false)
 		{
-			return std::make_shared<SimpleFileSink>(filename, truncate);
+			return std::make_shared<detail::SimpleFileSink>(filename, truncate);
+		}
+
+		inline void Logger::attach_console()
+		{
+			sinks_.insert(std::string(consts::kStdoutSinkName), new_stdout_sink());
+			sinks_.insert(std::string(consts::kStderrSinkName), new_stderr_sink());
+		}
+
+		inline void Logger::detach_console()
+		{
+			sinks_.erase(std::string(consts::kStdoutSinkName));
+			sinks_.erase(std::string(consts::kStderrSinkName));
 		}
 
 	} // namespace log

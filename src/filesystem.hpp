@@ -33,6 +33,7 @@
 #include <fstream>
 #include <string>
 #include <utility>
+#include <iostream>
 
 
 namespace zl
@@ -147,6 +148,11 @@ namespace zl
 					return sInstance;
 				}
 
+				//~FileEditorRegistry_<Mutex>()
+				//{
+				//	std::cout << "FileRegistry dtor" << std::endl;
+				//}
+
 				bool contains(std::string &entry)
 				{
 					std::lock_guard<Mutex> lock(mutex_);
@@ -175,11 +181,12 @@ namespace zl
 					set_.clear();
 				}
 
-				FileEditorRegistry_<Mutex>(): mutex_() {};
+				FileEditorRegistry_<Mutex>(){};
 
 				std::unordered_set<std::string>	set_;
 				Mutex		mutex_;
 			};
+
 
 #ifdef ZL_SINGLE_THREAD_ONLY
 			typedef FileEditorRegistry_<thread::NullMutex> FileEditorRegistry;

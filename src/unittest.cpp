@@ -86,20 +86,45 @@ void test_formatter()
 	cout << str << endl;
 }
 
+void test_log_thread()
+{
+	for (auto i = 0; i < 999; ++i)
+	{
+		log::get_logger("default2")->info("Sequence increment {}", i);
+	}
+}
+
+
 void test_logger()
 {
-	auto logger = log::get_logger("default");
+	auto logger = log::get_logger("default2");
 	//auto stdcout = log::new_stdout_sink();
+	
+	//std::shared_ptr<log::Logger> logger = std::make_shared<log::Logger>("default");
 	//logger->attach_sink(log::new_stdout_sink());
 	//auto fl = log::new_simple_file_sink("test1.log", true);
+	logger->attach_console();
 	logger->attach_sink(log::new_simple_file_sink("test1.log", true));
 	logger->info("test info {} {}", 1, 2.2);
 	logger->info() << "call method 2  " << 1;
 	logger->warn("method3") << " followed by this" << " " << os::endl();
+	logger->debug("Debug message") << "should shown in debug, not in release";
+	logger->trace("no trace");
 
-	//for (auto i = 0; i < 999; ++i)
+	/*for (auto i = 0; i < 999; ++i)
+	{
+		log::get_logger("default2")->info("Sequence increment {}", i);
+	}*/
+
+	//std::vector<std::thread> vt;
+	//for (auto i = 0; i < 10; ++i)
 	//{
-	//	logger->info("Sequence increment {}", i);
+	//	vt.push_back(std::thread(&test_log_thread));
+	//}
+
+	//for (auto i = 0; i < 10; ++i)
+	//{
+	//	vt[i].join();
 	//}
 }
 
@@ -111,12 +136,12 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-	test_timer();
-	test_date();
+	//test_timer();
+	//test_date();
 	test_logger();
-	test_filehandler();
-	test_directory();
-	test_formatter();
+	//test_filehandler();
+	//test_directory();
+	//test_formatter();
 
 	system("pause");
 

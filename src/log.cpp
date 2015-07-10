@@ -30,6 +30,22 @@ namespace zl
 {
 	namespace log
 	{
+		namespace detail
+		{
+			//std::unique_ptr<LoggerRegistry> LoggerRegistry::instance_ = nullptr;
+			//std::once_flag LoggerRegistry::onceFlag_;
 
+			//LoggerRegistry& LoggerRegistry::instance()
+			//{
+			//	std::call_once(onceFlag_, []{instance_.reset(new LoggerRegistry); });
+			//	return *instance_.get();
+			//}
+
+			//LoggerRegistry::LoggerRegistry()
+			//{
+			//	std::cout << "logger registry ctor" << std::endl;
+			//}
+		} // namespace detail
+		
 	} // namespace log
 }// namespace zl

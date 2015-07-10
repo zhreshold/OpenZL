@@ -48,7 +48,8 @@ namespace zl
 			}
 
 			// try to register this file to avoid multiply access to the same file
-			bool success = detail::FileEditorRegistry::instance().try_insert(filename_);
+			bool success = true;
+			//bool success = detail::FileEditorRegistry::instance().try_insert(filename_);
 			// fail means someone is editing this file, just return
 			if (!success)
 			{
@@ -65,7 +66,7 @@ namespace zl
 		{
 			stream_.close();
 			// unregister this file
-			detail::FileEditorRegistry::instance().erase(filename_);
+			//detail::FileEditorRegistry::instance().erase(filename_);
 		}
 
 		bool FileEditor::try_open(int retryTime, int retryInterval, bool truncateOrNot)
