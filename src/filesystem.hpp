@@ -29,7 +29,6 @@
 
 #include "common.hpp"
 #include "os.hpp"
-#include "thread.hpp"
 #include <fstream>
 #include <string>
 #include <utility>
@@ -49,7 +48,7 @@ namespace zl
 		class FileEditor: private UnCopyable
 		{
 		public:
-			FileEditor() = delete;
+			FileEditor() = default;
 			FileEditor(std::string filename, bool truncateOrNot = false,
 				int retryTimes = consts::kDefaultFileOpenRetryTimes, 
 				int retryInterval = consts::kDefaultFileOpenRetryInterval)
@@ -87,6 +86,10 @@ namespace zl
 			std::string filename() const { return filename_; }
 
 			bool open(bool truncateOrNot = false);
+			bool open(std::string filename, bool truncateOrNot = false,
+				int retryTimes = consts::kDefaultFileOpenRetryTimes,
+				int retryInterval = consts::kDefaultFileOpenRetryInterval);
+
 			bool try_open(int retryTime, int retryInterval, bool truncateOrNot = false);
 			void close();
 			bool is_valid() const { return !filename_.empty(); }
@@ -127,6 +130,7 @@ namespace zl
 			bool open();
 			bool try_open(int retryTime, int retryInterval);
 			void close() { istream_.close(); };
+			std::size_t	file_size();
 
 		private:
 			
@@ -137,63 +141,63 @@ namespace zl
 
 		bool is_occupied(std::string &filename);
 
-		namespace detail
-		{
-			template <typename Mutex> class FileEditorRegistry_ : private UnMovable
-			{
-			public:
-				static FileEditorRegistry_<Mutex>& instance()
-				{
-					static FileEditorRegistry_<Mutex> sInstance;
-					return sInstance;
-				}
-
-				//~FileEditorRegistry_<Mutex>()
-				//{
-				//	std::cout << "FileRegistry dtor" << std::endl;
-				//}
-
-				bool contains(std::string &entry)
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-					return set_.count(entry) > 0;
-				}
-
-				bool try_insert(std::string &entry)
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-					if (set_.count(entry) > 0) return false;
-					set_.insert(entry);
-					return true;
-				}
-
-				void erase(std::string &entry)
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-					if (set_.count(entry) <= 0) return;
-					set_.erase(entry);
-				}
-
-			private:
-				void clear()
-				{
-					std::lock_guard<Mutex> lock(mutex_);
-					set_.clear();
-				}
-
-				FileEditorRegistry_<Mutex>(){};
-
-				std::unordered_set<std::string>	set_;
-				Mutex		mutex_;
-			};
-
-
-#ifdef ZL_SINGLE_THREAD_ONLY
-			typedef FileEditorRegistry_<thread::NullMutex> FileEditorRegistry;
-#else
-			typedef FileEditorRegistry_<std::mutex> FileEditorRegistry;
-#endif
-		} // namespace detail
+//		namespace detail
+//		{
+//			template <typename Mutex> class FileEditorRegistry_ : private UnMovable
+//			{
+//			public:
+//				static FileEditorRegistry_<Mutex>& instance()
+//				{
+//					static FileEditorRegistry_<Mutex> sInstance;
+//					return sInstance;
+//				}
+//
+//				//~FileEditorRegistry_<Mutex>()
+//				//{
+//				//	std::cout << "FileRegistry dtor" << std::endl;
+//				//}
+//
+//				bool contains(std::string &entry)
+//				{
+//					std::lock_guard<Mutex> lock(mutex_);
+//					return set_.count(entry) > 0;
+//				}
+//
+//				bool try_insert(std::string &entry)
+//				{
+//					std::lock_guard<Mutex> lock(mutex_);
+//					if (set_.count(entry) > 0) return false;
+//					set_.insert(entry);
+//					return true;
+//				}
+//
+//				void erase(std::string &entry)
+//				{
+//					std::lock_guard<Mutex> lock(mutex_);
+//					if (set_.count(entry) <= 0) return;
+//					set_.erase(entry);
+//				}
+//
+//			private:
+//				void clear()
+//				{
+//					std::lock_guard<Mutex> lock(mutex_);
+//					set_.clear();
+//				}
+//
+//				FileEditorRegistry_<Mutex>(){};
+//
+//				std::unordered_set<std::string>	set_;
+//				Mutex		mutex_;
+//			};
+//
+//
+//#ifdef ZL_SINGLE_THREAD_ONLY
+//			typedef FileEditorRegistry_<thread::NullMutex> FileEditorRegistry;
+//#else
+//			typedef FileEditorRegistry_<std::mutex> FileEditorRegistry;
+//#endif
+//		} // namespace detail
 
 	} //namespace fs
 } // namespace zl

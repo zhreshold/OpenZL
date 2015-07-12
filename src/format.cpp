@@ -25,6 +25,7 @@
 ***************************************************************************/
 
 #include "format.hpp"
+#include <sstream>
 #include <algorithm>
 #include <functional>
 #include <cctype>
@@ -85,6 +86,50 @@ namespace zl
 		std::string& trim(std::string& str) 
 		{
 			return ltrim(rtrim(str));
+		}
+
+		std::string& lstrip(std::string& str, std::string what)
+		{
+			auto pos = str.find(what);
+			if (0 == pos)
+			{
+				str.erase(pos, what.length());
+			}
+			return str;
+		}
+
+		std::string& rstrip(std::string& str, std::string what)
+		{
+			auto pos = str.rfind(what);
+			if (str.length() - what.length() == pos)
+			{
+				str.erase(pos, what.length());
+			}
+			return str;
+		}
+
+		std::vector<std::string> split(const std::string s, char delim)
+		{
+			std::vector<std::string> elems;
+			std::stringstream ss(s);
+			std::string item;
+			while (std::getline(ss, item, delim)) 
+			{
+				if (!item.empty()) elems.push_back(item);
+			}
+			return elems;
+		}
+
+		std::string join(std::vector<std::string> elems, char delim)
+		{
+			std::string str;
+			if (elems.empty()) return str;
+			str = elems[0];
+			for (std::size_t i = 1; i < elems.size(); ++i)
+			{
+				str += delim + elems[i];
+			}
+			return str;
 		}
 
 		bool starts_with(const std::string& str, const std::string& start) 

@@ -63,14 +63,15 @@ namespace zl
 
 		namespace consts
 		{
-			static const char	*kLevel_names[] { "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "OFF"};
-			static const char	*kShort_level_names[] { "T", "D", "I", "W", "E", "F", "O"};
+			static const char	*kLevelNames[] { "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", "OFF"};
+			static const char	*kShortLevelNames[] { "T", "D", "I", "W", "E", "F", "O"};
 			static const int	kAsyncQueueSize = 4096;	//!< asynchrous queue size, must be power of 2
 
 			static const char	*kSinkDatetimeSpecifier = "%datetime";
 			static const char	*kSinkLoggerNameSpecifier = "%logger";
 			static const char	*kSinkThreadSpecifier = "%thread";
 			static const char	*kSinkLevelSpecifier = "%level";
+			static const char	*kSinkLevelShortSpecifier = "%lvl";
 			static const char	*kSinkMessageSpecifier = "%msg";
 			static const char	*kSinkDefaultFormat = "[%datetime][T%thread][%logger][%level] %msg";
 			static const char	*kStdoutSinkName = "stdout";
@@ -428,7 +429,8 @@ namespace zl
 					fmt::replace_all_with_escape(ret, consts::kSinkDatetimeSpecifier, dt.to_string());
 					fmt::replace_all_with_escape(ret, consts::kSinkLoggerNameSpecifier, msg.loggerName_);
 					fmt::replace_all_with_escape(ret, consts::kSinkThreadSpecifier, std::to_string(msg.threadId_));
-					fmt::replace_all_with_escape(ret, consts::kSinkLevelSpecifier, consts::kLevel_names[msg.level_]);
+					fmt::replace_all_with_escape(ret, consts::kSinkLevelSpecifier, consts::kLevelNames[msg.level_]);
+					fmt::replace_all_with_escape(ret, consts::kSinkLevelShortSpecifier, consts::kShortLevelNames[msg.level_]);
 					fmt::replace_all_with_escape(ret, consts::kSinkMessageSpecifier, msg.buffer_);
 					// make sure new line
 					if (!fmt::ends_with(ret, os::endl()))
@@ -466,6 +468,71 @@ namespace zl
 
 			private:
 				fs::FileEditor fileEditor_;
+			};
+
+			class RotateFileSink : public Sink
+			{
+			public:
+				RotateFileSink(const std::string filename, int maxSizeInByte, int checkEveryNLogs)
+					: fileReader_(filename), maxSizeInByte_(maxSizeInByte),
+					checkFrequency_(checkEveryNLogs), checkCount_(0)
+				{
+					if (reach_size_limit())
+					{
+						fileEditor_.open(filename, true);
+					}
+					else
+					{
+						fileEditor_.open(filename, false);
+					}
+				}
+
+				void flush() override
+				{
+					fileEditor_.flush();
+				}
+
+				void sink_it(const std::string &finalMsg) override
+				{
+					rotate_if_necessary();
+					fileEditor_ << finalMsg;
+				}
+
+				std::string name() const override
+				{
+					return fileEditor_.filename();
+				}
+
+			private:
+				bool reach_size_limit()
+				{
+					if (fileReader_.file_size() >= maxSizeInByte_)
+					{
+						return true;
+					}
+					return false;
+				}
+
+				void rotate_if_necessary()
+				{
+					++checkCount_;
+					if (checkCount_ >= checkFrequency_)
+					{
+						if (reach_size_limit())
+						{
+							fileEditor_.open(fileEditor_.filename() + time::Date::local_time().to_string("_%S%frac.log"), true);
+							//fileEditor_.close();
+							//fileEditor_.try_open(5, 10, true);
+						}
+						checkCount_ = 0;
+					}
+				}
+
+				fs::FileEditor	fileEditor_;
+				fs::FileReader	fileReader_;
+				int				maxSizeInByte_;
+				int				checkFrequency_;
+				int				checkCount_;
 			};
 
 			class OStreamSink : public Sink
@@ -815,6 +882,11 @@ namespace zl
 		inline SinkPtr new_simple_file_sink(std::string filename, bool truncate = false)
 		{
 			return std::make_shared<detail::SimpleFileSink>(filename, truncate);
+		}
+
+		inline SinkPtr new_rotate_file_sink(std::string filename, int maxSizeInByte = 4194304, int checkEveryNLogs = 100)
+		{
+			return std::make_shared<detail::RotateFileSink>(filename, maxSizeInByte, checkEveryNLogs);
 		}
 
 		inline void Logger::attach_console()

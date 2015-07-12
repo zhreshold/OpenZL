@@ -31,6 +31,7 @@
 #include <ctime>
 #include <string>
 #include <fstream>
+#include <vector>
 
 namespace zl
 {
@@ -73,6 +74,22 @@ namespace zl
 		std::string get_current_working_directory();
 
 		std::string get_absolute_path(std::string reletivePath);
+
+		std::vector<std::string> path_split(std::string path);
+
+		std::string path_join(std::vector<std::string> elems);
+
+		std::string path_split_filename(std::string path);
+
+		std::string path_split_directory(std::string path);
+
+		std::string path_split_basename(std::string path);
+
+		std::string path_split_extension(std::string path);
+
+		bool create_directory(std::string path);
+
+		bool create_directory_recursive(std::string path);
 
 	} // namespace os
 

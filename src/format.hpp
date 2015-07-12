@@ -28,6 +28,7 @@
 #define _OPENZL_FORMAT_HPP_
 
 #include <string>
+#include <vector>
 #include <locale>
 #include <codecvt>
 
@@ -54,6 +55,20 @@ namespace zl
 		bool ends_with(const std::string& str, const std::string& end);
 
 		bool str_equals(const char* s1, const char* s2);
+
+		std::string& ltrim(std::string& str);
+
+		std::string& rtrim(std::string& str);
+
+		std::string& trim(std::string& str);
+
+		std::string& lstrip(std::string& str, std::string what);
+
+		std::string& rstrip(std::string& str, std::string what);
+
+		std::vector<std::string> split(const std::string s, char delim = ' ');
+
+		std::string join(std::vector<std::string> elems, char delim);
 
 		void replace_first_with_escape(std::string &str, const std::string &replaceWhat, const std::string &replaceWith);
 		

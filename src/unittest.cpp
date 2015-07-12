@@ -77,6 +77,15 @@ void test_directory()
 	FileEditor fh("temp.txt", std::ios::out);
 	fh << os::get_current_working_directory() << os::endl();
 	fh << os::get_absolute_path("") << os::endl();
+
+	auto ret = os::create_directory_recursive("d:\\openzl\\test\\a\\b\\c\\d\\e\\f");
+	cout << ret << endl;
+
+	string path = "d:\\somwe/sdlf\\sdf\\wef\\sdf\\basename";
+	cout << os::path_split_directory(path) << endl;
+	cout << os::path_split_filename(path) << endl;
+	cout << os::path_split_basename(path) << endl;
+	cout << os::path_split_extension(path) << endl;
 }
 
 void test_formatter()
@@ -84,37 +93,46 @@ void test_formatter()
 	std::string str = "somwlojdlks {} here some {}, {}, {}";
 	fmt::format_string(str, 1, 2.2, 3.3f);
 	cout << str << endl;
+
+	auto list = fmt::split("\\DiskStation\video", '\\');
+	for (auto str : list)
+	{
+		cout << str << ",";
+	}
+	cout << endl;
+
+	cout << fmt::join(list, '/') << endl;
 }
 
 void test_log_thread()
 {
-	for (auto i = 0; i < 999; ++i)
+	for (auto i = 0; i < 9999; ++i)
 	{
-		log::get_logger("default2")->info("Sequence increment {}", i);
+		log::get_logger("default")->info("Sequence increment {}", i);
 	}
 }
 
 
 void test_logger()
 {
-	auto logger = log::get_logger("default2");
+	auto logger = log::get_logger("default");
 	//auto stdcout = log::new_stdout_sink();
 	
 	//std::shared_ptr<log::Logger> logger = std::make_shared<log::Logger>("default");
 	//logger->attach_sink(log::new_stdout_sink());
 	//auto fl = log::new_simple_file_sink("test1.log", true);
-	logger->attach_console();
-	logger->attach_sink(log::new_simple_file_sink("test1.log", true));
+	//logger->attach_console();
+	logger->attach_sink(log::new_rotate_file_sink("test1.log", 204800));
 	logger->info("test info {} {}", 1, 2.2);
 	logger->info() << "call method 2  " << 1;
 	logger->warn("method3") << " followed by this" << " " << os::endl();
 	logger->debug("Debug message") << "should shown in debug, not in release";
 	logger->trace("no trace");
 
-	/*for (auto i = 0; i < 999; ++i)
+	for (auto i = 0; i < 9999; ++i)
 	{
-		log::get_logger("default2")->info("Sequence increment {}", i);
-	}*/
+		log::get_logger("default")->info("Sequence increment {}", i);
+	}
 
 	//std::vector<std::thread> vt;
 	//for (auto i = 0; i < 10; ++i)

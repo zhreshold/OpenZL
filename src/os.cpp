@@ -56,9 +56,11 @@
 #if OPENZL_OS_WINDOWS
 #include <Windows.h>
 #include <direct.h>
+#include <stdlib.h>
 #elif OPENZL_OS_UNIX
 #include <unistd.h>	/* POSIX flags */
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <dirent.h>
 #include <errno.h>
 #include <stdio.h>
@@ -72,6 +74,7 @@
 #include "os.hpp"
 #include "format.hpp"
 #include <string>
+#include <algorithm>
 #include <functional>
 #include <thread>
 
@@ -171,27 +174,87 @@ namespace zl
 #endif
 		}
 
-		bool path_exists(std::string &path, bool considerFile) 
+		std::vector<std::string> path_split(std::string path)
 		{
 #if OPENZL_OS_WINDOWS
-			DWORD fileType = GetFileAttributesW(utf8_to_wstring(path).c_str());
-			if (fileType == INVALID_FILE_ATTRIBUTES) {
-				return false;
+			std::replace(path.begin(), path.end(), '\\', '/');
+			return fmt::split(path, '/');
+#else
+			return fmt::split(path, '/');
+#endif
+		}
+
+		std::string path_join(std::vector<std::string> elems)
+		{
+#if OPENZL_OS_WINDOWS
+			return fmt::join(elems, '\\');
+#else
+			return fmt::join(elems, '/');
+#endif
+		}
+
+		std::string path_split_filename(std::string path)
+		{
+#if OPENZL_OS_WINDOWS
+			std::string::size_type pos = fmt::trim(path).find_last_of("/\\");
+#else
+			std::string::size_type pos = fmt::trim(path).find_last_of("/");
+#endif
+			if (pos != std::string::npos && pos != path.length())
+			{
+				return path.substr(pos+1);
 			}
-			return considerFile ? true : ((fileType & FILE_ATTRIBUTE_DIRECTORY) == 0 ? false : true);
-#elif OPENZL_OS_UNIX
-			ZL_UNUSED(considerFile);
-			struct stat st;
-			return (stat(path.c_str(), &st) == 0);
-#endif  
+			return std::string();
+		}
+
+		std::string path_split_directory(std::string path)
+		{
+#if OPENZL_OS_WINDOWS
+			std::string::size_type pos = fmt::trim(path).find_last_of("/\\");
+#else
+			std::string::size_type pos = fmt::trim(path).find_last_of("/");
+#endif
+			if (pos != std::string::npos)
+			{
+				return path.substr(0, pos);
+			}
+			return std::string();
+		}
+
+		std::string path_split_extension(std::string path)
+		{
+			std::string filename = path_split_filename(path);
+			auto list = fmt::split(filename, '.');
+			if (list.size() > 1)
+			{
+				return list.back();
+			}
+			return std::string();
+		}
+
+		std::string path_split_basename(std::string path)
+		{
+			std::string filename = path_split_filename(path);
+			auto list = fmt::split(filename, '.');
+			if (list.size() == 1)
+			{
+				return list[0];
+			}
+			else if (list.size() > 1)
+			{
+				return fmt::join({ list.begin(), list.end() - 1 }, '.');
+			}
+			return std::string();
 		}
 
 		
 		void fstream_open(std::fstream &stream, std::string &filename, std::ios::openmode openmode)
 		{
+			// make sure directory exists for the target file
+			create_directory_recursive(path_split_directory(filename));
 #if OPENZL_OS_WINDOWS
 			stream.open(utf8_to_wstring(filename), openmode);
-#elif OPENZL_OS_UNIX
+#else
 			stream.open(filename, openmode);
 #endif
 		}
@@ -200,7 +263,7 @@ namespace zl
 		{
 #if OPENZL_OS_WINDOWS
 			stream.open(utf8_to_wstring(filename), openmode);
-#elif OPENZL_OS_UNIX
+#else
 			stream.open(filename, openmode);
 #endif
 		}
@@ -261,6 +324,22 @@ namespace zl
 #endif
 		}
 
+		bool path_exists(std::string &path, bool considerFile)
+		{
+#if OPENZL_OS_WINDOWS
+			DWORD fileType = GetFileAttributesW(utf8_to_wstring(path).c_str());
+			if (fileType == INVALID_FILE_ATTRIBUTES) {
+				return false;
+			}
+			return considerFile ? true : ((fileType & FILE_ATTRIBUTE_DIRECTORY) == 0 ? false : true);
+#elif OPENZL_OS_UNIX
+			ZL_UNUSED(considerFile);
+			struct stat st;
+			return (stat(path.c_str(), &st) == 0);
+#endif  
+			return false;
+		}
+
 		std::string get_absolute_path(std::string reletivePath)
 		{
 #if OPENZL_OS_WINDOWS
@@ -292,15 +371,48 @@ namespace zl
 				return ret;
 			}
 #endif
+			return std::string();
 		}
 
-//		bool create_directory(std::string &path)
-//		{
-//#if OPENZL_OS_WINDOWS
-//			
-//#elif OPENZL_OS_UNIX
-//#endif
-//		}
+		bool create_directory(std::string path)
+		{
+#if OPENZL_OS_WINDOWS
+			std::wstring widePath = utf8_to_wstring(path);
+			int ret = _wmkdir(widePath.c_str());
+			if (0 == ret) return true;	// success
+			if (EEXIST == ret) return true; // already exists
+			return false;
+#elif OPENZL_OS_UNIX
+			// read/write/search permissions for owner and group
+			// and with read/search permissions for others
+			int status = mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+			if (0 == status) return true; // success
+			if (EEXIST == errno) return true; // already exists
+			return false;
+#endif
+			return false;
+		}
+
+		bool create_directory_recursive(std::string path)
+		{
+			std::string tmp = get_absolute_path(path);
+			std::string target = tmp;
+
+			while (!path_exists(tmp))
+			{
+				if (tmp.empty()) return false;	// invalid path
+				tmp = get_absolute_path(tmp + "/../");
+			}
+
+			// tmp is the root from where to build
+			auto list = path_split(fmt::lstrip(target, tmp));
+			for (auto sub : list)
+			{
+				tmp = path_join({ tmp, sub });
+				if (!create_directory(tmp)) break;
+			}
+			return path_exists(path);
+		}
 
 	}// namespace os
 

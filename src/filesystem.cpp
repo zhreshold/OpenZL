@@ -62,6 +62,15 @@ namespace zl
 			return false;
 		}
 
+		bool FileEditor::open(std::string filename, bool truncateOrNot, int retryTimes, int retryInterval)
+		{
+			this->close();
+			// use absolute path
+			filename_ = os::get_absolute_path(filename);
+			// try open
+			return this->try_open(retryTimes, retryInterval, truncateOrNot);
+		}
+
 		void FileEditor::close()
 		{
 			stream_.close();
@@ -98,10 +107,20 @@ namespace zl
 			return this->is_open();
 		}
 
-		bool is_occupied(std::string &filename)
+		//bool is_occupied(std::string &filename)
+		//{
+		//	std::string fn = os::get_absolute_path(filename);
+		//	return detail::FileEditorRegistry::instance().contains(fn);
+		//}
+		
+		std::size_t FileReader::file_size()
 		{
-			std::string fn = os::get_absolute_path(filename);
-			return detail::FileEditorRegistry::instance().contains(fn);
+			if (is_open())
+			{
+				istream_.seekg(0, istream_.end);
+				return istream_.tellg();
+			}
+			return 0;
 		}
 
 		std::size_t get_file_size(std::string filename) 
