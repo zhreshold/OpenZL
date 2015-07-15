@@ -71,9 +71,16 @@ namespace zl
 			return this->try_open(retryTimes, retryInterval, truncateOrNot);
 		}
 
+		bool FileEditor::reopen(bool truncateOrNot)
+		{
+			this->close();
+			return this->open(truncateOrNot);
+		}
+
 		void FileEditor::close()
 		{
 			stream_.close();
+			stream_.clear();
 			// unregister this file
 			//detail::FileEditorRegistry::instance().erase(filename_);
 		}
@@ -117,21 +124,22 @@ namespace zl
 		{
 			if (is_open())
 			{
+				auto curPos = istream_.tellg();
 				istream_.seekg(0, istream_.end);
-				return istream_.tellg();
+				std::size_t size = static_cast<std::size_t>(istream_.tellg());
+				istream_.seekg(curPos);
+				return size;
 			}
 			return 0;
 		}
 
-		std::size_t get_file_size(std::string filename) 
+		std::size_t get_file_size(std::string filename)
 		{
 			std::ifstream fs;
-			os::ifstream_open(fs, filename, std::ios::in);
-			std::streampos currPos = fs.tellg();
-			fs.seekg(0, fs.end);
+			os::ifstream_open(fs, filename, std::ios::in|std::ios::ate);
 			std::size_t size = static_cast<std::size_t>(fs.tellg());
-			fs.seekg(currPos);
 			return size;
 		}
+
 	} //namespace fs
 } // namespace zl

@@ -91,6 +91,20 @@ namespace zl
 		{
 			return (LogLevels::sentinel & levelMask & (1 << lvl)) > 0;
 		}
+
+		inline std::string level_mask_to_string(int levelMask)
+		{
+			std::string str("<|");
+			for (int i = 0; i < LogLevels::off; ++i)
+			{
+				if (level_should_log(levelMask, static_cast<LogLevels>(i)))
+				{
+					str += consts::kLevelNames[i];
+					str += "|";
+				}
+			}
+			return str + ">";
+		}
 		
 		class Logger : UnMovable
 		{
@@ -151,6 +165,8 @@ namespace zl
 			}
 
 			std::string name() const { return name_; };
+
+			std::string to_string();
 
 			SinkPtr get_sink(std::string name);
 
@@ -385,6 +401,7 @@ namespace zl
 				virtual void log(const LogMessage& msg) = 0;
 				virtual void flush() = 0;
 				virtual std::string name() const = 0;
+				virtual std::string to_string() const = 0;
 			};
 
 			class Sink : public SinkInterface,  private UnCopyable
@@ -412,6 +429,11 @@ namespace zl
 				void set_level_mask(int levelMask)
 				{
 					levelMask_ = levelMask & LogLevels::sentinel;
+				}
+
+				int level_mask() const
+				{
+					return levelMask_;
 				}
 
 				void set_format(const std::string &format)
@@ -466,6 +488,11 @@ namespace zl
 					return fileEditor_.filename();
 				}
 
+				std::string to_string() const override
+				{
+					return "SimpleFileSink->" + name() + " " + level_mask_to_string(level_mask());
+				}
+
 			private:
 				fs::FileEditor fileEditor_;
 			};
@@ -473,18 +500,15 @@ namespace zl
 			class RotateFileSink : public Sink
 			{
 			public:
-				RotateFileSink(const std::string filename, int maxSizeInByte, int checkEveryNLogs)
-					: fileReader_(filename), maxSizeInByte_(maxSizeInByte),
-					checkFrequency_(checkEveryNLogs), checkCount_(0)
+				RotateFileSink(const std::string filename, std::size_t maxSizeInByte, bool backup)
+					:maxSizeInByte_(maxSizeInByte), backup_(backup)
 				{
-					if (reach_size_limit())
+					if (backup_)
 					{
-						fileEditor_.open(filename, true);
+						back_up(filename);
 					}
-					else
-					{
-						fileEditor_.open(filename, false);
-					}
+					fileEditor_.open(filename, true);
+					currentSize_ = 0;
 				}
 
 				void flush() override
@@ -494,7 +518,11 @@ namespace zl
 
 				void sink_it(const std::string &finalMsg) override
 				{
-					rotate_if_necessary();
+					currentSize_ += finalMsg.length();
+					if (currentSize_ > maxSizeInByte_)
+					{
+						rotate();
+					}
 					fileEditor_ << finalMsg;
 				}
 
@@ -503,36 +531,45 @@ namespace zl
 					return fileEditor_.filename();
 				}
 
+				std::string to_string() const override
+				{
+					return "RotateFileSink->" + name() + " " + level_mask_to_string(level_mask());
+				}
+
 			private:
-				bool reach_size_limit()
+				void back_up(std::string oldFile)
 				{
-					if (fileReader_.file_size() >= maxSizeInByte_)
-					{
-						return true;
-					}
-					return false;
+					std::string backupName = os::path_append_basename(oldFile,
+						time::Date::local_time().to_string("_%y-%m-%d_%H-%M-%S-%frac"));
+					os::rename(oldFile, backupName);
 				}
 
-				void rotate_if_necessary()
+				void rotate()
 				{
-					++checkCount_;
-					if (checkCount_ >= checkFrequency_)
+					std::lock_guard<std::mutex> lock(mutex_);
+					// check again in case other thread 
+					// just waited for this operation
+					if (currentSize_ > maxSizeInByte_)
 					{
-						if (reach_size_limit())
+						if (backup_)
 						{
-							fileEditor_.open(fileEditor_.filename() + time::Date::local_time().to_string("_%S%frac.log"), true);
-							//fileEditor_.close();
-							//fileEditor_.try_open(5, 10, true);
+							fileEditor_.close();
+							back_up(fileEditor_.filename());
+							fileEditor_.open(true);
 						}
-						checkCount_ = 0;
+						else
+						{
+							fileEditor_.reopen(true);
+						}
+						currentSize_ = 0;
 					}
 				}
 
-				fs::FileEditor	fileEditor_;
-				fs::FileReader	fileReader_;
-				int				maxSizeInByte_;
-				int				checkFrequency_;
-				int				checkCount_;
+				fs::FileEditor				fileEditor_;
+				std::mutex					mutex_;
+				std::size_t					maxSizeInByte_;
+				std::atomic<std::size_t>	currentSize_;
+				bool						backup_;
 			};
 
 			class OStreamSink : public Sink
@@ -546,6 +583,11 @@ namespace zl
 				std::string name() const override
 				{
 					return name_;
+				}
+
+				std::string to_string() const override
+				{
+					return "OStreamSink->" + name() + " " + level_mask_to_string(level_mask());
 				}
 
 			private:
@@ -579,6 +621,11 @@ namespace zl
 					static std::shared_ptr<StdoutSink> instance = std::make_shared<StdoutSink>();
 					return instance;
 				}
+
+				std::string to_string() const override
+				{
+					return "StdoutSink->" + name() + " " + level_mask_to_string(level_mask());
+				}
 			};
 
 			class StderrSink : public OStreamSink
@@ -593,6 +640,11 @@ namespace zl
 				{
 					static std::shared_ptr<StderrSink> instance = std::make_shared<StderrSink>();
 					return instance;
+				}
+
+				std::string to_string() const override
+				{
+					return "StderrSink->" + name() + " " + level_mask_to_string(level_mask());
 				}
 			};
 
@@ -661,16 +713,16 @@ namespace zl
 					return nullptr;
 				}
 
-				//std::vector<LoggerPtr> list()
-				//{
-				//	std::lock_guard<std::mutex> lock(mutex_);
-				//	std::vector<LoggerPtr> list;
-				//	for (logger : loggers_)
-				//	{
-				//		list.push_back(logger);
-				//	}
-				//	return list;
-				//}
+				std::vector<LoggerPtr> get_all()
+				{
+					std::vector<LoggerPtr> list;
+					auto loggers = loggers_.get();
+					for (auto logger : *loggers)
+					{
+						list.push_back(logger.second);
+					}
+					return list;
+				}
 
 				void drop(const std::string &name)
 				{
@@ -697,6 +749,7 @@ namespace zl
 				LoggerPtr new_registry(const std::string &name)
 				{
 					LoggerPtr newLogger = std::make_shared<Logger>(name);
+					newLogger->attach_console();
 					if (loggers_.insert(name, newLogger))
 					{
 						return newLogger;
@@ -852,6 +905,19 @@ namespace zl
 			}
 		}
 
+		inline std::string Logger::to_string()
+		{
+			std::string str(name() + ": " + level_mask_to_string(levelMask_));
+			str += "\n{\n";
+			auto sinkmap = sinks_.get();
+			for (auto sink : *sinkmap)
+			{
+				str += sink.second->to_string() + "\n";
+			}
+			str += "}";
+			return str;
+		}
+
 		inline LoggerPtr get_logger(std::string name, bool createIfNotExists = true)
 		{
 			if (createIfNotExists)
@@ -862,6 +928,17 @@ namespace zl
 			{
 				return detail::LoggerRegistry::instance().get(name);
 			}
+		}
+
+		inline void dump_loggers()
+		{
+			auto loggers = detail::LoggerRegistry::instance().get_all();
+			std::cout << "{\n";
+			for (auto logger : loggers)
+			{
+				std::cout << logger->to_string() << "\n";
+			}
+			std::cout << "}" << std::endl;
 		}
 
 		//inline void destroy_registry()
@@ -884,9 +961,9 @@ namespace zl
 			return std::make_shared<detail::SimpleFileSink>(filename, truncate);
 		}
 
-		inline SinkPtr new_rotate_file_sink(std::string filename, int maxSizeInByte = 4194304, int checkEveryNLogs = 100)
+		inline SinkPtr new_rotate_file_sink(std::string filename, int maxSizeInByte = 4194304, bool backupOld = false)
 		{
-			return std::make_shared<detail::RotateFileSink>(filename, maxSizeInByte, checkEveryNLogs);
+			return std::make_shared<detail::RotateFileSink>(filename, maxSizeInByte, backupOld);
 		}
 
 		inline void Logger::attach_console()

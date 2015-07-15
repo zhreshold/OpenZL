@@ -91,6 +91,7 @@ namespace zl
 				int retryInterval = consts::kDefaultFileOpenRetryInterval);
 
 			bool try_open(int retryTime, int retryInterval, bool truncateOrNot = false);
+			bool reopen(bool truncateOrNot = true);
 			void close();
 			bool is_valid() const { return !filename_.empty(); }
 			bool is_open() const { return stream_.is_open(); }
@@ -139,7 +140,9 @@ namespace zl
 			std::ifstream	istream_;
 		};
 
-		bool is_occupied(std::string &filename);
+		//bool is_occupied(std::string &filename);
+		
+		std::size_t get_file_size(std::string filename);
 
 //		namespace detail
 //		{

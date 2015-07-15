@@ -70,6 +70,8 @@ namespace zl
 
 		std::string join(std::vector<std::string> elems, char delim);
 
+		std::vector<std::string>& erase_empty(std::vector<std::string> &vec);
+
 		void replace_first_with_escape(std::string &str, const std::string &replaceWhat, const std::string &replaceWith);
 		
 		void replace_all_with_escape(std::string &str, const std::string &replaceWhat, const std::string &replaceWith);

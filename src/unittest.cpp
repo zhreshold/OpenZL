@@ -106,10 +106,11 @@ void test_formatter()
 
 void test_log_thread()
 {
-	for (auto i = 0; i < 9999; ++i)
+	for (auto i = 0; i < 1000; ++i)
 	{
 		log::get_logger("default")->info("Sequence increment {}", i);
 	}
+	log::get_logger("default")->info("thread finished. {}", os::thread_id());
 }
 
 
@@ -122,28 +123,30 @@ void test_logger()
 	//logger->attach_sink(log::new_stdout_sink());
 	//auto fl = log::new_simple_file_sink("test1.log", true);
 	//logger->attach_console();
-	logger->attach_sink(log::new_rotate_file_sink("test1.log", 204800));
+	logger->attach_sink(log::new_rotate_file_sink("test1.log", 204800, true));
+	logger->detach_console();
+	log::dump_loggers();
 	logger->info("test info {} {}", 1, 2.2);
 	logger->info() << "call method 2  " << 1;
 	logger->warn("method3") << " followed by this" << " " << os::endl();
 	logger->debug("Debug message") << "should shown in debug, not in release";
 	logger->trace("no trace");
 
-	for (auto i = 0; i < 9999; ++i)
+	//for (auto i = 0; i < 4000; ++i)
+	//{
+	//	log::get_logger("default")->info("Sequence increment {}", i);
+	//}
+
+	std::vector<std::thread> vt;
+	for (auto i = 0; i < 4; ++i)
 	{
-		log::get_logger("default")->info("Sequence increment {}", i);
+		vt.push_back(std::thread(&test_log_thread));
 	}
 
-	//std::vector<std::thread> vt;
-	//for (auto i = 0; i < 10; ++i)
-	//{
-	//	vt.push_back(std::thread(&test_log_thread));
-	//}
-
-	//for (auto i = 0; i < 10; ++i)
-	//{
-	//	vt[i].join();
-	//}
+	for (auto i = 0; i < 4; ++i)
+	{
+		vt[i].join();
+	}
 }
 
 

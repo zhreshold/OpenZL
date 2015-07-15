@@ -57,6 +57,7 @@
 #include <Windows.h>
 #include <direct.h>
 #include <stdlib.h>
+#include <stdio.h>
 #elif OPENZL_OS_UNIX
 #include <unistd.h>	/* POSIX flags */
 #include <sys/stat.h>
@@ -200,7 +201,8 @@ namespace zl
 #else
 			std::string::size_type pos = fmt::trim(path).find_last_of("/");
 #endif
-			if (pos != std::string::npos && pos != path.length())
+			if (pos == std::string::npos) return path;
+			if (pos != path.length())
 			{
 				return path.substr(pos+1);
 			}
@@ -247,6 +249,18 @@ namespace zl
 			return std::string();
 		}
 
+		std::string path_append_basename(std::string origPath, std::string whatToAppend)
+		{
+			std::string newPath = path_join({ path_split_directory(origPath), path_split_basename(origPath) })
+				+ whatToAppend;
+			std::string ext = path_split_extension(origPath);
+			if (!ext.empty())
+			{
+				newPath += "." + ext;
+			}
+			return newPath;
+		}
+
 		
 		void fstream_open(std::fstream &stream, std::string &filename, std::ios::openmode openmode)
 		{
@@ -268,6 +282,14 @@ namespace zl
 #endif
 		}
 
+		bool rename(std::string oldName, std::string newName)
+		{
+#if OPENZL_OS_WINDOWS
+			return (!_wrename(utf8_to_wstring(oldName).c_str(), utf8_to_wstring(newName).c_str()));
+#else
+			return (!rename(oldName.c_str(), newName.c_str()));
+#endif
+		}
 
 		std::string endl()
 		{

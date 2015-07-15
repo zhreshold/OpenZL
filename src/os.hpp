@@ -62,6 +62,8 @@ namespace zl
 		void fstream_open(std::fstream &stream, std::string &filename, std::ios::openmode openmode);
 		void ifstream_open(std::ifstream &stream, std::string &filename, std::ios::openmode openmode);
 
+		bool rename(std::string oldName, std::string newName);
+
 		/*!
 		 * \fn	std::string endl();
 		 *
@@ -86,6 +88,8 @@ namespace zl
 		std::string path_split_basename(std::string path);
 
 		std::string path_split_extension(std::string path);
+
+		std::string path_append_basename(std::string origPath, std::string whatToAppend);
 
 		bool create_directory(std::string path);
 

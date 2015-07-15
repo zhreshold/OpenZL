@@ -120,13 +120,30 @@ namespace zl
 			return elems;
 		}
 
+		std::vector<std::string>& erase_empty(std::vector<std::string> &vec)
+		{
+
+		}
+
 		std::string join(std::vector<std::string> elems, char delim)
 		{
 			std::string str;
+			for (auto it = elems.begin(); it != elems.end();)
+			{
+				if (it->empty())
+				{
+					it = elems.erase(it);
+				}
+				else
+				{
+					++it;
+				}
+			}
 			if (elems.empty()) return str;
 			str = elems[0];
 			for (std::size_t i = 1; i < elems.size(); ++i)
 			{
+				if (elems[i].empty()) continue;
 				str += delim + elems[i];
 			}
 			return str;
