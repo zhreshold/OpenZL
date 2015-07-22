@@ -1,6 +1,6 @@
 /************************************************************************//*
  *
- *   Script File: thread.hpp
+ *   Script File: concurrent.hpp
  *
  *   Description:
  *
@@ -39,7 +39,7 @@
 
 namespace zl
 {
-	namespace thread
+	namespace cds
 	{
 		/*!
 		* \struct	NullMutex
@@ -136,7 +136,7 @@ namespace zl
 			std::shared_ptr<T>	ptr_;
 		};
 
-	} // namespace thread
+	} // namespace cds
 } // namespace zl
 
 #endif //END _OPENZL_THREAD_HPP_

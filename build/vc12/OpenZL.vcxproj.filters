@@ -45,7 +45,7 @@
     <ClCompile Include="..\..\src\filesystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\thread.cpp">
+    <ClCompile Include="..\..\src\concurrent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,7 +77,7 @@
     <ClInclude Include="..\..\src\filesystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\thread.hpp">
+    <ClInclude Include="..\..\src\concurrent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

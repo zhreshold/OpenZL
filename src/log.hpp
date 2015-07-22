@@ -33,7 +33,7 @@
 #include "os.hpp"
 #include "format.hpp"
 #include "filesystem.hpp"
-#include "thread.hpp"
+#include "concurrent.hpp"
 #include <string>
 #include <sstream>
 #include <utility>
@@ -194,7 +194,7 @@ namespace zl
 
 			std::string				name_;
 			std::atomic_int			levelMask_;
-			thread::AtomicUnorderedMap<std::string, SinkPtr> sinks_;
+			cds::AtomicUnorderedMap<std::string, SinkPtr> sinks_;
 		};
 		typedef std::shared_ptr<Logger> LoggerPtr;
 
@@ -404,6 +404,14 @@ namespace zl
 				virtual std::string to_string() const = 0;
 			};
 
+			// Due to a bug in VC12, thread join in static object dtor
+			// will cause deadlock. TODO: implement async sink when
+			// VS2015 ready.
+			class AsyncSink : public SinkInterface, private UnCopyable
+			{
+				
+			};
+
 			class Sink : public SinkInterface,  private UnCopyable
 			{
 			public:
@@ -463,7 +471,7 @@ namespace zl
 				}
 
 				std::atomic_int								levelMask_;
-				thread::AtomicNonTrivial<std::string>		format_;
+				cds::AtomicNonTrivial<std::string>		format_;
 			};
 
 			class SimpleFileSink : public Sink
@@ -657,29 +665,6 @@ namespace zl
 					return sInstance;
 				}
 
-				//LoggerPtr register_logger(Logger &logger)
-				//{
-				//	std::lock_guard<std::mutex> lock(mutex_);
-				//	if (contains(logger.name()))
-				//	{
-				//		throw RuntimeException("Logger with name: " + logger.name() + " already existed.");
-				//	}
-				//	LoggerPtr ptr = std::make_shared<Logger>(logger);
-				//	do_registry(logger.name(), ptr);
-				//	return ptr;
-				//}
-
-				//LoggerPtr register_logger(LoggerPtr pLogger)
-				//{
-				//	std::lock_guard<std::mutex> lock(mutex_);
-				//	if (contains(pLogger->name()))
-				//	{
-				//		throw RuntimeException("Logger with name: " + pLogger->name() + " already existed.");
-				//	}
-				//	do_registry(pLogger->name(), pLogger);
-				//	return pLogger;
-				//}
-
 				LoggerPtr create(const std::string &name)
 				{
 					auto ptr = new_registry(name);
@@ -734,8 +719,23 @@ namespace zl
 					loggers_.clear();
 				}
 
+				void lock()
+				{
+					lock_ = true;
+				}
+
+				void unlock()
+				{
+					lock_ = false;
+				}
+
+				bool is_locked() const
+				{
+					return lock_;
+				}
+
 			private:
-				LoggerRegistry(){}
+				LoggerRegistry(){ lock_ = false; }
 
 				LoggerPtr do_registry(const std::string &name, LoggerPtr pLogger)
 				{
@@ -757,7 +757,8 @@ namespace zl
 					return nullptr;
 				}
 
-				thread::AtomicUnorderedMap<std::string, LoggerPtr> loggers_;
+				cds::AtomicUnorderedMap<std::string, LoggerPtr> loggers_;
+				std::atomic_bool	lock_;
 			};
 
 		} // namespace detail
@@ -930,6 +931,33 @@ namespace zl
 			}
 		}
 
+		inline void Logger::attach_console()
+		{
+			sinks_.insert(std::string(consts::kStdoutSinkName), new_stdout_sink());
+			sinks_.insert(std::string(consts::kStderrSinkName), new_stderr_sink());
+		}
+
+		inline void Logger::detach_console()
+		{
+			sinks_.erase(std::string(consts::kStdoutSinkName));
+			sinks_.erase(std::string(consts::kStderrSinkName));
+		}
+
+		inline SinkPtr get_sink(std::string name)
+		{
+			SinkPtr psink = nullptr;
+			auto loggers = detail::LoggerRegistry::instance().get_all();
+			for (auto logger : loggers)
+			{
+				psink = logger->get_sink(name);
+				if (psink)
+				{
+					return psink;
+				}
+			}
+			return nullptr;
+		}
+
 		inline void dump_loggers()
 		{
 			auto loggers = detail::LoggerRegistry::instance().get_all();
@@ -940,11 +968,6 @@ namespace zl
 			}
 			std::cout << "}" << std::endl;
 		}
-
-		//inline void destroy_registry()
-		//{
-		//	detail::LoggerRegistry::instance().~LoggerRegistry();
-		//}
 
 		inline SinkPtr new_stdout_sink()
 		{
@@ -966,16 +989,35 @@ namespace zl
 			return std::make_shared<detail::RotateFileSink>(filename, maxSizeInByte, backupOld);
 		}
 
-		inline void Logger::attach_console()
+		inline void lock_loggers()
 		{
-			sinks_.insert(std::string(consts::kStdoutSinkName), new_stdout_sink());
-			sinks_.insert(std::string(consts::kStderrSinkName), new_stderr_sink());
+			detail::LoggerRegistry::instance().lock();
 		}
 
-		inline void Logger::detach_console()
+		inline void unlock_loggers()
 		{
-			sinks_.erase(std::string(consts::kStdoutSinkName));
-			sinks_.erase(std::string(consts::kStderrSinkName));
+			detail::LoggerRegistry::instance().unlock();
+		}
+
+		inline void drop_logger(std::string name)
+		{
+			detail::LoggerRegistry::instance().drop(name);
+		}
+
+		inline void drop_all_loggers()
+		{
+			detail::LoggerRegistry::instance().drop_all();
+		}
+
+		inline void drop_sink(std::string name)
+		{
+			SinkPtr psink = get_sink(name);
+			if (nullptr == psink) return;
+			auto loggers = detail::LoggerRegistry::instance().get_all();
+			for (auto logger : loggers)
+			{
+				logger->detach_sink(psink);
+			}
 		}
 
 	} // namespace log

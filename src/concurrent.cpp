@@ -1,6 +1,6 @@
 /************************************************************************//*
  *
- *   Script File: thread.cpp
+ *   Script File: concurrent.cpp
  *
  *   Description:
  *

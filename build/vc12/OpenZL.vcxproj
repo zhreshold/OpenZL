@@ -23,7 +23,7 @@
     <ClCompile Include="..\..\src\config.cpp" />
     <ClCompile Include="..\..\src\filesystem.cpp" />
     <ClCompile Include="..\..\src\format.cpp" />
-    <ClCompile Include="..\..\src\thread.cpp" />
+    <ClCompile Include="..\..\src\concurrent.cpp" />
     <ClCompile Include="..\..\src\log.cpp" />
     <ClCompile Include="..\..\src\openzl.cpp" />
     <ClCompile Include="..\..\src\os.cpp" />
@@ -36,7 +36,7 @@
     <ClInclude Include="..\..\src\config.hpp" />
     <ClInclude Include="..\..\src\filesystem.hpp" />
     <ClInclude Include="..\..\src\format.hpp" />
-    <ClInclude Include="..\..\src\thread.hpp" />
+    <ClInclude Include="..\..\src\concurrent.hpp" />
     <ClInclude Include="..\..\src\log.hpp" />
     <ClInclude Include="..\..\src\openzl.hpp" />
     <ClInclude Include="..\..\src\os.hpp" />
